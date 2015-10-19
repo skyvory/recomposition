@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+<html ng-app="recompositionApp">
 <html>
 	<head>
 		<meta charset="utf-8">
 		<title>Recomposition Front End</title>
 		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	</head>
-	<body ng-app="authApp">
+	<body>
 		<div class="container">
 			<div ui-view></div>
 		</div>
