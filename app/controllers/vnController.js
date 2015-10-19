@@ -18,6 +18,7 @@
 				vm.error = error;
 			});
 		}
+		vm.getVn();
 
 		// define authentication status to scope
 		$scope.isAuthenticated = function() {
