@@ -12,14 +12,20 @@
 		</div>
 	</body>
 
-	<!-- application dependency -->
+	<!-- components -->
 	<script src="bower_components/angular/angular.js"></script>
 	<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="bower_components/satellizer/satellizer.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
 
-	<!-- application scripts -->
+	<!-- application script s-->
 	<script src="app/app.js"></script>
+
+	<!-- controller scripts -->
 	<script src="app/controllers/authController.js"></script>
 	<script src="app/controllers/vnController.js"></script>
 	<script src="app/controllers/logoutController.js"></script>
+
+	<!-- service scripts -->
+	<script src="app/services/vnService.js"></script>
 </html>
