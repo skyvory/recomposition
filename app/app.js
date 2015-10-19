@@ -1,8 +1,12 @@
 (function() {
+	angular.module('recompositionApp', ['ui.router', 'satellizer']);
+})();
+
+(function() {
 	'use strict';
 
 	angular
-		.module('authApp', ['ui.router', 'satellizer'])
+		.module('recompositionApp')
 		.config(function($stateProvider, $urlRouterProvider, $authProvider) {
 
 			// satellizer configuration that specifies which api route the jwt should be retrieved from
