@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('authApp')
+		.module('recompositionApp')
 		.controller('AuthController', AuthController);
 
 	function AuthController($auth, $state) {
@@ -18,6 +18,9 @@
 			// use satellizer's $auth service to login
 			$auth.login(credentials).then(function(data) {
 
+				var token = $auth.getToken();
+				console.log('token: ', token);
+				console.log(data);
 				// if login is successful, redirect to the user state
 				$state.go('vn', {});
 			});

@@ -21,4 +21,5 @@
 	<script src="app/app.js"></script>
 	<script src="app/controllers/authController.js"></script>
 	<script src="app/controllers/vnController.js"></script>
+	<script src="app/controllers/logoutController.js"></script>
 </html>

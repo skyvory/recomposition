@@ -30,6 +30,11 @@
 					url: '/vn',
 					templateUrl: 'views/vnView.html',
 					controller: 'VnController as vn'
+				})
+				.state('logout', {
+					url: '/logout',
+					// templateUrl: 'views/logoutView',
+					controller: 'LogoutController'
 				});
 		});
 })();

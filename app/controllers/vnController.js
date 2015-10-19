@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('authApp')
+		.module('recompositionApp')
 		.controller('VnController', VnController);
 
 	function VnController($http, $auth, $scope) {
