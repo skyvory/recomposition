@@ -1,0 +1,16 @@
+<div class="col-sm-6 col-sm-offset-3">
+	<div class="well">
+		<h3>Users</h3>
+		<button class="btn btn-primary" style="margin-bottom: 10px" ng-click="user.getUsers()">Get users!</button>
+		<ul class="list-group" ng-if="user.users">
+		{{user.users}}
+			<li class="list-group-item" ng-repeat="user in user.users.data">
+				<h4>{{user.title_en}}</h4>
+			</li>
+		</ul>
+		<div class="alert alert-danger" ng-if="user.error">
+			<strong>ERROR</strong> {{user.error.error}}
+			<br>login again
+		</div>
+	</div>
+</div>
