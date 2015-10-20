@@ -1,18 +1,13 @@
 <div class="col-sm-6 col-sm-offset-3">
 	<div class="well">
-		<h3>VN</h3>
-		<button class="btn btn-primary" style="margin-bottom: 10px" ng-click="vn.getVn()">Get vn!</button>
-		<ul class="list-group" ng-if="vn.res.total">
-			<li class="list-group-item" ng-repeat="vn in vn.res.data">
-				<h4>{{vn.title_en}}</h4>
+		<button class="btn btn-primary" style="margin-bottom: 10px" ng-click="">Get vn!</button>
+		<ul class="list-group" ng-if="vn.total">
+			<li class="list-group-item" ng-repeat="vn in vn.data">
+				<a>{{vn.title_en}}</a>
 			</li>
 		</ul>
-		<div class="alert alert-danger" ng-if="vn.error">
-			<strong>ERROR</strong> {{vn.error.error}}
-			<br>login again
-		</div>
 	</div>
 </div>
-<div ng-if="!isAuthenticated()">
+<!-- <div ng-if="!isAuthenticated()">
 	<p>biiiiii</p>
-</div>
+</div> -->
