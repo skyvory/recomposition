@@ -1,11 +1,15 @@
 <div class="col-sm-6 col-sm-offset-3">
 	<div class="well">
 		<button class="btn btn-primary" style="margin-bottom: 10px" ng-click="">Get vn!</button>
-		<ul class="list-group" ng-if="vn.total">
-			<li class="list-group-item" ng-repeat="vn in vn.data">
-				<a>{{vn.title_en}}</a>
-			</li>
-		</ul>
+		<!-- <div ng-if="vn.total"> -->
+		<table ng-if="vn.total">
+			<tr class="list-group-item" ng-repeat="v in vn.data">
+				<td>
+					<a class="btn btn-primary" ui-sref="showVn({id: v.id})">{{v.title_en}}</a>
+				</td>
+			</tr>
+		</table>
+		<!-- </div> -->
 	</div>
 </div>
 <!-- <div ng-if="!isAuthenticated()">

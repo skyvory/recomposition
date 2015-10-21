@@ -34,19 +34,19 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 		})
 		.state('showVn', {
 			url: '/vn/:id/view',
-			templateUrl: 'views/vnView.html',
+			templateUrl: 'views/vnShowView.html',
 			controller: 'VnShowController'
 		})
-		// .state('newVn', {
-		// 	url: '/vn/new',
-		// 	templateUrl: 'views/vnNewView.html',
-		// 	controller: 'VnNewController'
-		// })
-		// .state('editVn', {
-		// 	url: '/vn/:id/edit',
-		// 	templateUrl: 'views/vnEditView.html',
-		// 	controller: 'VnEditController'
-		// })
+		.state('createVn', {
+			url: '/vn/new',
+			templateUrl: 'views/vnCreateView.html',
+			controller: 'VnCreateController'
+		})
+		.state('editVn', {
+			url: '/vn/:id/edit',
+			templateUrl: 'views/vnEditView.html',
+			controller: 'VnEditController'
+		})
 		.state('logout', {
 			url: '/logout',
 			// templateUrl: 'views/logoutView',
