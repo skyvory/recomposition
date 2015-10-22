@@ -6,7 +6,8 @@ var recompositionApp = angular.module('recompositionApp', [
 	'ngResource',
 
 	// 'vnController',
-	'vnServices'
+	'vnServices',
+	'commonServices'
 ]);
 
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
@@ -37,9 +38,9 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 			templateUrl: 'views/vnShowView.html',
 			controller: 'VnShowController'
 		})
-		.state('createVn', {
+		.state('newVn', {
 			url: '/vn/new',
-			templateUrl: 'views/vnCreateView.html',
+			templateUrl: 'views/vnNewView.html',
 			controller: 'VnCreateController'
 		})
 		.state('editVn', {

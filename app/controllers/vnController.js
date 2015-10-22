@@ -3,12 +3,22 @@
 
 	angular
 		.module('recompositionApp')
-		.controller('VnListController', ['$auth', '$scope', 'Vn', function($auth, $scope, Vn) {
+		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', function($auth, $scope, Vn, confirmService, $window, $state) {
 			$scope.vn = Vn.get();
 
 			$scope.isAuthenticated = function() {
 				return $auth.isAuthenticated();
 			}
+
+			$scope.deleteVn = function(v) {
+				if(confirmService.showPopup('Sure?')) {
+					console.log($scope.vn);
+					Vn.delete({ id: v.id }, function() {
+						$window.location.href = '';
+					});
+				}
+			}
+			
 		}])
 		.controller('VnShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
 			$scope.vn = Vn.get({ id: $stateParams.id});

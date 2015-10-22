@@ -28,4 +28,5 @@
 
 	<!-- service scripts -->
 	<script src="app/services/vnService.js"></script>
+	<script src="app/services/commonService.js"></script>
 </html>
