@@ -19,10 +19,6 @@
 				}
 			}
 
-			$scope.toggleList = function() {
-				$mdSidenav('left').toggle();
-			}
-			
 		}])
 		.controller('VnShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
 			$scope.vn = Vn.get({ id: $stateParams.id});
