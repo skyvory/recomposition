@@ -1,8 +1,7 @@
-<div class="col-sm-6 col-sm-offset-3">
+<!-- <div class="col-sm-6 col-sm-offset-3">
 	<a ui-sref="newVn" class="btn btn-primary">New</a>
 	<div class="well">
 		<button class="btn btn-primary" style="margin-bottom: 10px" ng-click="">Get vn!</button>
-		<!-- <div ng-if="vn.total"> -->
 		<table ng-if="vn.total">
 			<tr class="list-group-item" ng-repeat="v in vn.data">
 				<td>
@@ -11,9 +10,27 @@
 				</td>
 			</tr>
 		</table>
-		<!-- </div> -->
 	</div>
-</div>
-<!-- <div ng-if="!isAuthenticated()">
-	<p>biiiiii</p>
 </div> -->
+
+
+<md-toolbar layout="row" class="md-whiteframe-z1">
+	<md-button class="menu" hide-gt-sm ng-click="toggleList()">
+		<md-icon md-svg-icon="menu"></md-icon>
+	</md-button>
+	<h1>Visualize Display</h1>
+</md-toolbar>
+
+<md-content flex id="content">
+	<md-icon md-svg-icon="" class="avatar"></md-icon>
+	<h2>proto</h2>
+	<a ui-sref="newVn" class="btn btn-primary">New</a>
+	<table ng-if="vn.total">
+		<tr class="list-group-item" ng-repeat="v in vn.data">
+			<td>
+				<a class="btn btn-primary" ui-sref="showVn({id: v.id})">{{v.title_en}}</a>
+				<a class="btn btn-danger" ng-click="deleteVn(v)">Delete</a>
+			</td>
+		</tr>
+	</table>
+</md-content>

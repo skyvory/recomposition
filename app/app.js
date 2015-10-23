@@ -7,7 +7,8 @@ var recompositionApp = angular.module('recompositionApp', [
 
 	// 'vnController',
 	'vnServices',
-	'commonServices'
+	'commonServices',
+	'ngMaterial'
 ]);
 
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {

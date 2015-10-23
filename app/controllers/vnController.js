@@ -3,7 +3,7 @@
 
 	angular
 		.module('recompositionApp')
-		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', function($auth, $scope, Vn, confirmService, $window, $state) {
+		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav) {
 			$scope.vn = Vn.get();
 
 			$scope.isAuthenticated = function() {
@@ -17,6 +17,10 @@
 						$window.location.href = '';
 					});
 				}
+			}
+
+			$scope.toggleList = function() {
+				$mdSidenav('left').toggle();
 			}
 			
 		}])
