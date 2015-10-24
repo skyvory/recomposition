@@ -14,7 +14,8 @@
 		</style>
 	</head>
 	<body ng-cloak>
-		<md-toolbar layout="row" class="md-whiteframe-z1">
+		<div layout="column" layout-fill>
+		<md-toolbar class="md-whiteframe-z1">
 			<div class="md-toolbar-tools">
 				<md-button class="md-icon-button menu" hide-gt-sm ng-click="toggleMenu()">
 					<md-icon md-svg-icon="assets/svg/menu.svg"></md-icon>
@@ -25,30 +26,26 @@
 			</div>
 		</md-toolbar>
 
-		<div layout="row">
-		<md-sidenav class="md-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-			<md-toolbar class="md-whiteframe-z1" hide-gt-sm>
-				<h1>Recomposition</h1>
-			</md-toolbar>
+		<div flex layout="row">
 
-			<md-list>
-				<md-list-item>
-					<md-button ng-click="" ng-class="">
-						<md-icon md-svg-icon="" class="avatar"></md-icon>
-						<p>visualization</p>
-					</md-button>
-				</md-list-item>
-				<md-divider></md-divider>
-				 <md-list-item ng-click="toggleMenu()">
-    					<md-icon md-svg-icon="assets/svg/mail.svg"></md-icon>
-					<p>Visualization</p>
-				</md-list-item>
-			</md-list>
-		</md-sidenav>
+			<md-sidenav flex="grow" class="md-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+				<md-toolbar class="md-whiteframe-z1" hide-gt-sm>
+					<h1>Recomposition</h1>
+				</md-toolbar>
 
-		<div flex layout="column" role="main" class="md-whiteframe-z2" ui-view>
-		</div>
+				<md-list>
+					<md-divider></md-divider>
+					 <md-list-item ng-click="newV()"  ui-sref="newVn">
+	    					<md-icon md-svg-icon="assets/svg/mail.svg"></md-icon>
+						<p>Visualization</p>
+					</md-list-item>
+				</md-list>
+			</md-sidenav>
 
+			<md-content id="content" role="main" class="md-whiteframe-z2" ui-view flex="grow">
+		
+			</md-content>
+			</div>
 		</div>
 	</body>
 
