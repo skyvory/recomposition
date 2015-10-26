@@ -4,7 +4,7 @@
 	</md-button>
 	<md-menu-content width="4">
 		<md-menu-item ng-repeat="item in [1, 2, 3]">
-			<md-button ng-click="">
+			<md-button ng-click="go2newVn()">
 				<div layout="row">
 					<p flex>Option {{item}}</p>
 					<md-icon md-menu-align-target md-svg-icon="call:portable-wifi-on"></md-icon>
@@ -13,7 +13,3 @@
 		</md-menu-item>
 	</md-menu-content>
 </md-menu>
-
-<md-button class="md-fab md-primary md-hue-3" style="position:fixed;right:10px;bottom:10px;">
-	<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
-</md-button>

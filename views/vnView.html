@@ -20,7 +20,23 @@
 		<p style="font-size:0.5em">Visualize Display</p>
 	</md-toolbar> -->
 
-	<div ng-include="'views/vnMenu.html'"></div>
+	<!-- <div ng-include="'views/vnMenu.html'"></div> -->
+
+	<md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
+		<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+			<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
+		</md-button>
+		<md-menu-content width="4">
+			<md-menu-item ng-repeat="item in [1, 2, 3]">
+				<md-button ng-click="">
+					<div layout="row">
+						<p flex>Option {{item}}</p>
+						<md-icon md-menu-align-target md-svg-icon="call:portable-wifi-on"></md-icon>
+					</div>
+				</md-button>
+			</md-menu-item>
+		</md-menu-content>
+	</md-menu>
 
 	<md-icon md-svg-icon="" class="avatar"></md-icon>
 	<h2>proto</h2>
@@ -33,3 +49,7 @@
 			</td>
 		</tr>
 	</table>
+
+	<md-button class="md-fab md-primary md-hue-3" aria-label="new" style="position:fixed;right:10px;bottom:10px;" ui-sref="newVn">
+		<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
+	</md-button>

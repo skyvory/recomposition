@@ -34,11 +34,11 @@
 				</md-toolbar>
 
 				<md-list>
-					<md-divider></md-divider>
-					 <md-list-item ng-click="newV()"  ui-sref="newVn">
+					 <md-list-item ng-click="newV()">
 	    					<md-icon md-svg-icon="assets/svg/mail.svg"></md-icon>
 						<p>Visualization</p>
 					</md-list-item>
+					<md-divider></md-divider>
 				</md-list>
 			</md-sidenav>
 
