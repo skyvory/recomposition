@@ -5,7 +5,7 @@
 		.module('recompositionApp')
 		.controller('AuthController', AuthController);
 
-	function AuthController($auth, $state) {
+	function AuthController($auth, $state, $scope) {
 		var vm = this;
 
 		vm.login = function() {

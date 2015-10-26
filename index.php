@@ -13,40 +13,8 @@
 			}
 		</style>
 	</head>
-	<body ng-cloak>
-		<div layout="column" layout-fill>
-		<md-toolbar class="md-whiteframe-z1">
-			<div class="md-toolbar-tools">
-				<md-button class="md-icon-button menu" hide-gt-sm ng-click="toggleMenu()">
-					<md-icon md-svg-icon="assets/svg/menu.svg"></md-icon>
-				</md-button>
-				<h2>
-					<span>Recomposition</span>
-				</h2>
-			</div>
-		</md-toolbar>
-
-		<div flex layout="row">
-
-			<md-sidenav flex="grow" class="md-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
-				<md-toolbar class="md-whiteframe-z1" hide-gt-sm>
-					<h1>Recomposition</h1>
-				</md-toolbar>
-
-				<md-list>
-					 <md-list-item ng-click="newV()">
-	    					<md-icon md-svg-icon="assets/svg/mail.svg"></md-icon>
-						<p>Visualization</p>
-					</md-list-item>
-					<md-divider></md-divider>
-				</md-list>
-			</md-sidenav>
-
-			<md-content id="content" role="main" class="md-whiteframe-z2" ui-view flex="grow">
-		
-			</md-content>
-			</div>
-		</div>
+	<body ng-cloak ng-controller="MainController" ng-style="bodystyle">
+		<div ui-view=""></div>
 	</body>
 
 	<!-- components -->
@@ -57,6 +25,7 @@
 	<script src="bower_components/angular-animate/angular-animate.js"></script>
 	<script src="bower_components/angular-aria/angular-aria.js"></script>
 	<script src="bower_components/angular-material/angular-material.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.js"></script>
 
 	<!-- application script s-->
 	<script src="app/app.js"></script>
@@ -91,4 +60,6 @@
 		// 				.accentPalette('red');
 		// 	})
 	</script>
+	<style type="text/css">
+	</style>
 </html>

@@ -8,7 +8,8 @@ var recompositionApp = angular.module('recompositionApp', [
 	// 'vnController',
 	'vnServices',
 	'commonServices',
-	'ngMaterial'
+	'ngMaterial',
+	'ngMessages'
 ]);
 
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
@@ -22,40 +23,55 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 		.state('auth', {
 			url: '/auth',
 			templateUrl: 'views/authView.html',
-			controller: 'AuthController as auth'
+			controller: 'AuthController as auth',
+		})
+		.state('common', {
+			templateUrl: 'views/common.html',
+			abstract: true,
 		})
 		.state('users', {
 			url: '/users',
 			templateUrl: 'views/userView.html',
-			controller: 'UserController as user'
+			controller: 'UserController as user',
+			parent: 'common',
 		})
 		.state('vn', {
 			url: '/vn',
 			templateUrl: 'views/vnView.html',
-			controller: 'VnListController'
+			controller: 'VnListController',
+			parent: 'common',
 		})
 		.state('showVn', {
 			url: '/vn/:id/view',
 			templateUrl: 'views/vnShowView.html',
-			controller: 'VnShowController'
+			controller: 'VnShowController',
+			parent: 'common',
 		})
 		.state('newVn', {
 			url: '/vn/new',
 			templateUrl: 'views/vnNewView.html',
-			controller: 'VnCreateController'
+			controller: 'VnCreateController',
+			parent: 'common',
 		})
 		.state('editVn', {
 			url: '/vn/:id/edit',
 			templateUrl: 'views/vnEditView.html',
-			controller: 'VnEditController'
+			controller: 'VnEditController',
+			parent: 'common',
 		})
 		.state('logout', {
 			url: '/logout',
 			// templateUrl: 'views/logoutView',
-			controller: 'LogoutController'
+			controller: 'LogoutController',
 		});
 }]);
 
+recompositionApp.controller('MainController', function($scope) {
+	$scope.image = 'http://localhost/recompose/assets/images/bg.png';
+	$scope.bodystyle = {
+		background: "url(" + $scope.image + ") 100%"
+	};
+});
 
 // (function() {
 // 	angular.module('recompositionApp', ['ui.router', 'satellizer', 'ngResource', 'vnServices']);
