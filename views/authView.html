@@ -1,20 +1,21 @@
 <div layout="row" layout-align="center center">
-	<div flex="60" style="background-color: #ddd; border-radius: 20px;">
+	<div flex="60" style="background-color: #ddd; border-radius: 20px; margin-top:200px">
 		<form name="loginForm">
 			<div layout="column" layout-sm="column">
 				<md-input-container flex>
 					<label>Username</label>
-					<input name="username" ng-model="auth.username" required ng-pattern="/^[a-zA-Z0-9_]*$/" md-minlength="2">
+					<input type="text" name="username" ng-model="auth.email" required ng-pattern="/^[a-zA-Z0-9_]*$/" md-maxlength="13">
 					<div ng-messages="loginForm.username.$error" role="alert" multiple>
 						<div ng-message="required" class="my-message">You must supply username</div>
 						<div ng-message="pattern" class="my-message">Invalid combination</div>
-						<div ng-message="md-minlength" class="my-message">No single letter username allowed to exist</div>
+						<div ng-message="md-maxlength" class="my-message">No single letter username allowed to exist</div>
 					</div>
 				</md-input-container>
 				<md-input-container flex>
 					<label>Password</label>
-					<input ng-model="auth.password">
+					<input type="password" ng-model="auth.password">
 				</md-input-container>
+				<md-button class="md-raised md-primary" ng-click="auth.login()">Login</md-button>
 			</div>
 		</form>
 	</div>
