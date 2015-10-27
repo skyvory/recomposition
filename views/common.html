@@ -7,12 +7,17 @@
 			<h2>
 				<span>Recomposition</span>
 			</h2>
+			<span flex></span>
+			<md-button class="">(user)</md-button>
+			<md-button class="md-icon-button">
+				<md-icon md-svg-icon="bower_components/material-design-icons/action/svg/production/ic_account_circle_48px.svg" style="color: white;"></md-icon>
+			</md-button>
 		</div>
 	</md-toolbar>
 
 	<div flex layout="row">
 
-		<md-sidenav flex="grow" class="md-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+		<md-sidenav flex="grow" class="md-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background-color:rgba(255,255,255,0.6);">
 			<md-toolbar class="md-whiteframe-z1" hide-gt-sm>
 				<h1>Recomposition</h1>
 			</md-toolbar>
@@ -26,7 +31,7 @@
 			</md-list>
 		</md-sidenav>
 
-		<md-content id="content" role="main" class="md-whiteframe-z2" ui-view flex="grow">
+		<md-content id="content" role="main" class="md-whiteframe-z2" ui-view flex="grow" style="background-color:transparent;">
 	
 		</md-content>
 	</div>
