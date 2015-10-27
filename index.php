@@ -6,6 +6,7 @@
 		<title>Recomposition Front End</title>
 		<!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
 		<link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+		<link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.css" />
 		<style type="text/css">
 			/*Hide when Angular is not yet loaded and initialized*/
 			[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], ng-cloak, x-ng-cloak {
@@ -26,6 +27,7 @@
 	<script src="bower_components/angular-aria/angular-aria.js"></script>
 	<script src="bower_components/angular-material/angular-material.js"></script>
 	<script src="bower_components/angular-messages/angular-messages.js"></script>
+	<script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
 
 	<!-- application script s-->
 	<script src="app/app.js"></script>

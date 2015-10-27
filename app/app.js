@@ -9,7 +9,8 @@ var recompositionApp = angular.module('recompositionApp', [
 	'vnServices',
 	'commonServices',
 	'ngMaterial',
-	'ngMessages'
+	'ngMessages',
+	'md.data.table',
 ]);
 
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {

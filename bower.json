@@ -28,6 +28,7 @@
     "angular-animate": "^1.4.6",
     "angular-aria": "^1.4.6",
     "material-design-icons": "~2.0.0",
-    "angular-messages": "~1.4.7"
+    "angular-messages": "~1.4.7",
+    "angular-material-data-table": "~0.8.14"
   }
 }
