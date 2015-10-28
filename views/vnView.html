@@ -38,6 +38,37 @@
 		</md-menu-content>
 	</md-menu>
 
+	<md-content  layout="column" flex>
+		<md-data-table-toolbar ng-show="!selected.length">
+			<h4 class="md-title">Visual</h4>
+		</md-data-table-toolbar>
+		<md-data-table-toolbar class="alternate" ng-show="selected.length">
+			<div>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</div>
+		</md-data-table-toolbar>
+
+		<md-data-table-container>
+			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred">
+				<thead md-order="query.order" md-trigger="onorderchange">
+					<tr>
+						<th order-by="title_en" name="Title" unit=""></th>
+						<th order-by="created_at" name="Created" unit="date"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-auto-select md-disable-select="vn.id === 'none'" ng-repeat="v in vn.data | orderBy: query.order | limitTo: query.limit: (query.page -1) * query.limit">
+						<td>{{v.title_en}}</td>
+						<td>{{v.created_at}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</md-data-table-container>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{vn.total}}" md-trigger="onpagechange" md-row-select="[3, 5, 10]"></md-data-table-pagination>
+	</md-content>
+
+
+
+
+
 	<md-icon md-svg-icon="" class="avatar"></md-icon>
 	<h2>proto</h2>
 	<a ui-sref="newVn" class="btn btn-primary">New</a>

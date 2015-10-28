@@ -3,8 +3,10 @@
 
 	angular
 		.module('recompositionApp')
-		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav) {
-			$scope.vn = Vn.get();
+		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', '$q', '$timeout', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav, $q, $timeout) {
+			var v = Vn.get();
+			$scope.vn = v;
+			// console.log(v.$promise);
 
 			$scope.isAuthenticated = function() {
 				return $auth.isAuthenticated();
@@ -17,6 +19,39 @@
 						$window.location.href = '';
 					});
 				}
+			}
+
+			$scope.selected = [];
+			$scope.query = {
+				filter: '',
+				order: 'created_at',
+				limit: 3,
+				page: 1
+			};
+			function success(vn) {
+				$scope.vn = vn;
+			}
+			$scope.search = function(pre) {
+				return Vn.get($scope.query)
+			}
+			$scope.onpagechange = function(page, limit) {
+				var deferred = $q.defer();
+				// Vn.get({page: page}, function (resp) {
+				// 	deferred.resolve(resp);
+				// });
+				// return deferred.promise;
+				$timeout(function() {
+					deferred.resolve();
+				}, 2000);
+				return deferred.promise;
+				
+			}
+			$scope.onorderchange = function(order) {
+				var deferred = $q.defer();
+				$timeout(function() {
+					deferred.resolve();
+				}, 1000);
+				return deferred.promise;
 			}
 
 		}])
