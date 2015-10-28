@@ -30,21 +30,22 @@
 			};
 			function success(vn) {
 				$scope.vn = vn;
+				console.log(vn);
 			}
 			$scope.search = function(pre) {
 				return Vn.get($scope.query)
 			}
 			$scope.onpagechange = function(page, limit) {
-				var deferred = $q.defer();
-				// Vn.get({page: page}, function (resp) {
-				// 	deferred.resolve(resp);
+
+				// var deferred = $q.defer();
+				// var xxx = Vn.get({page: page});
+				// xxx.$promise.then(function (response) {
+				// 	deferred.resolve(response.data);
+				// 	console.log(deferred.promise);
+				// 	return deferred.promise;
 				// });
-				// return deferred.promise;
-				$timeout(function() {
-					deferred.resolve();
-				}, 2000);
-				return deferred.promise;
-				
+
+				return Vn.get({page:page}, success).$promise;
 			}
 			$scope.onorderchange = function(order) {
 				var deferred = $q.defer();
