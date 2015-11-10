@@ -38,7 +38,8 @@
 		</md-menu-content>
 	</md-menu>
 
-	<br/>
+	<br />
+	<br />
 
 	<md-content  layout="column" flex style="background-color: transparent;">
 		<md-data-table-toolbar ng-show="!selected.length" style="background-color: transparent;">
@@ -60,6 +61,7 @@
 					<tr md-auto-select md-disable-select="vn.id === 'none'" ng-repeat="v in vn.data | orderBy: query.order">
 						<td>{{v.title_en}}</td>
 						<td>{{v.created_at}}</td>
+						<td><md-button ui-sref="editVn">Edit</md-button></td>
 					</tr>
 				</tbody>
 			</table>
