@@ -41,6 +41,7 @@
 
 	<!-- service scripts -->
 	<script src="app/services/vnService.js"></script>
+	<script src="app/services/developerService.js"></script>
 	<script src="app/services/commonService.js"></script>
 
 	<script type="text/javascript">

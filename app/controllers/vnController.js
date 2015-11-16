@@ -63,13 +63,102 @@
 				return $auth.isAuthenticated();
 			}
 		}])
-		.controller('VnCreateController', ['$scope', '$state', 'Vn', function($scope, $state, Vn) {
+		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', function($scope, $state, Vn, $timeout, $q, $log, Developer) {
 			$scope.vn = new Vn();
 
 			$scope.createVn = function() {
+				$scope.vn.developer_id = $scope.selectedItem.id;
 				$scope.vn.$save(function() {
 					$state.go('vn');
 				});
+			}
+
+			$scope.check = function() {
+				console.log($scope.selectedItem.id);
+			}
+
+			$scope.simulateQuery = false;
+			$scope.isDisabled = false;
+			// $scope.repos = loadAll();
+			$scope.repos = {};
+			loadAll();
+			$scope.querySearch = querySearch;
+			$scope.selectedItemChange = selectedItemChange;
+			$scope.searchTextChange = searchTextChange;
+
+			function querySearch(query) {
+				var results = query ? $scope.repos.filter( createFilterFor(query) ) : $scope.repos, deferred;
+				if($scope.simulateQuery) {
+					deferred = $q.defer();
+					$timeout(function () {
+						deferred.resolve( results );
+					}, Math.rendom() * 1000, false);
+					return deferred.promise;
+				}
+				else {
+					return results;
+				}
+			}
+			function searchTextChange(text) {
+				$log.info(text);
+			}
+			function selectedItemChange(item) {
+				$log.info(JSON.stringify(item));
+			}
+			function loadAll() {
+				// var repos = [
+				// 	{
+				//           'name'      : 'Angular 1',
+				//           'url'       : 'https://github.com/angular/angular.js',
+				//           'watchers'  : '3,623',
+				//           'forks'     : '16,175',
+				//         },
+				//         {
+				//           'name'      : 'Angular 2',
+				//           'url'       : 'https://github.com/angular/angular',
+				//           'watchers'  : '469',
+				//           'forks'     : '760',
+				//         },
+				//         {
+				//           'name'      : 'Angular Material',
+				//           'url'       : 'https://github.com/angular/material',
+				//           'watchers'  : '727',
+				//           'forks'     : '1,241',
+				//         },
+				//         {
+				//           'name'      : 'Bower Material',
+				//           'url'       : 'https://github.com/angular/bower-material',
+				//           'watchers'  : '42',
+				//           'forks'     : '84',
+				//         },
+				//         {
+				//           'name'      : 'Material Start',
+				//           'url'       : 'https://github.com/angular/material-start',
+				//           'watchers'  : '81',
+				//           'forks'     : '303',
+				//         }
+				// ];
+				// return repos.map( function (repo) {
+				// 	repo.value = repo.name.toLowerCase();
+				// 	return repo;
+				// });
+
+				var repos = Developer.get();
+				// return (function() {
+					repos.$promise.then(function(res) {
+						$scope.repos = res.map( function (repo) {
+							repo.value = repo.name_en.toLowerCase();
+							return repo;
+						});
+					});
+				// })();
+
+			}
+			function createFilterFor(query) {
+				var lowercaseQuery = angular.lowercase(query);
+				return function filterFn(item) {
+					return (item.value.indexOf(lowercaseQuery) === 0);
+				};
 			}
 		}])
 		.controller('VnEditController', ['$scope', '$state', '$stateParams', 'Vn', function($scope, $state, $stateParams, Vn) {
