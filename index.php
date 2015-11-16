@@ -38,6 +38,7 @@
 	<script src="app/controllers/vnController.js"></script>
 	<script src="app/controllers/logoutController.js"></script>
 	<script src="app/controllers/indexController.js"></script>
+	<script src="app/controllers/developerController.js"></script>
 
 	<!-- service scripts -->
 	<script src="app/services/vnService.js"></script>

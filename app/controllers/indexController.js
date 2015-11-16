@@ -9,8 +9,11 @@
 				$mdSidenav('left').toggle();
 			}
 
-			$rootScope.newV=function(){
-				$state.go('newVn');
+			$rootScope.ariaVn = function(){
+				$state.go('vn');
+			}
+			$rootScope.ariaDeveloper = function() {
+				$state.go('developer');
 			}
 		});
 })();
