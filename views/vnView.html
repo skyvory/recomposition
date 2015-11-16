@@ -61,7 +61,7 @@
 					<tr md-disable-select="vn.id === 'none'" ng-repeat="v in vn.data | orderBy: query.order">
 						<td>{{v.title_en}}</td>
 						<td>{{v.created_at}}</td>
-						<td><md-button ui-sref="editVn">Edit</md-button></td>
+						<td><md-button ui-sref="editVn({id: v.id})">Edit</md-button></td>
 					</tr>
 				</tbody>
 			</table>
