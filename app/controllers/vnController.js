@@ -73,10 +73,6 @@
 				});
 			}
 
-			$scope.check = function() {
-				console.log($scope.selectedItem.id);
-			}
-
 			$scope.simulateQuery = false;
 			$scope.isDisabled = false;
 			// $scope.repos = loadAll();
@@ -161,17 +157,66 @@
 				};
 			}
 		}])
-		.controller('VnEditController', ['$scope', '$state', '$stateParams', 'Vn', function($scope, $state, $stateParams, Vn) {
+		.controller('VnEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
+				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
 				$scope.vn.$update(function() {
 					$state.go('vn');
 				});
 			}
 
-			// $scope.loadVn = function() {
-				$scope.vn = Vn.get({ id: $stateParams.id });
-			// }
-			// $scope.loadVn();
+			var vn = Vn.get({ id: $stateParams.id });
+			vn.$promise.then(function(res) {
+				$scope.vn = res;
+				$scope.vn.date_release = moment(res.date_release).toDate();
+			});
+
+			$scope.simulateQuery = false;
+			$scope.isDisabled = false;
+			$scope.repos = {};
+			loadAll();
+			$scope.querySearch = querySearch;
+			$scope.selectedItemChange = selectedItemChange;
+			$scope.searchTextChange = searchTextChange;
+
+			function querySearch(query) {
+				var results = query ? $scope.repos.filter( createFilterFor(query) ) : $scope.repos, deferred;
+				if($scope.simulateQuery) {
+					deferred = $q.defer();
+					$timeout(function () {
+						deferred.resolve( results );
+					}, Math.rendom() * 1000, false);
+					return deferred.promise;
+				}
+				else {
+					return results;
+				}
+			}
+			function searchTextChange(text) {
+				$log.info(text);
+			}
+			function selectedItemChange(item) {
+				$log.info(JSON.stringify(item));
+				// change value on scope holding value to update
+				if(item) {
+					$scope.vn.developer_id = item.id;
+				}
+			}
+			function loadAll() {
+				var repos = Developer.get();
+				repos.$promise.then(function(res) {
+					$scope.repos = res.map( function (repo) {
+						repo.value = repo.name_en.toLowerCase();
+						return repo;
+					});
+				});
+			}
+			function createFilterFor(query) {
+				var lowercaseQuery = angular.lowercase(query);
+				return function filterFn(item) {
+					return (item.value.indexOf(lowercaseQuery) === 0);
+				};
+			}
 		}]);
 	
 })();
