@@ -12,9 +12,10 @@ var recompositionApp = angular.module('recompositionApp', [
 	'ngMessages',
 	'md.data.table',
 	'developerServices',
+	'angularMoment',
 ]);
 
-recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', function($stateProvider, $urlRouterProvider, $authProvider) {
+recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$mdDateLocaleProvider', 'moment', function($stateProvider, $urlRouterProvider, $authProvider, $mdDateLocaleProvider, moment) {
 	// satellizer configuration that specifies which api route the jwt should be retrieved from
 	$authProvider.loginUrl = 'http://localhost/record/public/api/authenticate';
 
@@ -72,6 +73,10 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 			// templateUrl: 'views/logoutView',
 			controller: 'LogoutController',
 		});
+
+	$mdDateLocaleProvider.formatDate = function(date) {
+		return moment(date).format('YYYY-MM-DD');
+	}
 }]);
 
 recompositionApp.controller('MainController', function($scope) {

@@ -28,6 +28,8 @@
 	<script src="bower_components/angular-material/angular-material.js"></script>
 	<script src="bower_components/angular-messages/angular-messages.js"></script>
 	<script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+	<script src="bower_components/moment/moment.js"></script>
+	<script src="bower_components/angular-moment/angular-moment.js"></script>
 
 	<!-- application script s-->
 	<script src="app/app.js"></script>
@@ -38,7 +40,7 @@
 	<script src="app/controllers/vnController.js"></script>
 	<script src="app/controllers/logoutController.js"></script>
 	<script src="app/controllers/indexController.js"></script>
-	<script src="app/controllers/developerController.js"></script>
+	<!-- // <script src="app/controllers/developerController.js"></script> -->
 
 	<!-- service scripts -->
 	<script src="app/services/vnService.js"></script>
