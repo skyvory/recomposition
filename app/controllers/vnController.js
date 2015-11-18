@@ -3,7 +3,7 @@
 
 	angular
 		.module('recompositionApp')
-		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', '$q', '$timeout', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav, $q, $timeout) {
+		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', '$q', '$timeout', '$mdDialog', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav, $q, $timeout, $mdDialog) {
 			var v = Vn.get();
 			$scope.vn = v;
 			// console.log(v.$promise);
@@ -12,13 +12,39 @@
 				return $auth.isAuthenticated();
 			}
 
-			$scope.deleteVn = function(v) {
+			$scope.deleteVnx = function(v) {
 				if(confirmService.showPopup('Sure?')) {
 					console.log($scope.vn);
 					Vn.delete({ id: v.id }, function() {
 						$window.location.href = '';
 					});
 				}
+			}
+
+			$scope.deleteVn = function(ev) {
+				var confirm = $mdDialog.confirm()
+					.title('Are you convinced to delete this cord?')
+					// material.angularjs.org example states using textContent instead of content, which doesn't work (version problem?)
+					.content('there\'s no archive capability implemented yet, your erasure shall bring you calamity in lapse of necessity')
+					.ariaLabel('might not be your lucky day')
+					.targetEvent(ev)
+					.ok('kill')
+					.cancel('flee');
+				$mdDialog.show(confirm).then(function() {
+					console.log($scope.selected);
+					var suc = 0;
+					for(var i = 0; i < $scope.selected.length; i++) {
+						Vn.delete({ id: $scope.selected[i].id }, function() {
+							suc++;
+							if(suc == $scope.selected.length) {
+								// refresh current state
+								$state.go($state.current, {}, {reload: true});
+							}
+						});
+					}
+				}, function() {
+					console.log('hetare!');
+				});
 			}
 
 			$scope.selected = [];
@@ -159,6 +185,7 @@
 		}])
 		.controller('VnEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
+				// add 24 hours to date, suspect US utc is being used as md-datepicker locale
 				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
 				$scope.vn.$update(function() {
 					$state.go('vn');
