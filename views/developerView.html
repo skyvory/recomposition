@@ -1,26 +1,3 @@
-<!-- <div class="col-sm-6 col-sm-offset-3">
-	<a ui-sref="newVn" class="btn btn-primary">New</a>
-	<div class="well">
-		<button class="btn btn-primary" style="margin-bottom: 10px" ng-click="">Get vn!</button>
-		<table ng-if="vn.total">
-			<tr class="list-group-item" ng-repeat="v in vn.data">
-				<td>
-					<a class="btn btn-primary" ui-sref="showVn({id: v.id})">{{v.title_en}}</a>
-					<a class="btn btn-danger" ng-click="deleteVn(v)">Delete</a>
-				</td>
-			</tr>
-		</table>
-	</div>
-</div> -->
-
-
-
-
-	<!-- <md-toolbar class="md-hue-3 md-whiteframe-z1">
-		<p style="font-size:0.5em">Visualize Display</p>
-	</md-toolbar> -->
-
-	<!-- <div ng-include="'views/vnMenu.html'"></div> -->
 
 	<md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
 		<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
@@ -47,44 +24,35 @@
 		</md-data-table-toolbar>
 		<md-data-table-toolbar class="alternate" ng-show="selected.length" style="background-color: transparent;">
 			<div>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</div>
+			<div flex></div>
+			<md-button class="md-icon-button md-raised" ng-click="deleteDeveloper($event)" aria-label="delete">
+				<md-icon md-svg-src="bower_components/material-design-icons/action/svg/production/ic_delete_48px.svg"></md-icon>
+			</button>
 		</md-data-table-toolbar>
 
 		<md-data-table-container>
 			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred" style="background-color: transparent;">
 				<thead md-order="query.order" md-trigger="onorderchange">
 					<tr>
-						<th order-by="title_en" name="Title" unit=""></th>
+						<th order-by="name_en" name="Name (en)" unit=""></th>
+						<th order-by="name_jp" name="Name (jp)" unit=""></th>
 						<th order-by="created_at" name="Created" unit="date"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr md-disable-select="vn.id === 'none'" ng-repeat="v in vn.data | orderBy: query.order">
-						<td>{{v.title_en}}</td>
-						<td>{{v.created_at}}</td>
-						<td><md-button ui-sref="editVn({id: v.id})">Edit</md-button></td>
+				{{developers}}
+					<tr md-disable-select="developers.id === 'none'" ng-repeat="dev in developers | orderBy: query.order">
+						<td>{{dev.name_en}}</td>
+						<td>{{dev.name_jp}}</td>
+						<td>{{dev.created_at}}</td>
+						<td><md-button ui-sref="editDeveloper({id: dev.id})">Edit</md-button></td>
 					</tr>
 				</tbody>
 			</table>
 		</md-data-table-container>
-		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{vn.total}}" md-trigger="onpagechange" md-row-select="[3, 33, 333]"></md-data-table-pagination>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{developers.total}}" md-trigger="onpagechange" md-row-select="[3, 33, 333]"></md-data-table-pagination>
 	</md-content>
 
-
-
-
-
-	<md-icon md-svg-icon="" class="avatar"></md-icon>
-	<h2>proto</h2>
-	<a ui-sref="newVn" class="btn btn-primary">New</a>
-	<table ng-if="vn.total">
-		<tr class="list-group-item" ng-repeat="v in vn.data">
-			<td>
-				<a class="btn btn-primary" ui-sref="showVn({id: v.id})">{{v.title_en}}</a>
-				<a class="btn btn-danger" ng-click="deleteVn(v)">Delete</a>
-			</td>
-		</tr>
-	</table>
-
-	<md-button class="md-fab md-primary md-hue-3" aria-label="new" style="position:fixed;right:10px;bottom:10px;" ui-sref="newVn">
+	<md-button class="md-fab md-primary md-hue-3" aria-label="new" style="position:fixed;right:10px;bottom:10px;" ui-sref="newDeveloper">
 		<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
 	</md-button>
