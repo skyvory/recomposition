@@ -11,7 +11,7 @@ developerServices.factory('Developer', ['$resource', function($resource) {
 			method: 'PUT'
 		},
 		get: {
-			isArray: true,
+			// isArray: true,
 		},
 	});
 }]);

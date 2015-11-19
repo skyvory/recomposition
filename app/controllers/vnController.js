@@ -168,7 +168,7 @@
 				var repos = Developer.get();
 				// return (function() {
 					repos.$promise.then(function(res) {
-						$scope.repos = res.map( function (repo) {
+						$scope.repos = res.data.map( function (repo) {
 							repo.value = repo.name_en.toLowerCase();
 							return repo;
 						});

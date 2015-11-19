@@ -60,14 +60,14 @@
 			}
 
 		}])
-		.controller('VnShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
+		.controller('DeveloperShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
 			$scope.vn = Vn.get({ id: $stateParams.id});
 
 			$scope.isAuthenticated = function() {
 				return $auth.isAuthenticated();
 			}
 		}])
-		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', function($scope, $state, Vn, $timeout, $q, $log, Developer) {
+		.controller('DeveloperCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', function($scope, $state, Vn, $timeout, $q, $log, Developer) {
 			$scope.vn = new Vn();
 
 			$scope.createVn = function() {
@@ -125,7 +125,7 @@
 				};
 			}
 		}])
-		.controller('VnEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
+		.controller('DeveloperEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
 				// add 24 hours to date, suspect US utc is being used as md-datepicker locale
 				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
