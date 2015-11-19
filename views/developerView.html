@@ -40,8 +40,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				{{developers}}
-					<tr md-disable-select="developers.id === 'none'" ng-repeat="dev in developers | orderBy: query.order">
+					<tr md-disable-select="developers.id === 'none'" ng-repeat="dev in developers.data | orderBy: query.order">
 						<td>{{dev.name_en}}</td>
 						<td>{{dev.name_jp}}</td>
 						<td>{{dev.created_at}}</td>

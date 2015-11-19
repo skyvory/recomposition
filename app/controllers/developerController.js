@@ -67,62 +67,13 @@
 				return $auth.isAuthenticated();
 			}
 		}])
-		.controller('DeveloperCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', function($scope, $state, Vn, $timeout, $q, $log, Developer) {
-			$scope.vn = new Vn();
+		.controller('DeveloperCreateController', ['$scope', '$state', '$timeout', '$q', '$log', 'Developer', function($scope, $state, $timeout, $q, $log, Developer) {
+			$scope.developer = new Developer();
 
-			$scope.createVn = function() {
-				$scope.vn.developer_id = $scope.selectedItem.id;
-				$scope.vn.$save(function() {
-					$state.go('vn');
+			$scope.createDeveloper = function() {
+				$scope.developer.$save(function() {
+					$state.go('developer');
 				});
-			}
-
-			$scope.simulateQuery = false;
-			$scope.isDisabled = false;
-			// $scope.repos = loadAll();
-			$scope.repos = {};
-			loadAll();
-			$scope.querySearch = querySearch;
-			$scope.selectedItemChange = selectedItemChange;
-			$scope.searchTextChange = searchTextChange;
-
-			function querySearch(query) {
-				var results = query ? $scope.repos.filter( createFilterFor(query) ) : $scope.repos, deferred;
-				if($scope.simulateQuery) {
-					deferred = $q.defer();
-					$timeout(function () {
-						deferred.resolve( results );
-					}, Math.rendom() * 1000, false);
-					return deferred.promise;
-				}
-				else {
-					return results;
-				}
-			}
-			function searchTextChange(text) {
-				$log.info(text);
-			}
-			function selectedItemChange(item) {
-				$log.info(JSON.stringify(item));
-			}
-			function loadAll() {
-			
-				var repos = Developer.get();
-				// return (function() {
-					repos.$promise.then(function(res) {
-						$scope.repos = res.map( function (repo) {
-							repo.value = repo.name_en.toLowerCase();
-							return repo;
-						});
-					});
-				// })();
-
-			}
-			function createFilterFor(query) {
-				var lowercaseQuery = angular.lowercase(query);
-				return function filterFn(item) {
-					return (item.value.indexOf(lowercaseQuery) === 0);
-				};
 			}
 		}])
 		.controller('DeveloperEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
