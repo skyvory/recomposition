@@ -15,5 +15,8 @@
 			$rootScope.ariaDeveloper = function() {
 				$state.go('developer');
 			}
+			$rootScope.ariaCharacter = function() {
+				$state.go('character');
+			}
 		});
 })();

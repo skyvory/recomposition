@@ -1,0 +1,53 @@
+<md-dialog aria-label="new character" ng-cloak>
+	<form>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h3>New Character</h3>
+				<span flex></span>
+				<md-buton class="md-icon-button" ng-click="cancel()">
+					X
+				</md-buton>
+			</div>
+		</md-toolbar>
+		<md-dialog-content style="max-width: 800px; max-height: 810px;">
+			<div class="md-dialog-content">
+				<md-content layout-padding>
+					<md-input-container class="md-block">
+						<label>vn id</label>
+						<input ng-model="new.vn_id">
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>kanji</label>
+						<input ng-model="new.kanji">
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>betsumyou</label>
+						<input ng-model="new.betsumyou">
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>yobikata</label>
+						<input ng-model="new.yobikata">
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>birthmonth</label>
+						<input ng-model="new.birthmonth">
+					</md-input-container>
+					<md-input-container class="md-block">
+						<label>birthday</label>
+						<input ng-model="new.birthday">
+					</md-input-container>
+				</md-content>
+			</div>
+		</md-dialog-content>
+	</form>
+		<md-dialog-actions layout="row">
+			<md-button>?</md-button>
+			<span flex></span>
+			<md-button ng-click="cancel()">
+				Cancel
+			</md-button>
+			<md-button ng-click="answer(new)">
+				Submit
+			</md-button>
+		</md-dialog-actions>
+</md-dialog>

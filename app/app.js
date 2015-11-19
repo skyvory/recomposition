@@ -13,6 +13,7 @@ var recompositionApp = angular.module('recompositionApp', [
 	'md.data.table',
 	'developerServices',
 	'angularMoment',
+	'characterServices',
 ]);
 
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$mdDateLocaleProvider', 'moment', function($stateProvider, $urlRouterProvider, $authProvider, $mdDateLocaleProvider, moment) {
