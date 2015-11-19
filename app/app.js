@@ -97,7 +97,7 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 			.state('newAssessment', {
 				url: '/assessment/new',
 				templateUrl: 'views/assessmentNewView.html',
-				controller: 'assessmentCreateController',
+				controller: 'AssessmentCreateController',
 				parent: 'common',
 			})
 			.state('editAssessment', {

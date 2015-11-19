@@ -61,63 +61,16 @@
 
 		}])
 		
-		.controller('AssessmentCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', function($scope, $state, Vn, $timeout, $q, $log, Developer) {
-			$scope.vn = new Vn();
+		.controller('AssessmentCreateController', ['$scope', '$state', 'Assessment', '$timeout', '$q', '$log', 'Vn', 'Developer', function($scope, $state, Assessment, $timeout, $q, $log, Developer, Vn) {
+			$scope.assessment = new Assessment();
 
-			$scope.createVn = function() {
-				$scope.vn.developer_id = $scope.selectedItem.id;
+			$scope.createAssessment = function() {
 				$scope.vn.$save(function() {
-					$state.go('vn');
+					$state.go('assessment');
 				});
 			}
 
-			$scope.simulateQuery = false;
-			$scope.isDisabled = false;
-			// $scope.repos = loadAll();
-			$scope.repos = {};
-			loadAll();
-			$scope.querySearch = querySearch;
-			$scope.selectedItemChange = selectedItemChange;
-			$scope.searchTextChange = searchTextChange;
-
-			function querySearch(query) {
-				var results = query ? $scope.repos.filter( createFilterFor(query) ) : $scope.repos, deferred;
-				if($scope.simulateQuery) {
-					deferred = $q.defer();
-					$timeout(function () {
-						deferred.resolve( results );
-					}, Math.rendom() * 1000, false);
-					return deferred.promise;
-				}
-				else {
-					return results;
-				}
-			}
-			function searchTextChange(text) {
-				$log.info(text);
-			}
-			function selectedItemChange(item) {
-				$log.info(JSON.stringify(item));
-			}
-			function loadAll() {
 			
-				var repos = Developer.get();
-				// return (function() {
-					repos.$promise.then(function(res) {
-						$scope.repos = res.data.map( function (repo) {
-							repo.value = repo.name_en.toLowerCase();
-							return repo;
-						});
-					});
-				// })();
-
-			}
-			function createFilterFor(query) {
-				var lowercaseQuery = angular.lowercase(query);
-				return function filterFn(item) {
-					return (item.value.indexOf(lowercaseQuery) === 0);
-				};
-			}
 		}])
 		.controller('AssessmentEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
