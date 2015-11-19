@@ -14,6 +14,7 @@ var recompositionApp = angular.module('recompositionApp', [
 	'developerServices',
 	'angularMoment',
 	'characterServices',
+	'assessmentServices',
 ]);
 
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$mdDateLocaleProvider', 'moment', function($stateProvider, $urlRouterProvider, $authProvider, $mdDateLocaleProvider, moment) {
@@ -87,6 +88,24 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 			controller: 'CharacterListController',
 			parent: 'common',
 		})
+		.state('assessment', {
+			url: '/assessment',
+			templateUrl: 'views/assessmentView.html',
+			controller: 'AssessmentListController',
+			parent: 'common',
+		})
+			.state('newAssessment', {
+				url: '/assessment/new',
+				templateUrl: 'views/assessmentNewView.html',
+				controller: 'assessmentCreateController',
+				parent: 'common',
+			})
+			.state('editAssessment', {
+				url: '/assessment/:id/edit',
+				templateUrl: 'views/assessmentEditView.html',
+				controller: 'AssessmentEditController',
+				parent: 'common',
+			})
 		.state('logout', {
 			url: '/logout',
 			// templateUrl: 'views/logoutView',

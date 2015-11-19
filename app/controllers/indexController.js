@@ -18,5 +18,8 @@
 			$rootScope.ariaCharacter = function() {
 				$state.go('character');
 			}
+			$rootScope.ariaAssessment = function() {
+				$state.go('assessment');
+			}
 		});
 })();

@@ -42,12 +42,14 @@
 	<script src="app/controllers/indexController.js"></script>
 	<script src="app/controllers/developerController.js"></script>
 	<script src="app/controllers/characterController.js"></script>
+	<script src="app/controllers/assessmentController.js"></script>
 
 	<!-- service scripts -->
 	<script src="app/services/vnService.js"></script>
 	<script src="app/services/developerService.js"></script>
 	<script src="app/services/commonService.js"></script>
 	<script src="app/services/characterService.js"></script>
+	<script src="app/services/assessmentService.js"></script>
 
 	<script type="text/javascript">
 		// angular

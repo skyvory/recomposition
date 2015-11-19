@@ -1,0 +1,71 @@
+
+	<md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
+		<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+			<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
+		</md-button>
+		<md-menu-content width="4">
+			<md-menu-item ng-repeat="item in [1, 2, 3]">
+				<md-button ng-click="">
+					<div layout="row">
+						<p flex>Option {{item}}</p>
+						<md-icon md-menu-align-target md-svg-icon=""></md-icon>
+					</div>
+				</md-button>
+			</md-menu-item>
+		</md-menu-content>
+	</md-menu>
+
+	<br />
+	<br />
+
+	<md-content  layout="column" flex style="background-color: transparent;">
+		<md-data-table-toolbar ng-show="!selected.length" style="background-color: transparent;">
+			<h4 class="md-title">Visual</h4>
+		</md-data-table-toolbar>
+		<md-data-table-toolbar class="alternate" ng-show="selected.length" style="background-color: transparent;">
+			<div>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</div>
+			<div flex></div>
+			<md-button class="md-icon-button md-raised" ng-click="deleteAssessment($event)" aria-label="delete">
+				<md-icon md-svg-src="bower_components/material-design-icons/action/svg/production/ic_delete_48px.svg"></md-icon>
+			</button>
+		</md-data-table-toolbar>
+
+		<md-data-table-container>
+			<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred" style="background-color: transparent;">
+				<thead md-order="query.order" md-trigger="onorderchange">
+					<tr>
+						<th order-by="vn_id" name="vn id" unit=""></th>
+						<th order-by="date_start" name="start" unit=""></th>
+						<th order-by="date_end" name="end" unit=""></th>
+						<th order-by="score_story" name="story" unit=""></th>
+						<th order-by="score_naki" name="naki" unit=""></th>
+						<th order-by="score_nuki" name="nuki" unit=""></th>
+						<th order-by="score_graphic" name="graphic" unit=""></th>
+						<th order-by="score_all" name="all" unit=""></th>
+						<th order-by="archive_savedata" name="ssave" unit=""></th>
+						<th order-by="created_at" name="Created" unit="date"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr md-disable-select="assessments.id === 'none'" ng-repeat="ass in assessments.data | orderBy: query.order">
+						<td>{{ass.vn_id}}</td>
+						<td>{{ass.date_start}}</td>
+						<td>{{ass.date_end}}</td>
+						<td>{{ass.score_story}}</td>
+						<td>{{ass.score_naki}}</td>
+						<td>{{ass.score_nuki}}</td>
+						<td>{{ass.score_graphic}}</td>
+						<td>{{ass.score_all}}</td>
+						<td>{{ass.archive_savedata}}</td>
+						<td>{{ass.created_at}}</td>
+						<td><md-button ui-sref="editAssessment({id: ass.id})">Edit</md-button></td>
+					</tr>
+				</tbody>
+			</table>
+		</md-data-table-container>
+		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{assessments.total}}" md-trigger="onpagechange" md-row-select="[3, 33, 333]"></md-data-table-pagination>
+	</md-content>
+
+	<md-button class="md-fab md-primary md-hue-3" aria-label="new" style="position:fixed;right:10px;bottom:10px;" ui-sref="newAssessment">
+		<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
+	</md-button>
