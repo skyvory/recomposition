@@ -80,6 +80,12 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 				controller: 'DeveloperEditController',
 				parent: 'common',
 			})
+		.state('character', {
+			url: '/character',
+			templateUrl: 'views/characterView.html',
+			controller: 'CharacterListController',
+			parent: 'common',
+		})
 		.state('logout', {
 			url: '/logout',
 			// templateUrl: 'views/logoutView',
