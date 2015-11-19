@@ -59,6 +59,26 @@
 				return deferred.promise;
 			}
 
+			$scope.newDeveloper = function(ev) {
+				$mdDialog.show({
+					controller: DialogController,
+					templateUrl: 'views/developerNewView.html',
+					parent: angular.element(document.body),
+					tergetEvent: ev,
+					clickOutsideToClose: true
+				})
+				.then(function(answer) {
+					var new_dev = new Developer();
+					new_dev.name_en = answer.name_en;
+					new_dev.name_jp = answer.name_jp;
+					new_dev.$save(function() {
+						$state.go($state.current, {}, {reload:true});
+					});
+				}, function() {
+					// dialog cancelled
+				});
+			}
+
 		}])
 		.controller('DeveloperShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
 			$scope.vn = Vn.get({ id: $stateParams.id});
@@ -75,7 +95,9 @@
 					$state.go('developer');
 				});
 			}
+
 		}])
+		
 		.controller('DeveloperEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
 				// add 24 hours to date, suspect US utc is being used as md-datepicker locale
@@ -138,6 +160,16 @@
 				};
 			}
 		}]);
-	
+	function DialogController($scope, $mdDialog) {
+		$scope.hide = function() {
+			$mdDialog.hide();
+		};
+		$scope.cancel = function() {
+			$mdDialog.cancel();
+		};
+		$scope.answer = function(answer) {
+			$mdDialog.hide(answer);
+		};
+	}
 })();
 

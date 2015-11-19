@@ -52,6 +52,6 @@
 		<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{developers.total}}" md-trigger="onpagechange" md-row-select="[3, 33, 333]"></md-data-table-pagination>
 	</md-content>
 
-	<md-button class="md-fab md-primary md-hue-3" aria-label="new" style="position:fixed;right:10px;bottom:10px;" ui-sref="newDeveloper">
+	<md-button class="md-fab md-primary md-hue-3" aria-label="new" style="position:fixed;right:10px;bottom:10px;" ng-click="newDeveloper($event)">
 		<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
 	</md-button>
