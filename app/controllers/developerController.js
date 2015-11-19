@@ -98,67 +98,15 @@
 
 		}])
 		
-		.controller('DeveloperEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
-			$scope.updateVn = function() {
-				// add 24 hours to date, suspect US utc is being used as md-datepicker locale
-				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
-				$scope.vn.$update(function() {
-					$state.go('vn');
+		.controller('DeveloperEditController', ['$scope', '$state', '$stateParams', '$timeout', '$q', '$log', 'Developer', function($scope, $state, $stateParams, $timeout, $q, $log, Developer) {
+			$scope.updateDeveloper = function() {
+				$scope.developer.$update(function() {
+					$state.go('developer');
 				});
 			}
 
-			var vn = Vn.get({ id: $stateParams.id });
-			vn.$promise.then(function(res) {
-				$scope.vn = res;
-				$scope.vn.date_release = moment(res.date_release).toDate();
-			});
-
-			$scope.simulateQuery = false;
-			$scope.isDisabled = false;
-			$scope.repos = {};
-			loadAll();
-			$scope.querySearch = querySearch;
-			$scope.selectedItemChange = selectedItemChange;
-			$scope.searchTextChange = searchTextChange;
-
-			function querySearch(query) {
-				var results = query ? $scope.repos.filter( createFilterFor(query) ) : $scope.repos, deferred;
-				if($scope.simulateQuery) {
-					deferred = $q.defer();
-					$timeout(function () {
-						deferred.resolve( results );
-					}, Math.rendom() * 1000, false);
-					return deferred.promise;
-				}
-				else {
-					return results;
-				}
-			}
-			function searchTextChange(text) {
-				$log.info(text);
-			}
-			function selectedItemChange(item) {
-				$log.info(JSON.stringify(item));
-				// change value on scope holding value to update
-				if(item) {
-					$scope.vn.developer_id = item.id;
-				}
-			}
-			function loadAll() {
-				var repos = Developer.get();
-				repos.$promise.then(function(res) {
-					$scope.repos = res.map( function (repo) {
-						repo.value = repo.name_en.toLowerCase();
-						return repo;
-					});
-				});
-			}
-			function createFilterFor(query) {
-				var lowercaseQuery = angular.lowercase(query);
-				return function filterFn(item) {
-					return (item.value.indexOf(lowercaseQuery) === 0);
-				};
-			}
+			$scope.developer = Developer.get({ id: $stateParams.id });
+			
 		}]);
 	function DialogController($scope, $mdDialog) {
 		$scope.hide = function() {
