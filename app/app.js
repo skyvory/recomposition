@@ -68,6 +68,18 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 			controller: 'DeveloperListController',
 			parent: 'common',
 		})
+			.state('newDeveloper', {
+				url: '/developer/new',
+				templateUrl: 'views/developerNewView.html',
+				controller: 'DeveloperCreateController',
+				parent: 'common',
+			})
+			.state('editDeveloper', {
+				url: '/developer/:id/edit',
+				templateUrl: 'views/developerEditView.html',
+				controller: 'DeveloperEditController',
+				parent: 'common',
+			})
 		.state('logout', {
 			url: '/logout',
 			// templateUrl: 'views/logoutView',
