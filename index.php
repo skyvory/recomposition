@@ -70,6 +70,5 @@
 		// 				.accentPalette('red');
 		// 	})
 	</script>
-	<style type="text/css">
-	</style>
+	<link rel="stylesheet" href="assets/common.css" />
 </html>
