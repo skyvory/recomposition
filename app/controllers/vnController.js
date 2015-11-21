@@ -89,11 +89,12 @@
 				return $auth.isAuthenticated();
 			}
 		}])
-		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', function($scope, $state, Vn, $timeout, $q, $log, Developer) {
+		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.vn = new Vn();
 
 			$scope.createVn = function() {
 				$scope.vn.developer_id = $scope.selectedItem.id;
+				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
 				$scope.vn.$save(function() {
 					$state.go('vn');
 				});
