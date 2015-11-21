@@ -8,7 +8,6 @@
 				</md-input-container>
 				<md-button ng-click="retrieveVndbVn()">load</md-button>
 			</div>
-			{{item}}
 			<md-autocomplete
 				ng-disabled="isDisabled"
 				md-no-cache="noCache"
@@ -19,7 +18,7 @@
 				md-items="item in querySearch(searchText)"
 				md-item-text="item.title_en"
 				md-min-length="0"
-				placeholder="dev">
+				placeholder="vn">
 				<md-item-template>
 					<span class="item-title">
 						<md-icon md-svg-icon=""></md-icon>
@@ -36,11 +35,11 @@
 			</md-autocomplete>
 			<md-input-container class="md-block">
 				<label>vn id</label>
-				<input ng-model="assessment.vn_id">
+				<input ng-model="assessment.vn_id" disabled>
 			</md-input-container>
 			<md-input-container class="md-block">
 				<label>Date Start</label>
-				<input ng-model="assessment.date_start">
+				<input ng-model="assessment.date_start" disabled>
 			</md-input-container>
 			<div layout layout-sm="column">
 				
