@@ -4,23 +4,49 @@
 			<div layout leyout-sm="column">
 				<md-input-container>
 					<label>vndb id</label>
-					<input ng-model="ass.vndb_id">
+					<input ng-model="assessment.vndb_id">
 				</md-input-container>
 				<md-button ng-click="retrieveVndbVn()">load</md-button>
 			</div>
+			{{item}}
+			<md-autocomplete
+				ng-disabled="isDisabled"
+				md-no-cache="noCache"
+				md-selected-item="selectedItem"
+				md-search-text-change="searchTextChange(searchText)"
+				md-search-text="searchText"
+				md-selected-item-change="selectedItemChange(item)"
+				md-items="item in querySearch(searchText)"
+				md-item-text="item.title_en"
+				md-min-length="0"
+				placeholder="dev">
+				<md-item-template>
+					<span class="item-title">
+						<md-icon md-svg-icon=""></md-icon>
+						<span> {{item.title_en}} </span>
+					</span>
+					<span class="item-metadata">
+						<span class="item-metastat">
+							aaa
+						</span>
+						<span class="item-metastat">
+							bbb
+						</span>
+				</md-item-template>
+			</md-autocomplete>
 			<md-input-container class="md-block">
 				<label>vn id</label>
-				<input ng-model="ass.vn_id">
+				<input ng-model="assessment.vn_id">
 			</md-input-container>
 			<md-input-container class="md-block">
 				<label>Date Start</label>
-				<input ng-model="ass.date_start">
+				<input ng-model="assessment.date_start">
 			</md-input-container>
 			<div layout layout-sm="column">
 				
-				<md-datepicker ng-model="vn.date_start" md-placeholder="release"></md-datepicker>
+				<md-datepicker ng-model="assessment.date_start" md-placeholder="release"></md-datepicker>
 			</div>
-			<md-button ng-click="createVn()">Create</md-button>
+			<md-button ng-click="createAssessment()">Create</md-button>
 		</form>
 	</md-content>
 </div>

@@ -61,16 +61,97 @@
 
 		}])
 		
-		.controller('AssessmentCreateController', ['$scope', '$state', 'Assessment', '$timeout', '$q', '$log', 'Vn', 'Developer', function($scope, $state, Assessment, $timeout, $q, $log, Developer, Vn) {
+		.controller('AssessmentCreateController', ['$scope', '$state', 'Assessment', '$timeout', '$q', '$log', 'Vn', 'Developer', '$http', function($scope, $state, Assessment, $timeout, $q, $log, Vn, Developer, $http) {
 			$scope.assessment = new Assessment();
 
 			$scope.createAssessment = function() {
+				$scope.assessment.vn_id = $scope.selectedItem.id;
 				$scope.vn.$save(function() {
 					$state.go('assessment');
 				});
 			}
 
+			$scope.retrieveVndbVn = function() {
+				$http({
+					method: 'POST',
+					url: 'http://localhost/record/public/vndb/vn',
+					data: {
+						vndb_id: $scope.assessment.vndb_id,
+						username: 'svry',
+						password: 'svry',
+					},
+				}).then(function successCallback(response) {
+					$scope.dbvn = response.data.items;
+				}, function errorCallback(response) {
+					//
+				});
+				$http({
+					method: 'POST',
+					url: 'http://localhost/record/public/vndb/release',
+					data: {
+						vndb_id: $scope.assessment.vndb_id,
+						username: 'svry',
+						password: 'svry',
+					},
+				}).then(function successCallback(response) {
+					$scope.dbrelease = response.data.items;
+				});
+			}
 			
+			$scope.simulateQuery = true;
+			$scope.isDisabled = false;
+			$scope.repos = {};
+			loadAll();
+			$scope.querySearch = querySearch;
+			$scope.selectedItemChange = selectedItemChange;
+			$scope.searchTextChange = searchTextChange;
+
+			function querySearch(query) {
+				var results = query ? $scope.repos.filter( createFilterFor(query) ) : $scope.repos, deferred;
+				if($scope.simulateQuery && query && query.length > 2) {
+					// Vn.get({search: query}, function(res) {
+					// 	console.log(res.data);
+					// 	$scope. res.data;
+					// });
+					
+					deferred = $q.defer();
+					$timeout(function () {
+				 		Vn.get({search: query}, function(res) {
+							deferred.resolve(res.data);
+						});
+					}, 1000, false);
+					 console.log(results);
+					return deferred.promise;
+				}
+				else {
+					console.log(results);
+					return results;
+				}
+			}
+			function searchTextChange(text) {
+				$log.info(text);
+			}
+			function selectedItemChange(item) {
+				$log.info(JSON.stringify(item));
+				$scope.assessment.vn_id = $scope.selectedItem ? $scope.selectedItem.id : '';
+			}
+			function loadAll() {
+
+				var repos = Vn.get();
+				repos.$promise.then(function(res) {
+					$scope.repos = res.data.map( function (repo) {
+						repo.value = repo.title_en.toLowerCase();
+						return repo;
+					});
+				});
+			}
+			function createFilterFor(query) {
+				var lowercaseQuery = angular.lowercase(query);
+				return function filterFn(item) {
+					return (item.value.indexOf(lowercaseQuery) === 0);
+				};
+			}
+
 		}])
 		.controller('AssessmentEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
