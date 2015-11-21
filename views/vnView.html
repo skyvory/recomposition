@@ -33,13 +33,21 @@
 		<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred" style="background-color: transparent;">
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
+					<th order-by="date_release" name="release" unit=""></th>
 					<th order-by="title_en" name="Title" unit=""></th>
+					<th order-by="title_jp" name="Title (jp)" unit=""></th>
+					<th order-by="hashtag" name="hashtag" unit=""></th>
+					<th order-by="developer_id" name="dev id" unit=""></th>
 					<th order-by="created_at" name="Created" unit="date"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-disable-select="vn.id === 'none'" ng-repeat="v in vn.data | orderBy: query.order">
+					<td>{{v.date_release}}</td>
 					<td>{{v.title_en}}</td>
+					<td>{{v.title_jp}}</td>
+					<td>{{v.hashtag}}</td>
+					<td>{{v.developer_id}}</td>
 					<td>{{v.created_at}}</td>
 					<td><md-button ui-sref="editVn({id: v.id})">Edit</md-button></td>
 				</tr>
