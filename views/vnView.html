@@ -42,7 +42,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr md-disable-select="vn.id === 'none'" ng-repeat="v in vn.data | orderBy: query.order">
+				<tr md-disable-select="vn.id === 'none'" ng-repeat="v in vns.data | orderBy: query.order">
 					<td>{{v.date_release}}</td>
 					<td>{{v.title_en}}</td>
 					<td>{{v.title_jp}}</td>

@@ -4,8 +4,8 @@
 	angular
 		.module('recompositionApp')
 		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', '$q', '$timeout', '$mdDialog', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav, $q, $timeout, $mdDialog) {
-			var v = Vn.get();
-			$scope.vn = v;
+			var vns = Vn.get();
+			$scope.vns = vns;
 			// console.log(v.$promise);
 
 			$scope.isAuthenticated = function() {
@@ -54,9 +54,9 @@
 				limit: 3,
 				page: 1
 			};
-			function success(vn) {
-				$scope.vn = vn;
-				console.log(vn);
+			function success(vns) {
+				$scope.vns = vns;
+				console.log(vns);
 			}
 			$scope.search = function(pre) {
 				return Vn.get($scope.query)
@@ -83,7 +83,7 @@
 
 		}])
 		.controller('VnShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
-			$scope.vn = Vn.get({ id: $stateParams.id});
+			$scope.vns = Vn.get({ id: $stateParams.id});
 
 			$scope.isAuthenticated = function() {
 				return $auth.isAuthenticated();
