@@ -188,23 +188,23 @@
 
 			$scope.retrieveVndbVn = function() {
 				// fetch vn data
-				$http({
-					method: 'POST',
-					url: 'http://localhost/record/public/vndb/vn',
-					data: {
-						vndb_id: $scope.vndb.vndb_id,
-						username: 'svry',
-						password: 'svry',
-					},
-				}).then(function successCallback(response) {
-					$scope.vndb.vn = response.data.data.items['0'];
-					console.log("VN", response.data.data);
-					$scope.vn.title_en = response.data.data.items['0'].title;
-					$scope.vn.title_jp = response.data.data.items['0'].original;
-					$scope.vn.date_release = moment(response.data.data.items['0'].released).toDate();
-				}, function errorCallback(response) {
-					//
-				});
+				// $http({
+				// 	method: 'POST',
+				// 	url: 'http://localhost/record/public/vndb/vn',
+				// 	data: {
+				// 		vndb_id: $scope.vndb.vndb_id,
+				// 		username: 'svry',
+				// 		password: 'svry',
+				// 	},
+				// }).then(function successCallback(response) {
+				// 	$scope.vndb.vn = response.data.data.items['0'];
+				// 	console.log("VN", response.data.data);
+				// 	$scope.vn.title_en = response.data.data.items['0'].title;
+				// 	$scope.vn.title_jp = response.data.data.items['0'].original;
+				// 	$scope.vn.date_release = moment(response.data.data.items['0'].released).toDate();
+				// }, function errorCallback(response) {
+				// 	//
+				// });
 
 				// fetch release data
 				$http({
@@ -226,11 +226,11 @@
 								for(var j in response.data.data.items[i].producers) {
 									if(response.data.data.items[i].producers[j].developer == true) {
 										$scope.vn.developer_name_en = response.data.data.items[i].producers[j].name;
-										checkDeveloper(response.data.data.items[i].producers[j].name, function(check) {
-											if(!check) {
-												// create new developer
-												console.log(check);
-											}
+										var check = checkDeveloper(response.data.data.items[i].producers[j].name);
+										check.then(function(status) {
+											console.log(status);
+										}, function(reason) {
+											console.log(reason);
 										});
 
 										tobreak = true;
@@ -254,24 +254,18 @@
 				vndb_id: 17,
 			}
 
-			function checkDeveloper(name_en, callback) {
-				Developer.get({name_en: name_en}, function(response) {
-					if(name_en == response.name_en) {
-						if(callback) {
-							callback(true);
-						}
-						else {
-							return true;
-						}
-					}
-					else {
-						if(callback) {
-							callback(false);
-						}
-						else {
-							return false;
-						}
-					}
+			function checkDeveloper(name_en) {
+				return $q(function(resolve, reject) {
+					setTimeout(function() {
+						Developer.get({name_en: name_en}, function(response) {
+							if(name_en == response.name_en) {
+								resolve(true);
+							}
+							else {
+								reject('no match found');
+							}
+						});
+					}, 500);
 				});
 			}
 
