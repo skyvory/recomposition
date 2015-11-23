@@ -227,7 +227,7 @@
 									if(response.data.data.items[i].producers[j].developer == true) {
 										$scope.vn.developer_name_en = response.data.data.items[i].producers[j].name;
 										var check = checkDeveloper(response.data.data.items[i].producers[j].name);
-										check.then(function(status) {
+										check.then(function(dev) {
 											console.log(status);
 										}, function(reason) {
 											console.log(reason);
@@ -259,7 +259,7 @@
 					setTimeout(function() {
 						Developer.get({name_en: name_en}, function(response) {
 							if(name_en == response.name_en) {
-								resolve(true);
+								resolve(response);
 							}
 							else {
 								reject('no match found');
