@@ -1,6 +1,13 @@
 <div layout="column" ng-cloak class="md-inline-form">
 	<md-content layout-pading>
 		<form name="vnForm" ng-submit="$event.preventDefault()">
+			<div layout leyout-sm="column">
+				<md-input-container>
+					<label>vndb id</label>
+					<input ng-model="vndb.vndb_id">
+				</md-input-container>
+				<md-button ng-click="retrieveVndbVn()">load</md-button>
+			</div>
 			<md-input-container class="md-block">
 				<label>Title En</label>
 				<input ng-model="vn.title_en">
@@ -9,12 +16,16 @@
 				<label>Title Jp</label>
 				<input ng-model="vn.title_jp">
 			</md-input-container>
+			<md-input-container flex>
+				<label>Hashtag</label>
+				<input ng-model="vn.hashtag">
+			</md-input-container>
 			<div layout layout-sm="column">
-				<!-- <md-input-container flex>
+				<md-input-container flex>
 					<label>Developer</label>
-					<input ng-model="">
-				</md-input-container> -->
-				<md-autocomplete
+					<input ng-model="vn.developer_name_en" disabled>
+				</md-input-container>
+				<md-autocomplete flex
 					ng-disabled="isDisabled"
 					md-no-cache="noCache"
 					md-selected-item="selectedItem"

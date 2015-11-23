@@ -89,7 +89,7 @@
 				return $auth.isAuthenticated();
 			}
 		}])
-		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, Vn, $timeout, $q, $log, Developer, moment) {
+		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', '$http', function($scope, $state, Vn, $timeout, $q, $log, Developer, moment, $http) {
 			$scope.vn = new Vn();
 
 			$scope.createVn = function() {
@@ -126,6 +126,8 @@
 				$log.info(text);
 			}
 			function selectedItemChange(item) {
+				console.log(item);
+				$scope.vn.developer_name_en = item.name_en;
 				$log.info(JSON.stringify(item));
 			}
 			function loadAll() {
@@ -183,6 +185,96 @@
 					return (item.value.indexOf(lowercaseQuery) === 0);
 				};
 			}
+
+			$scope.retrieveVndbVn = function() {
+				// fetch vn data
+				$http({
+					method: 'POST',
+					url: 'http://localhost/record/public/vndb/vn',
+					data: {
+						vndb_id: $scope.vndb.vndb_id,
+						username: 'svry',
+						password: 'svry',
+					},
+				}).then(function successCallback(response) {
+					$scope.vndb.vn = response.data.data.items['0'];
+					console.log("VN", response.data.data);
+					$scope.vn.title_en = response.data.data.items['0'].title;
+					$scope.vn.title_jp = response.data.data.items['0'].original;
+					$scope.vn.date_release = moment(response.data.data.items['0'].released).toDate();
+				}, function errorCallback(response) {
+					//
+				});
+
+				// fetch release data
+				$http({
+					method: 'POST',
+					url: 'http://localhost/record/public/vndb/release',
+					data: {
+						vndb_id: $scope.vndb.vndb_id,
+						username: 'svry',
+						password: 'svry',
+					},
+				}).then(function successCallback(response) {
+					$scope.vndb.release = response.data.data.items['0'];
+					console.log("REL", response);
+					// crawl through the response to find developer = true
+					if(response.data.data.items) {
+						var tobreak = false;
+						for(var i in response.data.data.items) {
+							if(response.data.data.items[i].producers) {
+								for(var j in response.data.data.items[i].producers) {
+									if(response.data.data.items[i].producers[j].developer == true) {
+										$scope.vn.developer_name_en = response.data.data.items[i].producers[j].name;
+										checkDeveloper(response.data.data.items[i].producers[j].name, function(check) {
+											if(!check) {
+												// create new developer
+												console.log(check);
+											}
+										});
+
+										tobreak = true;
+									}
+									if(tobreak == true) {
+										break;
+									}
+								}
+							}
+							if(tobreak == true) {
+								break;
+							}
+						}
+					}
+					// $scope.vn.date_release = 
+				}, function errorCallback(response) {
+					//
+				});
+			}
+			$scope.vndb = {
+				vndb_id: 17,
+			}
+
+			function checkDeveloper(name_en, callback) {
+				Developer.get({name_en: name_en}, function(response) {
+					if(name_en == response.name_en) {
+						if(callback) {
+							callback(true);
+						}
+						else {
+							return true;
+						}
+					}
+					else {
+						if(callback) {
+							callback(false);
+						}
+						else {
+							return false;
+						}
+					}
+				});
+			}
+
 		}])
 		.controller('VnEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
