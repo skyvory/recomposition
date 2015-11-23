@@ -188,23 +188,23 @@
 
 			$scope.retrieveVndbVn = function() {
 				// fetch vn data
-				// $http({
-				// 	method: 'POST',
-				// 	url: 'http://localhost/record/public/vndb/vn',
-				// 	data: {
-				// 		vndb_id: $scope.vndb.vndb_id,
-				// 		username: 'svry',
-				// 		password: 'svry',
-				// 	},
-				// }).then(function successCallback(response) {
-				// 	$scope.vndb.vn = response.data.data.items['0'];
-				// 	console.log("VN", response.data.data);
-				// 	$scope.vn.title_en = response.data.data.items['0'].title;
-				// 	$scope.vn.title_jp = response.data.data.items['0'].original;
-				// 	$scope.vn.date_release = moment(response.data.data.items['0'].released).toDate();
-				// }, function errorCallback(response) {
-				// 	//
-				// });
+				$http({
+					method: 'POST',
+					url: 'http://localhost/record/public/vndb/vn',
+					data: {
+						vndb_id: $scope.vndb.vndb_id,
+						username: 'svry',
+						password: 'svry',
+					},
+				}).then(function successCallback(response) {
+					$scope.vndb.vn = response.data.data.items['0'];
+					console.log("VN", response.data.data);
+					$scope.vn.title_en = response.data.data.items['0'].title;
+					$scope.vn.title_jp = response.data.data.items['0'].original;
+					$scope.vn.date_release = moment(response.data.data.items['0'].released).toDate();
+				}, function errorCallback(response) {
+					//
+				});
 
 				// fetch release data
 				$http({
