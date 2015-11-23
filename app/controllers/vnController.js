@@ -225,12 +225,28 @@
 							if(response.data.data.items[i].producers) {
 								for(var j in response.data.data.items[i].producers) {
 									if(response.data.data.items[i].producers[j].developer == true) {
-										$scope.vn.developer_name_en = response.data.data.items[i].producers[j].name;
 										var check = checkDeveloper(response.data.data.items[i].producers[j].name);
+										// var check = checkDeveloper("bilingu");
 										check.then(function(dev) {
-											console.log(status);
+											console.log(dev);
+											// assign developer id to scope
+											$scope.vn.developer_id = dev.id;
+											// assign developer name to scope
+											$scope.vn.developer_name_en = dev.name_en;
 										}, function(reason) {
+											// no match found, creating new entry of developer
 											console.log(reason);
+											var reg = createDeveloper(response.data.data.items[i].producers[j].name, response.data.data.items[i].producers[j].original);
+											reg.then(function(resolution) {
+												console.log("successfully create developer");
+												console.log(resolution);
+												// set successfully inserted developer to scope
+												$scope.vn.developer_id = resolution.id;
+												$scope.vn.developer_name_en = resolution.name_en;
+											}, function(fail) {
+												console.log(fail);
+												console.log("something went wrong and developer creation manifest to no avail");
+											});
 										});
 
 										tobreak = true;
@@ -264,6 +280,21 @@
 							else {
 								reject('no match found');
 							}
+						});
+					}, 500);
+				});
+			}
+
+			function createDeveloper(name_en, name_jp) {
+				return $q(function(resolve, reject) {
+					setTimeout(function() {
+						var dev = new Developer();
+						dev.name_en = name_en;
+						dev.name_jp = name_jp;
+						dev.$save(function(response) {
+							resolve(response);
+						}, function(error) {
+							reject(error);
 						});
 					}, 500);
 				});

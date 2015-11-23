@@ -21,6 +21,9 @@
 				<input ng-model="vn.hashtag">
 			</md-input-container>
 			<div layout layout-sm="column">
+				<md-chips>
+					<md-chip>{{vn.developer_id}}</md-chip>
+				</md-chips>
 				<md-input-container flex>
 					<label>Developer</label>
 					<input ng-model="vn.developer_name_en" disabled>
