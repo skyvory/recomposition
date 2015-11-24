@@ -93,7 +93,6 @@
 			$scope.vn = new Vn();
 
 			$scope.createVn = function() {
-				$scope.vn.developer_id = $scope.selectedItem.id;
 				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
 				$scope.vn.$save(function() {
 					$state.go('vn');
@@ -127,7 +126,8 @@
 			}
 			function selectedItemChange(item) {
 				console.log(item);
-				$scope.vn.developer_name_en = item.name_en;
+				$scope.vn.developer_id = item ? item.id : '';
+				$scope.vn.developer_name_en = item ? item.name_en : '';
 				$log.info(JSON.stringify(item));
 			}
 			function loadAll() {
@@ -200,7 +200,7 @@
 					$scope.vndb.vn = response.data.data.items['0'];
 					console.log("VN", response.data.data);
 					$scope.vn.title_en = response.data.data.items['0'].title;
-					$scope.vn.title_jp = response.data.data.items['0'].original;
+					$scope.vn.title_jp = response.data.data.items['0'].original ? response.data.data.items['0'].original : 'n/a';
 					$scope.vn.date_release = moment(response.data.data.items['0'].released).toDate();
 				}, function errorCallback(response) {
 					//
