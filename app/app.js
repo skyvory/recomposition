@@ -111,9 +111,10 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 				controller: 'AssessmentEditController',
 				parent: 'common',
 			})
-		.state('tabs', {
+		.state('vnTabs', {
+			// abstracting state
 			abstract: true,
-			url: '/tabs',
+			url: '/vn/:id/compose',
 			templateUrl: 'views/vnTabView.html',
 			parent: 'common',
 			controller: function($scope) {
@@ -122,31 +123,31 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 				});
 			}
 		})
-		.state('tabs.assessment', {
+		.state('vnTabs.assessment', {
 			url: '/assessment',
 			data: {
 				'selectedTab': 0
 			},
 			views: {
-				'assessment': {
+				// this convention reflects ui-view attribute in (abstract) template
+				'vnAssessment': {
+					// optional template url, only controller is possible to separate logic of each tab
 					templateUrl: 'views/vnAssessmentView.html',
 					controller: 'VnAssessmentController',
 				}
 			},
-					parent: 'tabs',
 		})
-		.state('tabs.note', {
+		.state('vnTabs.note', {
 			url: '/note',
 			data: {
 				'selectedTab': 1
 			},
 			views: {
-				'note': {
+				'vnNote': {
 					templateUrl: 'views/vnNoteView.html',
 					controller: 'VnNoteController'
 				}
 			},
-					parent: 'tabs',
 		})
 		;
 
