@@ -362,7 +362,14 @@
 					return (item.value.indexOf(lowercaseQuery) === 0);
 				};
 			}
-		}]);
+		}])
+		.controller('VnAssessmentController', function($scope) {
+			//
+		})
+		.controller('VnNoteController', function($scope) {
+			//
+		})
+		;
 	
 })();
 

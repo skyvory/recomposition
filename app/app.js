@@ -30,6 +30,11 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 			templateUrl: 'views/authView.html',
 			controller: 'AuthController as auth',
 		})
+		.state('logout', {
+			url: '/logout',
+			// templateUrl: 'views/logoutView',
+			controller: 'LogoutController',
+		})
 		.state('common', {
 			templateUrl: 'views/common.html',
 			abstract: true,
@@ -106,11 +111,44 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 				controller: 'AssessmentEditController',
 				parent: 'common',
 			})
-		.state('logout', {
-			url: '/logout',
-			// templateUrl: 'views/logoutView',
-			controller: 'LogoutController',
-		});
+		.state('tabs', {
+			abstract: true,
+			url: '/tabs',
+			templateUrl: 'views/vnTabView.html',
+			parent: 'common',
+			controller: function($scope) {
+				$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+					$scope.currentTab = toState.data.selectedTab;
+				});
+			}
+		})
+		.state('tabs.assessment', {
+			url: '/assessment',
+			data: {
+				'selectedTab': 0
+			},
+			views: {
+				'assessment': {
+					templateUrl: 'views/vnAssessmentView.html',
+					controller: 'VnAssessmentController',
+				}
+			},
+					parent: 'tabs',
+		})
+		.state('tabs.note', {
+			url: '/note',
+			data: {
+				'selectedTab': 1
+			},
+			views: {
+				'note': {
+					templateUrl: 'views/vnNoteView.html',
+					controller: 'VnNoteController'
+				}
+			},
+					parent: 'tabs',
+		})
+		;
 
 	$mdDateLocaleProvider.formatDate = function(date) {
 		return moment(date).format('YYYY-MM-DD');
