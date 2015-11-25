@@ -66,7 +66,7 @@
 
 			$scope.createAssessment = function() {
 				$scope.assessment.vn_id = $scope.selectedItem.id;
-				$scope.vn.$save(function() {
+				$scope.assessment.$save(function() {
 					$state.go('assessment');
 				});
 			}
