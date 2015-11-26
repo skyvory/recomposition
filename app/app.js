@@ -164,6 +164,17 @@ recompositionApp.controller('MainController', function($scope) {
 	};
 });
 
+recompositionApp.value('scDateTimeConfig', {
+	defaultTheme: 'material',
+	autosave: true,
+	defaultMode: 'date',
+	defaultDate: undefined, //should be date object!!
+	displayMode: 'full',
+	defaultOrientation: false,
+	displayTwentyfour: true,
+	compact: false
+});
+
 // (function() {
 // 	angular.module('recompositionApp', ['ui.router', 'satellizer', 'ngResource', 'vnServices']);
 // })();
