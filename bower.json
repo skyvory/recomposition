@@ -31,6 +31,7 @@
     "angular-messages": "~1.4.7",
     "angular-material-data-table": "~0.8.14",
     "moment": "~2.10.6",
-    "angular-moment": "~0.10.3"
+    "angular-moment": "~0.10.3",
+    "sc-date-time": "~1.1.3"
   }
 }
