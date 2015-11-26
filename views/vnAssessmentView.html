@@ -1,5 +1,40 @@
-<md-content class="md-padding">
+<md-content leyout-padding class="md-padding">
 	<h1>a!</h1>
 	<p>a aa aaa</p>
 	{{assessment}}
+	<form name="assessmentForm" ng-submit="$event.preventDefault()">
+		<div layout layout-sm="column">
+			<md-input-container>
+				<label>///</label>
+				<input ng-model="assessment.vn_id">
+			</md-input-container>
+		</div>
+		<h3>Date Start</h3>
+		<time-date-picker ng-model="assessment.date_start"></time-date-picker>
+		<div layout layout-sm="column">
+			<md-chips>
+				<md-chip>{{assessment.date_start | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</md-chip>
+			</md-chips>
+			<md-input-container class="md-block">
+				<label>Date Start</label>
+				<input ng-model="assessment.date_start" disabled>
+			</md-input-container>
+			<md-button ng-click="assessment.date_start = null">clear</md-button>
+		</div>
+
+		<h3>Date End</h3>
+		<time-date-picker ng-model="assessment.date_end"></time-date-picker>
+		<div layout layout-sm="column">
+			<md-chips>
+				<md-chip>{{assessment.date_end | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</md-chip>
+			</md-chips>
+			<md-input-container class="md-block">
+				<label>Date End</label>
+				<input ng-model="assessment.date_end" disabled>
+			</md-input-container>
+			<md-button ng-click="assessment.date_end = null">clear</md-button>
+		</div>
+
+		<md-button ng-click="saveAssessment()">Save</md-button>
+	</form>
 </md-content>

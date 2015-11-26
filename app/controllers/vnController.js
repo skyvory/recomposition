@@ -364,26 +364,33 @@
 			}
 		}])
 		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment) {
-			$scope.assessment = getAssessment($stateParams.id);
+			$scope.assessment = {};
+			getAssessment($stateParams.id);
 			function getAssessment(vn_id) {
-				var assessment = Assessment.get({ id: vn_id }, function(response) {
-					if(!response) {
-						return new Assessment();
+				Assessment.get({ id: vn_id }, function(response) {
+					if(!response.id) {
+						var new_assessment = new Assessment();
+						new_assessment.vn_id = vn_id;
+						$scope.assessment = new_assessment;
 					}
-					return response;
-				});
-				return assessment;
-			}
-			$scope.updateAssessment = function() {
-				$scope.assessment.date_start = moment($scope.assessment.date_start).add(24, 'hours');
-				$scope.assessment.$update(function() {
-					// toast!
+					else {
+						$scope.assessment = response;
+						$scope.assessment.date_start = response.date_start ? moment(response.date_start).toDate() : '';
+					}
 				});
 			}
-			$scope.createAssessment = function() {
-				$scope.assessment.$save(function() {
-					// toast
-				})
+			$scope.saveAssessment = function() {
+				$scope.assessment.date_start = moment($scope.assessment.date_start).add(8, 'hours');
+				if($scope.assessment.id) {
+					$scope.assessment.$update(function() {
+						// toast!
+					});
+				}
+				else {
+					$scope.assessment.$save(function() {
+						// toast
+					})
+				}
 			}
 		})
 		.controller('VnNoteController', function($scope) {
