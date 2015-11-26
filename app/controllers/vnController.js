@@ -85,7 +85,7 @@
 		.controller('VnShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
 			$scope.vns = Vn.get({ id: $stateParams.id});
 
-			$scope.isAuthenticated = function() {
+			$scope.isAuthenticatekd = function() {
 				return $auth.isAuthenticated();
 			}
 		}])
@@ -363,8 +363,28 @@
 				};
 			}
 		}])
-		.controller('VnAssessmentController', function($scope) {
-			//
+		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment) {
+			$scope.assessment = getAssessment($stateParams.id);
+			function getAssessment(vn_id) {
+				var assessment = Assessment.get({ id: vn_id }, function(response) {
+					if(!response) {
+						return new Assessment();
+					}
+					return response;
+				});
+				return assessment;
+			}
+			$scope.updateAssessment = function() {
+				$scope.assessment.date_start = moment($scope.assessment.date_start).add(24, 'hours');
+				$scope.assessment.$update(function() {
+					// toast!
+				});
+			}
+			$scope.createAssessment = function() {
+				$scope.assessment.$save(function() {
+					// toast
+				})
+			}
 		})
 		.controller('VnNoteController', function($scope) {
 			//
