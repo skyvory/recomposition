@@ -138,15 +138,27 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 				}
 			},
 		})
-		.state('vnTabs.note', {
-			url: '/note',
+		.state('vnTabs.character', {
+			url: '/character',
 			data: {
 				'selectedTab': 1
 			},
 			views: {
+				'vnCharacter': {
+					templateUrl: 'views/vnCharacterView.html',
+					controller: 'VnCharacterController',
+				}
+			},
+		})
+		.state('vnTabs.note', {
+			url: '/note',
+			data: {
+				'selectedTab': 2
+			},
+			views: {
 				'vnNote': {
 					templateUrl: 'views/vnNoteView.html',
-					controller: 'VnNoteController'
+					controller: 'VnNoteController',
 				}
 			},
 		})

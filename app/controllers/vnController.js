@@ -400,6 +400,9 @@
 				$scope.assessment.date_end = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
 			}
 		})
+		.controller('VnCharacterController', function($scope) {
+			//
+		})
 		.controller('VnNoteController', function($scope) {
 			//
 		})
