@@ -35,6 +35,53 @@
 			<md-button ng-click="assessment.date_end = null">clear</md-button>
 		</div>
 
+		<span>Story</span>
+		<md-radio-group ng-model="assessment.score_story" layout="row">
+			<md-radio-button class="md-primary" value="e">E</md-radio-button>
+			<md-radio-button class="md-primary" value="d">D</md-radio-button>
+			<md-radio-button class="md-primary" value="c">C</md-radio-button>
+			<md-radio-button class="md-primary" value="b">B</md-radio-button>
+			<md-radio-button class="md-primary" value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group>
+		<span>Naki</span>
+		<md-radio-group ng-model="assessment.score_naki" layout="row">
+			<md-radio-button class="md-primary" value="e">E</md-radio-button>
+			<md-radio-button class="md-primary" value="d">D</md-radio-button>
+			<md-radio-button class="md-primary" value="c">C</md-radio-button>
+			<md-radio-button class="md-primary" value="b">B</md-radio-button>
+			<md-radio-button class="md-primary" value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group>
+		<span>Nuki</span>
+		<md-radio-group ng-model="assessment.score_nuki" layout="row">
+			<md-radio-button class="md-primary" value="e">E</md-radio-button>
+			<md-radio-button class="md-primary" value="d">D</md-radio-button>
+			<md-radio-button class="md-primary" value="c">C</md-radio-button>
+			<md-radio-button class="md-primary" value="b">B</md-radio-button>
+			<md-radio-button class="md-primary" value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group>
+		<span>Graphic</span>
+		<md-radio-group ng-model="assessment.score_graphic" layout="row">
+			<md-radio-button class="md-primary" value="e">E</md-radio-button>
+			<md-radio-button class="md-primary" value="d">D</md-radio-button>
+			<md-radio-button class="md-primary" value="c">C</md-radio-button>
+			<md-radio-button class="md-primary" value="b">B</md-radio-button>
+			<md-radio-button class="md-primary" value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group>
+		<div layout>
+			<div flex="10" layout layout-align="center center">
+				<span class="md-body-1">Overall</span>
+			</div>
+			<md-slider flex class="md-primary" md-discrete ng-model="assessment.score_all" step="1" min="0" max="10" aria-label="overall score">
+			</md-slider>
+		</div>
+		<md-switch ng-model="assessment.archive_savedata" ng-true-value=1 ng-false-value=0 aria-label="save data switch" class="md-primary">
+			Save Data
+		</md-switch>
+
 		<md-button ng-click="saveAssessment()">Save</md-button>
 	</form>
 </md-content>
