@@ -374,10 +374,7 @@
 						$scope.assessment = new_assessment;
 					}
 					else {
-						$scope.assessment = response;
-						console.log($scope.assessment);
-						$scope.assessment.date_start = response.date_start ? moment.utc(response.date_start).toDate() : '';
-						$scope.assessment.date_end = response.date_end ? moment(response.date_end).toDate() : '';
+						generalizeAssessment(response);
 					}
 				});
 			}
@@ -385,20 +382,22 @@
 				// $scope.assessment.date_start = moment($scope.assessment.date_start).add(0, 'hours');
 				if($scope.assessment.id) {
 					$scope.assessment.$update(function(response) {
-						$scope.assessment = response;
-						$scope.assessment.date_start = response.date_start ? moment(response.date_start).toDate() : '';
-						$scope.assessment.date_end = response.date_end ? moment(response.date_end).toDate() : '';
+						generalizeAssessment(response);
 						// toast!
 					});
 				}
 				else {
 					$scope.assessment.$save(function(response) {
-						$scope.assessment = response;
-						$scope.assessment.date_start = response.date_start ? moment(response.date_start).toDate() : '';
-						$scope.assessment.date_end = response.date_end ? moment(response.date_end).toDate() : '';
+						generalizeAssessment(response);
 						// toast
 					})
 				}
+			}
+			// generalize assessment response to be in streamlined format, datetime especially
+			function generalizeAssessment(assessment) {
+				$scope.assessment = assessment;
+				$scope.assessment.date_start = assessment.date_start ? moment.utc(assessment.date_start).toDate() : '';
+				$scope.assessment.date_end = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
 			}
 		})
 		.controller('VnNoteController', function($scope) {
