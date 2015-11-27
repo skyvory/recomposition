@@ -375,19 +375,27 @@
 					}
 					else {
 						$scope.assessment = response;
-						$scope.assessment.date_start = response.date_start ? moment(response.date_start).toDate() : '';
+						console.log($scope.assessment);
+						$scope.assessment.date_start = response.date_start ? moment.utc(response.date_start).toDate() : '';
+						$scope.assessment.date_end = response.date_end ? moment(response.date_end).toDate() : '';
 					}
 				});
 			}
 			$scope.saveAssessment = function() {
-				$scope.assessment.date_start = moment($scope.assessment.date_start).add(8, 'hours');
+				// $scope.assessment.date_start = moment($scope.assessment.date_start).add(0, 'hours');
 				if($scope.assessment.id) {
-					$scope.assessment.$update(function() {
+					$scope.assessment.$update(function(response) {
+						$scope.assessment = response;
+						$scope.assessment.date_start = response.date_start ? moment(response.date_start).toDate() : '';
+						$scope.assessment.date_end = response.date_end ? moment(response.date_end).toDate() : '';
 						// toast!
 					});
 				}
 				else {
-					$scope.assessment.$save(function() {
+					$scope.assessment.$save(function(response) {
+						$scope.assessment = response;
+						$scope.assessment.date_start = response.date_start ? moment(response.date_start).toDate() : '';
+						$scope.assessment.date_end = response.date_end ? moment(response.date_end).toDate() : '';
 						// toast
 					})
 				}
