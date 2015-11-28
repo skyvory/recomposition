@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html ng-app="recompositionApp">
-<html>
 	<head>
 		<meta charset="utf-8">
 		<title>Recomposition Front End</title>
