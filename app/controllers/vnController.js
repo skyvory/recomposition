@@ -400,8 +400,47 @@
 				$scope.assessment.date_end = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
 			}
 		})
-		.controller('VnCharacterController', function($scope) {
-			//
+		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http) {
+			$scope.characters = {};
+			getCharacter($stateParams.id);
+			function getCharacter(vn_id) {
+				Character.get({ vn_id: vn_id }, function(response) {
+					$scope.characters = response.data;
+					// console.log(response);
+				});
+			}
+			$scope.retrieveVndbCharacter = function() {
+				$http({
+					method: 'POST',
+					url: 'http://localhost/record/public/vndb/character',
+					data: {
+						vndb_id: $scope.vndb.vndb_id,
+						username: 'svry',
+						password: 'svry',
+					},
+				}).then(function successCallback(response) {
+					var characters = response.data.data.items;
+					console.log(characters);
+					// chara processing
+					if(characters) {
+						for(var i in characters) {
+							if(characters[i].gender == "f") {
+								console.log(i);
+								$scope.characters.push({
+									kanji: characters[i].original,
+									betsumyou: characters[i].aliases,
+									yobikata: characters[i].name,
+									birthmonth: characters[i].birthday['1'],
+									birthday: characters[i].birthday['0'],
+									image: characters[i].image,
+								});
+							}
+						}
+					}
+				}, function errorCallback(response) {
+					console.log("ERROR", response);
+				});
+			}
 		})
 		.controller('VnNoteController', function($scope) {
 			//

@@ -1,0 +1,89 @@
+<md-content class="md-padding" layout="row" leyout-wrap layout-align="center start" >
+	
+	<div flex="70" layout="column">
+
+		<form name="characterVndbForm" ng-submit="$event.preventDefault()">
+			<div layout leyout-sm="column">
+				<md-input-container>
+					<label>vndb id</label>
+					<input ng-model="vndb.vndb_id" ng-init="vndb.vndb_id = 17">
+				</md-input-container>
+				<md-button ng-click="retrieveVndbCharacter()">load</md-button>
+			</div>
+		</form>
+		
+		<md-card ng-repeat="chara in characters">
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">{{chara.kanji}}</span>
+					<span class="md-subhead">{{chara.yobikata}}</span>
+				</md-card-title-text>
+				<md-card-title-media>
+					<div class="md-media-sm card-media" style="background-color: #999999;">
+					aaaaa
+						<!-- <img src="{{chara.image}}" style> -->
+					</div>
+				</md-card-title-media>
+			</md-card-title>
+			<md-card-actions layout="row" layout-align="end center">
+				<md-button>{{chara.birthmonth}}</md-button>
+				<md-button>{{chara.birthday}}</md-button>
+			</md-card-actions>
+		</md-card>
+	</div>
+
+<!-- 	<form name="cha/racterForm" ng-submit="$event.preventDefault()">
+		<div layout leyout-sm="column">
+			<md-input-container>
+				<label>vndb id</label>
+				<input ng-model="vndb.vndb_id">
+			</md-input-container>
+			<md-button ng-click="retrieveVndbCharacter()">load</md-button>
+		</div>
+
+		<div layout layout-sm="column">
+			<md-input-container flex="35">
+				<label>Kanji</label>
+				<input ng-model="character.kanji">
+			</md-input-container>
+			<md-input-container>
+				<label>/</label>
+			</md-input-container>
+			<md-input-container flex="35">
+				<label>Yobikata</label>
+				<input ng-model="character.yobikata">
+			</md-input-container>
+		</div>
+
+		<md-input-container class="md-block">
+			<label>Betsumyou</label>
+			<input ng-model="vn.title_en">
+		</md-input-container>
+
+		<div layout layout-sm="column">
+			<md-input-container flex="15">
+				<label>Birthmonth</label>
+				<input ng-model="character.birthmonth">
+			</md-input-container>
+			<md-input-container>
+				<label>-</label>
+			</md-input-container>
+			<md-input-container flex="15">
+				<label>Birthday</label>
+				<input ng-model="character.birthday">
+			</md-input-container>
+		</div>
+
+		<span>Mark</span>
+		<md-radio-group ng-model="character.mark" layout="row">
+			<md-radio-button class="md-primary" value="e">E</md-radio-button>
+			<md-radio-button class="md-primary" value="d">D</md-radio-button>
+			<md-radio-button class="md-primary" value="c">C</md-radio-button>
+			<md-radio-button class="md-primary" value="b">B</md-radio-button>
+			<md-radio-button class="md-primary" value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group>
+
+		<md-button ng-click="saveCharacter()">Save</md-button>
+	</form> -->
+</md-content>
