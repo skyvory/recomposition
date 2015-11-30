@@ -11,23 +11,27 @@
 				<md-button ng-click="retrieveVndbCharacter()">load</md-button>
 			</div>
 		</form>
-		
+
+		{{characters}}
+
 		<md-card ng-repeat="chara in characters">
 			<md-card-title>
 				<md-card-title-text>
-					<span class="md-headline">{{chara.kanji}}</span>
-					<span class="md-subhead">{{chara.yobikata}}</span>
+					<span class="md-headline">{{chara.yobikata}}</span>
+					<span class="md-subhead">{{chara.birthmonth}}.{{chara.birthday}}</span>
 				</md-card-title-text>
 				<md-card-title-media>
-					<div class="md-media-sm card-media" style="background-color: #999999;">
-					aaaaa
-						<!-- <img src="{{chara.image}}" style> -->
+					<div class="md-media-sm card-media">
+						<!-- <img src="{{chara.image}}"> -->
 					</div>
 				</md-card-title-media>
 			</md-card-title>
+			content
+			{{chara.kanji}}
+			{{chara.yobikata}}
 			<md-card-actions layout="row" layout-align="end center">
-				<md-button>{{chara.birthmonth}}</md-button>
-				<md-button>{{chara.birthday}}</md-button>
+				<md-button>remove</md-button>
+				<md-button>save</md-button>
 			</md-card-actions>
 		</md-card>
 	</div>
