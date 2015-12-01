@@ -452,6 +452,20 @@
 				var index = $scope.vndb.characters.indexOf(item);
 				$scope.vndb.characters.splice(index, 1);
 			}
+			$scope.saveVndbCharacter = function(chara) {
+				console.log(chara);
+				var character = new Character();
+				character.kanji = chara.original;
+				character.betsumyou = chara.aliases;
+				character.yobikata = chara.name;
+				character.birthmonth = chara.birthday[1];
+				character.birthday = chara.birthday[2];
+				character.$save(function(response) {
+					console.log(response);
+				}, function(error) {
+					console.log(error);
+				});
+			}
 
 			$scope.customFullscreen = $mdMedia('sm');
 			$scope.showVndbDialog = function(ev) {
