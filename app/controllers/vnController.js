@@ -400,8 +400,14 @@
 				$scope.assessment.date_end = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
 			}
 		})
-		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http) {
+		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia) {
 			$scope.characters = {};
+			$scope.vndb = [];
+			$scope.vndb.characters = [];
+			$scope.vndb_toggle = false;
+			$scope.toggleVndb = function() {
+				$scope.vndb_toggle = $scope.vndb_toggle ? false : true;
+			}
 			getCharacter($stateParams.id);
 			function getCharacter(vn_id) {
 				Character.get({ vn_id: vn_id }, function(response) {
@@ -426,14 +432,15 @@
 						for(var i in characters) {
 							if(characters[i].gender == "f") {
 								console.log(i);
-								$scope.characters.push({
-									kanji: characters[i].original,
-									betsumyou: characters[i].aliases,
-									yobikata: characters[i].name,
-									birthmonth: characters[i].birthday['1'],
-									birthday: characters[i].birthday['0'],
-									image: characters[i].image,
-								});
+								// $scope.vndb.characters.push({
+									// kanji: characters[i].original,
+									// betsumyou: characters[i].aliases,
+									// yobikata: characters[i].name,
+									// birthmonth: characters[i].birthday['1'],
+									// birthday: characters[i].birthday['0'],
+									// image: characters[i].image,
+								// });
+								$scope.vndb.characters.push(characters[i]);
 							}
 						}
 					}
@@ -441,12 +448,49 @@
 					console.log("ERROR", response);
 				});
 			}
+			$scope.removeVndbCharacter = function(item) {
+				var index = $scope.vndb.characters.indexOf(item);
+				$scope.vndb.characters.splice(index, 1);
+			}
+
+			$scope.customFullscreen = $mdMedia('sm');
+			$scope.showVndbDialog = function(ev) {
+				$scope.retrieveVndbCharacter();
+				$mdDialog.show({
+					controller: DialogController,
+					templateUrl: 'views/vndbCharacterDialog.html',
+					parent: angular.element(document.body),
+					targetEvent: ev,
+					clickOutsideToClose: true,
+					fullscreen: $mdMedia('sm') &&$scope.customFullscreen
+				})
+				.then(function(answer) {
+					console.log("finished adding characters");
+				}, function() {
+					console.log("canceled dialog");
+				});
+				$scope.watch(function() {
+					return $mdMedia('sm');
+				}, function(sm) {
+					$scope.customFullscreen = (sm === true);
+				});
+			};
 		})
 		.controller('VnNoteController', function($scope) {
 			//
 		})
 		;
-	
+		function DialogController($scope, $mdDialog) {
+			$scope.hide = function() {
+				$mdDialog.hide();
+			};
+			$scope.cancel = function() {
+				$mdDialog.cancel();
+			};
+			$scope.answer = function(answer) {
+				$mdDialog.hide(answer);
+			};
+		}
 })();
 
 

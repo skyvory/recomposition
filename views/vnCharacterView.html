@@ -1,8 +1,8 @@
 <md-content class="md-padding" layout="row" leyout-wrap layout-align="center start" >
 	
 	<div flex="70" layout="column">
-
-		<form name="characterVndbForm" ng-submit="$event.preventDefault()">
+	<md-button class="md-primary md-raised" ng-click="toggleVndb()" flex-sm="100" flex-md="100" flex-gt-md="auto">vndb</md-button>
+		<form name="characterVndbForm" ng-submit="$event.preventDefault()" ng-show="vndb_toggle">
 			<div layout leyout-sm="column">
 				<md-input-container>
 					<label>vndb id</label>
@@ -12,13 +12,11 @@
 			</div>
 		</form>
 
-		{{characters}}
-
-		<md-card ng-repeat="chara in characters">
+		<md-card ng-repeat="chara in vndb.characters" ng-show="vndb_toggle">
 			<md-card-title>
 				<md-card-title-text>
-					<span class="md-headline">{{chara.yobikata}}</span>
-					<span class="md-subhead">{{chara.birthmonth}}.{{chara.birthday}}</span>
+					<span class="md-headline">{{chara.name}}</span>
+					<span class="md-subhead">{{chara.gender}}</span>
 				</md-card-title-text>
 				<md-card-title-media>
 					<div class="md-media-sm card-media">
@@ -26,11 +24,18 @@
 					</div>
 				</md-card-title-media>
 			</md-card-title>
-			content
-			{{chara.kanji}}
-			{{chara.yobikata}}
+			<div flex layout-padding layout="row">
+				<div flex="30">
+					<img ng-src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px">
+				</div>
+				<div flex>
+					original: {{chara.original}} <br />
+					alias: {{chara.aliases}} <br />
+					birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}} <br />
+					b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}} <br />
+				</div>
 			<md-card-actions layout="row" layout-align="end center">
-				<md-button>remove</md-button>
+				<md-button ng-click="removeVndbCharacter(chara)">remove</md-button>
 				<md-button>save</md-button>
 			</md-card-actions>
 		</md-card>
