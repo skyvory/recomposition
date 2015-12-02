@@ -2,11 +2,72 @@
 	
 	<div flex="70" layout="column">
 	<md-button class="md-primary md-raised" ng-click="toggleVndb()" flex-sm="100" flex-md="100" flex-gt-md="auto">vndb</md-button>
+		<form name="characterForm" ng-submit="$event.preventDefault()" ng-hide="vndb_toggle">
+			{{characters}}
+			<md-card ng-repeat="chara in characters">
+				<md-card-title>
+					<md-card-title-text>
+						<span class="md-headline">{{chara.yobikata}}</span>
+						<span class="md-subhead">?</span>
+					</md-card-title-text>
+					<md-card-title-media>
+						<div class="md-media-sm card-media">
+						</div>
+					</md-card-title-media>
+				</md-card-title>
+				<div flex layout-padding layout="row">
+					<div flex="30">
+						<img ng-src="" style="width:auto; max-width: 100%; max-height:200px">
+					</div>
+					<div flex="70" style="background-color:#eff;">
+						<md-input-container>
+							<label>kanji</label>
+							<input type="text" ng-model="chara.kanji">
+						</md-input-container>
+						<md-input-container>
+							<label>yobikata</label>
+							<input type="text" ng-model="chara.yobikata">
+						</md-input-container>
+						<md-input-container>
+							<label>betsumyou</label>
+							<input type="text" ng-model="chara.betsumyou">
+						</md-input-container>
+						<div layout="row">
+							<md-input-container>
+								<label>birthmonth</label>
+								<input type="number" ng-model="chara.birthmonth">
+							</md-input-container>
+							<md-input-container>
+								<label>birthday</label>
+								<input type="number" ng-model="chara.birthday">
+							</md-input-container>
+						</div>
+					</div>
+				</div>
+				<div layout="row" layout-align="center end">
+					<md-input-container>
+						<label>mark</label>
+						<md-select ng-model="chara.mark" ng-change="saveMark(chara)">
+							<md-option ng-selected="(chara.mark == 's') ? true : false" value="s">S</md-option>
+							<md-option ng-selected="(chara.mark == 'a') ? true : false" value="a">A</md-option>
+							<md-option ng-selected="(chara.mark == 'b') ? true : false" value="b">B</md-option>
+							<md-option ng-selected="(chara.mark == 'c') ? true : false" value="c">C</md-option>
+							<md-option ng-selected="(chara.mark == 'd') ? true : false" value="d">D</md-option>
+							<md-option ng-selected="(chara.mark == 'e') ? true : false" value="e">E</md-option>
+						</md-select>
+					</md-input-container>
+				</div>
+				<md-card-actions layout="row" layout-align="end center">
+					<md-button ng-click="deleteCharacter(chara)">delete</md-button>
+					<md-button ng-click="saveCharacter(chara)">save</md-button>
+				</md-card-actions>
+			</md-card>
+		</form>
 		<form name="characterVndbForm" ng-submit="$event.preventDefault()" ng-show="vndb_toggle">
 			<div layout leyout-sm="column">
 				<md-input-container>
 					<label>vndb id</label>
-					<input ng-model="vndb.vndb_id" ng-init="vndb.vndb_id = 17">
+					<input ng-model="vndb.vndb_id" ng-init="vndb.vndb_id = 16570">
 				</md-input-container>
 				<md-button ng-click="retrieveVndbCharacter()">load</md-button>
 			</div>
@@ -34,6 +95,7 @@
 					birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}} <br />
 					b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}} <br />
 				</div>
+			</div>
 			<md-card-actions layout="row" layout-align="end center">
 				<md-button ng-click="removeVndbCharacter(chara)">remove</md-button>
 				<md-button ng-click="saveVndbCharacter(chara)">save</md-button>

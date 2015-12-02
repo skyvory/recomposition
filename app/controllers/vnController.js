@@ -455,16 +455,27 @@
 			$scope.saveVndbCharacter = function(chara) {
 				console.log(chara);
 				var character = new Character();
+				character.vn_id = $stateParams.id;
 				character.kanji = chara.original;
 				character.betsumyou = chara.aliases;
 				character.yobikata = chara.name;
 				character.birthmonth = chara.birthday[1];
-				character.birthday = chara.birthday[2];
+				character.birthday = chara.birthday[0];
 				character.$save(function(response) {
 					console.log(response);
 				}, function(error) {
 					console.log(error);
 				});
+			}
+			$scope.saveCharacter = function(chara) {
+				console.log(chara);
+			}
+			$scope.deleteCharacter = function(chara) {
+				console.log(chara);
+				// confirm alert dialog
+			}
+			$scope.saveMark = function(chara) {
+				console.log(chara);
 			}
 
 			$scope.customFullscreen = $mdMedia('sm');
