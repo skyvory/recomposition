@@ -17,6 +17,7 @@ var recompositionApp = angular.module('recompositionApp', [
 	'assessmentServices',
 	'scDateTime',
 	'lineamentServices',
+	'noteServices',
 ]);
 
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$mdDateLocaleProvider', 'moment', function($stateProvider, $urlRouterProvider, $authProvider, $mdDateLocaleProvider, moment) {

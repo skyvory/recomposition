@@ -53,6 +53,7 @@
 	<script src="app/services/characterService.js"></script>
 	<script src="app/services/assessmentService.js"></script>
 	<script src="app/services/lineamentService.js"></script>
+	<script src="app/services/noteService.js"></script>
 
 	<script type="text/javascript">
 		// angular
