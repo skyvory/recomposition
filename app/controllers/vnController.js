@@ -468,7 +468,9 @@
 				});
 			}
 			$scope.saveCharacter = function(chara) {
-				console.log(chara);
+				Character.update(chara, function() {
+					// toast
+				});
 			}
 			$scope.deleteCharacter = function(chara) {
 				console.log(chara);
