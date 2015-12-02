@@ -400,7 +400,7 @@
 				$scope.assessment.date_end = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
 			}
 		})
-		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia) {
+		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament) {
 			$scope.characters = {};
 			$scope.vndb = [];
 			$scope.vndb.characters = [];
@@ -497,6 +497,31 @@
 			}
 			$scope.saveMark = function(chara) {
 				console.log(chara);
+				if(chara.lineament_id) {
+					var lineament = {
+						id: chara.lineament_id,
+						character_id: chara.id,
+						mark: chara.mark,
+					};
+					Lineament.update(lineament, function(response) {
+						console.log(response);
+						// toast
+					}, function(error) {
+						console.log(error);
+					});
+				}
+				else {
+					var lineament = {
+						character_id: chara.id,
+						mark: chara.mark,
+					};
+					Lineament.save(lineament, function(response) {
+						console.log(response);
+						// toast
+					}, function(error) {
+						console.log(error);
+					});
+				}
 			}
 
 			$scope.customFullscreen = $mdMedia('sm');
