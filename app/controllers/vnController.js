@@ -472,9 +472,28 @@
 					// toast
 				});
 			}
-			$scope.deleteCharacter = function(chara) {
+			$scope.deleteCharacter = function(ev, chara) {
 				console.log(chara);
-				// confirm alert dialog
+				var confirm = $mdDialog.confirm()
+					.title('Do you really want to kill this girl?')
+					.content('there\'s no dump provided yet, your sin will be forever noted')
+					.ariaLabel('you are deemed to be doomed')
+					.targetEvent(ev)
+					.ok('kill')
+					.cancel('mercy')
+				;
+				$mdDialog.show(confirm).then(function() {
+					console.log(chara.id);
+					// get index of item to be deleted
+					var index = $scope.characters.indexOf(chara);
+					Character.delete({ id: chara.id }, function() {
+						// remove item from scope once delete succeed on server
+						$scope.characters.splice(index, 1);
+						// toast
+					});
+				}, function() {
+					// dialog cancelled
+				})
 			}
 			$scope.saveMark = function(chara) {
 				console.log(chara);
