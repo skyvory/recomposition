@@ -20,6 +20,28 @@ var recompositionApp = angular.module('recompositionApp', [
 	'noteServices',
 ]);
 
+recompositionApp.directive('contenteditable', function() {
+	return {
+		require: 'ngModel',
+		link: function(scope, element, attrs, ctrl) {
+			// view -> model
+			element.bind('keyup', function() {
+				scope.$apply(function() {
+					ctrl.$setViewValue(element.html());
+				});
+			});
+
+			// model -> view
+			ctrl.$render = function() {
+				element.html(ctrl.$viewValue);
+			};
+
+			// load init value from dom
+			ctrl.$render();
+		}
+	};
+});
+
 recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$mdDateLocaleProvider', 'moment', function($stateProvider, $urlRouterProvider, $authProvider, $mdDateLocaleProvider, moment) {
 	// satellizer configuration that specifies which api route the jwt should be retrieved from
 	$authProvider.loginUrl = 'http://localhost/record/public/api/authenticate';
