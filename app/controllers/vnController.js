@@ -547,8 +547,27 @@
 				});
 			};
 		})
-		.controller('VnNoteController', function($scope) {
-			//
+		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval) {
+			
+			$scope.note;
+			Note.get({ vn_id:$stateParams.id }, function(response) {
+				if(response.id) {
+					$scope.note = response;
+				}
+				else {
+					Note.save({ vn_id: $stateParams.id }, function(response) {
+						$scope.note = response;
+					}, function(error) {
+						alert(error);
+					});
+				}
+			}, function(error) {
+				alert(error);
+			});
+
+			function saveNote() {
+				//
+			}
 		})
 		;
 		function DialogController($scope, $mdDialog) {

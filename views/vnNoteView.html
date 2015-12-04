@@ -1,4 +1,28 @@
-<md-content class="md-padding">
-	<h1>b!</h1>
-	<p>b bb bbb</p>
+<md-toolbar class="md-theme-light">
+	<h3 class="md-toolbar-tools">
+		<span>Note</span>
+	</h3>
+</md-toolbar>
+<md-content>
+	<md-list>
+		<md-list-item class="md-3-line" >
+			<div style="width:48px; margin: 16px;">aaa</div>
+			<div class="md-list-item-text">
+				<h3>xxx</h3>
+				<div flex contenteditable="true" ng-model="note.interface"></div>
+				<br />
+				<pre contenteditable="true" ng-model="note.interface"></pre>
+				<br />
+				{{note.interface}}
+			</div>
+			<md-divider md-inset ng-if="!$last"></md-divider>
+		</md-list-item>
+	</md-list>
 </md-content>
+
+<style type="text/css">
+	:empty {
+	    display: block;
+	    height: 1em;
+	}
+</style>
