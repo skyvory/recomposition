@@ -566,8 +566,19 @@
 			});
 
 			function saveNote() {
-				//
+				Note.update($scope.note, function(response) {
+					console.log(response);
+				}, function(error) {
+					console.log(error);
+				});
+				// $scope.note.$update({ id: $scope.note.id }, function(response) {
+				// 	console.log(response);
+				// }, function(error) {
+				// 	console.log(error);
+				// });
 			}
+
+			$interval(saveNote, 3000);
 		})
 		;
 		function DialogController($scope, $mdDialog) {
