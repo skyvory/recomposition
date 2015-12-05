@@ -578,7 +578,21 @@
 				// });
 			}
 
-			$interval(saveNote, 3000);
+			$interval(function() {
+				console.log(changed);
+				if(changed) {
+					saveNote();
+					changed = false;
+				}
+			}, 3000);
+
+			var changed = false;
+			// to detect if there's any change happens
+			$scope.$watch('note', function() {
+				console.log("changed");
+				changed = true;
+			}, true);
+
 		})
 		;
 		function DialogController($scope, $mdDialog) {
