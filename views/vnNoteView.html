@@ -10,7 +10,7 @@
 			<div class="md-list-item-text">
 				<h3>Interface</h3>
 				<!-- <div style="white-space:pre-wrap;background-color:#ddd;" flex contenteditable="true" ng-model="note.interface"></div> -->
-				<textarea id="text" class="text" ng-model="note.interface" style="width:100%;"></textarea>
+				<textarea ng-model="note.interface" rows="9" style="width:100%;"></textarea>
 			</div>
 			<md-divider md-inset ng-if="!$last"></md-divider>
 		</md-list-item>
@@ -24,10 +24,11 @@
 	}
 	textarea {
 		border: 0 none white;
-		overflow: hidden;
+		overflow-x: hidden;
+		overflow-y: scroll;
 		padding: 0;
 		outline: none;
 		background-color: #D0D0D0;
-		resize: none;
+		resize: vertical;
 	}
 </style>
