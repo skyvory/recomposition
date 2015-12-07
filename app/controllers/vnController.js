@@ -579,7 +579,6 @@
 			}
 
 			$interval(function() {
-				console.log(changed);
 				if(changed) {
 					saveNote();
 					changed = false;
@@ -621,7 +620,7 @@
 			observe(text, 'keydown', delayedResize);
 			text.focus();
 			text.select();
-			resize();
+			setTimeout(resize, 1000);
 		})
 		;
 		function DialogController($scope, $mdDialog) {
