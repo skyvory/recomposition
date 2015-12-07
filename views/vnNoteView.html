@@ -3,18 +3,53 @@
 		<span>Note</span>
 	</h3>
 </md-toolbar>
-<md-content >
-	<md-list>
-		<md-list-item class="md-3-line" >
-			<div style="width:48px; margin: 16px;">aaa</div>
-			<div class="md-list-item-text">
-				<h3>Interface</h3>
-				<!-- <div style="white-space:pre-wrap;background-color:#ddd;" flex contenteditable="true" ng-model="note.interface"></div> -->
-				<textarea ng-model="note.interface" rows="9" style="width:100%;"></textarea>
-			</div>
-			<md-divider md-inset ng-if="!$last"></md-divider>
-		</md-list-item>
-	</md-list>
+<md-content layout-padding>
+	<div flex layout="row">
+		<div flex="10">Interface</div>
+		<textarea class="note-textarea" ng-model="note.interface"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">gene</div>
+		<textarea class="note-textarea" ng-model="note.gene"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">setting</div>
+		<textarea class="note-textarea" ng-model="note.setting"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">side_chara</div>
+		<textarea class="note-textarea" ng-model="note.side_chara"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">story</div>
+		<textarea class="note-textarea" ng-model="note.story"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">route</div>
+		<textarea class="note-textarea" ng-model="note.route"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">bgm</div>
+		<textarea class="note-textarea" ng-model="note.bgm"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">terminology</div>
+		<textarea class="note-textarea" ng-model="note.terminology"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">timescape</div>
+		<textarea class="note-textarea" ng-model="note.timescape"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">quote</div>
+		<textarea class="note-textarea" ng-model="note.quote"></textarea>
+	</div>
+	<div flex layout="row">
+		<div flex="10">other</div>
+		<textarea class="note-textarea" ng-model="note.other"></textarea>
+	</div>
+	
+
 </md-content>
 
 <style type="text/css">
@@ -30,5 +65,11 @@
 		outline: none;
 		background-color: #D0D0D0;
 		resize: vertical;
+		height: 3em;
+		width: 100%;
+		transition: all 0.5s ease;
+	}
+	textarea:focus {
+		height: 9em;
 	}
 </style>

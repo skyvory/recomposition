@@ -553,6 +553,15 @@
 			Note.get({ vn_id:$stateParams.id }, function(response) {
 				if(response.id) {
 					$scope.note = response;
+					var textarea = document.getElementsByClassName('note-textarea');
+					console.log(textarea);
+					setTimeout(function() {
+
+						for(var i in textarea) {
+							textarea[i].scrollTop = textarea[i].scrollHeight;
+							console.log(textarea[i].scrollTop)
+						}
+					}, 100);
 				}
 				else {
 					Note.save({ vn_id: $stateParams.id }, function(response) {
@@ -591,7 +600,17 @@
 				console.log("changed");
 				changed = true;
 			}, true);
-			
+
+			$scope.keynote = [
+				{
+					key: 'interface',
+					title: 'Interface',
+				},
+				{
+					key: 'gene',
+					title: 'Gene',
+				},
+			];
 		})
 		;
 		function DialogController($scope, $mdDialog) {
