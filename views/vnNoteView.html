@@ -1,54 +1,65 @@
 <md-toolbar class="md-theme-light">
-	<h3 class="md-toolbar-tools">
+	<div class="md-toolbar-tools">
 		<span>Note</span>
-	</h3>
+		<span flex></span>
+		<md-switch ng-model="showall_toggle" aria-label="all switch">
+			Show all
+		</md-switch>
+		<md-button ng-click="note_toggle = 'primary'" aria-label="general">
+			General
+		</md-button>
+		<md-button ng-click="note_toggle = 'character'" class="" aria-label="chara">
+			Chara
+		</md-button>
+	</div>
 </md-toolbar>
 <md-content layout-padding>
-	<div flex layout="row">
-		<div flex="10">Interface</div>
-		<textarea class="note-textarea" ng-model="note.interface"></textarea>
+	<div ng-show="note_toggle == 'primary'">
+		<div flex layout="row">
+			<div flex="10">Interface</div>
+			<textarea class="note-textarea" ng-model="note.interface"></textarea>
+		</div>
+		<div flex layout="row">
+			<div flex="10">gene</div>
+			<textarea class="note-textarea" ng-model="note.gene"></textarea>
+		</div>
+		<div flex layout="row">
+			<div flex="10">setting</div>
+			<textarea class="note-textarea" ng-model="note.setting"></textarea>
+		</div>
+		<div flex layout="row">
+			<div flex="10">side_chara</div>
+			<textarea class="note-textarea" ng-model="note.side_chara"></textarea>
+		</div>
+		<div flex layout="row">
+			<div flex="10">story</div>
+			<textarea class="note-textarea" ng-model="note.story"></textarea>
+		</div>
+		<div flex layout="row">
+			<div flex="10">route</div>
+			<textarea class="note-textarea" ng-model="note.route"></textarea>
+		</div>
+		<div flex layout="row" ng-show="showall_toggle || note.bgm">
+			<div flex="10">bgm</div>
+			<textarea class="note-textarea" ng-model="note.bgm"></textarea>
+		</div>
+		<div flex layout="row" ng-show="showall_toggle || note.terminology">
+			<div flex="10">terminology</div>
+			<textarea class="note-textarea" ng-model="note.terminology"></textarea>
+		</div>
+		<div flex layout="row">
+			<div flex="10">timescape</div>
+			<textarea class="note-textarea" ng-model="note.timescape"></textarea>
+		</div>
+		<div flex layout="row" ng-show="showall_toggle || note.quote">
+			<div flex="10">quote</div>
+			<textarea class="note-textarea" ng-model="note.quote"></textarea>
+		</div>
+		<div flex layout="row" ng-show="showall_toggle || note.other">
+			<div flex="10">other</div>
+			<textarea class="note-textarea" ng-model="note.other"></textarea>
+		</div>
 	</div>
-	<div flex layout="row">
-		<div flex="10">gene</div>
-		<textarea class="note-textarea" ng-model="note.gene"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">setting</div>
-		<textarea class="note-textarea" ng-model="note.setting"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">side_chara</div>
-		<textarea class="note-textarea" ng-model="note.side_chara"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">story</div>
-		<textarea class="note-textarea" ng-model="note.story"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">route</div>
-		<textarea class="note-textarea" ng-model="note.route"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">bgm</div>
-		<textarea class="note-textarea" ng-model="note.bgm"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">terminology</div>
-		<textarea class="note-textarea" ng-model="note.terminology"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">timescape</div>
-		<textarea class="note-textarea" ng-model="note.timescape"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">quote</div>
-		<textarea class="note-textarea" ng-model="note.quote"></textarea>
-	</div>
-	<div flex layout="row">
-		<div flex="10">other</div>
-		<textarea class="note-textarea" ng-model="note.other"></textarea>
-	</div>
-	
 
 </md-content>
 
@@ -60,7 +71,7 @@
 	textarea {
 		border: 0 none white;
 		overflow-x: hidden;
-		overflow-y: scroll;
+		overflow-y: auto;
 		padding: 0;
 		outline: none;
 		background-color: #D0D0D0;

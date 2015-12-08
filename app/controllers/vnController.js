@@ -559,7 +559,6 @@
 
 						for(var i in textarea) {
 							textarea[i].scrollTop = textarea[i].scrollHeight;
-							console.log(textarea[i].scrollTop)
 						}
 					}, 100);
 				}
@@ -601,16 +600,7 @@
 				changed = true;
 			}, true);
 
-			$scope.keynote = [
-				{
-					key: 'interface',
-					title: 'Interface',
-				},
-				{
-					key: 'gene',
-					title: 'Gene',
-				},
-			];
+			$scope.note_toggle = 'primary';
 		})
 		;
 		function DialogController($scope, $mdDialog) {
