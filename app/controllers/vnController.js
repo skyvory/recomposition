@@ -586,12 +586,14 @@
 				// });
 			}
 
-			$interval(function() {
-				if(changed) {
-					saveNote();
-					changed = false;
-				}
-			}, 3000);
+			setTimeout(function() {
+				$interval(function() {
+					if(changed) {
+						saveNote();
+						changed = false;
+					}
+				}, 3000);
+			}, 6000);
 
 			var changed = false;
 			// to detect if there's any change happens
