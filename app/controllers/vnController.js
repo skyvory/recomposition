@@ -501,6 +501,7 @@
 					var lineament = {
 						id: chara.lineament_id,
 						character_id: chara.id,
+						note: chara.note,
 						mark: chara.mark,
 					};
 					Lineament.update(lineament, function(response) {
@@ -513,6 +514,7 @@
 				else {
 					var lineament = {
 						character_id: chara.id,
+						note: chara.note,
 						mark: chara.mark,
 					};
 					Lineament.save(lineament, function(response) {
