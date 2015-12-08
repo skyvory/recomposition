@@ -586,23 +586,55 @@
 				// });
 			}
 
+			function saveLineament() {
+				for(var i in $scope.lineaments) {
+					var line = $scope.lineaments[i];
+					line.id = line.lineament_id;
+
+					Lineament.update(line, function(response) {
+						console.log(response);
+						// toast
+					}, function(error) {
+						console.log(error);
+					});
+				}
+			}
+
+			// to detect if there's any change happens
+			var primary_change = false;
+			$scope.$watch('note', function() {
+				console.log("Primary Changed");
+				primary_change = true;
+			}, true);
+			var lineament_change = false;
+			$scope.$watch('lineaments', function(new_value, old_value) {
+				lineament_change = true;
+			}, true);
+
+			// set interval execution to frequently update to server on content change
 			setTimeout(function() {
 				$interval(function() {
-					if(changed) {
+					if(primary_change) {
 						saveNote();
-						changed = false;
+						primary_change = false;
+					}
+					if(lineament_change) {
+						saveLineament();
+						lineament_change = false;
 					}
 				}, 3000);
 			}, 6000);
 
-			var changed = false;
-			// to detect if there's any change happens
-			$scope.$watch('note', function() {
-				console.log("changed");
-				changed = true;
-			}, true);
-
+			// default view of note
 			$scope.note_toggle = 'primary';
+
+			// retrieve character note
+			$scope.lineament;
+			Lineament.get({ vn_id: $stateParams.id }, function(response) {
+				$scope.lineaments = response.data;
+			}, function(error) {
+				alert(error);
+			});
 		})
 		;
 		function DialogController($scope, $mdDialog) {

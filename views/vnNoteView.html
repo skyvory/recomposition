@@ -61,6 +61,13 @@
 		</div>
 	</div>
 
+	<div ng-show="note_toggle == 'character'">
+		<div flex layout="row" ng-repeat="lineament in lineaments">
+			<div flex="15">{{lineament.kanji}}</div>
+			<textarea class="note-textarea" ng-model="lineament.note"></textarea>
+		</div>
+	</div>
+
 </md-content>
 
 <style type="text/css">
