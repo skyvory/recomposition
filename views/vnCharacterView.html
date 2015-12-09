@@ -3,7 +3,6 @@
 	<div flex="70" layout="column">
 	<md-button class="md-primary md-raised" ng-click="toggleVndb()" flex-sm="100" flex-md="100" flex-gt-md="auto">vndb</md-button>
 		<form name="characterForm" ng-submit="$event.preventDefault()" ng-hide="vndb_toggle">
-			{{characters}}
 			<md-card ng-repeat="chara in characters">
 				<md-card-title>
 					<md-card-title-text>

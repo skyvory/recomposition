@@ -556,9 +556,7 @@
 				if(response.id) {
 					$scope.note = response;
 					var textarea = document.getElementsByClassName('note-textarea');
-					console.log(textarea);
 					setTimeout(function() {
-
 						for(var i in textarea) {
 							textarea[i].scrollTop = textarea[i].scrollHeight;
 						}
