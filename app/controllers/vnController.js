@@ -549,7 +549,7 @@
 				});
 			};
 		})
-		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval) {
+		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval, $mdToast) {
 			
 			$scope.note;
 			Note.get({ vn_id:$stateParams.id }, function(response) {
@@ -565,18 +565,24 @@
 					}, 100);
 				}
 				else {
+					toast('creating new note');
 					Note.save({ vn_id: $stateParams.id }, function(response) {
+						toast('new note created');
 						$scope.note = response;
 					}, function(error) {
 						alert(error);
 					});
 				}
+				$scope.save_status = 'ok';
 			}, function(error) {
 				alert(error);
 			});
 
 			function saveNote() {
+				toast('saving note');
 				Note.update($scope.note, function(response) {
+					toast('note saved');
+					$scope.save_status = 'ok';
 					console.log(response);
 				}, function(error) {
 					console.log(error);
@@ -585,8 +591,10 @@
 
 			function saveLineament(line) {
 				line.id = line.lineament_id;
-
+				toast('saving lineament');
 				Lineament.update(line, function(response) {
+					toast('lineament saved');
+					$scope.save_status = 'ok';
 					console.log(response);
 					// toast
 				}, function(error) {
@@ -598,6 +606,7 @@
 			var primary_change = false;
 			$scope.$watch('note', function() {
 				primary_change = true;
+				$scope.save_status = 'waiting note to be saved';
 			}, true);
 			var lineament_change = false;
 			$scope.$watch('lineaments', function(new_value, old_value) {
@@ -606,6 +615,7 @@
 					if(old_value[i].note !== new_value[i].note) {
 						lineament_change = true;
 						$scope.lineaments[i].change = true;
+						$scope.save_status = 'waiting lineament to be saved';
 					}
 				}
 				// lineament_change = true;
@@ -617,6 +627,7 @@
 					if(primary_change) {
 						saveNote();
 						primary_change = false;
+						$scope.save_status = 'sending note save command...';
 					}
 					if(lineament_change) {
 						for(var i in $scope.lineaments) {
@@ -627,6 +638,7 @@
 							}
 						}
 						lineament_change = false;
+						$scope.save_status = 'sending lineament save command...';
 					}
 				}, 3000);
 			}, 6000);
@@ -641,6 +653,17 @@
 			}, function(error) {
 				alert(error);
 			});
+
+			$scope.save_status = 'working...';
+
+			function toast(text_content) {
+				$mdToast.show(
+					$mdToast.simple()
+						.content(text_content)
+						.position('bottom left')
+						.hideDelay(3000)
+				);
+			}
 		})
 		;
 		function DialogController($scope, $mdDialog) {
