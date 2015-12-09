@@ -463,6 +463,7 @@
 				character.image = chara.image;
 				character.$save(function(response) {
 					console.log(response);
+					$scope.characters = $scope.characters.concat(response);
 				}, function(error) {
 					console.log(error);
 				});
