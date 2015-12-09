@@ -6,7 +6,6 @@
 		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', '$q', '$timeout', '$mdDialog', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav, $q, $timeout, $mdDialog) {
 			var vns = Vn.get();
 			$scope.vns = vns;
-			// console.log(v.$promise);
 
 			$scope.isAuthenticated = function() {
 				return $auth.isAuthenticated();
@@ -582,11 +581,6 @@
 				}, function(error) {
 					console.log(error);
 				});
-				// $scope.note.$update({ id: $scope.note.id }, function(response) {
-				// 	console.log(response);
-				// }, function(error) {
-				// 	console.log(error);
-				// });
 			}
 
 			function saveLineament(line) {
@@ -603,7 +597,6 @@
 			// to detect if there's any change happens
 			var primary_change = false;
 			$scope.$watch('note', function() {
-				console.log("Primary Changed");
 				primary_change = true;
 			}, true);
 			var lineament_change = false;
@@ -611,7 +604,6 @@
 				// loop through scope and get object of ewhich note property changed
 				for(var i in old_value) {
 					if(old_value[i].note !== new_value[i].note) {
-						console.log(old_value[i]);
 						lineament_change = true;
 						$scope.lineaments[i].change = true;
 					}
@@ -663,9 +655,3 @@
 			};
 		}
 })();
-
-
-// angular.module('vnController',[]).controller('VnListController',function($scope,$state,Vn){
-// 	$scope.vn = Vn.get();
-// 	console.log($scope.vn);
-// });
