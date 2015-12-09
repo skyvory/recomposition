@@ -589,18 +589,15 @@
 				// });
 			}
 
-			function saveLineament() {
-				for(var i in $scope.lineaments) {
-					var line = $scope.lineaments[i];
-					line.id = line.lineament_id;
+			function saveLineament(line) {
+				line.id = line.lineament_id;
 
-					Lineament.update(line, function(response) {
-						console.log(response);
-						// toast
-					}, function(error) {
-						console.log(error);
-					});
-				}
+				Lineament.update(line, function(response) {
+					console.log(response);
+					// toast
+				}, function(error) {
+					console.log(error);
+				});
 			}
 
 			// to detect if there's any change happens
@@ -611,7 +608,15 @@
 			}, true);
 			var lineament_change = false;
 			$scope.$watch('lineaments', function(new_value, old_value) {
-				lineament_change = true;
+				// loop through scope and get object of ewhich note property changed
+				for(var i in old_value) {
+					if(old_value[i].note !== new_value[i].note) {
+						console.log(old_value[i]);
+						lineament_change = true;
+						$scope.lineaments[i].change = true;
+					}
+				}
+				// lineament_change = true;
 			}, true);
 
 			// set interval execution to frequently update to server on content change
@@ -622,7 +627,13 @@
 						primary_change = false;
 					}
 					if(lineament_change) {
-						saveLineament();
+						for(var i in $scope.lineaments) {
+							if($scope.lineaments[i].change) {
+								console.log($scope.lineaments[i]);
+								saveLineament($scope.lineaments[i]);
+								$scope.lineaments[i].change = false;
+							}
+						}
 						lineament_change = false;
 					}
 				}, 3000);
