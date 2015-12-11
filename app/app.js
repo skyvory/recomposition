@@ -194,10 +194,10 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 }]);
 
 recompositionApp.controller('MainController', function($scope) {
-	$scope.image = 'http://localhost/recompose/assets/images/bg.png';
-	$scope.bodystyle = {
-		background: "url(" + $scope.image + ") 100%"
-	};
+	// $scope.image = 'http://localhost/recompose/assets/images/bg.png';
+	// $scope.bodystyle = {
+	// 	background: "url(" + $scope.image + ") 100%"
+	// };
 });
 
 recompositionApp.value('scDateTimeConfig', {

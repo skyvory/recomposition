@@ -1,5 +1,5 @@
-	<div layout="column" layout-fill>
-	<md-toolbar class="md-whiteframe-z1">
+<div layout="column" layout-fill>
+	<md-toolbar class="md-whiteframe-z1" style="position:fixed;">
 		<div class="md-toolbar-tools">
 			<md-button class="md-icon-button menu" hide-gt-sm ng-click="toggleMenu()">
 				<md-icon md-svg-icon="assets/svg/menu.svg"></md-icon>
@@ -16,8 +16,7 @@
 	</md-toolbar>
 
 	<div flex layout="row">
-
-		<md-sidenav flex="grow" class="md-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background-color:rgba(255,255,255,0.6);">
+		<md-sidenav flex="grow" class="md-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" style="background-color:rgba(255,255,255,0.6); position:fixed; margin-top:64px;">
 			<md-toolbar class="md-whiteframe-z1" hide-gt-sm>
 				<h1>Recomposition</h1>
 			</md-toolbar>
@@ -44,8 +43,7 @@
 				</md-list-item>
 			</md-list>
 		</md-sidenav>
-
-		<md-content id="content" role="main" class="md-whiteframe-z2" ui-view flex="grow" style="background-color:transparent;">
-	
+		<md-content id="content" role="main" class="md-whiteframe-z2" ui-view flex="grow" style="background-color:transparent; margin-left:304px; margin-top:64px;">
 		</md-content>
 	</div>
+</div>

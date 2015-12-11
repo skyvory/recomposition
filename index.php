@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body ng-cloak ng-controller="MainController" ng-style="bodystyle">
-		<span ui-view=""></span>
+		<div ui-view=""></div>
 	</body>
 
 	<!-- components -->
