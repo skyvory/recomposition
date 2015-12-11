@@ -42,7 +42,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr md-disable-select="vn.id === 'none'" ng-repeat="v in vns.data | orderBy: query.order">
+				<tr md-disable-select="v.id == 'none'" ng-repeat="v in vns.data | orderBy: query.order">
 					<td>{{v.date_release}}</td>
 					<td>{{v.title_en}}</td>
 					<td>{{v.title_jp}}</td>
@@ -55,7 +55,7 @@
 			</tbody>
 		</table>
 	</md-data-table-container>
-	<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{vn.total}}" md-trigger="onpagechange" md-row-select="[3, 33, 333]"></md-data-table-pagination>
+	<md-data-table-pagination md-limit="query.limit" md-page="query.page" md-total="{{vns.total}}" md-trigger="onpagechange" md-row-select="[3, 33, 333]"></md-data-table-pagination>
 </md-content>
 
 <md-button class="md-fab md-primary md-hue-3" aria-label="new" style="position:fixed;right:10px;bottom:10px;" ui-sref="newVn">
