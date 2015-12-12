@@ -401,8 +401,8 @@
 			// generalize assessment response to be in streamlined format, datetime especially
 			function generalizeAssessment(assessment) {
 				$scope.assessment = assessment;
-				$scope.date_start_local = assessment.date_start ? moment.utc(assessment.date_start).toDate() : '';
-				$scope.date_end_local = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
+				$scope.date_start_local = assessment.date_start ? moment.utc(assessment.date_start).toDate() : new Date();
+				$scope.date_end_local = assessment.date_end ? moment.utc(assessment.date_end).toDate() : new Date();
 			}
 
 			$scope.date_start_switch = false;
