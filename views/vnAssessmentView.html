@@ -9,30 +9,36 @@
 				<input ng-model="assessment.vn_id">
 			</md-input-container>
 		</div>
-		<h3>Date Start</h3>
-		<time-date-picker ng-model="assessment.date_start"></time-date-picker>
+		<h3 style="display:inline;">Date Start</h3><span ng-show="assessment.date_start" style="display:inline;"> &#x2713;</span>
+		<md-switch ng-model="date_start_switch" aria-label="date switch"></md-switch>
+		<div ng-show="!assessment.date_start || date_start_switch">
+			<time-date-picker ng-model="date_start_local"></time-date-picker>
+		</div>
 		<div layout layout-sm="column">
 			<md-chips>
-				<md-chip>{{assessment.date_start | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</md-chip>
+				<md-chip>{{date_start_local | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</md-chip>
 			</md-chips>
 			<md-input-container class="md-block">
 				<label>Date Start</label>
-				<input ng-model="assessment.date_start" disabled>
+				<input ng-model="date_start_local" disabled>
 			</md-input-container>
-			<md-button ng-click="assessment.date_start = null">clear</md-button>
+			<md-button ng-click="date_start_local = null">clear</md-button>
 		</div>
 
-		<h3>Date End</h3>
-		<time-date-picker ng-model="assessment.date_end"></time-date-picker>
+		<h3 style="display:inline;">Date End</h3><span ng-show="assessment.date_end" style="display:inline;"> &#x2713;</span>
+		<md-switch ng-model="date_end_switch" aria-label="date switch"></md-switch>
+		<div ng-show="!assessment.date_end || date_end_switch">
+			<time-date-picker ng-model="date_end_local"></time-date-picker>
+		</div>
 		<div layout layout-sm="column">
 			<md-chips>
-				<md-chip>{{assessment.date_end | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</md-chip>
+				<md-chip>{{date_end_local | amDateFormat: 'YYYY-MM-DD HH:mm:ss'}}</md-chip>
 			</md-chips>
 			<md-input-container class="md-block">
 				<label>Date End</label>
-				<input ng-model="assessment.date_end" disabled>
+				<input ng-model="date_end_local" disabled>
 			</md-input-container>
-			<md-button ng-click="assessment.date_end = null">clear</md-button>
+			<md-button ng-click="date_end_local = null">clear</md-button>
 		</div>
 
 		<span>Story</span>

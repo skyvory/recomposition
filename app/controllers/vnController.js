@@ -380,6 +380,12 @@
 			$scope.saveAssessment = function() {
 				// $scope.assessment.date_start = moment($scope.assessment.date_start).add(0, 'hours');
 				if($scope.assessment.id) {
+					if(date_start_switch) {
+						$scope.assessment.date_start = date_start_local;
+					}
+					if(date_end_switch) {
+						$scope.assessment.date_end = date_end_local;
+					}
 					$scope.assessment.$update(function(response) {
 						generalizeAssessment(response);
 						// toast!
@@ -395,9 +401,12 @@
 			// generalize assessment response to be in streamlined format, datetime especially
 			function generalizeAssessment(assessment) {
 				$scope.assessment = assessment;
-				$scope.assessment.date_start = assessment.date_start ? moment.utc(assessment.date_start).toDate() : '';
-				$scope.assessment.date_end = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
+				$scope.date_start_local = assessment.date_start ? moment.utc(assessment.date_start).toDate() : '';
+				$scope.date_end_local = assessment.date_end ? moment.utc(assessment.date_end).toDate() : '';
 			}
+
+			$scope.date_start_switch = false;
+			$scope.date_end_switch = false;
 		})
 		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament) {
 			$scope.characters = {};
