@@ -469,6 +469,10 @@
 				character.yobikata = chara.name;
 				character.birthmonth = chara.birthday[1];
 				character.birthday = chara.birthday[0];
+				character.height = chara.height;
+				character.bust = chara.bust;
+				character.waist = chara.waist;
+				character.hip = chara.hip;
 				character.image = chara.image;
 				character.$save(function(response) {
 					console.log(response);
