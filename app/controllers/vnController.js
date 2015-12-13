@@ -380,11 +380,11 @@
 			$scope.saveAssessment = function() {
 				// $scope.assessment.date_start = moment($scope.assessment.date_start).add(0, 'hours');
 				if($scope.assessment.id) {
-					if(date_start_switch) {
-						$scope.assessment.date_start = date_start_local;
+					if($scope.date_start_switch) {
+						$scope.assessment.date_start = $scope.date_start_local;
 					}
-					if(date_end_switch) {
-						$scope.assessment.date_end = date_end_local;
+					if($scope.date_end_switch) {
+						$scope.assessment.date_end = $scope.date_end_local;
 					}
 					$scope.assessment.$update(function(response) {
 						generalizeAssessment(response);
