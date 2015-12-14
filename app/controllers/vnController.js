@@ -425,6 +425,7 @@
 			$scope.getVn = function(vn_id) {
 				Vn.get({ id: vn_id }, function(response) {
 					$scope.vn = response;
+					$scope.vndb.vndb_id = response.vndb_vn_id;
 				}, function(error) {
 					console.log(error);
 				});
