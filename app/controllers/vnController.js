@@ -202,6 +202,8 @@
 					$scope.vn.title_en = response.data.data.items['0'].title;
 					$scope.vn.title_jp = response.data.data.items['0'].original ? response.data.data.items['0'].original : 'n/a';
 					$scope.vn.date_release = moment(response.data.data.items['0'].released).toDate();
+					// $scope.vn.image = response.data.data.items['0'].image_nsfw ? '' : response.data.data.items['0'].image;
+					$scope.vn.image = response.data.data.items['0'].image;
 				}, function errorCallback(response) {
 					//
 				});

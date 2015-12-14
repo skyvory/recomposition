@@ -8,6 +8,8 @@
 				</md-input-container>
 				<md-button ng-click="retrieveVndbVn()">load</md-button>
 			</div>
+			<div layout="row">
+			<div flex layout="column">
 			<md-input-container class="md-block">
 				<label>Title En</label>
 				<input ng-model="vn.title_en">
@@ -20,6 +22,11 @@
 				<label>Hashtag</label>
 				<input ng-model="vn.hashtag">
 			</md-input-container>
+			</div>
+			<div flex ng-show="vn.image">
+				<img ng-src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;">
+			</div>
+			</div>
 			<div layout layout-sm="column">
 				<md-chips>
 					<md-chip>{{vn.developer_id}}</md-chip>
