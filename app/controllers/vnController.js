@@ -673,6 +673,15 @@
 			// default view of note
 			$scope.note_toggle = 'primary';
 
+			$scope.toggleNote = function() {
+				if($scope.note_toggle == 'primary') {
+					$scope.note_toggle = 'character';
+				}
+				else {
+					$scope.note_toggle = 'primary';
+				}
+			}
+
 			// retrieve character note
 			$scope.lineament;
 			Lineament.get({ vn_id: $stateParams.id }, function(response) {

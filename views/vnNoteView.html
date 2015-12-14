@@ -8,13 +8,10 @@
 		<h5>{{save_status}}</h5>
 		<span flex></span>
 		<md-switch ng-model="showall_toggle" aria-label="all switch">
-			Show all
+			all
 		</md-switch>
-		<md-button ng-click="note_toggle = 'primary'" aria-label="general">
-			General
-		</md-button>
-		<md-button ng-click="note_toggle = 'character'" class="" aria-label="chara">
-			Chara
+		<md-button ng-click="toggleNote()" aria-label="toggle note">
+			gene/chara
 		</md-button>
 		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
 			to vndb {{vn.vndb_vn_id}}
