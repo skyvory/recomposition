@@ -482,6 +482,7 @@
 				character.waist = chara.waist;
 				character.hip = chara.hip;
 				character.image = chara.image;
+				character.vndb_character_id = chara.id;
 				character.$save(function(response) {
 					console.log(response);
 					$scope.characters = $scope.characters.concat(response);
