@@ -1,5 +1,16 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button aria-label="go back">
+			<
+		</md-button>
+		<h3><span>{{vn.title_jp}}</span></h3>
+		<span flex></span>
+		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
+			to vndb {{vn.vndb_vn_id}}
+		</md-button>
+	</div>
+</md-toolbar>
 <md-content>
-	
 	<div layout="column">
 		<md-button class="md-primary md-raised" ng-click="toggleVndb()" flex-sm="100" flex-md="100" flex-gt-md="auto">vndb</md-button>
 		<form name="characterVndbForm" ng-submit="$event.preventDefault()" ng-show="vndb_toggle">

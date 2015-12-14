@@ -1,6 +1,9 @@
-<md-toolbar class="md-theme-light">
+<md-toolbar>
 	<div class="md-toolbar-tools">
-		<span>Note</span>
+		<md-button aria-label="go back">
+			<
+		</md-button>
+		<h3><span>{{vn.title_jp}}</span></h3>
 		&nbsp &nbsp
 		<h5>{{save_status}}</h5>
 		<span flex></span>
@@ -13,8 +16,12 @@
 		<md-button ng-click="note_toggle = 'character'" class="" aria-label="chara">
 			Chara
 		</md-button>
+		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
+			to vndb {{vn.vndb_vn_id}}
+		</md-button>
 	</div>
 </md-toolbar>
+
 <md-content layout-padding>
 	<div ng-show="note_toggle == 'primary'">
 		<div flex layout="row">

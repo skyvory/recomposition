@@ -1,3 +1,15 @@
+<md-toolbar>
+	<div class="md-toolbar-tools">
+		<md-button aria-label="go back">
+			<
+		</md-button>
+		<h3><span>{{vn.title_jp}}</span></h3>
+		<span flex></span>
+		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
+			to vndb {{vn.vndb_vn_id}}
+		</md-button>
+	</div>
+</md-toolbar>
 <md-content leyout-padding class="md-padding" ng-cloak>
 	<form name="assessmentForm" ng-submit="$event.preventDefault()">
 		<h3 style="display:inline;">Date Start</h3><span ng-show="assessment.date_start" style="display:inline;"> &#x2713;</span>

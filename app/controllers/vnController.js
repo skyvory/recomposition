@@ -360,7 +360,7 @@
 				};
 			}
 		}])
-		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment) {
+		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn) {
 			$scope.assessment = {};
 			getAssessment($stateParams.id);
 			function getAssessment(vn_id) {
@@ -377,6 +377,14 @@
 					}
 				});
 			}
+			$scope.getVn = function(vn_id) {
+				Vn.get({ id: vn_id }, function(response) {
+					$scope.vn = response;
+				}, function(error) {
+					console.log(error);
+				});
+			}
+			$scope.getVn($stateParams.id);
 			$scope.saveAssessment = function() {
 				if($scope.date_start_switch) {
 					$scope.assessment.date_start = $scope.date_start_local;
@@ -414,6 +422,14 @@
 					// console.log(response);
 				});
 			}
+			$scope.getVn = function(vn_id) {
+				Vn.get({ id: vn_id }, function(response) {
+					$scope.vn = response;
+				}, function(error) {
+					console.log(error);
+				});
+			}
+			$scope.getVn($stateParams.id);
 			$scope.retrieveVndbCharacter = function() {
 				$http({
 					method: 'POST',
@@ -580,6 +596,14 @@
 			}, function(error) {
 				alert(error);
 			});
+			$scope.getVn = function(vn_id) {
+				Vn.get({ id: vn_id }, function(response) {
+					$scope.vn = response;
+				}, function(error) {
+					console.log(error);
+				});
+			}
+			$scope.getVn($stateParams.id);
 
 			function saveNote() {
 				toast('saving note');
