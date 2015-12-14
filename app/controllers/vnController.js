@@ -93,6 +93,7 @@
 
 			$scope.createVn = function() {
 				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
+				$scope.vn.vndb_vn_id = $scope.vndb.vndb_id;
 				$scope.vn.$save(function() {
 					$state.go('vn');
 				});
@@ -264,9 +265,6 @@
 				}, function errorCallback(response) {
 					//
 				});
-			}
-			$scope.vndb = {
-				vndb_id: 17,
 			}
 
 			function checkDeveloper(name_en) {
