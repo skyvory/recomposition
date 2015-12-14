@@ -171,7 +171,7 @@
 				// return (function() {
 					repos.$promise.then(function(res) {
 						$scope.repos = res.data.map( function (repo) {
-							repo.value = repo.name_en.toLowerCase();
+							repo.value = repo.name_en ? repo.name_en.toLowerCase() : repo.name_jp;
 							return repo;
 						});
 					});
