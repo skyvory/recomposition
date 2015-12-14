@@ -368,9 +368,11 @@
 			function getAssessment(vn_id) {
 				Assessment.get({ id: vn_id }, function(response) {
 					if(!response.id) {
-						var new_assessment = new Assessment();
-						new_assessment.vn_id = vn_id;
-						$scope.assessment = new_assessment;
+						Assessment.save({ vn_id: vn_id }, function(response) {
+							generalizeAssessment(response);
+						}, function(error) {
+							console.log(error);
+						});
 					}
 					else {
 						generalizeAssessment(response);
@@ -378,25 +380,16 @@
 				});
 			}
 			$scope.saveAssessment = function() {
-				// $scope.assessment.date_start = moment($scope.assessment.date_start).add(0, 'hours');
-				if($scope.assessment.id) {
-					if($scope.date_start_switch) {
-						$scope.assessment.date_start = $scope.date_start_local;
-					}
-					if($scope.date_end_switch) {
-						$scope.assessment.date_end = $scope.date_end_local;
-					}
-					$scope.assessment.$update(function(response) {
-						generalizeAssessment(response);
-						// toast!
-					});
+				if($scope.date_start_switch) {
+					$scope.assessment.date_start = $scope.date_start_local;
 				}
-				else {
-					$scope.assessment.$save(function(response) {
-						generalizeAssessment(response);
-						// toast
-					})
+				if($scope.date_end_switch) {
+					$scope.assessment.date_end = $scope.date_end_local;
 				}
+				$scope.assessment.$update(function(response) {
+					generalizeAssessment(response);
+					// toast!
+				});
 			}
 			// generalize assessment response to be in streamlined format, datetime especially
 			function generalizeAssessment(assessment) {
