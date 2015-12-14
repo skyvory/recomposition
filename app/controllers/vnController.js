@@ -90,10 +90,13 @@
 		}])
 		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', '$http', function($scope, $state, Vn, $timeout, $q, $log, Developer, moment, $http) {
 			$scope.vn = new Vn();
+			$scope.vndb = {
+				vndb_id: '',
+			};
 
 			$scope.createVn = function() {
 				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
-				$scope.vn.vndb_vn_id = $scope.vndb.vndb_id;
+				$scope.vn.vndb_vn_id = $scope.vndb.vndb_id ? $scope.vndb.vndb_id : null;
 				$scope.vn.$save(function() {
 					$state.go('vn');
 				});
