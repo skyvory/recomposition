@@ -1,14 +1,5 @@
 <md-content leyout-padding class="md-padding" ng-cloak>
-	<h1>a!</h1>
-	<p>a aa aaa</p>
-	{{assessment}}
 	<form name="assessmentForm" ng-submit="$event.preventDefault()">
-		<div layout layout-sm="column">
-			<md-input-container>
-				<label>///</label>
-				<input ng-model="assessment.vn_id">
-			</md-input-container>
-		</div>
 		<h3 style="display:inline;">Date Start</h3><span ng-show="assessment.date_start" style="display:inline;"> &#x2713;</span>
 		<md-switch ng-model="date_start_switch" aria-label="date switch"></md-switch>
 		<div ng-show="!assessment.date_start || date_start_switch">
