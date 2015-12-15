@@ -1,4 +1,5 @@
 
+	<input type="text" ng-model="search_text">
 	<md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
 		<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
 			<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
@@ -40,7 +41,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr md-disable-select="developers.id === 'none'" ng-repeat="dev in developers.data | orderBy: query.order">
+					<tr md-disable-select="developers.id === 'none'" ng-repeat="dev in developers.data | orderBy: query.order | filter:search_text">
 						<td>{{dev.name_en}}</td>
 						<td>{{dev.name_jp}}</td>
 						<td>{{dev.created_at}}</td>
