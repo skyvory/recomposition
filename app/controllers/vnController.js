@@ -576,6 +576,46 @@
 					$scope.customFullscreen = (sm === true);
 				});
 			};
+
+			$scope.link;
+			$scope.purgeCharacterProperty = function(chara, property) {
+				var target_index = $scope.characters.map(function(e) {
+					return e.id;
+				}).indexOf(parseInt(chara.link));
+				// var target = $scope.characters.filter(function(obj) {
+				// 	console.log(chara.link);
+				// 	return obj.id == parseInt(chara.link);
+				// });
+				switch(property) {
+					case 'kanji':
+						$scope.characters[target_index].kanji = chara.original;
+						break;
+					case 'betsumyou':
+						$scope.characters[target_index].betsumyou = chara.alias;
+						break;
+					case 'yobikata':
+						$scope.characters[target_index].yobikata = chara.name;
+						break;
+					case 'birthdate':
+						$scope.characters[target_index].birthmonth = chara.birthday[1];
+						$scope.characters[target_index].birthday = chara.birthday[0];
+						break;
+					case 'height':
+						$scope.characters[target_index].height = chara.height;
+						break;
+					case 'bwh':
+						$scope.characters[target_index].bust = chara.bust;
+						$scope.characters[target_index].waist = chara.waist;
+						$scope.characters[target_index].hip = chara.hip;
+						break;
+					case 'image':
+						$scope.characters[target_index].image = chara.image;
+						break;
+					default:
+						console.log("property is not registered yet");
+						break;
+				}
+			}
 		})
 		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval, $mdToast) {
 			

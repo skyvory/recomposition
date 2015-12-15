@@ -23,7 +23,7 @@
 			</div>
 		</form>
 		<div layout="row">
-			<div flex="70">
+			<div flex="60">
 				<form name="characterForm" ng-submit="$event.preventDefault()">
 					<md-card ng-repeat="chara in characters">
 						<md-card-title>
@@ -103,7 +103,7 @@
 					</md-card>
 				</form>
 			</div>
-			<div flex="30" ng-show="vndb_toggle">
+			<div flex="40" ng-show="vndb_toggle">
 				<md-card ng-repeat="chara in vndb.characters">
 					<md-card-title>
 						<md-card-title-text>
@@ -118,14 +118,23 @@
 					</md-card-title>
 					<div flex layout-padding layout="row">
 						<div flex="30">
-							<img ng-src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px">
+							<img ng-src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px" ng-click="purgeCharacterProperty(chara, 'image')">
 						</div>
 						<div flex="70">
-							<md-button>original: {{chara.original}}</md-button><br />
-							<md-button>alias: {{chara.aliases}}</md-button><br />
-							<md-button>birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</md-button><br />
-							<md-button>b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</md-button><br />
+							<md-button ng-show="chara.original" ng-click="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</md-button><br />
+							<md-button ng-show="chara.name" ng-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</md-button><br />
+							<md-button ng-show="chara.aliases" ng-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</md-button><br />
+							<md-button ng-show="chara.birthday" ng-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</md-button><br />
+							<md-button ng-show="chara.height" ng-click="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</md-button>
+							<md-button ng-show="chara.bust" ng-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</md-button><br />
 						</div>
+					</div>
+					<div flex>
+						<md-select ng-model="chara.link" aria-label="linkage">
+							<md-option ng-repeat="chara_scope in characters" value="{{chara_scope.id}}">
+								{{chara_scope.kanji}}
+							</md-option>
+						</md-select>
 					</div>
 					<md-card-actions layout="row" layout-align="end center">
 						<md-button ng-click="removeVndbCharacter(chara)">remove</md-button>
