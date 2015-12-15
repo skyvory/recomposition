@@ -37,7 +37,7 @@
 			$scope.query = {
 				filter: '',
 				order: 'name_en',
-				limit: 1,
+				limit: 0,
 				page: 1
 			};
 			function success(devs) {
