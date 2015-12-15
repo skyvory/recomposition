@@ -5,8 +5,8 @@
 		</md-button>
 		<h3><span>{{vn.title_jp}}</span></h3>
 		<span flex></span>
-		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
-			vndb
+		<md-button class="md-primary md-hue-3" aria-label="new" ng-click="newCharacter($event)">
+			<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
 		</md-button>
 	</div>
 </md-toolbar>
@@ -121,12 +121,12 @@
 							<img ng-src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px" ng-click="purgeCharacterProperty(chara, 'image')">
 						</div>
 						<div flex="70">
-							<md-button ng-show="chara.original" ng-click="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</md-button><br />
-							<md-button ng-show="chara.name" ng-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</md-button><br />
-							<md-button ng-show="chara.aliases" ng-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</md-button><br />
-							<md-button ng-show="chara.birthday" ng-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</md-button><br />
+							<md-button ng-show="chara.original" ng-click="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</md-button><br ng-if="chara.original" />
+							<md-button ng-show="chara.name" ng-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</md-button><br ng-if="chara.name" />
+							<md-button ng-show="chara.aliases" ng-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</md-button><br ng-if="chara.aliases" />
+							<md-button ng-show="chara.birthday" ng-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</md-button><br ng-if="chara.birthday" />
 							<md-button ng-show="chara.height" ng-click="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</md-button>
-							<md-button ng-show="chara.bust" ng-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</md-button><br />
+							<md-button ng-show="chara.bust" ng-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</md-button><br ng-if="chara.bust" />
 						</div>
 					</div>
 					<div flex>

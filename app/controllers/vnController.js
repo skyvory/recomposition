@@ -616,6 +616,27 @@
 						break;
 				}
 			}
+			$scope.newCharacter = function(ev) {
+				$mdDialog.show({
+					controller: DialogController,
+					templateUrl: 'views/vnCharacterNewView.html',
+					parent: angular.element(document.body),
+					tergetEvent: ev,
+					clickOutsideToClose: true
+				})
+				.then(function(answer) {
+					var new_char = new Character();
+					Object.assign(new_char, answer);
+					new_char.vn_id = $stateParams.id;
+					new_char.$save(function(response) {
+						$scope.characters = $scope.characters.concat(response);
+					}, function(error) {
+						console.log(error);
+					});
+				}, function() {
+					// dialog cancelled
+				});
+			}
 		})
 		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval, $mdToast) {
 			
