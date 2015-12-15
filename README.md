@@ -1,2 +1,2 @@
 # recompose
-Read front-end harnessing record back-end
+Read front-end harnessing [record] (https://github.com/skyvory/record) back-end
