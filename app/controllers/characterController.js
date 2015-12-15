@@ -37,8 +37,8 @@
 			$scope.query = {
 				filter: '',
 				order: 'kanji',
-				limit: 1,
-				page: 1
+				limit: 10,
+				page: 1,
 			};
 			function success(chars) {
 				$scope.characters = chars;
