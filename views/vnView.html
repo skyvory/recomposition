@@ -1,3 +1,15 @@
+<div layout="row">
+<div flex="20">
+<form name="vnForm" ng-submit="$event.preventDefault(); searchVn()">
+<md-input-container>
+	<label>search</label>
+	<input ng-model="query.filter">
+</md-input-container>
+</form>
+</div>
+
+<span flex></span>
+<div flex="20">
 <md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
 	<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
 		<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
@@ -13,6 +25,8 @@
 		</md-menu-item>
 	</md-menu-content>
 </md-menu>
+</div>
+</div>
 
 <br />
 <br />

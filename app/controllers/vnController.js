@@ -68,7 +68,7 @@
 				// 	return deferred.promise;
 				// });
 
-				return Vn.get({ page:page, limit: limit }, success).$promise;
+				return Vn.get({ page:page, limit: limit, filter:$scope.query.filter }, success).$promise;
 			}
 			$scope.onorderchange = function(order) {
 				var deferred = $q.defer();
@@ -79,6 +79,10 @@
 			}
 
 			$scope.vns = Vn.get({ limit: $scope.query.limit });
+
+			$scope.searchVn = function() {
+				return Vn.get({ limit:$scope.query.limit, filter:$scope.query.filter }, success).$promise;
+			}
 
 		}])
 		.controller('VnShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
