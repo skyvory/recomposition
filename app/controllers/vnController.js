@@ -417,45 +417,18 @@
 			$scope.date_end_switch = false;
 		})
 		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament) {
-			$scope.base_characters = {};
 			$scope.characters = {};
 			$scope.vndb = [];
 			$scope.vndb.characters = [];
 			$scope.vndb_toggle = false;
-			$scope.lineaments = {};
 			$scope.toggleVndb = function() {
 				$scope.vndb_toggle = $scope.vndb_toggle ? false : true;
 			}
 			getCharacter($stateParams.id);
 			function getCharacter(vn_id) {
 				Character.get({ vn_id: vn_id }, function(response) {
-					$scope.base_characters = response.data;
+					$scope.characters = response.data;
 					// console.log(response);
-					Lineament.get({ vn_id: vn_id }, function(response) {
-						$scope.lineaments = response.data;
-						var is_exist_lineament = false;
-						for(var i in $scope.base_characters) {
-							for(var j in $scope.lineaments) {
-								if($scope.base_characters[i].id == $scope.lineaments[j].character_id) {
-									$scope.characters = $scope.characters.concat($scope.lineaments[j]);
-									is_exist_lineament = true;
-								}
-							}
-							if(is_exist_lineament == false) {
-								// create new lineament automatically as no lineament exist for the character
-								Lineament.save({ character_id: $scope.base_characters[i].id }, function(response) {
-									// append new lineament to characters scope
-									$scope.characters = $scope.characters.concat(response);
-								}, function(error) {
-									console.log("ERROR", error);
-								});
-								// $scope.characters = $scope.characters.concat($scope.base_characters[i]);
-							}
-							else {
-								is_exist_lineament = false;
-							}
-						}
-					})
 				});
 			}
 			$scope.getVn = function(vn_id) {
@@ -521,21 +494,7 @@
 				character.vndb_character_id = chara.id;
 				character.$save(function(response) {
 					console.log(response);
-
-					$scope.characters = $scope.characters.concat({
-						vn_id: response.vn_id,
-						kanji: response.kanji,
-						betsumyou: response.betsumyou,
-						yobikata: response.yobikata,
-						birthmonth: response.birthmonth,
-						birthday: response.birthday,
-						height: response.height,
-						bust: response.bust,
-						waist: response.waist,
-						hip: response.hip,
-						image: response.image,
-						vndb_character_id: response.vndb_character_id,
-					});
+					$scope.characters = $scope.characters.concat(response);
 				}, function(error) {
 					console.log(error);
 				});
@@ -570,10 +529,10 @@
 			}
 			$scope.saveMark = function(chara) {
 				console.log(chara);
-				if(chara.id) {
+				if(chara.lineament_id) {
 					var lineament = {
-						id: chara.id,
-						character_id: chara.character_id,
+						id: chara.lineament_id,
+						character_id: chara.id,
 						note: chara.note,
 						mark: chara.mark,
 					};
@@ -586,7 +545,7 @@
 				}
 				else {
 					var lineament = {
-						character_id: chara.character_id,
+						character_id: chara.id,
 						note: chara.note,
 						mark: chara.mark,
 					};
