@@ -3,7 +3,7 @@
 
 	angular
 		.module('recompositionApp')
-		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', '$q', '$timeout', '$mdDialog', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav, $q, $timeout, $mdDialog) {
+		.controller('VnListController', ['$auth', '$scope', 'Vn', 'confirmService', '$window', '$state', '$mdSidenav', '$q', '$timeout', '$mdDialog', 'localStorageService', function($auth, $scope, Vn, confirmService, $window, $state, $mdSidenav, $q, $timeout, $mdDialog, localStorageService) {
 
 			$scope.isAuthenticated = function() {
 				return $auth.isAuthenticated();
@@ -82,6 +82,32 @@
 
 			$scope.searchVn = function() {
 				return Vn.get({ limit:$scope.query.limit, filter:$scope.query.filter }, success).$promise;
+			}
+
+			$scope.checkVndbCredential = function() {
+				var u = localStorageService.get('vndb_user');
+				var p = localStorageService.get('vndb_pass');
+				if(u && p) {
+					alert("Credential is already set");
+				}
+				else {
+					alert("No credential set yet");
+				}
+			}
+			$scope.setVndbCredential = function(ev) {
+				$mdDialog.show({
+					controller: DialogController,
+					templateUrl: 'views/vndbCredentialView.html',
+					parent: angular.element(document.body),
+					tergetEvent: ev,
+					clickOutsideToClose: true
+				})
+				.then(function(answer) {
+					localStorageService.set('vndb_user', answer.username);
+					localStorageService.set('vndb_pass', answer.password);
+				}, function() {
+					// dialog cancelled
+				});
 			}
 
 		}])
@@ -369,7 +395,7 @@
 				};
 			}
 		}])
-		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn) {
+		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn, localStorageService) {
 			$scope.assessment = {};
 			getAssessment($stateParams.id);
 			function getAssessment(vn_id) {
@@ -415,6 +441,7 @@
 
 			$scope.date_start_switch = false;
 			$scope.date_end_switch = false;
+
 		})
 		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament) {
 			$scope.characters = {};

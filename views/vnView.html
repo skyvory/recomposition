@@ -15,10 +15,18 @@
 		<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
 	</md-button>
 	<md-menu-content width="4">
-		<md-menu-item ng-repeat="item in [1, 2, 3]">
-			<md-button ng-click="">
+		<md-menu-item>
+			<md-button ng-click="setVndbCredential()">
 				<div layout="row">
-					<p flex>Option {{item}}</p>
+					<p flex>Set VNDB credential</p>
+					<md-icon md-menu-align-target md-svg-icon=""></md-icon>
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button ng-click="checkVndbCredential()">
+				<div layout="row">
+					<p flex>Check VNDB credential</p>
 					<md-icon md-menu-align-target md-svg-icon=""></md-icon>
 				</div>
 			</md-button>
