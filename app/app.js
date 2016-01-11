@@ -18,6 +18,7 @@ var recompositionApp = angular.module('recompositionApp', [
 	'scDateTime',
 	'lineamentServices',
 	'noteServices',
+	'LocalStorageModule',
 ]);
 
 recompositionApp.directive('contenteditable', function() {

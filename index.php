@@ -32,6 +32,7 @@
 	<!-- sc-date-time library -->
 	<link rel="stylesheet" href="bower_components/sc-date-time/dist/sc-date-time.css">
 	<script src="bower_components/sc-date-time/dist/sc-date-time.js"></script>
+	<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 
 	<!-- application script s-->
 	<script src="app/app.js"></script>
