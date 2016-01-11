@@ -21,5 +21,9 @@
 			$rootScope.ariaAssessment = function() {
 				$state.go('assessment');
 			}
+
+			$rootScope.logout = function() {
+				$state.go('logout');
+			}
 		});
 })();
