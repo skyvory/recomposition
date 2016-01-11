@@ -550,7 +550,8 @@
 						mark: chara.mark,
 					};
 					Lineament.save(lineament, function(response) {
-						console.log(response);
+						var index = $scope.characters.indexOf(chara);
+						$scope.characters[index].lineament_id = response.id;
 						// toast
 					}, function(error) {
 						console.log(error);
