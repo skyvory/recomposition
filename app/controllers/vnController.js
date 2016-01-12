@@ -466,20 +466,22 @@
 					else if($scope.assessment.score_all && !$scope.asessment.status) {
 						status = 'finished';
 					}
-					$http({
-						method: 'POST',
-						url: 'http://localhost/record/public/vndb/setStatus',
-						data: {
-							vndb_id: $scope.assessment.vndb_vn_id,
-							username: localStorageService.get('vndb_user'),
-							password: localStorageService.get('vndb_pass'),
-							status: status,
-						},
-					}).then(function successCallback(response) {
-						console.log("STATUS OK", response);
-					}, function errorCallback(response) {
-						console.log("STATUS ERROR", response);
-					});
+					if(status) {
+						$http({
+							method: 'POST',
+							url: 'http://localhost/record/public/vndb/setStatus',
+							data: {
+								vndb_id: $scope.assessment.vndb_vn_id,
+								username: localStorageService.get('vndb_user'),
+								password: localStorageService.get('vndb_pass'),
+								status: status,
+							},
+						}).then(function successCallback(response) {
+							console.log("STATUS OK", response);
+						}, function errorCallback(response) {
+							console.log("STATUS ERROR", response);
+						});
+					}
 				});
 			}
 			// generalize assessment response to be in streamlined format, datetime especially
