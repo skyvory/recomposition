@@ -578,6 +578,9 @@
 				character.vndb_character_id = chara.id;
 				character.$save(function(response) {
 					console.log(response);
+					// Remove selected VNDB character first
+					$scope.removeVndbCharacter(chara);
+					// Then append saved character to scope
 					$scope.characters = $scope.characters.concat(response);
 				}, function(error) {
 					console.log(error);
