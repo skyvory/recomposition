@@ -48,10 +48,10 @@
 			<md-input-container flex>
 				<label>Node</label>
 				<md-select ng-model="assessment.node">
-					<md-option value="VN">
+					<md-option value="vn">
 						VN
 					</md-option>
-					<md-option value="H">
+					<md-option value="h">
 						H
 					</md-option>
 				</md-select>
@@ -116,7 +116,7 @@
 			Save Data
 		</md-switch>
 
-		<md-button class="md-raised md-primary" aria-label="Save Assessment" style="position:fixed; right:20px; bottom:30px; z-index:999;" ng-click="saveAssessment()">
+		<md-button ng-click="saveAssessment()" class="md-raised md-primary" aria-label="Save Assessment" style="position:fixed; right:20px; bottom:30px; z-index:999;">
 			<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
 			Save
 		</md-button>
