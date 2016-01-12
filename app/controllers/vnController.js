@@ -383,7 +383,8 @@
 				var repos = Developer.get();
 				repos.$promise.then(function(res) {
 					$scope.repos = res.data.map( function (repo) {
-						repo.value = repo.name_en.toLowerCase();
+						// if name_en is false, assign empty string to value, else assign lowered case value
+						repo.value = repo.name_en ? repo.name_en.toLowerCase() : repo.name_jp;
 						return repo;
 					});
 				});
