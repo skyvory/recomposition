@@ -118,7 +118,7 @@
 				return $auth.isAuthenticated();
 			}
 		}])
-		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', '$http', function($scope, $state, Vn, $timeout, $q, $log, Developer, moment, $http) {
+		.controller('VnCreateController', ['$scope', '$state', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', '$http', 'localStorageService', function($scope, $state, Vn, $timeout, $q, $log, Developer, moment, $http, localStorageService) {
 			$scope.vn = new Vn();
 			$scope.vndb = {
 				vndb_id: '',
@@ -220,14 +220,18 @@
 			}
 
 			$scope.retrieveVndbVn = function() {
+				if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
+					alert('VNDB credential is not set yet');
+					return;
+				}
 				// fetch vn data
 				$http({
 					method: 'POST',
 					url: 'http://localhost/record/public/vndb/vn',
 					data: {
 						vndb_id: $scope.vndb.vndb_id,
-						username: 'svry',
-						password: 'svry',
+						username: localStorageService.get('vndb_user'),
+						password: localStorageService.get('vndb_pass'),
 					},
 				}).then(function successCallback(response) {
 					$scope.vndb.vn = response.data.data.items['0'];
@@ -247,8 +251,8 @@
 					url: 'http://localhost/record/public/vndb/release',
 					data: {
 						vndb_id: $scope.vndb.vndb_id,
-						username: 'svry',
-						password: 'svry',
+						username: localStorageService.get('vndb_user'),
+						password: localStorageService.get('vndb_pass'),
 					},
 				}).then(function successCallback(response) {
 					$scope.vndb.release = response.data.data.items['0'];
@@ -444,7 +448,7 @@
 			$scope.date_end_switch = false;
 
 		})
-		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament) {
+		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament, localStorageService) {
 			$scope.characters = {};
 			$scope.vndb = [];
 			$scope.vndb.characters = [];
@@ -469,13 +473,18 @@
 			}
 			$scope.getVn($stateParams.id);
 			$scope.retrieveVndbCharacter = function() {
+				if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
+					alert('VNDB credential is not set yet');
+					return;
+				}
+
 				$http({
 					method: 'POST',
 					url: 'http://localhost/record/public/vndb/character',
 					data: {
 						vndb_id: $scope.vndb.vndb_id,
-						username: 'svry',
-						password: 'svry',
+						username: localStorageService.get('vndb_user'),
+						password: localStorageService.get('vndb_pass'),
 					},
 				}).then(function successCallback(response) {
 					var characters = response.data.data.items;
