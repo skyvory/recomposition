@@ -440,6 +440,7 @@
 						alert('VNDB credential is not set yet');
 						return;
 					}
+					// Update VNDB VN vote
 					$http({
 						method: 'POST',
 						url: 'http://localhost/record/public/vndb/setVote',
@@ -452,7 +453,32 @@
 					}).then(function successCallback(response) {
 						console.log("VOTE OK", response);
 					}, function errorCallback(response) {
-						console.log("ERROR", response);
+						console.log("VOTE ERROR", response);
+					});
+					// Update VNDB VN status
+					var status = null;
+					if($scope.assessment.status == 'finished') {
+						status = 'finished';
+					}
+					else if($scope.assessment.status == 'halted') {
+						status = 'halted'
+					}
+					else if($scope.assessment.score_all && !$scope.asessment.status) {
+						status = 'finished';
+					}
+					$http({
+						method: 'POST',
+						url: 'http://localhost/record/public/vndb/setStatus',
+						data: {
+							vndb_id: $scope.assessment.vndb_vn_id,
+							username: localStorageService.get('vndb_user'),
+							password: localStorageService.get('vndb_pass'),
+							status: status,
+						},
+					}).then(function successCallback(response) {
+						console.log("STATUS OK", response);
+					}, function errorCallback(response) {
+						console.log("STATUS ERROR", response);
 					});
 				});
 			}
