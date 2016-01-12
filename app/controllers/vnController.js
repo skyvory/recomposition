@@ -400,7 +400,7 @@
 				};
 			}
 		}])
-		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn, localStorageService) {
+		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn, localStorageService, $http) {
 			$scope.assessment = {};
 			getAssessment($stateParams.id);
 			function getAssessment(vn_id) {
@@ -435,6 +435,25 @@
 				$scope.assessment.$update(function(response) {
 					generalizeAssessment(response);
 					// toast!
+					// Update vote on VNDB after successfully update overall mark on back-end record
+					if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
+						alert('VNDB credential is not set yet');
+						return;
+					}
+					$http({
+						method: 'POST',
+						url: 'http://localhost/record/public/vndb/setVote',
+						data: {
+							vndb_id: $scope.assessment.vndb_vn_id,
+							username: localStorageService.get('vndb_user'),
+							password: localStorageService.get('vndb_pass'),
+							vote: $scope.assessment.score_all,
+						},
+					}).then(function successCallback(response) {
+						console.log("VOTE OK", response);
+					}, function errorCallback(response) {
+						console.log("ERROR", response);
+					});
 				});
 			}
 			// generalize assessment response to be in streamlined format, datetime especially
