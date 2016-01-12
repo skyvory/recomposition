@@ -35,14 +35,14 @@
 					<md-item-template>
 						<span class="item-title">
 							<md-icon md-svg-icon=""></md-icon>
-							<span> {{item.name_en}} </span>
+							<span> {{item.value}} </span>
 						</span>
 						<span class="item-metadata">
 							<span class="item-metastat">
-								aaa
+								{{item.name_en && item.name_jp ? '/' : ''}}
 							</span>
 							<span class="item-metastat">
-								bbb
+								{{item.name_en && item.name_jp ? item.name_jp : ''}}
 							</span>
 					</md-item-template>
 				</md-autocomplete>
