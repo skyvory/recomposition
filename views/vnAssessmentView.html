@@ -44,6 +44,31 @@
 			<md-button ng-click="date_end_local = null">clear</md-button>
 		</div>
 
+		<div layout="row">
+			<md-input-container flex>
+				<label>Node</label>
+				<md-select ng-model="assessment.node">
+					<md-option value="VN">
+						VN
+					</md-option>
+					<md-option value="H">
+						H
+					</md-option>
+				</md-select>
+			</md-input-container>
+			<md-input-container flex>
+				<label>Status</label>
+				<md-select ng-model="assessment.status">
+					<md-option value="finished">
+						Fin
+					</md-option>
+					<md-option value="halted">
+						Halt
+					</md-option>
+				</md-select>
+			</md-input-container>
+		</div>
+
 		<span>Story</span>
 		<md-radio-group ng-model="assessment.score_story" layout="row">
 			<md-radio-button class="md-primary" value="e">E</md-radio-button>
