@@ -461,13 +461,13 @@
 					if($scope.assessment.status != $scope.assessment_origin.status) {
 						// Update VNDB VN status
 						var status = null;
-						if($scope.assessment.status == 'finished') {
+						if($scope.assessment.status == 'finish') {
 							status = 'finished';
 						}
-						else if($scope.assessment.status == 'halted') {
+						else if($scope.assessment.status == 'halt') {
 							status = 'halted'
 						}
-						else if($scope.assessment.status == 'dropped') {
+						else if($scope.assessment.status == 'decompose') {
 							status = 'dropped'
 						}
 						else if($scope.assessment.score_all && !$scope.asessment.status) {
