@@ -402,6 +402,7 @@
 		}])
 		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn, localStorageService, $http) {
 			$scope.assessment = {};
+			$scope.assessment_origin;
 			getAssessment($stateParams.id);
 			function getAssessment(vn_id) {
 				Assessment.get({ id: vn_id }, function(response) {
@@ -433,60 +434,68 @@
 					$scope.assessment.date_end = $scope.date_end_local;
 				}
 				$scope.assessment.$update(function(response) {
-					generalizeAssessment(response);
-					// toast!
 					// Update vote on VNDB after successfully update overall mark on back-end record
 					if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
 						alert('VNDB credential is not set yet');
 						return;
 					}
-					// Update VNDB VN vote
-					$http({
-						method: 'POST',
-						url: 'http://localhost/record/public/vndb/setVote',
-						data: {
-							vndb_id: $scope.assessment.vndb_vn_id,
-							username: localStorageService.get('vndb_user'),
-							password: localStorageService.get('vndb_pass'),
-							vote: $scope.assessment.score_all,
-						},
-					}).then(function successCallback(response) {
-						console.log("VOTE OK", response);
-					}, function errorCallback(response) {
-						console.log("VOTE ERROR", response);
-					});
-					// Update VNDB VN status
-					var status = null;
-					if($scope.assessment.status == 'finished') {
-						status = 'finished';
-					}
-					else if($scope.assessment.status == 'halted') {
-						status = 'halted'
-					}
-					else if($scope.assessment.score_all && !$scope.asessment.status) {
-						status = 'finished';
-					}
-					if(status) {
+					// if there's change in vote
+					if($scope.assessment.score_all != $scope.assessment_origin.score_all) {
+						// Update VNDB VN vote
 						$http({
 							method: 'POST',
-							url: 'http://localhost/record/public/vndb/setStatus',
+							url: 'http://localhost/record/public/vndb/setVote',
 							data: {
 								vndb_id: $scope.assessment.vndb_vn_id,
 								username: localStorageService.get('vndb_user'),
 								password: localStorageService.get('vndb_pass'),
-								status: status,
+								vote: $scope.assessment.score_all,
 							},
 						}).then(function successCallback(response) {
-							console.log("STATUS OK", response);
+							console.log("VOTE OK", response);
 						}, function errorCallback(response) {
-							console.log("STATUS ERROR", response);
+							console.log("VOTE ERROR", response);
 						});
 					}
+					// if there is change in status
+					if($scope.assessment.status != $scope.assessment_origin.status) {
+						// Update VNDB VN status
+						var status = null;
+						if($scope.assessment.status == 'finished') {
+							status = 'finished';
+						}
+						else if($scope.assessment.status == 'halted') {
+							status = 'halted'
+						}
+						else if($scope.assessment.score_all && !$scope.asessment.status) {
+							status = 'finished';
+						}
+						if(status) {
+							$http({
+								method: 'POST',
+								url: 'http://localhost/record/public/vndb/setStatus',
+								data: {
+									vndb_id: $scope.assessment.vndb_vn_id,
+									username: localStorageService.get('vndb_user'),
+									password: localStorageService.get('vndb_pass'),
+									status: status,
+								},
+							}).then(function successCallback(response) {
+								console.log("STATUS OK", response);
+							}, function errorCallback(response) {
+								console.log("STATUS ERROR", response);
+							});
+						}
+					}
+					generalizeAssessment(response);
+					// toast!
 				});
 			}
 			// generalize assessment response to be in streamlined format, datetime especially
 			function generalizeAssessment(assessment) {
 				$scope.assessment = assessment;
+				// using angular copy so the target will not refer to the same object origin
+				$scope.assessment_origin = angular.copy(assessment);
 				$scope.date_start_local = assessment.date_start ? moment.utc(assessment.date_start).toDate() : new Date();
 				$scope.date_end_local = assessment.date_end ? moment.utc(assessment.date_end).toDate() : new Date();
 			}
