@@ -470,7 +470,7 @@
 						else if($scope.assessment.status == 'decompose') {
 							status = 'dropped'
 						}
-						else if($scope.assessment.score_all && !$scope.asessment.status) {
+						else if($scope.assessment.score_all && !$scope.assessment.status) {
 							status = 'finished';
 						}
 						if(status) {
