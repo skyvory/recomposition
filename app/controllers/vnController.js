@@ -467,6 +467,9 @@
 						else if($scope.assessment.status == 'halted') {
 							status = 'halted'
 						}
+						else if($scope.assessment.status == 'dropped') {
+							status = 'dropped'
+						}
 						else if($scope.assessment.score_all && !$scope.asessment.status) {
 							status = 'finished';
 						}
