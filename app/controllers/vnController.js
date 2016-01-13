@@ -494,6 +494,10 @@
 			$scope.date_start_switch = false;
 			$scope.date_end_switch = false;
 
+			$scope.scrollToTop = function() {
+				document.body.scrollTop = document.documentElement.scrollTop = 0;
+			}
+
 		})
 		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament, localStorageService) {
 			$scope.characters = {};
