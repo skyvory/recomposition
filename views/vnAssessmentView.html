@@ -12,6 +12,10 @@
 </md-toolbar>
 <md-content leyout-padding class="md-padding" ng-cloak>
 	<form name="assessmentForm" ng-submit="$event.preventDefault()">
+		<md-button ng-click="saveAssessment();" class="md-raised md-primary" aria-label="Save Assessment" style="position:fixed; right:20px; top:80px;">
+			<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
+			Save
+		</md-button>
 		<h3 style="display:inline;">Date Start</h3><span ng-show="assessment.date_start" style="display:inline;"> &#x2713;</span>
 		<md-switch ng-model="date_start_switch" aria-label="date switch"></md-switch>
 		<div ng-show="!assessment.date_start || date_start_switch">
@@ -116,7 +120,7 @@
 			Save Data
 		</md-switch>
 
-		<md-button ng-click="saveAssessment()" class="md-raised md-primary" aria-label="Save Assessment" style="position:fixed; right:20px; bottom:30px; z-index:999;">
+		<md-button ng-click="saveAssessment();" class="md-raised md-primary" aria-label="Save Assessment" style="position:fixed; right:20px; bottom:30px;">
 			<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
 			Save
 		</md-button>
