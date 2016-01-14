@@ -9,10 +9,20 @@
 				<label>Title Jp</label>
 				<input ng-model="vn.title_jp">
 			</md-input-container>
-			<md-input-container flex>
-				<label>Hashtag</label>
-				<input ng-model="vn.hashtag">
-			</md-input-container>
+			<div layout="row">
+				<md-input-container flex>
+					<label>Hashtag</label>
+					<input ng-model="vn.hashtag">
+				</md-input-container>
+				<md-input-container flex>
+					<label>Image Url</label>
+					<input type="url" ng-model="vn.image">
+				</md-input-container>
+				<md-input-container flex>
+					<label>VNDB ID</label>
+					<input type="number" ng-model="vn.vndb_vn_id">
+				</md-input-container>
+			</div>
 			<div layout layout-sm="column">
 				<!-- <md-input-container flex>
 					<label>Developer</label>
