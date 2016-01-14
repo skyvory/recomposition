@@ -50,29 +50,62 @@
 			<md-icon md-svg-src="bower_components/material-design-icons/action/svg/production/ic_delete_48px.svg"></md-icon>
 		</button>
 	</md-data-table-toolbar>
-
 	<md-data-table-container>
 		<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred" style="background-color: transparent;">
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
-					<th order-by="date_release" name="release" unit=""></th>
-					<th order-by="title_en" name="Title" unit=""></th>
-					<th order-by="title_jp" name="Title (jp)" unit=""></th>
-					<th order-by="hashtag" name="hashtag" unit=""></th>
-					<th order-by="developer_id" name="dev id" unit=""></th>
-					<th order-by="created_at" name="Created" unit="date"></th>
+					<th order-by="developer_id" name="Dev" unit=""></th>
+					<th order-by="title_jp" name="Title" unit="j"></th>
+					<th order-by="created_at" name="Created" unit=""></th>
+					<th name="Predictive Eye"></th>
+					<th name="One Seal"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr md-disable-select="v.id == 'none'" ng-repeat="v in vns.data | orderBy: query.order">
-					<td>{{v.date_release}}</td>
-					<td>{{v.title_en}}</td>
-					<td>{{v.title_jp}}</td>
-					<td>{{v.hashtag}}</td>
 					<td>{{v.developer_id}}</td>
+					<td ng-show="v.title_jp">{{v.title_jp}}</td>
+					<td ng-hide="v.title_jp">{{v.title_en}}</td>
 					<td>{{v.created_at}}</td>
-					<td><md-button ui-sref="vnTabs.assessment({id: v.id})">Compose</md-button></td>
-					<td><md-button ui-sref="editVn({id: v.id})">Edit</md-button></td>
+					<!-- translate additional assessment information to high-level imterpretation -->
+					<script type="text/javascript">
+
+					</script>
+					<td>
+						<span ng-if="v.status">{{v.status}}</span>
+						<span ng-if="v.date_start && !v.date_end && !v.status">playing</span>
+						<span ng-if="!v.date_start && !v.date_end && !v.status">idle</span>
+						<span ng-if="v.date_start && v.date_end && !v.status">idle</span>
+						<span>-</span>
+						<span ng-if="v.node == 'vn'">vn</span>
+						<span ng-if="v.node == 'h'">h</span>
+						<span ng-if="!v.node">x</span>
+						<span></span>
+						<span ng-if="v.score_story">{{v.score_story}}</span>
+						<span ng-if="!v.score_story">x</span>
+						<span></span>
+						<span ng-if="v.score_naki">{{v.score_naki}}</span>
+						<span ng-if="!v.score_naki">x</span>
+						<span></span>
+						<span ng-if="v.score_nuki">{{v.score_nuki}}</span>
+						<span ng-if="!v.score_nuki">x</span>
+						<span></span>
+						<span ng-if="v.score_graphic">{{v.score_graphic}}</span>
+						<span ng-if="!v.score_graphic">x</span>
+						<span></span>
+						<span ng-if="v.score_all">{{v.score_all}}</span>
+						<span ng-if="!v.score_all">x</span>
+					</td>
+					<td>
+						<span ng-if="v.node && v.score_story && v.score_naki && v.score_nuki && v.score_all && v.status">&#x2713</span>
+						<span ng-if="!v.node || !v.score_story || !v.score_naki || !v.score_nuki || !v.score_all || !v.status">&#x2718</span>
+					</td>
+					<td>
+						<div layout="row">
+							<md-button ui-sref="vnTabs.assessment({id: v.id})" class="md-primary" style="min-width:0px;">Compose</md-button>
+							<md-button ui-sref="editVn({id: v.id})" class="md-primary" style="min-width:0px;">Edit</md-button>
+						</div>
+					</td>
 				</tr>
 			</tbody>
 		</table>
