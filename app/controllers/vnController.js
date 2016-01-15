@@ -105,10 +105,23 @@
 				.then(function(answer) {
 					localStorageService.set('vndb_user', answer.username);
 					localStorageService.set('vndb_pass', answer.password);
+					localStorageService.set('vndb_toggle', answer.password);
 				}, function() {
 					// dialog cancelled
 				});
 			}
+			$scope.toggleVndbCredential = function() {
+				if(localStorageService.get('vndb_toggle', 1)) {
+					localStorageService.set('vndb_toggle', 0);
+					console.log('VNDB auto-update is set to off');
+				}
+				else {
+					localStorageService.set('vndb_toggle', 1);
+					console.log('VNDB auto-update is set to on');
+				}
+				$scope.vndb_toggle_button = localStorageService.get('vndb_toggle') == 1? 'off' : 'on';
+			}
+			$scope.vndb_toggle_button = localStorageService.get('vndb_toggle') == 1? 'off' : 'on';
 
 		}])
 		.controller('VnShowController', ['$auth', '$scope', '$stateParams', 'Vn', function($auth, $scope, $stateParams, Vn) {
@@ -435,7 +448,11 @@
 				}
 				$scope.assessment.$update(function(response) {
 					// Update vote on VNDB after successfully update overall mark on back-end record
-					if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
+					if(localStorageService.get('vndb_toggle') == 0) {
+						console.log('VNDB auto-update is off');
+						return;
+					}
+					else if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
 						alert('VNDB credential is not set yet');
 						return;
 					}
