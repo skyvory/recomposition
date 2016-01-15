@@ -8,7 +8,7 @@
 		</form>
 	</div>
 	<md-button class="md-warn" ng-click="restoreSearchVn()" aria-label="clear search">
-		<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
+		<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/action/svg/production/ic_youtube_searched_for_48px.svg"></md-icon>
 	</md-button>
 
 	<span flex></span>
@@ -113,8 +113,14 @@
 					</td>
 					<td>
 						<div layout="row">
-							<md-button ui-sref="vnTabs.assessment({id: v.id})" class="md-primary" style="min-width:0px;">Compose</md-button>
-							<md-button ui-sref="editVn({id: v.id})" class="md-primary" style="min-width:0px;">Edit</md-button>
+							<md-button ui-sref="vnTabs.assessment({id: v.id})" class="md-primary" style="min-width:0px;">
+								<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/action/svg/production/ic_assessment_48px.svg"></md-icon>
+								Compose
+							</md-button>
+							<md-button ui-sref="editVn({id: v.id})" class="md-primary" style="min-width:0px;">
+								<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/editor/svg/production/ic_mode_edit_48px.svg"></md-icon>
+								Edit
+							</md-button>
 						</div>
 					</td>
 				</tr>
