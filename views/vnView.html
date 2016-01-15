@@ -1,47 +1,47 @@
 <div layout="row">
-<div flex="20">
-<form name="vnForm" ng-submit="$event.preventDefault(); searchVn()">
-<md-input-container>
-	<label>search</label>
-	<input ng-model="query.filter">
-</md-input-container>
-</form>
-</div>
+	<div flex="20">
+		<form name="vnForm" ng-submit="$event.preventDefault(); searchVn()">
+			<md-input-container>
+				<label>search</label>
+				<input ng-model="query.filter">
+			</md-input-container>
+		</form>
+	</div>
 
-<span flex></span>
-<div flex="20">
-<md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
-	<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-		<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
-	</md-button>
-	<md-menu-content width="4">
-		<md-menu-item>
-			<md-button ng-click="setVndbCredential()">
-				<div layout="row">
-					<p flex>Set VNDB credential</p>
-					<md-icon md-menu-align-target md-svg-icon=""></md-icon>
-				</div>
+	<span flex></span>
+	<div flex="20">
+		<md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
+			<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+				<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg" aria-label="VNDB option"></md-icon>
 			</md-button>
-		</md-menu-item>
-		<md-menu-item>
-			<md-button ng-click="checkVndbCredential()">
-				<div layout="row">
-					<p flex>Check VNDB credential</p>
-					<md-icon md-menu-align-target md-svg-icon=""></md-icon>
-				</div>
-			</md-button>
-		</md-menu-item>
-		<md-menu-item>
-			<md-button ng-click="toggleVndbCredential()">
-				<div layout="row">
-					<p flex>Toggle VNDB credential {{vndb_toggle_button}}</p>
-					<md-icon md-menu-align-target md-svg-icon=""></md-icon>
-				</div>
-			</md-button>
-		</md-menu-item>
-	</md-menu-content>
-</md-menu>
-</div>
+			<md-menu-content width="4">
+				<md-menu-item>
+					<md-button ng-click="setVndbCredential()">
+						<div layout="row">
+							<p flex>Set VNDB credential</p>
+							<md-icon md-menu-align-target md-svg-icon=""></md-icon>
+						</div>
+					</md-button>
+				</md-menu-item>
+				<md-menu-item>
+					<md-button ng-click="checkVndbCredential()">
+						<div layout="row">
+							<p flex>Check VNDB credential</p>
+							<md-icon md-menu-align-target md-svg-icon=""></md-icon>
+						</div>
+					</md-button>
+				</md-menu-item>
+				<md-menu-item>
+					<md-button ng-click="toggleVndbCredential()">
+						<div layout="row">
+							<p flex>Toggle VNDB credential {{vndb_toggle_button}}</p>
+							<md-icon md-menu-align-target md-svg-icon=""></md-icon>
+						</div>
+					</md-button>
+				</md-menu-item>
+			</md-menu-content>
+		</md-menu>
+	</div>
 </div>
 
 <br />
