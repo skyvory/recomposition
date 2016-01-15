@@ -83,9 +83,11 @@
 			$scope.searchVn = function() {
 				return Vn.get({ limit:$scope.query.limit, filter:$scope.query.filter }, success).$promise;
 			}
-			$scope.restoreSearchVn = function() {
-				$scope.query.filter = '';
-				return Vn.get({ limit:$scope.query.limit }, success).$promise;
+			$scope.resetSearchVn = function() {
+				if($scope.query.filter) {
+					$scope.query.filter = '';
+					return Vn.get({ limit:$scope.query.limit }, success).$promise;
+				}
 			}
 
 			$scope.checkVndbCredential = function() {
