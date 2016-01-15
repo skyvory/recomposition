@@ -7,12 +7,15 @@
 			</md-input-container>
 		</form>
 	</div>
+	<md-button class="md-warn" ng-click="restoreSearchVn()" aria-label="clear search">
+		<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
+	</md-button>
 
 	<span flex></span>
 	<div flex="20">
 		<md-menu md-position-mode="target-right target" style="position:absolute;right:20px">
-			<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-				<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg" aria-label="VNDB option"></md-icon>
+			<md-button class="md-icon-button" ng-click="$mdOpenMenu($event)" aria-label="VNDB option">
+				<md-icon md-menu-origin md-svg-icon="bower_components/material-design-icons/navigation/svg/production/ic_more_vert_48px.svg"></md-icon>
 			</md-button>
 			<md-menu-content width="4">
 				<md-menu-item>

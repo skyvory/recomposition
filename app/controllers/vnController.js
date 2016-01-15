@@ -83,6 +83,10 @@
 			$scope.searchVn = function() {
 				return Vn.get({ limit:$scope.query.limit, filter:$scope.query.filter }, success).$promise;
 			}
+			$scope.restoreSearchVn = function() {
+				$scope.query.filter = '';
+				return Vn.get({ limit:$scope.query.limit }, success).$promise;
+			}
 
 			$scope.checkVndbCredential = function() {
 				var u = localStorageService.get('vndb_user');
