@@ -761,6 +761,9 @@
 					new_char.vn_id = $stateParams.id;
 					new_char.$save(function(response) {
 						$scope.characters = $scope.characters.concat(response);
+						setTimeout(function() {
+							window.scrollTo(0, document.body.scrollHeight);
+						}, 60);
 					}, function(error) {
 						console.log(error);
 					});
