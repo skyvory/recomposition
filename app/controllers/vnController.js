@@ -111,7 +111,8 @@
 				.then(function(answer) {
 					localStorageService.set('vndb_user', answer.username);
 					localStorageService.set('vndb_pass', answer.password);
-					localStorageService.set('vndb_toggle', answer.password);
+					localStorageService.set('vndb_toggle', 0);
+					$scope.toggleVndbCredential();
 				}, function() {
 					// dialog cancelled
 				});
