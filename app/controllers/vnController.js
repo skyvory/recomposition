@@ -463,8 +463,11 @@
 						alert('VNDB credential is not set yet');
 						return;
 					}
+					if(isNaN($scope.assessment.vndb_vn_id) || $scope.assessment.vndb_vn_id !== parseInt($scope.assessment.vndb_vn_id) || isNaN(parseInt($scope.assessment.vndb_vn_id))) {
+						console.log("No VNDB ID identified");
+					}
 					// if there's change in vote
-					if($scope.assessment.score_all != $scope.assessment_origin.score_all) {
+					if($scope.assessment.score_all != $scope.assessment_origin.score_all && $scope.assessment.vndb_vn_id ) {
 						// Update VNDB VN vote
 						$http({
 							method: 'POST',
