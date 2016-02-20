@@ -568,37 +568,47 @@
 					return;
 				}
 
-				$http({
-					method: 'POST',
-					url: 'http://localhost/record/public/vndb/character',
-					data: {
-						vndb_id: $scope.vndb.vndb_id,
-						username: localStorageService.get('vndb_user'),
-						password: localStorageService.get('vndb_pass'),
-					},
-				}).then(function successCallback(response) {
-					var characters = response.data.data.items;
-					console.log(characters);
-					// chara processing
-					if(characters) {
-						for(var i in characters) {
-							if(characters[i].gender == "f") {
-								console.log(i);
-								// $scope.vndb.characters.push({
-									// kanji: characters[i].original,
-									// betsumyou: characters[i].aliases,
-									// yobikata: characters[i].name,
-									// birthmonth: characters[i].birthday['1'],
-									// birthday: characters[i].birthday['0'],
-									// image: characters[i].image,
-								// });
-								$scope.vndb.characters.push(characters[i]);
+				function fetch(page) {
+					$http({
+						method: 'POST',
+						url: 'http://localhost/record/public/vndb/character',
+						data: {
+							vndb_id: $scope.vndb.vndb_id,
+							username: localStorageService.get('vndb_user'),
+							password: localStorageService.get('vndb_pass'),
+							page: page,
+						},
+					}).then(function successCallback(response) {
+						var characters = response.data.data.items;
+						console.log(response);
+						// chara processing
+						if(characters) {
+							for(var i in characters) {
+								if(characters[i].gender == "f") {
+									console.log(i);
+									// $scope.vndb.characters.push({
+										// kanji: characters[i].original,
+										// betsumyou: characters[i].aliases,
+										// yobikata: characters[i].name,
+										// birthmonth: characters[i].birthday['1'],
+										// birthday: characters[i].birthday['0'],
+										// image: characters[i].image,
+									// });
+									$scope.vndb.characters.push(characters[i]);
+								}
 							}
 						}
-					}
-				}, function errorCallback(response) {
-					console.log("ERROR", response);
-				});
+						// fetch next batch of character if there's more than 25. This extreme case occurs particularly with releases from SQUEEZ
+						if(response.data.data.more == true) {
+							page++;
+							fetch(page);
+						}
+					}, function errorCallback(response) {
+						console.log("ERROR", response);
+					});
+				}
+				var page = 1;
+				fetch(page);
 			}
 			$scope.removeVndbCharacter = function(item) {
 				var index = $scope.vndb.characters.indexOf(item);
