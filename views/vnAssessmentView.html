@@ -1,6 +1,6 @@
-<md-toolbar>
+<md-toolbar class="md-hue-3" style="min-height:50px; height:50px;">
 	<div class="md-toolbar-tools">
-		<md-button aria-label="go back">
+		<md-button aria-label="go back" ui-sref="vn">
 			<
 		</md-button>
 		<h3><span>{{vn.title_jp}}</span></h3>
@@ -10,7 +10,9 @@
 		</md-button>
 	</div>
 </md-toolbar>
-<md-content leyout-padding class="md-padding" ng-cloak>
+<md-content leyout-padding class="vn-assessment-content md-padding" ng-cloak>
+<div layout="row">
+	<div flex="60">
 	<form name="assessmentForm" ng-submit="$event.preventDefault()">
 		<md-button ng-click="saveAssessment();" class="md-raised md-primary" aria-label="Save Assessment" style="position:fixed; right:20px; top:80px;">
 			<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_save_48px.svg"></md-icon>
@@ -131,4 +133,8 @@
 			<md-icon md-svg-src="bower_components/material-design-icons/navigation/svg/production/ic_arrow_drop_up_48px.svg"></md-icon>
 		</md-button>
 	</form>
+	</div>
+	<div flex="40">
+	</div>
+</div>
 </md-content>

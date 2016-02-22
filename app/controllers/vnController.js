@@ -533,6 +533,21 @@
 				document.body.scrollTop = document.documentElement.scrollTop = 0;
 			}
 
+			function resize() {
+				var el = document.querySelector(".vn-assessment-content").getBoundingClientRect().top;
+				var win = window.innerHeight;
+				console.log("el offset", el, "window", win, "calculated", (win-el));
+				document.querySelector("md-tabs.md-dynamic-height md-tab-content.md-active md-content").style.height = (win - el - 33) + "px";
+			}
+			angular.element(document).ready(function() {
+				setTimeout(function() {
+					resize();
+				}, 100);
+			});
+			window.onresize = function() {
+				resize();
+			}
+
 		})
 		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament, localStorageService) {
 			$scope.characters = {};
@@ -771,6 +786,18 @@
 					// dialog cancelled
 				});
 			}
+
+			function resize() {
+				document.querySelector("md-tabs.md-dynamic-height md-tab-content.md-active md-content").style.height = (window.innerHeight - 166) + "px";
+			}
+			angular.element(document).ready(function() {
+				setTimeout(function() {
+					resize();
+				}, 100);
+			});
+			window.onresize = function() {
+				resize();
+			}
 		})
 		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval, $mdToast) {
 			
@@ -901,6 +928,18 @@
 						.position('bottom left')
 						.hideDelay(3000)
 				);
+			}
+
+			function resize() {
+				document.querySelector("md-tabs.md-dynamic-height md-tab-content.md-active md-content").style.height = (window.innerHeight - 166) + "px";
+			}
+			angular.element(document).ready(function() {
+				setTimeout(function() {
+					resize();
+				}, 100);
+			});
+			window.onresize = function() {
+				resize();
 			}
 		})
 		;
