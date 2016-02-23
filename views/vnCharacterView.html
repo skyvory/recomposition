@@ -68,6 +68,19 @@
 						<div flex layout-padding layout="row">
 							<div flex="30">
 								<img ng-src="{{chara.image}}" style="width:auto; max-width: 100%; max-height:200px">
+								<div layout="row" layout-align="center end" style="margin:20px 0;">
+									<md-input-container>
+										<label>mark</label>
+										<md-select ng-model="chara.mark" ng-change="saveMark(chara)">
+											<md-option ng-selected="(chara.mark == 's') ? true : false" value="s">S</md-option>
+											<md-option ng-selected="(chara.mark == 'a') ? true : false" value="a">A</md-option>
+											<md-option ng-selected="(chara.mark == 'b') ? true : false" value="b">B</md-option>
+											<md-option ng-selected="(chara.mark == 'c') ? true : false" value="c">C</md-option>
+											<md-option ng-selected="(chara.mark == 'd') ? true : false" value="d">D</md-option>
+											<md-option ng-selected="(chara.mark == 'e') ? true : false" value="e">E</md-option>
+										</md-select>
+									</md-input-container>
+								</div>
 							</div>
 							<div flex="70" style="background-color:#eff;">
 								<md-input-container>
@@ -111,19 +124,6 @@
 									</md-input-container>
 								</div>
 							</div>
-						</div>
-						<div layout="row" layout-align="center end">
-							<md-input-container>
-								<label>mark</label>
-								<md-select ng-model="chara.mark" ng-change="saveMark(chara)">
-									<md-option ng-selected="(chara.mark == 's') ? true : false" value="s">S</md-option>
-									<md-option ng-selected="(chara.mark == 'a') ? true : false" value="a">A</md-option>
-									<md-option ng-selected="(chara.mark == 'b') ? true : false" value="b">B</md-option>
-									<md-option ng-selected="(chara.mark == 'c') ? true : false" value="c">C</md-option>
-									<md-option ng-selected="(chara.mark == 'd') ? true : false" value="d">D</md-option>
-									<md-option ng-selected="(chara.mark == 'e') ? true : false" value="e">E</md-option>
-								</md-select>
-							</md-input-container>
 						</div>
 						<md-card-actions layout="row" layout-align="end center">
 							<md-button ng-click="deleteCharacter($event, chara)">delete</md-button>
