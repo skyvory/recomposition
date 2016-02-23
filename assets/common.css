@@ -32,3 +32,18 @@ md-tabs.md-dynamic-height md-tab-content.md-active md-content {
 	overflow: auto;
 	height: 200px;
 }
+
+/* vndb character header gutter hack */
+md-card md-card-title {
+	padding: 5px 6px 0px !important;
+}
+
+/* vndb character property gutter hack */
+.vn-vndb-character-property {
+	margin: 0 !important;
+}
+
+/* vn character property input gutter hack */
+md-input-container {
+	margin: 0 !important;
+}

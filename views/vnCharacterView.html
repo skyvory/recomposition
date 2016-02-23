@@ -20,19 +20,50 @@
 				<md-button ng-click="retrieveVndbCharacter()">load</md-button>
 			</div>
 		</form>
-		<div layout="row">
-			<div flex="60">
+		<div layout="column">
+			<div flex layout="row" ng-show="vndb_toggle" style="overflow-x:auto;">
+				<md-card ng-repeat="chara in vndb.characters" flex="30">
+					<md-card-title style="flex:none;">
+						<md-card-title-text style="padding:0px;">
+							<span class="md-headline">{{chara.name}}</span>
+							<span class="md-subhead">{{chara.description | limitTo:30}}...</span>
+						</md-card-title-text>
+					</md-card-title>
+					<div flex layout-padding layout="row">
+						<div flex="30">
+							<img ng-src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px" ng-click="purgeCharacterProperty(chara, 'image')">
+						</div>
+						<div flex="70">
+							<md-button class="vn-vndb-character-property" ng-show="chara.original" ng-click="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</md-button><br ng-if="chara.original" />
+							<md-button class="vn-vndb-character-property" ng-show="chara.name" ng-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</md-button><br ng-if="chara.name" />
+							<md-button class="vn-vndb-character-property" ng-show="chara.aliases" ng-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</md-button><br ng-if="chara.aliases" />
+							<md-button class="vn-vndb-character-property" ng-show="chara.birthday" ng-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</md-button><br ng-if="chara.birthday" />
+							<md-button class="vn-vndb-character-property" ng-show="chara.height" ng-click="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</md-button>
+							<md-button class="vn-vndb-character-property" ng-show="chara.bust" ng-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</md-button><br ng-if="chara.bust" />
+						</div>
+					</div>
+					<div flex style="flex:none;">
+						<md-select ng-model="chara.link" aria-label="linkage" style="margin:0px;">
+							<md-option ng-repeat="chara_scope in characters" value="{{chara_scope.id}}">
+								{{chara_scope.kanji}}
+							</md-option>
+						</md-select>
+					</div>
+					<md-card-actions layout="row" layout-align="end center">
+						<md-button ng-click="removeVndbCharacter(chara)">remove</md-button>
+						<md-button ng-click="saveVndbCharacter(chara)">save</md-button>
+					</md-card-actions>
+				</md-card>
+			</div>
+			<div flex>
 				<form name="characterForm" ng-submit="$event.preventDefault()">
-					<md-card ng-repeat="chara in characters">
+				<div flex layout="row" layout-wrap>
+					<md-card ng-repeat="chara in characters" flex-gt-sm="40" flex-gt-md="30" flex-gt-lg="30" layout-wrap>
 						<md-card-title>
 							<md-card-title-text>
 								<span class="md-headline">{{chara.yobikata}}</span>
 								<span class="md-subhead" style="color:rgba(0,0,60,0.3);">{{chara.vndb_character_id}}</span>
 							</md-card-title-text>
-							<md-card-title-media>
-								<div class="md-media-sm card-media">
-								</div>
-							</md-card-title-media>
 						</md-card-title>
 						<div flex layout-padding layout="row">
 							<div flex="30">
@@ -99,49 +130,11 @@
 							<md-button ng-click="saveCharacter(chara)">save</md-button>
 						</md-card-actions>
 					</md-card>
+				</div>
 				</form>
 			</div>
-			<div flex="40" ng-show="vndb_toggle">
-				<md-card ng-repeat="chara in vndb.characters">
-					<md-card-title>
-						<md-card-title-text>
-							<span class="md-headline">{{chara.name}}</span>
-							<span class="md-subhead">{{chara.gender}}</span>
-						</md-card-title-text>
-						<md-card-title-media>
-							<div class="md-media-sm card-media">
-								<!-- <img src="{{chara.image}}"> -->
-							</div>
-						</md-card-title-media>
-					</md-card-title>
-					<div flex layout-padding layout="row">
-						<div flex="30">
-							<img ng-src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px" ng-click="purgeCharacterProperty(chara, 'image')">
-						</div>
-						<div flex="70">
-							<md-button ng-show="chara.original" ng-click="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</md-button><br ng-if="chara.original" />
-							<md-button ng-show="chara.name" ng-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</md-button><br ng-if="chara.name" />
-							<md-button ng-show="chara.aliases" ng-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</md-button><br ng-if="chara.aliases" />
-							<md-button ng-show="chara.birthday" ng-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</md-button><br ng-if="chara.birthday" />
-							<md-button ng-show="chara.height" ng-click="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</md-button>
-							<md-button ng-show="chara.bust" ng-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</md-button><br ng-if="chara.bust" />
-						</div>
-					</div>
-					<div flex>
-						<md-select ng-model="chara.link" aria-label="linkage">
-							<md-option ng-repeat="chara_scope in characters" value="{{chara_scope.id}}">
-								{{chara_scope.kanji}}
-							</md-option>
-						</md-select>
-					</div>
-					<md-card-actions layout="row" layout-align="end center">
-						<md-button ng-click="removeVndbCharacter(chara)">remove</md-button>
-						<md-button ng-click="saveVndbCharacter(chara)">save</md-button>
-					</md-card-actions>
-				</md-card>
-			</div>
 		</div>
-		<md-button ng-click="newCharacter($event)" class="md-fab md-primary" aria-label="new character also" style="position:fixed; right:6px; bottom:6px;">
+		<md-button ng-click="newCharacter($event)" class="md-fab md-primary" aria-label="new character also" style="position:fixed; left:6px; bottom:6px;">
 			<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>
 		</md-button>
 	</div>
