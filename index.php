@@ -29,6 +29,8 @@
 	<script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
 	<script src="bower_components/moment/moment.js"></script>
 	<script src="bower_components/angular-moment/angular-moment.js"></script>
+	<script src="bower_components/clipboard/dist/clipboard.js"></script>
+	<script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
 	<!-- sc-date-time library -->
 	<link rel="stylesheet" href="bower_components/sc-date-time/dist/sc-date-time.css">
 	<script src="bower_components/sc-date-time/dist/sc-date-time.js"></script>

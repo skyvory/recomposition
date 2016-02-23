@@ -19,6 +19,7 @@ var recompositionApp = angular.module('recompositionApp', [
 	'lineamentServices',
 	'noteServices',
 	'LocalStorageModule',
+	'ngclipboard',
 ]);
 
 recompositionApp.directive('contenteditable', function() {
