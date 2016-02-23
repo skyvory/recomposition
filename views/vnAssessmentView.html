@@ -3,7 +3,16 @@
 		<md-button aria-label="go back" ui-sref="vn">
 			<
 		</md-button>
-		<h3><span>{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}</span></h3>
+		<h3>
+			<span>
+				<md-button aria-label="copy title" ngclipboard data-clipboard-text="{{vn.title_jp}}">
+					{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}
+					<md-tooltip md-direction="bottom">
+					          Copy To Clipboard
+				        </md-tooltip>
+				</md-button>
+			</span>
+		</h3>
 		<span flex></span>
 		<div ng-include="'views/vnAssessmentToolbarMenu.html'"></div>
 	</div>
