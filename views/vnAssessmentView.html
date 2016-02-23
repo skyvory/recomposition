@@ -3,7 +3,7 @@
 		<md-button aria-label="go back" ui-sref="vn">
 			<
 		</md-button>
-		<h3><span>{{vn.title_jp}}</span></h3>
+		<h3><span>{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}</span></h3>
 		<span flex></span>
 		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
 			vndb

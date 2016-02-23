@@ -3,7 +3,7 @@
 		<md-button aria-label="go back" ui-sref="vn">
 			<
 		</md-button>
-		<h3><span>{{vn.title_jp}}</span></h3>
+		<h3><span>{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}</span></h3>
 		<span flex></span>
 		<md-button class="md-primary md-hue-3" aria-label="new" ng-click="newCharacter($event)">
 			<md-icon md-svg-src="bower_components/material-design-icons/content/svg/production/ic_add_48px.svg"></md-icon>

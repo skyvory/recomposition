@@ -3,7 +3,7 @@
 		<md-button aria-label="go back" ui-sref="vn">
 			<
 		</md-button>
-		<h3><span>{{vn.title_jp}}</span></h3>
+		<h3><span>{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}</span></h3>
 		&nbsp &nbsp
 		<h5>{{save_status}}</h5>
 		<span flex></span>
