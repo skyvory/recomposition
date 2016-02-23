@@ -5,9 +5,7 @@
 		</md-button>
 		<h3><span>{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}</span></h3>
 		<span flex></span>
-		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
-			vndb
-		</md-button>
+		<div ng-include="'views/vnAssessmentToolbarMenu.html'"></div>
 	</div>
 </md-toolbar>
 <md-content leyout-padding class="vn-assessment-content md-padding" ng-cloak>
