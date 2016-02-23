@@ -3,7 +3,7 @@
 		<md-button aria-label="go back" ui-sref="vn">
 			<
 		</md-button>
-		<h3><span>{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}</span></h3>
+		<h3><span>{{vn.title_jp | limitTo:50}}{{vn.title_jp.length > 50 ? '...' : ''}}</span></h3>
 		<span flex></span>
 		<div ng-include="'views/vnAssessmentToolbarMenu.html'"></div>
 	</div>

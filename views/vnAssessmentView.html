@@ -6,7 +6,7 @@
 		<h3>
 			<span>
 				<md-button aria-label="copy title" ngclipboard data-clipboard-text="{{vn.title_jp}}">
-					{{vn.title_jp | limitTo:30}}{{vn.title_jp.length > 30 ? '...' : ''}}
+					{{vn.title_jp | limitTo:50}}{{vn.title_jp.length > 50 ? '...' : ''}}
 					<md-tooltip md-direction="bottom">
 					          Copy To Clipboard
 				        </md-tooltip>
