@@ -13,9 +13,7 @@
 		<md-button ng-click="toggleNote()" aria-label="toggle note">
 			gene/chara
 		</md-button>
-		<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
-			vndb
-		</md-button>
+		<div ng-include="'views/vnAssessmentToolbarMenu.html'"></div>
 	</div>
 </md-toolbar>
 
