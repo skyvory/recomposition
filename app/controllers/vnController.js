@@ -530,7 +530,8 @@
 			$scope.date_end_switch = false;
 
 			$scope.scrollToTop = function() {
-				document.body.scrollTop = document.documentElement.scrollTop = 0;
+				// document.body.scrollTop = document.documentElement.scrollTop = 0;
+				document.getElementsByClassName('vn-assessment-content')[0].scrollTop = 0;
 			}
 
 			function resize() {
