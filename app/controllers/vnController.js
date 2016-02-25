@@ -538,7 +538,7 @@
 				document.getElementsByClassName('vn-assessment-content')[0].scrollTop = 0;
 			}
 
-			function resize() {
+			$scope.resize = function() {
 				var el = document.querySelector(".vn-assessment-content").getBoundingClientRect().top;
 				var win = window.innerHeight;
 				console.log("el offset", el, "window", win, "calculated", (win-el));
@@ -546,12 +546,16 @@
 			}
 			angular.element(document).ready(function() {
 				setTimeout(function() {
-					resize();
+					$scope.resize();
 				}, 100);
 			});
 			window.onresize = function() {
-				resize();
+				$scope.resize();
 			}
+
+			$scope.$on('$destroy', function() {
+				window.onresize = null
+			});
 
 		})
 		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament, localStorageService) {
@@ -813,6 +817,10 @@
 			window.onresize = function() {
 				resize();
 			}
+
+			$scope.$on('$destroy', function() {
+				window.onresize = null;
+			});
 		})
 		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval, $mdToast) {
 			
