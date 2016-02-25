@@ -146,7 +146,9 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 			parent: 'common',
 			controller: function($scope) {
 				$scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
-					$scope.currentTab = toState.data.selectedTab;
+					if(toState.data) {
+						$scope.currentTab = toState.data.selectedTab;
+					}
 				});
 			}
 		})
