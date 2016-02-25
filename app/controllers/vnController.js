@@ -145,7 +145,7 @@
 			};
 
 			$scope.createVn = function() {
-				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
+				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours').toDate();
 				$scope.vn.vndb_vn_id = $scope.vndb.vndb_id ? $scope.vndb.vndb_id : null;
 				$scope.vn.$save(function() {
 					$state.go('vn');
@@ -360,7 +360,7 @@
 		.controller('VnEditController', ['$scope', '$state', '$stateParams', 'Vn', '$timeout', '$q', '$log', 'Developer', 'moment', function($scope, $state, $stateParams, Vn, $timeout, $q, $log, Developer, moment) {
 			$scope.updateVn = function() {
 				// add 24 hours to date, suspect US utc is being used as md-datepicker locale
-				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours');
+				$scope.vn.date_release = moment($scope.vn.date_release).add(24, 'hours').toDate();
 				$scope.vn.$update(function() {
 					$state.go('vn');
 				});
