@@ -5,12 +5,12 @@
 		</md-button>
 		<h3><span>{{vn.title_jp | limitTo:50}}{{vn.title_jp.length > 50 ? '...' : ''}}</span></h3>
 		<span flex></span>
+		<md-button class="md-primary md-raised" ng-click="toggleVndb()">vndb</md-button>
 		<div ng-include="'views/vnAssessmentToolbarMenu.html'"></div>
 	</div>
 </md-toolbar>
 <md-content>
 	<div layout="column">
-		<md-button class="md-primary md-raised" ng-click="toggleVndb()" flex-sm="100" flex-md="100" flex-gt-md="auto">vndb</md-button>
 		<form name="characterVndbForm" ng-submit="$event.preventDefault()" ng-show="vndb_toggle">
 			<div layout leyout-sm="column">
 				<md-input-container>
