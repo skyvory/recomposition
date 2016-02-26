@@ -646,7 +646,7 @@
 				var index = $scope.vndb.characters.indexOf(item);
 				$scope.vndb.characters.splice(index, 1);
 			}
-			$scope.saveVndbCharacter = function(chara) {
+			$scope.saveVndbCharacter = function(chara, callback) {
 				console.log(chara);
 				var character = new Character();
 				character.vn_id = $stateParams.id;
@@ -667,9 +667,26 @@
 					$scope.removeVndbCharacter(chara);
 					// Then append saved character to scope
 					$scope.characters = $scope.characters.concat(response);
+					if(callback) {
+						callback({'success': true});
+					}
 				}, function(error) {
 					console.log(error);
+					if(callback) {
+						callback({'success': false});
+					}
 				});
+			}
+			$scope.saveAllVndbCharacters = function() {
+				console.log($scope.vndb.characters);
+				function save() {
+					$scope.saveVndbCharacter($scope.vndb.characters[0], function(success_response) {
+						if(success_response.success && $scope.vndb.characters.length) {
+							save();
+						}
+					});
+				}
+				save();
 			}
 			$scope.saveCharacter = function(chara) {
 				Character.update(chara, function() {
