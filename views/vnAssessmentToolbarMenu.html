@@ -4,13 +4,6 @@
 	</md-button>
 	<md-menu-content width="4">
 		<md-menu-item>
-			<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
-				<div layout="row">
-					<p flex>to VNDB</p>
-				</div>
-			</md-button>
-		</md-menu-item>
-		<md-menu-item>
 			<md-button aria-label="capture search" ng-href="https://encrypted.google.com/search?q={{vn.title_jp | limitTo:50}} 攻略" target="_blank">
 				<div layout="row">
 					<p flex>攻略を探す</p>
@@ -28,6 +21,13 @@
 			<md-button aria-label="character search" ng-href="https://encrypted.google.com/search?q={{vn.title_jp | limitTo:50}} キャラ" target="_blank">
 				<div layout="row">
 					<p flex>キャラクターデータを探す</p>
+				</div>
+			</md-button>
+		</md-menu-item>
+		<md-menu-item>
+			<md-button aria-label="open vndb" ng-href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
+				<div layout="row">
+					<p flex>to VNDB</p>
 				</div>
 			</md-button>
 		</md-menu-item>
