@@ -570,7 +570,7 @@
 			});
 
 		})
-		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament, localStorageService) {
+		.controller('VnCharacterController', function($scope, $state, $stateParams, Vn, Character, $http, $mdDialog, $mdMedia, Lineament, localStorageService, toastService) {
 			$scope.characters = {};
 			$scope.vndb = [];
 			$scope.vndb.characters = [];
@@ -596,11 +596,12 @@
 			$scope.getVn($stateParams.id);
 			$scope.retrieveVndbCharacter = function() {
 				if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
-					alert('VNDB credential is not set yet');
+					toastService.pop('VNDB credential is not set yet');
 					return;
 				}
 
 				function fetch(page) {
+					toastService.pop("Retrieving page " + page + " of VNDB characters...");
 					$http({
 						method: 'POST',
 						url: 'http://localhost/record/public/vndb/character',
@@ -630,12 +631,14 @@
 								}
 							}
 						}
+						toastService.pop("VNDB characters get!");
 						// fetch next batch of character if there's more than 25. This extreme case occurs particularly with releases from SQUEEZ
 						if(response.data.data.more == true) {
 							page++;
 							fetch(page);
 						}
 					}, function errorCallback(response) {
+						toastService.pop("ERROR: " + response);
 						console.log("ERROR", response);
 					});
 				}
@@ -647,6 +650,7 @@
 				$scope.vndb.characters.splice(index, 1);
 			}
 			$scope.saveVndbCharacter = function(chara, callback) {
+				toastService.pop("Saving " + chara.original + " ...");
 				console.log(chara);
 				var character = new Character();
 				character.vn_id = $stateParams.id;
@@ -662,6 +666,7 @@
 				character.image = chara.image;
 				character.vndb_character_id = chara.id;
 				character.$save(function(response) {
+					toastService.pop(chara.original + " saved successfully!");
 					console.log(response);
 					// Remove selected VNDB character first
 					$scope.removeVndbCharacter(chara);
@@ -671,6 +676,7 @@
 						callback({'success': true});
 					}
 				}, function(error) {
+					toastService.pop("ERROR: " + error);
 					console.log(error);
 					if(callback) {
 						callback({'success': false});
@@ -689,8 +695,8 @@
 				save();
 			}
 			$scope.saveCharacter = function(chara) {
-				Character.update(chara, function() {
-					// toast
+				Character.update(chara, function(response) {
+					toastService.pop("Update to " + chara.kanji + " saved successfully!");
 				});
 			}
 			$scope.deleteCharacter = function(ev, chara) {
@@ -710,7 +716,7 @@
 					Character.delete({ id: chara.id }, function() {
 						// remove item from scope once delete succeed on server
 						$scope.characters.splice(index, 1);
-						// toast
+						toastService.pop(chara.kanji = " deleted!");
 					});
 				}, function() {
 					// dialog cancelled
@@ -727,8 +733,8 @@
 					};
 					Lineament.update(lineament, function(response) {
 						console.log(response);
-						// toast
 					}, function(error) {
+						toastService.pop("ERROR: " + error);
 						console.log(error);
 					});
 				}
@@ -741,8 +747,9 @@
 					Lineament.save(lineament, function(response) {
 						var index = $scope.characters.indexOf(chara);
 						$scope.characters[index].lineament_id = response.id;
-						// toast
+						toastService.pop("Mark for " + chara.kanji + " updated!");
 					}, function(error) {
+						toastService.pop("ERROR: " + error);
 						console.log(error);
 					});
 				}
@@ -827,7 +834,9 @@
 						setTimeout(function() {
 							window.scrollTo(0, document.body.scrollHeight);
 						}, 60);
+						toastService.pop("New character " + response.kanji + " added!");
 					}, function(error) {
+						toastService.pop("ERROR: " + error);
 						console.log(error);
 					});
 				}, function() {
