@@ -20,7 +20,7 @@ vnServices.factory('toastService', ['$mdToast', function($mdToast) {
 			$mdToast.simple()
 				.content(toast_content[0])
 				.position('bottom left')
-				.hideDelay(0)
+				.hideDelay(600)
 				.theme("success-toast")
 		).then(function() {
 			toast_content.splice(0, 1);
