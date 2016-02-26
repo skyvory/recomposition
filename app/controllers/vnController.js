@@ -654,6 +654,9 @@
 				console.log(chara);
 				var character = new Character();
 				character.vn_id = $stateParams.id;
+				if(!chara.original.match(/[a-zA-Z]/i)) {
+					chara.original = chara.original.replace(/ /g, '　');
+				}
 				character.kanji = chara.original;
 				character.betsumyou = chara.aliases;
 				character.yobikata = chara.name;
