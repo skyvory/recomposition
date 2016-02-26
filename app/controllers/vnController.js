@@ -574,7 +574,7 @@
 			$scope.characters = {};
 			$scope.vndb = [];
 			$scope.vndb.characters = [];
-			$scope.vndb_toggle = false;
+			$scope.vndb_toggle = true;
 			$scope.toggleVndb = function() {
 				$scope.vndb_toggle = $scope.vndb_toggle ? false : true;
 			}
