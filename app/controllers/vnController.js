@@ -420,7 +420,7 @@
 				};
 			}
 		}])
-		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn, localStorageService, $http) {
+		.controller('VnAssessmentController', function($scope, Assessment, $state, $stateParams, moment, Vn, localStorageService, $http, toastService) {
 			$scope.assessment = {};
 			$scope.assessment_origin;
 			getAssessment($stateParams.id);
@@ -447,6 +447,8 @@
 			}
 			$scope.getVn($stateParams.id);
 			$scope.saveAssessment = function() {
+				console.log(toastService);
+				toastService.pop("Saving...");
 				if($scope.date_start_switch) {
 					$scope.assessment.date_start = $scope.date_start_local;
 				}
@@ -454,20 +456,25 @@
 					$scope.assessment.date_end = $scope.date_end_local;
 				}
 				$scope.assessment.$update(function(response) {
+					toastService.pop("VN update OK");
 					// Update vote on VNDB after successfully update overall mark on back-end record
 					if(localStorageService.get('vndb_toggle') == 0) {
 						console.log('VNDB auto-update is off');
+						toastService.pop("VNDB auto update is off");
 						return;
 					}
 					else if(!localStorageService.get('vndb_user') || !localStorageService.get('vndb_pass')) {
-						alert('VNDB credential is not set yet');
+						toastService.pop("VNDB credential is not set yet");
+						console.log('VNDB credential is not set yet');
 						return;
 					}
 					if(isNaN($scope.assessment.vndb_vn_id) || $scope.assessment.vndb_vn_id !== parseInt($scope.assessment.vndb_vn_id) || isNaN(parseInt($scope.assessment.vndb_vn_id))) {
+						toastService.pop("No VNDB ID identified");
 						console.log("No VNDB ID identified");
 					}
 					// if there's change in vote
 					if($scope.assessment.score_all != $scope.assessment_origin.score_all && $scope.assessment.vndb_vn_id ) {
+						toastService.pop("Saving mark to VNDB vote...");
 						// Update VNDB VN vote
 						$http({
 							method: 'POST',
@@ -479,13 +486,16 @@
 								vote: $scope.assessment.score_all,
 							},
 						}).then(function successCallback(response) {
+							toastService.pop("VNDB vote successfully saved");
 							console.log("VOTE OK", response);
 						}, function errorCallback(response) {
+							toastService.pop("Error! Something is wrong with VNDB vote");
 							console.log("VOTE ERROR", response);
 						});
 					}
 					// if there is change in status
 					if($scope.assessment.status != $scope.assessment_origin.status) {
+						toastService.pop("Saving status to VNDB status");
 						// Update VNDB VN status
 						var status = null;
 						if($scope.assessment.status == 'finished') {
@@ -511,8 +521,10 @@
 									status: status,
 								},
 							}).then(function successCallback(response) {
+								toastService.pop("VNDB status successfully saved");
 								console.log("STATUS OK", response);
 							}, function errorCallback(response) {
+								toastService.pop("Error! Something is wrong with VNDB status");
 								console.log("STATUS ERROR", response);
 							});
 						}
