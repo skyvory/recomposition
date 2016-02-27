@@ -57,9 +57,9 @@
 				</md-card>
 			</div>
 			<div flex>
-				<form name="characterForm" ng-submit="$event.preventDefault()">
 				<div flex layout="row" layout-wrap>
 					<md-card ng-repeat="chara in characters" flex-gt-sm="40" flex-gt-md="30" flex-gt-lg="30" layout-wrap>
+						<form name="characterForm" ng-submit="">
 						<md-card-title>
 							<md-card-title-text>
 								<span class="md-headline">{{chara.yobikata}}</span>
@@ -136,12 +136,12 @@
 							</div>
 						</div>
 						<md-card-actions layout="row" layout-align="end center">
-							<md-button ng-click="saveCharacter(chara)">save</md-button>
+							<md-button type="submit" ng-click="saveCharacter(chara)">save</md-button>
 							<md-button ng-click="deleteCharacter($event, chara)">delete</md-button>
 						</md-card-actions>
 					</md-card>
+					</form>
 				</div>
-				</form>
 			</div>
 		</div>
 		<md-button ng-click="newCharacter($event)" class="md-fab md-primary" aria-label="new character also" style="position:fixed; right:6px; bottom:6px;">
