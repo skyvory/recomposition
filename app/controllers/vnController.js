@@ -875,7 +875,10 @@
 
 			$scope.replaceValue = function(event, origin_value, new_value) {
 				if(event.which === 13) {
-					this.chara.kanji = new_value;
+					if(origin_value != new_value) {
+						event.preventDefault();
+						this.chara.kanji = new_value;
+					}
 				}
 			}
 		})
