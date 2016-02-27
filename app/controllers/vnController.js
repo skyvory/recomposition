@@ -872,6 +872,12 @@
 					return true;
 				}
 			}
+
+			$scope.replaceValue = function(event, origin_value, new_value) {
+				if(event.which === 13) {
+					this.chara.kanji = new_value;
+				}
+			}
 		})
 		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval, $mdToast) {
 			

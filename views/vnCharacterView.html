@@ -91,7 +91,10 @@
 									</md-input-container>
 									<md-input-container>
 										<label>paste</label>
-										<input type="text" ng-model="chara.paste_kanji">
+										<input type="text" ng-model="chara.paste_kanji" ng-keypress="replaceValue($event, chara.kanji, chara.paste_kanji)">
+										<md-tooltip md-direction="right">
+										          Enter to Inject
+									        </md-tooltip>
 									</md-input-container>
 								</div>
 								<md-input-container>
