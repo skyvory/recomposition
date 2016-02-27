@@ -44,7 +44,7 @@ recompositionApp.directive('contenteditable', function() {
 	};
 });
 
-recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$mdDateLocaleProvider', 'moment', function($stateProvider, $urlRouterProvider, $authProvider, $mdDateLocaleProvider, moment) {
+recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider', '$mdDateLocaleProvider', 'moment', '$mdThemingProvider', function($stateProvider, $urlRouterProvider, $authProvider, $mdDateLocaleProvider, moment, $mdThemingProvider) {
 	// satellizer configuration that specifies which api route the jwt should be retrieved from
 	$authProvider.loginUrl = 'http://localhost/record/public/api/authenticate';
 
@@ -195,6 +195,8 @@ recompositionApp.config(['$stateProvider', '$urlRouterProvider', '$authProvider'
 	$mdDateLocaleProvider.formatDate = function(date) {
 		return moment(date).format('YYYY-MM-DD');
 	}
+
+	$mdThemingProvider.theme("success-toast");
 }]);
 
 recompositionApp.controller('MainController', function($scope) {

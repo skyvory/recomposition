@@ -494,7 +494,7 @@
 						});
 					}
 					// if there is change in status
-					if($scope.assessment.status != $scope.assessment_origin.status) {
+					if($scope.assessment.status != $scope.assessment_origin.status && $scope.assessment.vndb_vn_id) {
 						toastService.pop("Saving status to VNDB status");
 						// Update VNDB VN status
 						var status = null;
