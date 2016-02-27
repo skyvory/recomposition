@@ -58,6 +58,9 @@
 	<script src="app/services/lineamentService.js"></script>
 	<script src="app/services/noteService.js"></script>
 
+	<!-- directive scripts -->
+	<script src="app/directives/commonDirective.js"></script>
+
 	<script type="text/javascript">
 		// angular
 		// 	.module('recompositionApp', ['ngMaterial', 'vn'])
