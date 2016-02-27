@@ -863,12 +863,13 @@
 				window.onresize = null;
 			});
 
-			$scope.compareName = function(old_name, new_name) {
+			$scope.isNameMatch = function(old_name, new_name) {
 				if(old_name && new_name) {
-					return old_name.replace(/ |　/g, '') == new_name.replace(/ |　/g, '') ? "OK" : "";
+					return old_name.replace(/ |　/g, '') == new_name.replace(/ |　/g, '') ? true : false;
 				}
 				else {
-					return "";
+					// empty comparison, return true purposely
+					return true;
 				}
 			}
 		})
