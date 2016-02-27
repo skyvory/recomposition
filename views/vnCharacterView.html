@@ -84,10 +84,19 @@
 								</div>
 							</div>
 							<div flex="70" style="background-color:#eff;">
-								<md-input-container>
-									<label>kanji</label>
-									<input type="text" ng-model="chara.kanji">
-								</md-input-container>
+								<div layout="row">
+									<md-input-container>
+										<label>kanji</label>
+										<input type="text" ng-model="chara.kanji">
+									</md-input-container>
+									<md-input-container>
+										<label>paste</label>
+										<input type="text" ng-model="chara.paste_kanji">
+									</md-input-container>
+									<span>
+										{{compareName(chara.kanji, chara.paste_kanji)}}
+									</span>
+								</div>
 								<md-input-container>
 									<label>yobikata</label>
 									<input type="text" ng-model="chara.yobikata">

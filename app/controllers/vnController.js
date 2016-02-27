@@ -862,6 +862,15 @@
 			$scope.$on('$destroy', function() {
 				window.onresize = null;
 			});
+
+			$scope.compareName = function(old_name, new_name) {
+				if(old_name && new_name) {
+					return old_name.replace(/ |　/g, '') == new_name.replace(/ |　/g, '') ? "OK" : "";
+				}
+				else {
+					return "";
+				}
+			}
 		})
 		.controller('VnNoteController', function($scope, $stateParams, Vn, Character, Lineament, Note, $interval, $mdToast) {
 			
