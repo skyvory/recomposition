@@ -617,7 +617,7 @@
 						// chara processing
 						if(characters) {
 							for(var i in characters) {
-								if(characters[i].gender == "f") {
+								if(characters[i].gender == "f" || characters[i].gender == "b") {
 									console.log(i);
 									// $scope.vndb.characters.push({
 										// kanji: characters[i].original,
