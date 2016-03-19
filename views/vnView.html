@@ -65,7 +65,7 @@
 		<table md-data-table class="md-primary" md-row-select="selected" md-progress="deferred" style="background-color: transparent;">
 			<thead md-order="query.order" md-trigger="onorderchange">
 				<tr>
-					<th order-by="developer_id" name="Dev" unit=""></th>
+					<th order-by="id" name="ID" unit=""></th>
 					<th order-by="title_jp" name="Title" unit="j"></th>
 					<th order-by="created_at" name="Created" unit=""></th>
 					<th name="Predictive Eye"></th>
@@ -74,7 +74,7 @@
 			</thead>
 			<tbody>
 				<tr md-disable-select="v.id == 'none'" ng-repeat="v in vns.data | orderBy: query.order">
-					<td>{{v.developer_id}}</td>
+					<td>{{v.id}}</td>
 					<td ng-show="v.title_jp">{{v.title_jp}}</td>
 					<td ng-hide="v.title_jp">{{v.title_en}}</td>
 					<td>{{v.created_at}}</td>
