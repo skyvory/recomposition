@@ -834,9 +834,6 @@
 					new_char.vn_id = $stateParams.id;
 					new_char.$save(function(response) {
 						$scope.characters = $scope.characters.concat(response);
-						setTimeout(function() {
-							window.scrollTo(0, document.body.scrollHeight);
-						}, 60);
 						toastService.pop("New character " + response.kanji + " added!");
 					}, function(error) {
 						toastService.pop("ERROR: " + error);
