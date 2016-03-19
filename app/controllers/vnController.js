@@ -791,6 +791,9 @@
 				// 	return obj.id == parseInt(chara.link);
 				// });
 				switch(property) {
+					case 'id':
+						$scope.characters[target_index].vndb_character_id = chara.id;
+						break;
 					case 'kanji':
 						$scope.characters[target_index].kanji = chara.original;
 						break;
