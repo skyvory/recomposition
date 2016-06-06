@@ -47,7 +47,7 @@
 			$scope.selected = [];
 			$scope.query = {
 				filter: '',
-				order: '-created_at',
+				order: '-id',
 				limit: 10,
 				page: 1
 			};
