@@ -448,7 +448,7 @@
 			$scope.getVn($stateParams.id);
 			$scope.saveAssessment = function() {
 				console.log(toastService);
-				toastService.pop("Saving...");
+				// toastService.pop("Saving...");
 				if($scope.date_start_switch) {
 					$scope.assessment.date_start = $scope.date_start_local;
 				}
@@ -474,7 +474,7 @@
 					}
 					// if there's change in vote
 					if($scope.assessment.score_all != $scope.assessment_origin.score_all && $scope.assessment.vndb_vn_id ) {
-						toastService.pop("Saving mark to VNDB vote...");
+						// toastService.pop("Saving mark to VNDB vote...");
 						// Update VNDB VN vote
 						$http({
 							method: 'POST',
@@ -495,7 +495,7 @@
 					}
 					// if there is change in status
 					if($scope.assessment.status != $scope.assessment_origin.status && $scope.assessment.vndb_vn_id) {
-						toastService.pop("Saving status to VNDB status");
+						// toastService.pop("Saving status to VNDB status");
 						// Update VNDB VN status
 						var status = null;
 						if($scope.assessment.status == 'finished') {
@@ -617,7 +617,7 @@
 						// chara processing
 						if(characters) {
 							for(var i in characters) {
-								if(characters[i].gender == "f") {
+								if(characters[i].gender == "f" || characters[i].gender == "b") {
 									console.log(i);
 									// $scope.vndb.characters.push({
 										// kanji: characters[i].original,
@@ -650,7 +650,7 @@
 				$scope.vndb.characters.splice(index, 1);
 			}
 			$scope.saveVndbCharacter = function(chara, callback) {
-				toastService.pop("Saving " + chara.original + " ...");
+				// toastService.pop("Saving " + chara.original + " ...");
 				console.log(chara);
 				var character = new Character();
 				character.vn_id = $stateParams.id;
@@ -750,7 +750,7 @@
 					Lineament.save(lineament, function(response) {
 						var index = $scope.characters.indexOf(chara);
 						$scope.characters[index].lineament_id = response.id;
-						toastService.pop("Mark for " + chara.kanji + " updated!");
+						// toastService.pop("Mark for " + chara.kanji + " updated!");
 					}, function(error) {
 						toastService.pop("ERROR: " + error);
 						console.log(error);
