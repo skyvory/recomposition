@@ -112,6 +112,15 @@
 			<md-radio-button class="md-primary" value="a">A</md-radio-button>
 			<md-radio-button value="s">S</md-radio-button>
 		</md-radio-group>
+		<span>Comedy</span>
+		<md-radio-group ng-model="assessment.score_comedy" layout="row">
+			<md-radio-button class="md-primary" value="e">E</md-radio-button>
+			<md-radio-button class="md-primary" value="d">D</md-radio-button>
+			<md-radio-button class="md-primary" value="c">C</md-radio-button>
+			<md-radio-button class="md-primary" value="b">B</md-radio-button>
+			<md-radio-button class="md-primary" value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group>
 		<span>Graphic</span>
 		<md-radio-group ng-model="assessment.score_graphic" layout="row">
 			<md-radio-button class="md-primary" value="e">E</md-radio-button>
@@ -129,9 +138,25 @@
 			</md-slider>
 			<span>{{assessment.score_all}}</span>
 		</div>
-		<md-switch ng-model="assessment.archive_savedata" ng-true-value=1 ng-false-value=0 aria-label="save data switch" class="md-primary">
-			Save Data
-		</md-switch>
+		<md-input-container flex>
+			<label>Savable</label>
+			<md-select ng-model="assessment.savable">
+				<md-option value="unknown">
+					Unknown
+				</md-option>
+				<md-option value="yes">
+					Savable
+				</md-option>
+				<md-option value="no">
+					No save
+				</md-option>
+			</md-select>
+		</md-input-container>
+		<md-input-container flex>
+			<md-switch ng-model="assessment.archive_savedata" ng-true-value=1 ng-false-value=0 aria-label="save data switch" class="md-primary">
+				Save Data
+			</md-switch>
+		</md-input-container>
 
 		<md-button ng-click="scrollToTop();" class="md-raised md-warn" aria-label="to top" style="position:fixed; right:20px; bottom:10px;">
 			<md-icon md-svg-src="bower_components/material-design-icons/navigation/svg/production/ic_arrow_drop_up_48px.svg"></md-icon>
