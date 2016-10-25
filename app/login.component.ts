@@ -4,8 +4,9 @@ import { Http, Headers } from '@angular/http';
 import { contentHeaders } from './common/headers';
 
 @Component({
-	selector: 'my-login',
-	templateUrl: 'recomposition/app/login.component.html',
+	moduleId: module.id,
+	selector: 'login-selector',
+	templateUrl: 'app/login.component.html',
 })
 
 export class LoginComponent implements OnInit {
