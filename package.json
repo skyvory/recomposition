@@ -7,14 +7,7 @@
 		"postinstall": "typings install",
 		"tsc": "tsc",
 		"tsc:w": "tsc -w",
-		"typings": "typings",
-		"docker-build": "docker build -t ng2-quickstart .",
-		"docker": "npm run docker-build && docker run -it --rm -p 3000:3000 -p 3001:3001 ng2-quickstart",
-		"pree2e": "npm run webdriver:update",
-		"e2e": "tsc && concurrently \"http-server\" \"protractor protractor.config.js\"",
-		"lint": "tslint ./app/**/*.ts -t verbose",
-		"test": "tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
-		"webdriver:update": "webdriver-manager update"
+		"typings": "typings"
 	},
 	"keywords": [],
 	"author": "Skyvory",
@@ -44,10 +37,9 @@
 		"angular2-jwt": "^0.1.18"
 	},
 	"devDependencies": {
-		"@types/core-js": "^0.9.34",
-		"@types/node": "^6.0.45",
 		"concurrently": "^3.0.0",
 		"lite-server": "^2.2.2",
-		"typescript": "^2.0.3"
+		"typescript": "^2.0.3",
+		"typings":"^1.4.0"
 	}
 }
