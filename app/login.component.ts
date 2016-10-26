@@ -1,36 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Headers } from '@angular/http';
-import { contentHeaders } from './common/headers';
+
+import { AuthenticationService } from './authentication.service';
+
+
+
+// import { Http, Headers } from '@angular/http';
+// import { contentHeaders } from './common/headers';
 
 @Component({
 	moduleId: module.id,
 	selector: 'login-selector',
-	templateUrl: 'app/login.component.html',
+	templateUrl: './login.component.html',
+	providers: [AuthenticationService]
 })
 
 export class LoginComponent implements OnInit {
-	constructor(public router: Router, public http: Http) {}
-	
-	login(event:any, username:any, password:any) {
-		event.preventDefault();
-		let body = JSON.stringify({ username, password });
-		this.http.post('http://localhost/record/public/api/authenticate', body, { headers: contentHeaders })
-			.subscribe(response => {
-				localStorage.setItem('id_token', response.json().token);
-				this.router.navigate(['/home']);
-			}, error => {
-				console.log("ERROR", error.text());
-			});
+	constructor(
+		private router: Router,
+		private authenticationService: AuthenticationService
+	) {}
+
+	ngOnInit() {
+		this.authenticationService.logout();
 	}
 
-	signup(event:any) {
-		// event.preventDefault();
-		// this.router.navigate(['/signup']);
+	login(event:any, username:any, password:any) {
+		event.preventDefault();
+		this.authenticationService.login(username, password)
+			.subscribe(result => {
+				if(result === true) {
+					this.router.navigate(['/home']);
+				}
+				else {
+					console.log("ERROR LOGIN");
+				}
+			});
 	}
 	
+	// login(event:any, username:any, password:any) {
+	// 	event.preventDefault();
+	// 	let body = JSON.stringify({ username, password });
+	// 	this.http.post('http://localhost/record/public/api/authenticate', body, { headers: contentHeaders })
+	// 		.subscribe(response => {
+	// 			localStorage.setItem('id_token', response.json().token);
+	// 			this.router.navigate(['/home']);
+	// 		}, error => {
+	// 			console.log("ERROR", error.text());
+	// 		});
+	// }
+
+	// signup(event:any) {
+	// 	// event.preventDefault();
+	// 	// this.router.navigate(['/signup']);
+	// }
+	
 	title = "Login pose";
-	ngOnInit() {
-		console.log("no login yet");
-	}
 }
