@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 		// if(tokenNotExpired()) {
 			// return true;
 		// }
-		if(localStorage.getItem('currentUser')) {
+		if(localStorage.getItem('microflation_token')) {
 			return true;
 		}
 
