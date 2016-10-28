@@ -10,8 +10,8 @@ export class AuthenticationService {
 	public token: string;
 
 	constructor(private http: Http) {
-		var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-		this.token = currentUser && currentUser.token;
+		var currentUser = localStorage.getItem('microflation_token');
+		this.token = currentUser;
 	}
 
 	// private headers = new Headers({'Content-Type': 'application/json'});
@@ -31,7 +31,7 @@ export class AuthenticationService {
 				if(token) {
 					this.token = token;
 
-					localStorage.setItem('currentUser', JSON.stringify({ username: username, token: token }));
+					localStorage.setItem('microflation_token', token);
 
 					return true;
 				} else {
@@ -42,6 +42,6 @@ export class AuthenticationService {
 
 	logout(): void {
 		this.token = null;
-		localStorage.removeItem('currentUser');
+		localStorage.removeItem('microflation_token');
 	}
 }
