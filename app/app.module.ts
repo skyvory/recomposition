@@ -40,10 +40,10 @@ import { provideAuth } from 'angular2-jwt';
 		AuthenticationService,
 		VnService,
 		// DeveloperService,
-		// provideAuth({
-		// 	tokenName: "recomposition_token",
-		// 	noJwtError: false,
-		// }),
+		provideAuth({
+			tokenName: "recomposition_token",
+			noJwtError: false,
+		}),
 	],
 	bootstrap: [ AppComponent ]
 })

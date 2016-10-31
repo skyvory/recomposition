@@ -1,7 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-// import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 import { HomeComponent } from './home.component';
 import { VnComponent } from './vn.component';
@@ -16,7 +16,7 @@ const appRoutes: Routes = [
 	{
 		path: 'home',
 		component: HomeComponent,
-		// canActivate: [AuthGuard],
+		canActivate: [AuthGuard],
 	},
 	{
 		path: 'login',
@@ -25,7 +25,7 @@ const appRoutes: Routes = [
 	{
 		path: 'vn',
 		component: VnComponent,
-		// canActivate: [AuthGuard],
+		canActivate: [AuthGuard],
 	},
 	{
 		path: '**',
