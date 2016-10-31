@@ -10,7 +10,7 @@ export class AuthenticationService {
 	public token: string;
 
 	constructor(private http: Http) {
-		var currentUser = localStorage.getItem('microflation_token');
+		var currentUser = localStorage.getItem('recomposition_token');
 		this.token = currentUser;
 	}
 
@@ -31,7 +31,7 @@ export class AuthenticationService {
 				if(token) {
 					this.token = token;
 
-					localStorage.setItem('microflation_token', token);
+					localStorage.setItem('recomposition_token', token);
 
 					return true;
 				} else {
@@ -42,6 +42,6 @@ export class AuthenticationService {
 
 	logout(): void {
 		this.token = null;
-		localStorage.removeItem('microflation_token');
+		localStorage.removeItem('recomposition_token');
 	}
 }
