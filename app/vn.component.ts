@@ -13,10 +13,7 @@ export class Vn {
 @Component({
 	moduleId: module.id,
 	selector: 'vn-selector',
-	template: `
-		<p>{{vn.title_en}}</p>
-		<h2>Tittle en supposed</h2>
-	`
+	templateUrl: 'vn.component.html'
 })
 
 export class VnComponent implements OnInit{
@@ -33,8 +30,8 @@ export class VnComponent implements OnInit{
 
 	vns: any[] = [];
 	ngOnInit() {
-		this.vnService.getVns().subscribe(data => {
-			// this.vns = vns;
+		this.vnService.getVns().subscribe(response => {
+			this.vns = response.data;
 		});
 
 		// this.authHttp.get('http://localhost/record/public/api/vn')
