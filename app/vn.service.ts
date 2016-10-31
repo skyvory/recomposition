@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+// import 'rxjs/add/operator/throw';
 
 import { contentHeaders } from './common/headers';
 // import { AuthenticationService } from './authentication.service';
@@ -19,8 +21,18 @@ export class VnService {
 	getVns(): Observable<any> {
 		return this.authHttp.get('http://localhost/record/public/api/vn', { headers: contentHeaders })
 			.map(
-				data => data.json()
-		);
+				(response:Response) => {
+					// console.log("RAW", response);
+					// console.log("JSON", response.json());
+					// data => data.json()
+					return response.json();
+				},
+				err => console.warn(err)
+			)
+			.catch(
+				(error:any) => Observable.throw(error.json().error || 'Server error')
+			)
+		;
 
 		// return this.authHttp.get('http://localhost/record/public/api/vn', { headers: contentHeaders })
 		// 	.map((response:Response) => {
