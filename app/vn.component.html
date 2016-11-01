@@ -1,7 +1,70 @@
-<h2>VN</h2>
+<md-toolbar>
+	<span>
+		<a routerLink="/home" routerLinkActive="active">Home</a>
+	</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<span>
+		<strong>
+		<a routerLink="/vn" routerLinkActive="active">Fin</a>
+		</strong>
+	</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<md-input placeholder="search" align="end">
+	</md-input>
+</md-toolbar>
 
-<ul>
-	<li *ngFor="let vn of vns">
-		<span>{{vn.title_jp}}</span>
-	</li>
-</ul>
+
+
+
+<button md-button>FLAT</button>
+<button md-fab>
+    <md-icon class="md-24">add</md-icon>
+</button>
+
+
+<table>
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Title</th>
+			<th>Released</th>
+			<th>Predictive Eye</th>
+			<th>One Seal</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let vn of vns">
+			<td>{{vn.id}}</td>
+			<td>{{vn.title_jp}}</td>
+			<td>{{vn.date_release}}</td>
+			<td>
+				<span *ngIf="vn.node =='vn'">
+					<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
+					<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
+					<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
+					<span>-</span>
+					<span>{{vn.node || "x"}}</span>
+					<span>{{vn.score_story || "x"}}</span>
+					<span>{{vn.score_naki || "x"}}</span>
+					<span>{{vn.score_nuki || "x"}}</span>
+					<span>{{vn.score_graphic || "x"}}</span>
+					<span>{{vn.score_all || "x"}}</span>
+				</span>
+				<span *ngIf="vn.node != 'vn'">
+					<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
+					<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
+					<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
+					<span>-</span>
+					<span>{{vn.node || "x"}}</span>
+					<span>{{vn.score_nuki || "x"}}</span>
+					<span>{{vn.score_all || "x"}}</span>
+				</span>
+			</td>
+			<td>
+				<button md-button href="assessment">Composition</button>
+				<button md-button>Character</button>
+				<button md-button>Edit</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

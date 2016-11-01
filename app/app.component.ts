@@ -6,11 +6,18 @@ import { Component } from '@angular/core';
 @Component({
 	selector: 'my-app',
 	template: `
-		<nav>
-		<a routerLink="/home" routerLinkActive="active">Home</a>
-		<a routerLink="/vn" routerLinkActive="active">Fin</a>
-		</nav>
+	<md-sidenav-layout>
+	    <md-sidenav #start (open)="closeStartButton.focus()">
+	      Start Sidenav.
+	      <br>
+	      <button md-button #closeStartButton (click)="start.close()">Close</button>
+	    </md-sidenav>
+	   
+
+	    	<button md-button (click)="start.open()">Menu</button>
+
 		<router-outlet></router-outlet>
+	  </md-sidenav-layout>
 	`,
 	// directives: [ROUTER_DIRECTIVES]
 })
