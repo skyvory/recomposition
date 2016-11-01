@@ -20,6 +20,7 @@ import './rxjs-extensions';
 import { AUTH_PROVIDERS } from 'angular2-jwt';
 // for angular2-jwt configuration
 import { provideAuth } from 'angular2-jwt';
+import { MaterialModule } from '@angular/material';
 
 @NgModule({
 	imports: [
@@ -27,6 +28,7 @@ import { provideAuth } from 'angular2-jwt';
 		FormsModule,
 		HttpModule,
 		routing,
+		MaterialModule.forRoot()
 	],
 	declarations: [
 		AppComponent,
