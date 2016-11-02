@@ -24,9 +24,13 @@ export class VnService {
 				},
 				err => console.warn(err)
 			)
-			.catch(
-				(error:any) => Observable.throw(error.json().error || 'Server error')
-			)
+			.catch(this.handleError)
 		;
+	}
+
+	private handleError(error: any) {
+		console.error("Error occurred", error);
+		console.warn("this error is handled in private handleError");
+		return Observable.throw(error.json().error || error);
 	}
 }
