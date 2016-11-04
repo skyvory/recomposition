@@ -8,12 +8,14 @@ import { routing } from './app.routing';
 
 import { AuthenticationService } from './authentication.service';
 import { VnService } from './vn.service';
-// import { DeveloperService } from './developer.service';
+import { DeveloperService } from './developer.service';
+import { VndbService } from './vndb.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 import { HomeComponent } from './home.component';
 import { VnComponent } from './vn.component';
+import { VnNewComponent } from './vn-new.component';
 
 import './rxjs-extensions';
 
@@ -35,13 +37,15 @@ import { MaterialModule } from '@angular/material';
 		LoginComponent,
 		HomeComponent,
 		VnComponent,
+		VnNewComponent
 	],
 	providers: [
 		AUTH_PROVIDERS,
 		AuthGuard,
 		AuthenticationService,
 		VnService,
-		// DeveloperService,
+		DeveloperService,
+		VndbService,
 		provideAuth({
 			tokenName: "recomposition_token",
 			noJwtError: false,

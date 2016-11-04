@@ -22,7 +22,23 @@ export class VnService {
 				(response:Response) => {
 					return response.json();
 				},
-				err => console.warn(err)
+				err => console.warn("map err", err)
+			)
+			.catch(this.handleError)
+		;
+	}
+
+	createVn(vn:any): Observable<any> {
+		let data = JSON.stringify({
+			title_jp: vn.title_jp,
+			title_en: vn.title_en,
+		});
+		return this.authHttp.post('http://localhost/record/public/api/vn', data, {headers: contentHeaders})
+			.map(
+				(response:Response) => {
+					return response.json();
+				},
+				err => console.warn("map err", err)
 			)
 			.catch(this.handleError)
 		;
