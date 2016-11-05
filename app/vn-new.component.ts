@@ -64,22 +64,73 @@ export class VnNewComponent implements OnInit{
 			this.vn.image = vndb_vn.image;
 		});
 
-		// this.vndbService.getVndbRelease(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
-		// 	console.log(response);
-		// 	let vndb_release = response.data.data.items['0'];
-		// 	if(response.data.data.items) {
-		// 		let toBreak = false;
-		// 		for(let i in response.data.data.items) {
-		// 			if(response.data.data.items[i].producers) {
-		// 				for(let j in response.data.data.items[j].producers) {
-		// 					if(response.data.data.items[i].producers[j].developer == true) {
-		// 						let check = checkDeveloper(response.data)
-		// 						>> check $q equivalent in angular 2
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// })
+		this.vndbService.getVndbRelease(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
+			console.log(response);
+			let vndb_release = response.data.items['0'];
+			if(response.data.items) {
+				let toBreak = false;
+				for(let i in response.data.items) {
+					if(response.data.items[i].producers) {
+						for(let j in response.data.items[i].producers) {
+							if(response.data.items[i].producers[j].developer == true) {
+								let check = this.checkDeveloper(response.data.items[i].producers[j].name);
+								check.then(dev => {
+									this.vn.developer_id = dev.id;
+									console.log("DEV", dev);
+								},
+								reason => {
+									console.log("REASON", reason);
+									let reg = this.createDeveloper(response.data.items[i].producers[j].name, response.data.items[i].producers[j].original);
+									reg.then(dev => {
+										console.log("successfully create developer", dev);
+										this.vn.developer_id = dev.id;
+									},
+									fail => {
+										console.log("fail in promise", fail);
+									});
+								});
+
+								toBreak = true;
+							}
+
+							if(toBreak == true) {
+								break;
+							}
+						}
+					}
+					if(toBreak == true) {
+						break;
+					}
+				}
+			}
+		},
+		fail => {
+			// fail get notification
+		});
+	}
+
+	checkDeveloper(name_en:string):Promise<any> {
+		return new Promise<string>((resolve, reject) => {
+			this.developerService.searchDeveloper(name_en).subscribe(response => {
+				if(name_en == response.name_en) {
+					resolve(response);
+				}
+				else {
+					reject('no match found');
+				}
+			});
+		});
+	}
+
+	createDeveloper(name_en:string, name_jp:string):Promise<any> {
+		return new Promise<string>((resolve, reject) => {
+			this.developerService.createDeveloper(name_en, name_jp).subscribe(response => {
+				this.developers.push(response);
+				resolve(response);
+			},
+			err => {
+				reject(err);
+			});
+		})
 	}
 }
