@@ -60,6 +60,7 @@ export class VnNewComponent implements OnInit{
 			let vndb_vn = response.data.items['0'];
 			this.vn.title_jp = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
 			this.vn.title_en = vndb_vn.title ? vndb_vn.title : "n/a";
+			this.vn.hashtag = vndb_vn.aliases;
 			this.vn.date_release = vndb_vn.released;
 			this.vn.image = vndb_vn.image;
 		});
