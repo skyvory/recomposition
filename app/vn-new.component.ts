@@ -24,8 +24,18 @@ export class VnNewComponent implements OnInit{
 	developers: any[] = [];
 
 	ngOnInit() {
+		// this.developerService.getDevelopers().subscribe(response => {
+		// 	this.developers = response.data;
+		// });
+		this.loadDevelopers();
+	}
+
+	loadDevelopers():void {
 		this.developerService.getDevelopers().subscribe(response => {
-			this.developers = response.data;
+			this.developers = response.data.map(repo => {
+				repo.value = repo.name_en ? repo.name_en.toLowerCase() : repo.name_jp;
+				return repo;
+			});
 		});
 	}
 
@@ -41,7 +51,7 @@ export class VnNewComponent implements OnInit{
 
 	// xxx:any = '';
 	xxx():any {
-		return JSON.stringify(this.vn);
+		return JSON.stringify(this.developers);
 	}
 
 	createVn():void {
