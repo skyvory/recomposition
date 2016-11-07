@@ -24,7 +24,6 @@ VN>>> {{xxx()}}
 <md-input placeholder="title en" [(ngModel)]="vn.title_en"></md-input> <br />
 <md-input placeholder="hashtag" [(ngModel)]="vn.hashtag"></md-input> <br />
 {{vn.developer_id}}
-<md-input placeholder="hashtag" [(ngModel)]="vn.developer_id"></md-input>
 <select [(ngModel)]="vn.developer_id" (ngModelChange)="vn.developer_id = $event">
 	<option *ngFor="let developer of developers" [ngValue]="developer.id">{{developer.name_en || "-"}} | {{developer.name_jp || "-"}}</option>
 </select>
