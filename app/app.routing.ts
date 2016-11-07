@@ -5,7 +5,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 import { HomeComponent } from './home.component';
 import { VnComponent } from './vn.component';
-import { VnNewComponent } from './vn-new.component';
+import { VnFillComponent } from './vn-fill.component';
 
 const appRoutes: Routes = [
 	// { path: '', component: HomeComponent, terminal: true },
@@ -30,7 +30,7 @@ const appRoutes: Routes = [
 	},
 	{
 		path: 'vn/new',
-		component: VnNewComponent,
+		component: VnFillComponent,
 		canActivate: [AuthGuard],
 	},
 	{

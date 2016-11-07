@@ -15,7 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 import { HomeComponent } from './home.component';
 import { VnComponent } from './vn.component';
-import { VnNewComponent } from './vn-new.component';
+import { VnFillComponent } from './vn-fill.component';
 
 import './rxjs-extensions';
 
@@ -37,7 +37,7 @@ import { MaterialModule } from '@angular/material';
 		LoginComponent,
 		HomeComponent,
 		VnComponent,
-		VnNewComponent
+		VnFillComponent
 	],
 	providers: [
 		AUTH_PROVIDERS,

@@ -9,10 +9,10 @@ import { VndbService } from './vndb.service';
 @Component({
 	moduleId: module.id,
 	selector: 'vn-new-selector',
-	templateUrl: 'vn-new.component.html'
+	templateUrl: 'vn-fill.component.html'
 })
 
-export class VnNewComponent implements OnInit{
+export class VnFillComponent implements OnInit{
 	constructor(
 		public router:Router,
 		public authHttp: AuthHttp,
@@ -50,8 +50,8 @@ export class VnNewComponent implements OnInit{
 	}
 
 	// xxx:any = '';
-	xxx():any {
-		return JSON.stringify(this.developers);
+	debugDump():any {
+		return JSON.stringify(this.router.url);
 	}
 
 	createVn():void {
