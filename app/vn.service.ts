@@ -32,6 +32,11 @@ export class VnService {
 		let data = JSON.stringify({
 			title_jp: vn.title_jp,
 			title_en: vn.title_en,
+			hashtag: vn.hashtag,
+			developer_id: vn.developer_id,
+			date_release: vn.date_release,
+			vndb_vn_id: vn.vndb_vn_id,
+			image: vn.image
 		});
 		return this.authHttp.post('http://localhost/record/public/api/vn', data, {headers: contentHeaders})
 			.map(

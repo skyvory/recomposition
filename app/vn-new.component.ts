@@ -44,7 +44,7 @@ export class VnNewComponent implements OnInit{
 		title_en: '',
 		hashtag: '',
 		developer_id: '',
-		release_date: '',
+		date_release: '',
 		vndb_vn_id: '',
 		image: ''
 	}
@@ -56,6 +56,7 @@ export class VnNewComponent implements OnInit{
 
 	createVn():void {
 		this.vnService.createVn(this.vn).subscribe(response => {
+			console.log("VN created successfully", response);
 			this.router.navigate(['/vn']);
 		});
 	}
