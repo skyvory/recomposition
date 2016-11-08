@@ -7,7 +7,13 @@ import { AuthHttp } from 'angular2-jwt';
 
 export class Vn {
 	id: number;
+	title_jp: string;
 	title_en: string;
+	hashtag: string;
+	developer_id: number;
+	date_release: string;
+	vndb_vn_id: number;
+	image: string;
 }
 
 @Component({
@@ -28,7 +34,7 @@ export class VnComponent implements OnInit{
 		title_en: 'Chaod Head',
 	};
 
-	vns: any[] = [];
+	vns: Vn[] = [];
 	ngOnInit() {
 		this.vnService.getVns().subscribe(response => {
 			this.vns = response.data;
