@@ -29,20 +29,10 @@ export class VnComponent implements OnInit{
 		public authHttp: AuthHttp
 	) {}
 
-	vn: any = {
-		id: 1,
-		title_en: 'Chaod Head',
-	};
-
 	vns: Vn[] = [];
 	ngOnInit() {
 		this.vnService.getVns().subscribe(response => {
 			this.vns = response.data;
 		});
-
-		// this.authHttp.get('http://localhost/record/public/api/vn')
-		// 	.subscribe(data => {
-		// 		console.log(data);
-		// 	});
 	}
 }
