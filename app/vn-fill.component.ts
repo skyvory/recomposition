@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { AuthHttp } from 'angular2-jwt';
 import { VnService } from './vn.service';
@@ -18,16 +20,30 @@ export class VnFillComponent implements OnInit{
 		public authHttp: AuthHttp,
 		private vnService: VnService,
 		private developerService: DeveloperService,
-		private vndbService: VndbService
+		private vndbService: VndbService,
+		private route: ActivatedRoute,
+		private location: Location
 	) {}
 
-	developers: any[] = [];
+	fillState:string = "";
+	developers:any[] = [];
 
 	ngOnInit() {
 		// this.developerService.getDevelopers().subscribe(response => {
 		// 	this.developers = response.data;
 		// });
 		this.loadDevelopers();
+		if(this.router.url === "/vn/new") {
+			this.fillState = "new";
+		}
+		else if(this.router.url.split('/')[1] === "vn" && this.router.url.split('/')[3] === "edit") {
+			this.fillState = "edit";
+			this.route.params.forEach((params: Params) => {
+				// convert the route parameter value to a number with the JavaScript (+) operator
+				let id = +params['id'];
+				this.loadVn(id);
+			});
+		}
 	}
 
 	loadDevelopers():void {
@@ -36,6 +52,13 @@ export class VnFillComponent implements OnInit{
 				repo.value = repo.name_en ? repo.name_en.toLowerCase() : repo.name_jp;
 				return repo;
 			});
+		});
+	}
+
+	loadVn(id:number):void {
+		this.vnService.getVn(id).subscribe(response => {
+			console.log(response);
+			this.vn = response;
 		});
 	}
 
@@ -49,14 +72,20 @@ export class VnFillComponent implements OnInit{
 		image: ''
 	}
 
-	// xxx:any = '';
 	debugDump():any {
-		return JSON.stringify(this.router.url);
+		return JSON.stringify(this.router.url.split('/'));
 	}
 
 	createVn():void {
 		this.vnService.createVn(this.vn).subscribe(response => {
 			console.log("VN created successfully", response);
+			this.router.navigate(['/vn']);
+		});
+	}
+
+	updateVn():void {
+		this.vnService.updateVn(this.vn).subscribe(response => {
+			console.log("VN updated successfully", response);
 			this.router.navigate(['/vn']);
 		});
 	}
@@ -144,5 +173,9 @@ export class VnFillComponent implements OnInit{
 				reject(err);
 			});
 		})
+	}
+
+	goBack():void {
+		this.location.back();
 	}
 }

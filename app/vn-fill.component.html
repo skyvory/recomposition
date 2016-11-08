@@ -17,6 +17,7 @@ Debug: {{debugDump()}}<br /><br />
 </md-toolbar>
 
 
+<button (click)="goBack()">Back</button>
 <md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id"></md-input>
 <button md-button (click)="retrieveVndbVn()">Load</button>
 <br />
@@ -31,7 +32,8 @@ Debug: {{debugDump()}}<br /><br />
 <br />
 <md-input placeholder="date release" type="date" [(ngModel)]="vn.date_release"></md-input> <br />
 <md-input placeholder="image url" [(ngModel)]="vn.image"></md-input> <br />
-<button md-button (click)="createVn()">Create</button>
+<button *ngIf="fillState == 'new'" md-button (click)="createVn()">Create</button>
+<button *ngIf="fillState == 'edit'" md-button (click)="updateVn()">Update</button>
 
 <br />
 <img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;">
