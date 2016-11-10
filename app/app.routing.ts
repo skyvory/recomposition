@@ -6,6 +6,7 @@ import { LoginComponent } from './login.component';
 import { HomeComponent } from './home.component';
 import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
+import { VnAssessmentComponent } from './vn-assessment.component';
 
 const appRoutes: Routes = [
 	// { path: '', component: HomeComponent, terminal: true },
@@ -31,6 +32,11 @@ const appRoutes: Routes = [
 	{
 		path: 'vn/new',
 		component: VnFillComponent,
+		canActivate: [AuthGuard],
+	},
+	{
+		path: 'vn/:id/assessment',
+		component: VnAssessmentComponent,
 		canActivate: [AuthGuard],
 	},
 	{
