@@ -93,34 +93,28 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		this.assessment.date_start = moment(this.assessment.date_start, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
 		this.assessment.date_end = moment(this.assessment.date_end, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
 
-		if(!this.assessment.id) {
-			this.assessmentService.createAssessment(this.assessment).subscribe(response => {
-				console.log("Assessment saved", response);
-			});
-		}
-		else {
-			this.assessmentService.updateAssessment(this.assessment).subscribe(response => {
-				console.log("VN update success", response);
-				if(localStorage.getItem('vndb_toggle') == "0") {
-					console.log("VNDB auto-update is off");
-					return;
-				}
-				else if(!localStorage.getItem('vndb_user') || !localStorage.getItem('vndb_pass')) {
-					console.log("VNDB credential is not set yet");
-					return;
-				}
-				if(isNaN(Number(this.vn.vndb_vn_id)) ||this.vn.vndb_vn_id !== parseInt(this.vn.vndb_vn_id) || isNaN(parseInt(this.vn.vndb_vn_id))) {
-					console.log("No VNDB ID identified");
-				}
+		
+		this.assessmentService.saveAssessment(this.assessment).subscribe(response => {
+			console.log("Assessment saved", response);
+			if(localStorage.getItem('vndb_toggle') == "0") {
+				console.log("VNDB auto-update is off");
+				return;
+			}
+			else if(!localStorage.getItem('vndb_user') || !localStorage.getItem('vndb_pass')) {
+				console.log("VNDB credential is not set yet");
+				return;
+			}
+			if(isNaN(Number(this.vn.vndb_vn_id)) ||this.vn.vndb_vn_id !== parseInt(this.vn.vndb_vn_id) || isNaN(parseInt(this.vn.vndb_vn_id))) {
+				console.log("No VNDB ID identified");
+			}
 
-				if(this.has_change.score_all && this.vn.vndb_vn_id) {
-					// update vndb
-				}
-				if(this.has_change.status && this.vn.vndb_vn_id) {
-					// update vndb
-				}
-			});
-		}
+			if(this.has_change.score_all && this.vn.vndb_vn_id) {
+				// update vndb
+			}
+			if(this.has_change.status && this.vn.vndb_vn_id) {
+				// update vndb
+			}
+		});
 	}
 
 

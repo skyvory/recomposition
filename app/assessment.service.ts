@@ -24,9 +24,9 @@ export class AssessmentService {
 		;
 	}
 
-	createAssessment(assessment:any):Observable<any> {
+	saveAssessment(assessment:any):Observable<any> {
 		let data = {
-			vn_id: assessment.vn_id,
+			vn_id: assessment.vn_id || null,
 			date_start: assessment.date_start || null,
 			date_end: assessment.date_end || null,
 			node: assessment.node || null,
@@ -40,40 +40,27 @@ export class AssessmentService {
 			savable: assessment.savable || null,
 			archive_savedata: assessment.archive_savedata
 		};
-		return this.authHttp.post('http://localhost/record/public/api/assessment', data, {headers: contentHeaders})
-			.map(
-				(response:Response) => {
-					return response.json();
-				}
-			)
-			.catch(this.handleError)
-		;
-	}
 
-	updateAssessment(assessment:any):Observable<any> {
-		let data = {
-			vn_id: assessment.vn_id,
-			date_start: assessment.date_start || null,
-			date_end: assessment.date_end || null,
-			node: assessment.node || null,
-			status: assessment.status || null,
-			score_story: assessment.score_story || null,
-			score_naki: assessment.score_naki || null,
-			score_nuki: assessment.score_nuki || null,
-			score_comedy: assessment.score_comedy || null,
-			score_graphic: assessment.score_graphic || null,
-			score_all: assessment.score_all || null,
-			savable: assessment.savable || null,
-			archive_savedata: assessment.archive_savedata
-		};
-		return this.authHttp.put(`http://localhost/record/public/api/assessment/${assessment.id}`, data, {headers: contentHeaders})
-			.map(
-				(response:Response) => {
-					return response.json();
-				}
-			)
-			.catch(this.handleError)
-		;
+		if(assessment.vn_id) {
+			return this.authHttp.put(`http://localhost/record/public/api/assessment/${assessment.id}`, data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.authHttp.post('http://localhost/record/public/api/assessment', data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
 	}
 
 	private handleError(error:any) {
