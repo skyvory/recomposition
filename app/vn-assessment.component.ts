@@ -70,14 +70,19 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		}
 	}
 
-//>>> to use with (ngModelChange)="onChange($event)"
 	has_change:any = {
 		score_all: false,
 		status: false
 	};
 
-
 	saveAssessment():void {
+		if(this.assessment.archive_savedata == true) {
+			this.assessment.archive_savedata = 1;
+		}
+		else if(this.assessment.archive_savedata == false) {
+			this.assessment.archive_savedata = 0;
+		}
+
 		if(!this.assessment.id) {
 			this.assessmentService.createAssessment(this.assessment).subscribe(response => {
 				console.log("Assessment saved", response);

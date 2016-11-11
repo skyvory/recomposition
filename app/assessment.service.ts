@@ -38,7 +38,7 @@ export class AssessmentService {
 			score_graphic: assessment.score_graphic || null,
 			score_all: assessment.score_all || null,
 			savable: assessment.savable || null,
-			archive_savedata: assessment.archive_savedata || null
+			archive_savedata: assessment.archive_savedata
 		};
 		return this.authHttp.post('http://localhost/record/public/api/assessment', data, {headers: contentHeaders})
 			.map(
@@ -64,7 +64,7 @@ export class AssessmentService {
 			score_graphic: assessment.score_graphic || null,
 			score_all: assessment.score_all || null,
 			savable: assessment.savable || null,
-			archive_savedata: assessment.archive_savedata || null
+			archive_savedata: assessment.archive_savedata
 		};
 		return this.authHttp.put(`http://localhost/record/public/api/assessment/${assessment.id}`, data, {headers: contentHeaders})
 			.map(
