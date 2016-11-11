@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck, KeyValueDiffers } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -11,18 +11,23 @@ import { VnService } from './vn.service';
 	templateUrl: 'vn-assessment.component.html'
 })
 
-export class VnAssessmentComponent implements OnInit {
+export class VnAssessmentComponent implements OnInit, DoCheck {
 	constructor(
 		public router: Router,
 		public route: ActivatedRoute,
 		public assessmentService: AssessmentService,
-		public vnService: VnService
-	) {}
+		public vnService: VnService,
+		private differs: KeyValueDiffers
+	) {
+		this.differ = differs.find({}).create(null);
+	}
+
+	differ: any;
 
 	assessment:any = [];
 
 	debugDump():any {
-		return JSON.stringify(this.assessment);
+		return JSON.stringify(this.has_change);
 	}
 
 	ngOnInit() {
@@ -51,11 +56,26 @@ export class VnAssessmentComponent implements OnInit {
 		});
 	}
 
+	ngDoCheck() {
+		let changes = this.differ.diff(this.assessment);
+		if(changes) {
+			changes.forEachChangedItem(obj => {
+				if(obj.key === "score_all") {
+					this.has_change.score_all = true;
+				}
+				if(obj.key === "status") {
+					this.has_change.status = true;
+				}
+			});
+		}
+	}
+
 //>>> to use with (ngModelChange)="onChange($event)"
 	has_change:any = {
 		score_all: false,
 		status: false
 	};
+
 
 	saveAssessment():void {
 		if(!this.assessment.id) {
