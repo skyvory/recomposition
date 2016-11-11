@@ -2,6 +2,8 @@ import { Component, OnInit, DoCheck, KeyValueDiffers } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 
+import * as moment from 'moment';
+
 import { AssessmentService } from './assessment.service';
 import { VnService } from './vn.service';
 
@@ -52,6 +54,9 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 			}
 			else {
 				this.assessment = response;
+				// this.assessment.date_start = moment.utc(response.date_start).toDate();
+				this.assessment.date_start = moment.utc(response.date_start, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss');
+				this.assessment.date_end = moment.utc(response.date_end, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss');
 			}
 		});
 	}
@@ -76,12 +81,17 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 	};
 
 	saveAssessment():void {
+		// format archive_savedata into writtable value
 		if(this.assessment.archive_savedata == true) {
 			this.assessment.archive_savedata = 1;
 		}
 		else if(this.assessment.archive_savedata == false) {
 			this.assessment.archive_savedata = 0;
 		}
+
+		// convert datetime to UTC
+		this.assessment.date_start = moment(this.assessment.date_start, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
+		this.assessment.date_end = moment(this.assessment.date_end, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
 
 		if(!this.assessment.id) {
 			this.assessmentService.createAssessment(this.assessment).subscribe(response => {
