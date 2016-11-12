@@ -20,8 +20,10 @@ Debug: {{debugDump()}}<br /><br />
 Custom Shortcut
 <button md-button>for copy {{vn.title_jp}}</button><br />
 
-<md-input placeholder="Date Start" [(ngModel)]="assessment.date_start"></md-input> <br /><br />
-<md-input placeholder="Date End" [(ngModel)]="assessment.date_end"></md-input> <br />
+{{has_change.date_start}}<input type="checkbox" [(ngModel)]="has_change.date_start">
+<md-input placeholder="Date Start" [(ngModel)]="assessment_local.date_start"></md-input> <br /><br />
+{{has_change.date_end}}<input type="checkbox" [(ngModel)]="has_change.date_end">
+<md-input placeholder="Date End" [(ngModel)]="assessment_local.date_end"></md-input> <br />
 {{assessment.node}}<select [(ngModel)]="assessment.node" (ngModelChange)="assessment.node = $event">
 	<option value="vn">VN</option>
 	<option value="h">H</option>

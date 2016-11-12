@@ -53,12 +53,14 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		this.assessmentService.getAssessment(vn_id).subscribe(response => {
 			if(!response.id) {
 				this.assessment.vn_id = vn_id;
+				this.assessment_local.date_start = moment().format('YYYY-MM-DD HH:mm:ss');
+				this.assessment_local.date_end = moment().format('YYYY-MM-DD HH:mm:ss');
 			}
 			else {
 				this.assessment = response;
 				// this.assessment.date_start = moment.utc(response.date_start).toDate();
-				this.assessment.date_start = moment.utc(response.date_start, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss');
-				this.assessment.date_end = moment.utc(response.date_end, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss');
+				this.assessment.date_start_local = response.date_start ? moment.utc(response.date_start, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
+				this.assessment.date_end_local = response.date__end ? moment.utc(response.date_end, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
 			}
 		});
 	}
@@ -79,7 +81,14 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 
 	has_change:any = {
 		score_all: false,
-		status: false
+		status: false,
+		date_start: false,
+		date_end: false
+	};
+
+	assessment_local:any = {
+		date_start: '',
+		date_end: ''
 	};
 
 	saveAssessment():void {
@@ -92,8 +101,12 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		}
 
 		// convert datetime to UTC
-		this.assessment.date_start = moment(this.assessment.date_start, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
-		this.assessment.date_end = moment(this.assessment.date_end, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
+		if(this.has_change.date_start) {
+			this.assessment.date_start = moment(this.assessment_local.date_start, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
+		}
+		if(this.has_change.date_end) {
+			this.assessment.date_end = moment(this.assessment_local.date_end, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
+		}
 
 		
 		this.assessmentService.saveAssessment(this.assessment).subscribe(response => {
@@ -101,7 +114,7 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 			if(!this.assessment.id) {
 				this.assessment.id = response.id;
 			}
-			
+
 			if(localStorage.getItem('vndb_toggle') == "0") {
 				console.log("VNDB auto-update is off");
 				return;
