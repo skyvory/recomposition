@@ -26,6 +26,7 @@ export class AssessmentService {
 
 	saveAssessment(assessment:any):Observable<any> {
 		let data = {
+			id: assessment.id,
 			vn_id: assessment.vn_id,
 			date_start: assessment.date_start,
 			date_end: assessment.date_end,
@@ -41,7 +42,7 @@ export class AssessmentService {
 			archive_savedata: assessment.archive_savedata
 		};
 
-		if(assessment.vn_id) {
+		if(assessment.id) {
 			return this.authHttp.put(`http://localhost/record/public/api/assessment/${assessment.id}`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
