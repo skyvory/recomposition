@@ -59,8 +59,8 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 			else {
 				this.assessment = response;
 				// this.assessment.date_start = moment.utc(response.date_start).toDate();
-				this.assessment.date_start_local = response.date_start ? moment.utc(response.date_start, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
-				this.assessment.date_end_local = response.date__end ? moment.utc(response.date_end, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
+				this.assessment_local.date_start = response.date_start ? moment.utc(response.date_start, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
+				this.assessment_local.date_end = response.date__end ? moment.utc(response.date_end, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
 			}
 		});
 	}
