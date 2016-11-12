@@ -156,5 +156,12 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		});
 	}
 
+	dateStartNow():void {
+		this.assessment_local.date_start = moment().format('YYYY-MM-DD HH:mm:ss');
+	}
+
+	dateEndNow():void {
+		this.assessment_local.date_end = moment().format('YYYY-MM-DD HH:mm:ss');
+	}
 
 }

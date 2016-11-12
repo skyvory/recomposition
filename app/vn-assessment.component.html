@@ -20,10 +20,16 @@ Debug: {{debugDump()}}<br /><br />
 Custom Shortcut
 <button md-button>for copy {{vn.title_jp}}</button><br />
 
+<h3 style="display:inline;">Date Start</h3><span *ngIf="assessment.date_start" style="display:inline;">&#x2713;</span>
 {{has_change.date_start}}<input type="checkbox" [(ngModel)]="has_change.date_start">
-<md-input placeholder="Date Start" [(ngModel)]="assessment_local.date_start"></md-input> <br /><br />
+<md-input placeholder="Date Start" [(ngModel)]="assessment_local.date_start"></md-input>
+<button md-button (click)="dateStartNow()">Now</button>
+<br /><br />
+<h3 style="display:inline;">Date End</h3><span *ngIf="assessment.date_end" style="display:inline;">&#x2713;</span>
 {{has_change.date_end}}<input type="checkbox" [(ngModel)]="has_change.date_end">
-<md-input placeholder="Date End" [(ngModel)]="assessment_local.date_end"></md-input> <br />
+<md-input placeholder="Date End" [(ngModel)]="assessment_local.date_end"></md-input>
+<button md-button (click)="dateEndNow()">Now</button>
+<br />
 {{assessment.node}}<select [(ngModel)]="assessment.node" (ngModelChange)="assessment.node = $event">
 	<option value="vn">VN</option>
 	<option value="h">H</option>
