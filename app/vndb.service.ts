@@ -50,6 +50,40 @@ export class VndbService {
 		;
 	}
 
+	setVote(vndb_vn_id:number, score_all:number):Observable<any> {
+		let data = JSON.stringify({
+			vndb_id: vndb_vn_id,
+			vote: score_all,
+			username: localStorage.getItem('vndb_user'),
+			password: localStorage.getItem('vndb_pass')
+		});
+		return this.authHttp.post('http://localhost/record/public/vndb/setVote', data, {headers: contentHeaders})
+			.map(
+				(response:Response) => {
+					return  response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
+
+	setStatus(vndb_vn_id:number, status:string):Observable<any> {
+		let data = JSON.stringify({
+			vndb_id: vndb_vn_id,
+			status: status,
+			username: localStorage.getItem('vndb_user'),
+			password: localStorage.getItem('vndb_pass')
+		});
+		return this.authHttp.post('http://localhost/record/public/vndb/setStatus', data, {headers: contentHeaders})
+			.map(
+				(response:Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
+
 
 	private handleError(error: any) {
 		console.error("Error occurred", error);

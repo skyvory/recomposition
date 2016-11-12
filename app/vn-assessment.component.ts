@@ -6,6 +6,7 @@ import * as moment from 'moment';
 
 import { AssessmentService } from './assessment.service';
 import { VnService } from './vn.service';
+import { VndbService } from './vndb.service';
 
 @Component({
 	moduleId: module.id,
@@ -19,6 +20,7 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		public route: ActivatedRoute,
 		public assessmentService: AssessmentService,
 		public vnService: VnService,
+		public vndbService:VndbService,
 		private differs: KeyValueDiffers
 	) {
 		this.differ = differs.find({}).create(null);
@@ -96,6 +98,10 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		
 		this.assessmentService.saveAssessment(this.assessment).subscribe(response => {
 			console.log("Assessment saved", response);
+			if(!this.assessment.id) {
+				this.assessment.id = response.id;
+			}
+			
 			if(localStorage.getItem('vndb_toggle') == "0") {
 				console.log("VNDB auto-update is off");
 				return;
@@ -109,10 +115,30 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 			}
 
 			if(this.has_change.score_all && this.vn.vndb_vn_id) {
-				// update vndb
+				this.vndbService.setVote(this.vn.vndb_vn_id, this.assessment.score_all).subscribe(response => {
+					console.log("VOTE OK", response);
+				},
+				err => {
+					console.log("ERROR VOTE", err)
+				});
 			}
 			if(this.has_change.status && this.vn.vndb_vn_id) {
-				// update vndb
+				let status = null;
+				if(this.assessment.status == 'finished')
+					status = 'finished';
+				else if(this.assessment.status == 'halted')
+					status = 'stalled';
+				else if(this.assessment.status == 'decomposed')
+					status = 'dropped';
+
+				if(status) {
+					this.vndbService.setStatus(this.vn.vndb_vn_id, status).subscribe(response => {
+						console.log("STATUS OK", response);
+					},
+					err => {
+						console.log("ERROR STATUS", err);
+					});
+				}
 			}
 		});
 	}
