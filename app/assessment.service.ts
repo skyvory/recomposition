@@ -26,18 +26,18 @@ export class AssessmentService {
 
 	saveAssessment(assessment:any):Observable<any> {
 		let data = {
-			vn_id: assessment.vn_id || null,
-			date_start: assessment.date_start || null,
-			date_end: assessment.date_end || null,
-			node: assessment.node || null,
-			status: assessment.status || null,
-			score_story: assessment.score_story || null,
-			score_naki: assessment.score_naki || null,
-			score_nuki: assessment.score_nuki || null,
-			score_comedy: assessment.score_comedy || null,
-			score_graphic: assessment.score_graphic || null,
-			score_all: assessment.score_all || null,
-			savable: assessment.savable || null,
+			vn_id: assessment.vn_id,
+			date_start: assessment.date_start,
+			date_end: assessment.date_end,
+			node: assessment.node,
+			status: assessment.status,
+			score_story: assessment.score_story,
+			score_naki: assessment.score_naki,
+			score_nuki: assessment.score_nuki,
+			score_comedy: assessment.score_comedy,
+			score_graphic: assessment.score_graphic,
+			score_all: assessment.score_all,
+			savable: assessment.savable,
 			archive_savedata: assessment.archive_savedata
 		};
 
