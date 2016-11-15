@@ -16,6 +16,8 @@ Debug: {{debugDump()}}<br /><br />
 	<button md-button routerLink="/home" routerLinkActive="active">Search</button>
 </md-toolbar>
 
+<button md-button [routerLink]="['/vn', vn.id, 'assessment']">Assessment</button>
+<button md-button>Character</button>
 
 Custom Shortcut
 <button md-button>for copy {{vn.title_jp}}</button><br />
