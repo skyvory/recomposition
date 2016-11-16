@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
+import { HomeModule } from './+home/home.module';
+
 import { AuthenticationService } from './authentication.service';
 import { VnService } from './vn.service';
 import { DeveloperService } from './developer.service';
@@ -14,7 +16,6 @@ import { AssessmentService } from './assessment.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
-import { HomeComponent } from './home.component';
 import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
@@ -32,12 +33,12 @@ import { MaterialModule } from '@angular/material';
 		FormsModule,
 		HttpModule,
 		routing,
-		MaterialModule.forRoot()
+		HomeModule,
+		MaterialModule.forRoot(),
 	],
 	declarations: [
 		AppComponent,
 		LoginComponent,
-		HomeComponent,
 		VnComponent,
 		VnFillComponent,
 		VnAssessmentComponent
