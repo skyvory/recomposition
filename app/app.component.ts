@@ -7,14 +7,18 @@ import { Component } from '@angular/core';
 	selector: 'my-app',
 	template: `
 	<md-sidenav-layout>
-	    <md-sidenav #start (open)="closeStartButton.focus()">
-	      Start Sidenav.
-	      <br>
-	      <button md-button #closeStartButton (click)="start.close()">Close</button>
-	    </md-sidenav>
-	   
+		<md-sidenav #start (open)="closeStartButton.focus()">
+			Navigation Menu
+			<br>
+			<button md-button routerLink="/home" routerLinkActive="active">Home</button>
+			<br>
+			<button md-button routerLink="/vn" routerLinkActive="active">VN</button>
+			<br>
+			<button md-button #closeStartButton (click)="start.close()">Close</button>
 
-	    	<button md-button (click)="start.open()">Menu</button>
+		</md-sidenav>
+	   
+		<button md-button (click)="start.open()">Menu</button>
 
 		<router-outlet></router-outlet>
 	  </md-sidenav-layout>
