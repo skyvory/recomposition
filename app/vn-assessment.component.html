@@ -23,15 +23,17 @@ Custom Shortcut
 <button md-button>for copy {{vn.title_jp}}</button><br />
 
 <h3 style="display:inline;">Date Start</h3><span *ngIf="assessment.date_start" style="display:inline;">&#x2713;</span>
-{{has_change.date_start}}<input type="checkbox" [(ngModel)]="has_change.date_start">
+<md-slide-toggle [(ngModel)]="has_change.date_start">Apply change</md-slide-toggle>
 <md-input placeholder="Date Start" [(ngModel)]="assessment_local.date_start"></md-input>
 <button md-button (click)="dateStartNow()">Now</button>
-<br /><br />
+<br />
+
 <h3 style="display:inline;">Date End</h3><span *ngIf="assessment.date_end" style="display:inline;">&#x2713;</span>
-{{has_change.date_end}}<input type="checkbox" [(ngModel)]="has_change.date_end">
+<md-slide-toggle [(ngModel)]="has_change.date_end">Apply change</md-slide-toggle>
 <md-input placeholder="Date End" [(ngModel)]="assessment_local.date_end"></md-input>
 <button md-button (click)="dateEndNow()">Now</button>
 <br />
+
 Node<select [(ngModel)]="assessment.node" (ngModelChange)="assessment.node = $event">
 	<option value="vn">VN</option>
 	<option value="h">H</option>
@@ -107,7 +109,7 @@ Savable<select [(ngModel)]="assessment.savable" (ngModelChange)="assessment.sava
 	<option value="no">No save</option>
 </select><br />
 
-{{assessment.archive_savedata}}<input type="checkbox" [(ngModel)]="assessment.archive_savedata">Save data
+<md-slide-toggle [(ngModel)]="assessment.archive_savedata">Save data</md-slide-toggle>
 
 
 <button mg-button (click)="saveAssessment()">Save</button>
