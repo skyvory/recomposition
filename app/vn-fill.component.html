@@ -37,3 +37,13 @@ Debug: {{debugDump()}}<br /><br />
 
 <br />
 <img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;">
+
+<br />
+<br />
+<br />
+
+Dev create add-on
+<br />
+<md-input placeholder="name jp" #devNameJp></md-input> <br />
+<md-input placeholder="name en" #devNameEn></md-input> <br />
+<button md-button (click)="createDeveloper(devNameEn.value, devNameJp.value);">Add Dev</button>
