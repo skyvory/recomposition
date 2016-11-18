@@ -13,12 +13,14 @@ import { VnService } from './vn.service';
 import { DeveloperService } from './developer.service';
 import { VndbService } from './vndb.service';
 import { AssessmentService } from './assessment.service';
+import { CharacterService } from './character.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
+import { VnCharacterComponent } from './+vn-character/vn-character.component';
 
 import './rxjs-extensions';
 
@@ -41,7 +43,8 @@ import { MaterialModule } from '@angular/material';
 		LoginComponent,
 		VnComponent,
 		VnFillComponent,
-		VnAssessmentComponent
+		VnAssessmentComponent,
+		VnCharacterComponent
 	],
 	providers: [
 		AUTH_PROVIDERS,
@@ -55,6 +58,7 @@ import { MaterialModule } from '@angular/material';
 			tokenName: "recomposition_token",
 			noJwtError: false,
 		}),
+		CharacterService
 	],
 	bootstrap: [ AppComponent ]
 })

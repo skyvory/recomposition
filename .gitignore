@@ -49,3 +49,4 @@ tmp
 /bower_components/
 /dist/
 /typings/
+.vscode/

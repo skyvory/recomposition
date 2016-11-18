@@ -7,6 +7,7 @@ import { HomeComponent } from './+home/home.component';
 import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
+import { VnCharacterComponent } from './+vn-character/vn-character.component';
 
 const appRoutes: Routes = [
 	// { path: '', component: HomeComponent, terminal: true },
@@ -44,6 +45,11 @@ const appRoutes: Routes = [
 		path: 'vn/:id/edit',
 		component: VnFillComponent,
 		canActivate: [AuthGuard],
+	},
+	{
+		path: 'vn/:id/character',
+		component: VnCharacterComponent,
+		canActivate: [AuthGuard]
 	},
 	{
 		path: '**',
