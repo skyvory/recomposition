@@ -27,6 +27,43 @@ export class CharacterService {
 		;
 	}
 
+	saveCharacter(character:any):Observable<any> {
+		let data = {
+			id: character.id,
+			kanji: character.kanji,
+			yobikata: character.yobikata,
+			betsumyou: character.betsumyou,
+			birthmonth: character.birthmonth,
+			birthday: character.birthday,
+			height: character.height,
+			bust: character.bust,
+			hip: character.hip,
+			image: character.image,
+			vndb_character_id: character.vndb_character_id
+		};
+
+		if(character.id) {
+			return this.authHttp.put(`http://localhost/record/public/api/character/${character.id}`, data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.authHttp.post(`http://localhost/record/public/api/character`, data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
+	}
+
 	private handleError(error:any) {
 		console.error("Error occured", error);
 		console.warn("this error is handled in private handleError");
