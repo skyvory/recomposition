@@ -84,6 +84,23 @@ export class VndbService {
 		;
 	}
 
+	getCharacters(vndb_vn_id:number, page:number):Observable<any> {
+		let data = JSON.stringify({
+			vndb_id: vndb_vn_id,
+			page: page,
+			username: localStorage.getItem('vndb_user'),
+			password: localStorage.getItem('vndb_pass')
+		});
+		return this.authHttp.post('http://localhost/record/public/vndb/character', data, {headers: contentHeaders})
+			.map(
+				(response:Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
+
 
 	private handleError(error: any) {
 		console.error("Error occurred", error);
