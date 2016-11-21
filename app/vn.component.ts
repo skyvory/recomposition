@@ -33,6 +33,8 @@ export class VnComponent implements OnInit{
 	ngOnInit() {
 		this.vnService.getVns().subscribe(response => {
 			this.vns = response.data;
-		});
+		},
+		err => console.error("ERR ", err)
+		);
 	}
 }
