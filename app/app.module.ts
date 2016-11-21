@@ -14,6 +14,7 @@ import { DeveloperService } from './developer.service';
 import { VndbService } from './vndb.service';
 import { AssessmentService } from './assessment.service';
 import { CharacterService } from './character.service';
+import { LineamentService } from './lineament.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
@@ -58,7 +59,8 @@ import { MaterialModule } from '@angular/material';
 			tokenName: "recomposition_token",
 			noJwtError: false,
 		}),
-		CharacterService
+		CharacterService,
+		LineamentService
 	],
 	bootstrap: [ AppComponent ]
 })
