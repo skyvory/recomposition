@@ -17,15 +17,8 @@ export class VnService {
 	constructor(
 		public authHttp: AuthHttp,
 		private http: Http,
-		private authenticationService:AuthenticationService
+		private authenticationService: AuthenticationService
 	) {}
-
-	getThreads(): Promise<any[]> {
-		return this.http.get('http://localhost/replication-dimension/public/api/thread')
-			.toPromise()
-			.then(response => response.json().data as any[])
-			.catch(this.handleError);
-	}
 
 	getVns():Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
