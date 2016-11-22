@@ -10,6 +10,7 @@ import 'rxjs/add/operator/toPromise';
 import { contentHeaders } from './common/headers';
 import { AuthHttp } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
+import { Constant } from './const.config';
 
 @Injectable()
 export class VnService {
@@ -19,8 +20,6 @@ export class VnService {
 		private authenticationService:AuthenticationService
 	) {}
 
-	private USE_ANGULAR2JWT:boolean = false;
-
 	getThreads(): Promise<any[]> {
 		return this.http.get('http://localhost/replication-dimension/public/api/thread')
 			.toPromise()
@@ -29,7 +28,7 @@ export class VnService {
 	}
 
 	getVns():Observable<any> {
-		if(this.USE_ANGULAR2JWT) {
+		if(Constant.USE_ANGULAR2JWT) {
 			return this.authHttp.get('http://localhost/record/public/api/vn', {headers: contentHeaders})
 				.map(
 					(response:Response) => {
@@ -50,7 +49,7 @@ export class VnService {
 	}
 
 	getVn(vnId:number):Observable<any> {
-		if(this.USE_ANGULAR2JWT) {
+		if(Constant.USE_ANGULAR2JWT) {
 			return this.authHttp.get(`http://localhost/record/public/api/vn/${vnId}`, {headers:contentHeaders})
 				.map(
 					(response:Response) => {
@@ -83,7 +82,7 @@ export class VnService {
 			image: vn.image
 		});
 
-		if(this.USE_ANGULAR2JWT) {
+		if(Constant.USE_ANGULAR2JWT) {
 			return this.authHttp.post('http://localhost/record/public/api/vn', data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
@@ -117,7 +116,7 @@ export class VnService {
 			image: vn.image
 		});
 
-		if(this.USE_ANGULAR2JWT) {
+		if(Constant.USE_ANGULAR2JWT) {
 			return this.authHttp.put(`http://localhost/record/public/api/vn/${vn.id}`, data, {headers:contentHeaders})
 				.map(
 					(response:Response) => {
