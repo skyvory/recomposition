@@ -7,12 +7,15 @@ import 'rxjs/add/operator/catch';
 
 import { contentHeaders } from './common/headers';
 import { AuthHttp } from 'angular2-jwt';
-
+import { AuthenticationService } from './authentication.service';
+import { Constant } from './const.config';
 
 @Injectable()
 export class VndbService {
 	constructor(
 		public authHttp: AuthHttp,
+		private authenticationService: AuthenticationService,
+		private http: Http
 	) {}
 
 	getVndbVn(vndb_vn_id:number, username:string, password:string): Observable<any> {
@@ -22,15 +25,29 @@ export class VndbService {
 			password: password
 		});
 		console.log(data);
-		return this.authHttp.post('http://localhost/record/public/vndb/vn', data, {headers: contentHeaders})
-			.map(
-				(response:Response) => {
-					return response.json();
-				},
-				err => console.warn("map err", err)
-			)
-			.catch(this.handleError)
-		;
+
+		if(Constant.USE_ANGULAR2JWT) {
+			return this.authHttp.post('http://localhost/record/public/vndb/vn', data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					},
+					err => console.warn("map err", err)
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.http.post('http://localhost/record/public/vndb/vn', data, this.authenticationService.option)
+				.map(
+					(response:Response) => {
+						return response.json();
+					},
+					err => console.warn("map err", err)
+				)
+				.catch(this.handleError)
+			;
+		}
 	}
 
 	getVndbRelease(vndb_vn_id:number, username:string, password:string): Observable<any> {
@@ -39,15 +56,29 @@ export class VndbService {
 			username: username,
 			password: password
 		});
-		return this.authHttp.post('http://localhost/record/public/vndb/release', data, {headers: contentHeaders})
-			.map(
-				(response:Response) => {
-					return response.json();
-				},
-				err => console.warn("map err", err)
-			)
-			.catch(this.handleError)
-		;
+
+		if(Constant.USE_ANGULAR2JWT) {
+			return this.authHttp.post('http://localhost/record/public/vndb/release', data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					},
+					err => console.warn("map err", err)
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.http.post('http://localhost/record/public/vndb/release', data, this.authenticationService.option)
+				.map(
+					(response:Response) => {
+						return response.json();
+					},
+					err => console.warn("map err", err)
+				)
+				.catch(this.handleError)
+			;
+		}
 	}
 
 	setVote(vndb_vn_id:number, score_all:number):Observable<any> {
@@ -57,14 +88,27 @@ export class VndbService {
 			username: localStorage.getItem('vndb_user'),
 			password: localStorage.getItem('vndb_pass')
 		});
-		return this.authHttp.post('http://localhost/record/public/vndb/setVote', data, {headers: contentHeaders})
-			.map(
-				(response:Response) => {
-					return  response.json();
-				}
-			)
-			.catch(this.handleError)
-		;
+
+		if(Constant.USE_ANGULAR2JWT) {
+			return this.authHttp.post('http://localhost/record/public/vndb/setVote', data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return  response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.http.post('http://localhost/record/public/vndb/setVote', data, this.authenticationService.option)
+				.map(
+					(response:Response) => {
+						return  response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
 	}
 
 	setStatus(vndb_vn_id:number, status:string):Observable<any> {
@@ -74,14 +118,27 @@ export class VndbService {
 			username: localStorage.getItem('vndb_user'),
 			password: localStorage.getItem('vndb_pass')
 		});
-		return this.authHttp.post('http://localhost/record/public/vndb/setStatus', data, {headers: contentHeaders})
-			.map(
-				(response:Response) => {
-					return response.json();
-				}
-			)
-			.catch(this.handleError)
-		;
+
+		if(Constant.USE_ANGULAR2JWT) {
+			return this.authHttp.post('http://localhost/record/public/vndb/setStatus', data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.http.post('http://localhost/record/public/vndb/setStatus', data, this.authenticationService.option)
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
 	}
 
 	getCharacters(vndb_vn_id:number, page:number):Observable<any> {
@@ -91,14 +148,27 @@ export class VndbService {
 			username: localStorage.getItem('vndb_user'),
 			password: localStorage.getItem('vndb_pass')
 		});
-		return this.authHttp.post('http://localhost/record/public/vndb/character', data, {headers: contentHeaders})
-			.map(
-				(response:Response) => {
-					return response.json();
-				}
-			)
-			.catch(this.handleError)
-		;
+
+		if(Constant.USE_ANGULAR2JWT) {
+			return this.authHttp.post('http://localhost/record/public/vndb/character', data, {headers: contentHeaders})
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.http.post('http://localhost/record/public/vndb/character', data, this.authenticationService.option)
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
 	}
 
 
