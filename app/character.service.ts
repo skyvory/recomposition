@@ -6,25 +6,41 @@ import 'rxjs/add/operator/catch';
 
 import { contentHeaders } from './common/headers';
 import { AuthHttp } from 'angular2-jwt';
+import { AuthenticationService } from './authentication.service';
+import { Constant } from './const.config';
 
 @Injectable()
 export class CharacterService {
 	constructor(
-		private authHttp: AuthHttp
+		private authHttp: AuthHttp,
+		private authenticationService: AuthenticationService,
+		private http: Http
 	) {}
 
 	getCharacters(vn_id:number):Observable<any> {
 		let params:URLSearchParams = new URLSearchParams();
 		params.set('vn_id', vn_id.toString());
 
-		return this.authHttp.get(`http://localhost/record/public/api/character`, {headers: contentHeaders, search: params})
-			.map(
-				(response:Response) => {
-					return response.json();
-				}
-			)
-			.catch(this.handleError)
-		;
+		if(Constant.USE_ANGULAR2JWT) {
+			return this.authHttp.get(`http://localhost/record/public/api/character`, {headers: contentHeaders, search: params})
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
+		else {
+			return this.http.get(`http://localhost/record/public/api/character`, this.authenticationService.optionParam(params))
+				.map(
+					(response:Response) => {
+						return response.json();
+					}
+				)
+				.catch(this.handleError)
+			;
+		}
 	}
 
 	saveCharacter(character:any):Observable<any> {
@@ -43,24 +59,48 @@ export class CharacterService {
 		};
 
 		if(character.id) {
-			return this.authHttp.put(`http://localhost/record/public/api/character/${character.id}`, data, {headers: contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			if(Constant.USE_ANGULAR2JWT) {
+				return this.authHttp.put(`http://localhost/record/public/api/character/${character.id}`, data, {headers: contentHeaders})
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
+			else {
+				return this.http.put(`http://localhost/record/public/api/character/${character.id}`, data, this.authenticationService.option)
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
 		}
 		else {
-			return this.authHttp.post(`http://localhost/record/public/api/character`, data, {headers: contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			if(Constant.USE_ANGULAR2JWT) {
+				return this.authHttp.post(`http://localhost/record/public/api/character`, data, {headers: contentHeaders})
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
+			else {
+				return this.http.post(`http://localhost/record/public/api/character`, data, this.authenticationService.option)
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
 		}
 	}
 
