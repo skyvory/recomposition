@@ -7,12 +7,15 @@ import 'rxjs/add/operator/catch';
 
 import { contentHeaders } from './common/headers';
 import { AuthHttp } from 'angular2-jwt';
-
+import { AuthenticationService } from './authentication.service';
+import { Constant } from './const.config';
 
 @Injectable()
 export class LineamentService {
 	constructor(
 		private authHttp: AuthHttp,
+		private authenticationService: AuthenticationService,
+		private http: Http
 	) {}
 
 	saveLineament(lineament:any):Observable<any> {
@@ -23,24 +26,48 @@ export class LineamentService {
 		};
 
 		if(lineament.id) {
-			return this.authHttp.put(`http://localhost/record/public/api/character/${lineament.id}`, data, {headers: contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			if(Constant.USE_ANGULAR2JWT) {
+				return this.authHttp.put(`http://localhost/record/public/api/character/${lineament.id}`, data, {headers: contentHeaders})
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
+			else {
+				return this.http.put(`http://localhost/record/public/api/character/${lineament.id}`, data, this.authenticationService.option)
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
 		}
 		else {
-			return this.authHttp.post(`http://localhost/record/public/api/character`, data, {headers: contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			if(Constant.USE_ANGULAR2JWT) {
+				return this.authHttp.post(`http://localhost/record/public/api/character`, data, {headers: contentHeaders})
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
+			else {
+				return this.http.put(`http://localhost/record/public/api/character/${lineament.id}`, data, this.authenticationService.option)
+					.map(
+						(response:Response) => {
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
 		}
 	}
 
