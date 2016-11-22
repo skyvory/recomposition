@@ -26,7 +26,20 @@ export class AuthenticationService {
 		headers.append('Content-Type', 'application/json;charset=utf-8');
 		let options = new RequestOptions({ headers: headers });
 		return options;
-	} 
+	}
+
+	public optionParam(arg):any {
+		return this.constructParamOptions(arg);
+	}
+	private constructParamOptions(params):any {
+		let token = localStorage.getItem('recomposition_token');
+		let headers = new Headers();
+		headers.append('Authorization', 'Bearer ' + token);
+		headers.append('Accept', 'application/json, text/plain');
+		headers.append('Content-Type', 'application/json;charset=utf-8');
+		let options = new RequestOptions({ headers: headers, search: params });
+		return options;
+	}
 
 	login(username, password): Observable<boolean> {
 		// return this.http.post('http://localhost/record/public/api/authenticate', JSON.stringify({username:username, password:password}), {headers: this.headers})
