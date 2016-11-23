@@ -1,4 +1,5 @@
-Debug: {{debugDump()}}<br /><br />
+{{debugDump()}}<br /><br />
+<!-- <input [(ngModel)]="characters[Object.keys(this)[0]].yobikata"> -->
 
 <md-toolbar>
 	<span>{{vn.title_jp}}</span>
@@ -19,3 +20,66 @@ Debug: {{debugDump()}}<br /><br />
 	<button md-button routerLink="/home" routerLinkActive="active">Search</button>
 </md-toolbar>
 
+<button md-button (click)="newCharacter($event)" style="position:fixed; right:6px; bottom:6px;">Add</button>
+
+<md-input placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid"></md-input>
+<button md-button (click)="retrieveVndbCharacter()">Load</button>
+<br />
+
+<div *ngIf="vndb.characters && vndb.characters.length > 0" style="overflow-x:auto;">
+	<button (click)="saveAllVndbCharacters()">Save All</button>
+	<div *ngFor="let chara of vndb.characters" style="width:200px;">
+		<span>{{chara.name}}</span><br>
+		<span>{{chara.description}}</span><br>
+		<img src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px;" (click)="purgeCharacterProperty(chara, 'image')"><br>
+		<button md-button *ngIf="chara.id" (click)="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
+		<button md-button *ngIf="chara.original" (click)="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</button><br>
+		<button md-button *ngIf="chara.name" (click)="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</button><br>
+		<button md-button *ngIf="chara.aliases" (click)="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</button><br>
+		<button md-button *ngIf="chara.birthday" (click)="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
+		<button md-button *ngIf="chara.height" (click)="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</button><br>
+		<button md-button *ngIf="chara.bust" (click)="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
+		<br>
+		<select [(ngModel)]="chara.link" name="link">
+			<option *ngFor="let chara_scope of characters" [ngValue]="chara_scope.id">{{chara_scope.kanji}}</option>
+		</select><br>
+		<button md-button (click)="removeVndbCharacter(chara)">remove</button>
+		<button md-button (click)="saveVndbCharacter(chara)">save</button>
+	</div>
+</div>
+
+<div template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;">
+	<md-card>
+		<form #form="ngForm" name="characterForm" (ngSubmit)="onSubmit()">
+			<md-card-title>{{chara.yobikata}}</md-card-title>
+			<md-card-content>
+			<img src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px;">
+			<md-card-subtitle style="color:rgba(0,0,60,0.3);"><a href="https://vndb.oorg/c{{chara.vndb_character_id}}/edit" target="_blank">{{chara.vndb_character_id}}</a></md-card-subtitle>
+			<md-input placeholder="img" [(ngModel)]="chara.image" name="image"></md-input>
+			mark <select [(ngModel)]="chara.mark" (ngModelChange)="saveMark(chara)" name="mark">
+				<option value="s">s</option>
+				<option value="a">a</option>
+				<option value="b">b</option>
+				<option value="c">c</option>
+				<option value="d">d</option>
+				<option value="e">e</option>
+			</select>
+			<br>
+			<md-input placeholder="kanji" [(ngModel)]="chara.kanji" name="kanji"></md-input>
+			<md-input placeholder="yobikata" [(ngModel)]="chara.yobikata" name="yobikata"></md-input>
+			<md-input placeholder="betsumyou" [(ngModel)]="chara.betsumyou" name="betsumyou"></md-input><br>
+			<md-input placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth"></md-input>
+			<md-input placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday"></md-input>
+			<md-input placeholder="height" [(ngModel)]="chara.height" name="height"></md-input>
+			<md-input placeholder="bust" [(ngModel)]="chara.bust" name="bust"></md-input>
+			<md-input placeholder="waist" [(ngModel)]="chara.waist" name="waist"></md-input>
+			<md-input placeholder="hip" [(ngModel)]="chara.hip" name="hip"></md-input><br>
+			</md-card-content>
+
+			<md-card-actions align="end">
+				<button md-button type="submit" (click)="saveCharacter(chara)">save</button>
+				<button md-button (click)="deleteCharacter($event, chara)">delete</button>
+			</md-card-actions>
+		</form>
+	</md-card>
+</div>
