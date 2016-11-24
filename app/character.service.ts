@@ -105,6 +105,17 @@ export class CharacterService {
 		}
 	}
 
+	deleteCharacter(character_id:number):Observable<any> {
+		if(Constant.USE_ANGULAR2JWT) {
+			//
+		}
+		else {
+			return this.http.delete(`http://localhost/record/public/api/character/${character_id}`, this.authenticationService.option)
+				.map(() => null)
+				.catch(this.handleError);
+		}
+	}
+
 	private handleError(error:any) {
 		console.error("Error occured", error);
 		console.warn("this error is handled in private handleError");
