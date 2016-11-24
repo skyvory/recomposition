@@ -54,6 +54,7 @@ export class CharacterService {
 			birthday: character.birthday,
 			height: character.height,
 			bust: character.bust,
+			waist: character.waist,
 			hip: character.hip,
 			image: character.image,
 			vndb_character_id: character.vndb_character_id
