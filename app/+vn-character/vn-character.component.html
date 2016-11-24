@@ -40,7 +40,7 @@
 		<button md-button *ngIf="chara.height" (click)="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</button><br>
 		<button md-button *ngIf="chara.bust" (click)="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
 		<br>
-		<select [(ngModel)]="chara.link" name="link">
+		<select *ngIf="characters" [(ngModel)]="chara.link" name="link">
 			<option *ngFor="let chara_scope of characters" [ngValue]="chara_scope.id">{{chara_scope.kanji}}</option>
 		</select><br>
 		<button md-button (click)="removeVndbCharacter(chara)">remove</button>
@@ -78,7 +78,7 @@
 
 			<md-card-actions align="end">
 				<button md-button type="submit" (click)="saveCharacter(chara)">save</button>
-				<button md-button (click)="deleteCharacter($event, chara)">delete</button>
+				<button md-button type="button" (click)="deleteCharacter($event, chara)">delete</button>
 			</md-card-actions>
 		</form>
 	</md-card>
