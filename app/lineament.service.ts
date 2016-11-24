@@ -27,7 +27,7 @@ export class LineamentService {
 
 		if(lineament.id) {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.put(`http://localhost/record/public/api/character/${lineament.id}`, data, {headers: contentHeaders})
+				return this.authHttp.put(`http://localhost/record/public/api/lineament/${lineament.id}`, data, {headers: contentHeaders})
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -37,7 +37,7 @@ export class LineamentService {
 				;
 			}
 			else {
-				return this.http.put(`http://localhost/record/public/api/character/${lineament.id}`, data, this.authenticationService.option)
+				return this.http.put(`http://localhost/record/public/api/lineament/${lineament.id}`, data, this.authenticationService.option)
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -49,7 +49,7 @@ export class LineamentService {
 		}
 		else {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.post(`http://localhost/record/public/api/character`, data, {headers: contentHeaders})
+				return this.authHttp.post(`http://localhost/record/public/api/lineament`, data, {headers: contentHeaders})
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -59,7 +59,7 @@ export class LineamentService {
 				;
 			}
 			else {
-				return this.http.put(`http://localhost/record/public/api/character/${lineament.id}`, data, this.authenticationService.option)
+				return this.http.post(`http://localhost/record/public/api/lineament`, data, this.authenticationService.option)
 					.map(
 						(response:Response) => {
 							return response.json();
