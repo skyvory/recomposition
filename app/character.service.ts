@@ -45,6 +45,7 @@ export class CharacterService {
 
 	saveCharacter(character:any):Observable<any> {
 		let data = {
+			vn_id: character.vn_id,
 			id: character.id,
 			kanji: character.kanji,
 			yobikata: character.yobikata,
