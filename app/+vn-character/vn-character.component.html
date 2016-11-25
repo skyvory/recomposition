@@ -20,30 +20,30 @@
 	<button md-button routerLink="/home" routerLinkActive="active">Search</button>
 </md-toolbar>
 
-<button md-button (click)="newCharacter($event)" style="position:fixed; right:6px; bottom:6px;">Add</button>
+<button md-button on-click="newCharacter($event)" style="position:fixed; right:6px; bottom:6px;">Add</button>
 
 <md-input placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid"></md-input>
-<button md-button (click)="retrieveVndbCharacter()">Load</button>
+<button md-button on-click="retrieveVndbCharacter()">Load</button>
 <br />
 
 <div template="ngIf vndb.characters && vndb.characters.length > 0">
-	<button md-button (click)="saveAllVndbCharacters()">Save All</button>
+	<button md-button on-click="saveAllVndbCharacters()">Save All</button>
 	<div style="display: flex; flex-direction: row; overflow-x: auto;">
 		<md-card template="ngFor let chara of vndb.characters" style="flex: 1 1 30%;">
 			<md-card-title>{{chara.name}}</md-card-title>
 			<md-card-subtitle>{{chara.description}}</md-card-subtitle>
 			<div style="display: flex; flex-direction: row">
 				<div style="flex: 1 1 30%">
-					<img src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px;" (click)="purgeCharacterProperty(chara, 'image')">
-					<button md-button *ngIf="chara.id" (click)="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
+					<img src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px;" on-click="purgeCharacterProperty(chara, 'image')">
+					<button md-button *ngIf="chara.id" on-click="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
 				</div>
 				<div style="flex: 1 1 70%;">
-					<button md-button *ngIf="chara.original" (click)="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</button><br>
-					<button md-button *ngIf="chara.name" (click)="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</button><br>
-					<button md-button *ngIf="chara.aliases" (click)="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</button><br>
-					<button md-button *ngIf="chara.birthday" (click)="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
-					<button md-button *ngIf="chara.height" (click)="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</button><br>
-					<button md-button *ngIf="chara.bust" (click)="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
+					<button md-button *ngIf="chara.original" on-click="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</button><br>
+					<button md-button *ngIf="chara.name" on-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</button><br>
+					<button md-button *ngIf="chara.aliases" on-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</button><br>
+					<button md-button *ngIf="chara.birthday" on-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
+					<button md-button *ngIf="chara.height" on-click="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</button><br>
+					<button md-button *ngIf="chara.bust" on-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
 				</div>
 			</div>
 			<div>
@@ -52,8 +52,8 @@
 				</select><br>
 			</div>
 			<md-card-actions align="end">
-				<button md-button (click)="removeVndbCharacter(chara)">remove</button>
-				<button md-button (click)="saveVndbCharacter(chara)">save</button>
+				<button md-button on-click="removeVndbCharacter(chara)">remove</button>
+				<button md-button on-click="saveVndbCharacter(chara)">save</button>
 			</md-card-actions>
 		</md-card>
 	</div>
@@ -99,14 +99,14 @@
 			</md-card-content>
 
 			<md-card-actions align="end">
-				<button md-button type="submit" (click)="saveCharacter(chara)">save</button>
-				<button md-button type="button" (click)="deleteCharacter($event, chara)">delete</button>
+				<button md-button type="submit" on-click="saveCharacter(chara)">save</button>
+				<button md-button type="button" on-click="deleteCharacter($event, chara)">delete</button>
 			</md-card-actions>
 		</form>
 	</md-card>
 </div>
 
 
-<button md-fab style="position:fixed; right:10px; bottom:10px;" (click)="newCharacter($event)">
+<button md-fab style="position:fixed; right:10px; bottom:10px;" on-click="newCharacter($event)">
 	<md-icon class="md-24">add</md-icon>
 </button>
