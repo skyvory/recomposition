@@ -26,7 +26,7 @@
 <button md-button (click)="retrieveVndbCharacter()">Load</button>
 <br />
 
-<div *ngIf="vndb.characters && vndb.characters.length > 0" style="overflow-x:auto;">
+<div template="ngIf vndb.characters && vndb.characters.length > 0"  style="overflow-x:auto;">
 	<button (click)="saveAllVndbCharacters()">Save All</button>
 	<div *ngFor="let chara of vndb.characters" style="width:200px;">
 		<span>{{chara.name}}</span><br>
