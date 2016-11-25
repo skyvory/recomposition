@@ -48,11 +48,8 @@
 	</div>
 </div>
 
-<!-- <div style="width:100%;"> -->
-<div style="display:flex; flex-direction:column;">
-<div style="flex:1 1 0;">
 <div style="flex-wrap:wrap;flex-direction:row;display:flex; flex:1 1 0;">
-	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" style="flex:1 1 40%;flex-wrap:wrap;display:flex;flex-direction:column;">
+	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" style="flex:1 1 auto;flex-wrap:wrap; display:flex; flex-direction:column;">
 		<form #form="ngForm" name="characterForm" (ngSubmit)="onSubmit()">
 			<md-card-title>{{chara.yobikata}}</md-card-title>
 			<md-card-content>
@@ -86,8 +83,6 @@
 			</md-card-actions>
 		</form>
 	</md-card>
-</div>
-</div>
 </div>
 
 
