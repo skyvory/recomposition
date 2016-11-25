@@ -159,6 +159,9 @@ export class VnCharacterComponent implements OnInit {
 	saveCharacter(chara) {
 		this.characterService.saveCharacter(chara).subscribe(response => {
 			console.log("Update to " + chara.kanji + " saved successfully!");
+			if(!chara.id) {
+				let index = this.characters.indexOf(chara);
+				this.characters[index].id = response.id;
 		});
 		//>>>assign new id to new character
 	}
