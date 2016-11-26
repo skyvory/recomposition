@@ -36,7 +36,7 @@ export class VnCharacterComponent implements OnInit {
 	}
 
 	debugDump(): any {
-		return JSON.stringify(this.characters);
+		return JSON.stringify(this.characters.length);
 	}
 
 	loadCharacter(vn_id:number):void {
@@ -162,6 +162,7 @@ export class VnCharacterComponent implements OnInit {
 			if(!chara.id) {
 				let index = this.characters.indexOf(chara);
 				this.characters[index].id = response.id;
+			}
 		});
 		//>>>assign new id to new character
 	}
@@ -257,6 +258,24 @@ export class VnCharacterComponent implements OnInit {
 
 		this.characters = this.characters.concat(new_chara);
 		console.log('new chara instance prepared');
+	}
+
+	isNameMatch(current_name, original_name):boolean {
+		if(current_name && original_name) {
+			return current_name.replace(/ |　/g, '') == original_name.replace(/ |　/g, '') ? true : false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	replaceValue(event, chara, target) {
+		if(event.which === 13 && chara.kanji !== chara.paste_kanji) {
+			event.preventDefault();
+			if(target === 'kanji') { 
+				chara.kanji = chara.paste_kanji;
+			}
+		}
 	}
 
 	customTrackBy(index:number, object:any):any {

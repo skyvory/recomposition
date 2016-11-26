@@ -80,9 +80,10 @@
 						</select>
 					</div>
 				</div>
-				<div style="flex:1 1 70%">
+				<div style="flex:1 1 70%; background-color: #eff;">
 					<br>
-					<md-input placeholder="kanji" [(ngModel)]="chara.kanji" name="kanji"></md-input>
+					<md-input placeholder="kanji" [(ngModel)]="chara.kanji" name="kanji" [style.background-color]="isNameMatch(chara.kanji, chara.paste_kanji) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
+					<md-input placeholder="paste" [(ngModel)]="chara.paste_kanji" name="paste_kanji" on-keypress="replaceValue($event, chara, 'kanji')" title="Enter to inject"></md-input>
 					<br>
 					<md-input placeholder="yobikata" [(ngModel)]="chara.yobikata" name="yobikata"></md-input>
 					<br>
