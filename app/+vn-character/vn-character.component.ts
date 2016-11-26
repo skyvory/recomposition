@@ -167,17 +167,15 @@ export class VnCharacterComponent implements OnInit {
 		//>>>assign new id to new character
 	}
 
-	deleteCharacter(ev, chara) {
-		//>>>prevent default onsubmit
-		console.log(ev);
-		//>>>confirm
-		if(true) {
-			this.characterService.deleteCharacter(chara.id).subscribe(response => {
-				console.log("CHECK NULL RESPONSE", response);
-				let index = this.characters.indexOf(chara);
-				this.characters.splice(index, 1);
-				console.log(chara.kanji + " deleted");
-			});
+	deleteCharacter(event, chara) {
+		event.preventDefault();
+		if(confirm("Delete " + chara.kanji + " ?")) {
+			if(chara.id) {
+				this.characterService.deleteCharacter(chara.id).subscribe(response => {});
+			}
+			let index = this.characters.indexOf(chara);
+			this.characters.splice(index, 1);
+			console.log(chara.kanji + " deleted");
 		}
 	}
 
