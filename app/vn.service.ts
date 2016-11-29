@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -20,7 +20,20 @@ export class VnService {
 		private authenticationService: AuthenticationService
 	) {}
 
-	getVns():Observable<any> {
+	// todo: change static optional parameter into optional array. That way, the component doesn't have to throw undefined value as arguments
+	getVns(limit:number = 10, page:number = 1, filter?:string):Observable<any> {
+		if(typeof(limit) === 'undefined')
+			limit = 10;
+		if(typeof(page) === 'undefined')
+			page = 1;
+		if(typeof(filter) === 'undefined')
+			filter = '';
+
+		let params:URLSearchParams = new URLSearchParams();
+		params.set('limit', limit.toString());
+		params.set('page', page.toString());
+		params.set('filter', filter.toString());
+
 		if(Constant.USE_ANGULAR2JWT) {
 			return this.authHttp.get('http://localhost/record/public/api/vn', {headers: contentHeaders})
 				.map(
@@ -32,7 +45,7 @@ export class VnService {
 			;
 		}
 		else {
-			return this.http.get('http://localhost/record/public/api/vn', this.authenticationService.option)
+			return this.http.get('http://localhost/record/public/api/vn', this.authenticationService.optionParam(params))
 				.map(
 					(response:Response) => response.json()
 				)
