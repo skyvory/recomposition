@@ -30,7 +30,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr template="ngFor let vn of vns | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: query.page, totalItems: query.total}">
+		<tr template="ngFor let vn of vns">
 			<td>{{vn.id}}</td>
 			<td>{{vn.title_jp}}</td>
 			<td>{{vn.date_release}}</td>
