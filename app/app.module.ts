@@ -30,6 +30,7 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 // for angular2-jwt configuration
 import { provideAuth } from 'angular2-jwt';
 import { MaterialModule } from '@angular/material';
+import { Ng2PaginationModule } from 'ng2-pagination';
 
 @NgModule({
 	imports: [
@@ -39,6 +40,7 @@ import { MaterialModule } from '@angular/material';
 		routing,
 		HomeModule,
 		MaterialModule.forRoot(),
+		Ng2PaginationModule
 	],
 	declarations: [
 		AppComponent,

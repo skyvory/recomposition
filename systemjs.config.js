@@ -26,7 +26,8 @@
 			'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
 			'angular2-jwt':               'npm:angular2-jwt/angular2-jwt.js',
 			'@angular/material': 'npm:@angular/material/material.umd.js',
-			'moment': 'npm:moment'
+			'moment': 'npm:moment',
+			'ng2-pagination': 'npm:ng2-pagination'
 		},
 		// packages tells the System loader how to load when no filename and/or no extension
 		packages: {
@@ -52,6 +53,10 @@
 				main: './index.js',
 				defaultExtension: 'js'
 			},
+			'ng2-pagination': {
+				main: 'index.js',
+				defaultExtension: 'js'
+			}
 		}
 	});
 })(this);
