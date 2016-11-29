@@ -32,6 +32,11 @@ export class SearchComponent implements OnInit {
 		total: 0
 	}; 
 
+	changePage(page) {
+		this.query.page = page;
+		this.loadVns();
+	}
+
 	nextPage = ():number => {
 		let next = this.query.page + 1;
 		return next;
