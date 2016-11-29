@@ -45,7 +45,8 @@ import { MaterialModule } from '@angular/material';
 		VnComponent,
 		VnFillComponent,
 		VnAssessmentComponent,
-		VnCharacterComponent
+		VnCharacterComponent,
+		SearchComponent
 	],
 	providers: [
 		AUTH_PROVIDERS,

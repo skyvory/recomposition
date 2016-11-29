@@ -10,17 +10,13 @@
 	</span>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<form name="search_form">
-		<md-input placeholder="keyword" align="end" #query name="search_query">
+		<md-input placeholder="keyword" align="end" name="search_query">
 		</md-input>
 		<a type="submit" md-button routerLink="/search/{{query.value}}" routerLinkActive="active">Search</a>
 	</form>
 </md-toolbar>
 
-
-
-
-
-
+{{debugDump()}}<br /><br />
 
 <table>
 	<thead>
@@ -29,12 +25,12 @@
 			<th>Title</th>
 			<th>Released</th>
 			<th>Predictive Eye</th>
-			<th>One Seal</th>
+			,<th>One Seal</th>
 			<th>Action</th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let vn of vns">
+		<tr template="ngFor let vn of vns | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: query.page, totalItems: query.total}">
 			<td>{{vn.id}}</td>
 			<td>{{vn.title_jp}}</td>
 			<td>{{vn.date_release}}</td>
@@ -72,10 +68,8 @@
 				<button md-button [routerLink]="['/vn', vn.id, 'character']">Character</button>
 				<button md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</button>
 			</td>
-		</tr>
+		<tr>
 	</tbody>
 </table>
 
-<button md-fab style="position:fixed; right:10px; bottom:10px;" routerLink="/vn/new" routerLinkActive="active">
-	<md-icon class="md-24">add</md-icon>
-</button>
+<!-- <a md-button routerLink="/search/{{query.filter}}/{{nextPage()}}" routerLinkActive="active">Next</a> -->

@@ -8,6 +8,7 @@ import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
 import { VnCharacterComponent } from './+vn-character/vn-character.component';
+import { SearchComponent } from './+search/search.component';
 
 const appRoutes: Routes = [
 	// { path: '', component: HomeComponent, terminal: true },
@@ -49,6 +50,16 @@ const appRoutes: Routes = [
 	{
 		path: 'vn/:id/character',
 		component: VnCharacterComponent,
+		canActivate: [AuthGuard]
+	},
+	{
+		path: 'search/:query',
+		component: SearchComponent,
+		canActivate: [AuthGuard]
+	},
+	{
+		path: 'search/:query/:page',
+		component: SearchComponent,
 		canActivate: [AuthGuard]
 	},
 	{
