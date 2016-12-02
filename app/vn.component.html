@@ -67,10 +67,10 @@
 				<span *ngIf="!vn.date_start || !vn.date_end || !vn.node || !vn.score_story || !vn.score_naki || !vn.score_nuki || !vn.score_comedy || !vn.score_graphic || !vn.score_all || !vn.status">&#x2718;</span>
 			</td>
 			<td>
-				<button md-button>Overview</button>
-				<button md-button [routerLink]="['/vn', vn.id, 'assessment']">Compose</button>
-				<button md-button [routerLink]="['/vn', vn.id, 'character']">Character</button>
-				<button md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</button>
+				<!-- <button md-button>Overview</button> -->
+				<a md-button [routerLink]="['/vn', vn.id, 'assessment']">Compose</a>
+				<a md-button [routerLink]="['/vn', vn.id, 'character']">Character</a>
+				<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
 			</td>
 		</tr>
 	</tbody>
