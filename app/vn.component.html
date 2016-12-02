@@ -10,9 +10,9 @@
 	</span>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<form name="search_form">
-		<md-input placeholder="keyword" align="end" #query name="search_query">
+		<md-input placeholder="keyword" align="end" #search name="search_query">
 		</md-input>
-		<a type="submit" md-button routerLink="/search/{{query.value}}" routerLinkActive="active">Search</a>
+		<a type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</a>
 	</form>
 </md-toolbar>
 
@@ -34,7 +34,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr template="ngFor let vn of vns">
+		<tr template="ngFor let vn of vns | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: query.page, totalItems: query.total}">
 			<td>{{vn.id}}</td>
 			<td>{{vn.title_jp}}</td>
 			<td>{{vn.date_release}}</td>
@@ -79,3 +79,5 @@
 <button md-fab style="position:fixed; right:10px; bottom:10px;" routerLink="/vn/new" routerLinkActive="active">
 	<md-icon class="md-24">add</md-icon>
 </button>
+
+<pagination-controls (pageChange)="changePage($event)" id="pagina"></pagination-controls>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { VnService } from './vn.service';
 
@@ -26,15 +26,40 @@ export class VnComponent implements OnInit{
 	constructor(
 		// public router:Router,
 		private vnService: VnService,
-		public authHttp: AuthHttp
+		public authHttp: AuthHttp,
+		private route: ActivatedRoute
 	) {}
 
 	vns: Vn[] = [];
 	ngOnInit() {
-		this.vnService.getVns().subscribe(response => {
+		this.route.params.forEach((params:Params) => {
+			if(params['page']) {
+				let prefix = params['page'].substring(0,1)
+				let page = params['page'].substring(1);
+				if(prefix == "p") {
+					this.query.page = page;
+				}
+			}
+			this.loadVns();
+		});
+	}
+
+	query:any = {
+		limit: 10,
+		page: 1,
+		filter: '',
+		total: 0
+	};
+
+	changePage(page) {
+		this.query.page = page;
+		this.loadVns();
+	}
+
+	loadVns():void {
+		this.vnService.getVns(this.query.limit, this.query.page, this.query.filter).subscribe(response => {
 			this.vns = response.data;
-		},
-		err => console.error("ERR ", err)
-		);
+			this.query.total = response.total;
+		});
 	}
 }
