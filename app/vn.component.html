@@ -10,9 +10,9 @@
 	</span>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<form name="search_form">
-		<md-input placeholder="keyword" align="end" #search name="search_query">
+		<md-input #search placeholder="keyword" align="end" name="search_query">
 		</md-input>
-		<a type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</a>
+		<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
 	</form>
 </md-toolbar>
 
