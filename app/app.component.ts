@@ -10,9 +10,9 @@ import { Component } from '@angular/core';
 		<md-sidenav #start (open)="closeStartButton.focus()">
 			Navigation Menu
 			<br>
-			<button md-button routerLink="/home" routerLinkActive="active">Home</button>
+			<a md-button routerLink="/home" routerLinkActive="active">Home</a>
 			<br>
-			<button md-button routerLink="/vn" routerLinkActive="active">VN</button>
+			<a md-button routerLink="/vn" routerLinkActive="active">VN</a>
 			<br>
 			<button md-button #closeStartButton (click)="start.close()">Close</button>
 
