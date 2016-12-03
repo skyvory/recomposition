@@ -9,7 +9,7 @@
 		</strong>
 	</span>
 	&nbsp;&nbsp;&nbsp;&nbsp;
-	<form name="search_form">
+	<form #form="ngForm" name="search_form">
 		<md-input #search placeholder="keyword" align="end" name="search_query">
 		</md-input>
 		<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
