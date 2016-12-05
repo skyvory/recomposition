@@ -3,6 +3,9 @@ import { Http, Headers, RequestOptions, Response, URLSearchParams } from '@angul
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
+
+import 'rxjs/add/operator/toPromise';
 
 import { contentHeaders } from './common/headers';
 import { AuthHttp } from 'angular2-jwt';
@@ -23,8 +26,7 @@ export class DeveloperService {
 				.map(
 					(response:Response) => {
 						return response.json();
-					},
-					err => console.warn("map err", err)
+					}
 				)
 				.catch(this.handleError)
 			;
@@ -34,8 +36,7 @@ export class DeveloperService {
 				.map(
 					(response:Response) => {
 						return response.json();
-					},
-					err => console.warn("map err", err)
+					}
 				)
 				.catch(this.handleError)
 			;
@@ -51,8 +52,7 @@ export class DeveloperService {
 				.map(
 					(response:Response) => {
 						return response.json();
-					},
-					err => console.warn("map err", err)
+					}
 				)
 				.catch(this.handleError)
 			;
@@ -62,8 +62,7 @@ export class DeveloperService {
 				.map(
 					(response:Response) => {
 						return response.json();
-					},
-					err => console.warn("map err", err)
+					}
 				)
 				.catch(this.handleError)
 			;
@@ -81,8 +80,7 @@ export class DeveloperService {
 				.map(
 					(response:Response) => {
 						return response.json();
-					},
-					err => console.warn("map err", err)
+					}
 				)
 				.catch(this.handleError)
 			;
@@ -92,8 +90,7 @@ export class DeveloperService {
 				.map(
 					(response:Response) => {
 						return response.json();
-					},
-					err => console.warn("map err", err)
+					}
 				)
 				.catch(this.handleError)
 			;
@@ -101,9 +98,13 @@ export class DeveloperService {
 	}
 
 	private handleError(error: any) {
-		console.error("Error occurred", error);
+		if (error instanceof Response) {
+			return Observable.throw(error.json().error || 'backend server error');
+		}
+
+		console.warn("Error occurred" + error);
 		console.warn("this error is handled in private handleError");
-		return Observable.throw(error.json().error || error);
+		return Observable.throw(error);
 	}
 }
 
