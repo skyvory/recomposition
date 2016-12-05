@@ -20,9 +20,9 @@ import { HomeRoutingModule } from './home-routing.module';
 		HomeComponent
 	],
 	providers: [],
-	exports: [
-		HomeComponent
-	]
+	// exports: [
+	// 	HomeComponent
+	// ]
 })
 
 export class HomeModule {}
