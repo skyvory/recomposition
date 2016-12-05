@@ -21,7 +21,7 @@ export class DeveloperService {
 	) {}
 
 	getDevelopers(): Observable<any> {
-		if(!Constant.USE_ANGULAR2JWT) {
+		if(Constant.USE_ANGULAR2JWT) {
 			return this.authHttp.get('http://localhost/record/public/api/developer', { headers: contentHeaders })
 				.map(
 					(response:Response) => {
