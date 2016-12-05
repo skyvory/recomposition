@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
-import { HomeComponent } from './+home/home.component';
+// import { HomeComponent } from './+home/home.component';
 import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
@@ -19,8 +19,8 @@ const appRoutes: Routes = [
 	},
 	{
 		path: 'home',
-		// loadChildren: '+home/home.module#HomeModule',
-		component: HomeComponent,
+		loadChildren: 'app/+home/home.module#HomeModule',
+		// component: HomeComponent,
 		// canActivate: [AuthGuard],
 	},
 	{
