@@ -10,7 +10,7 @@
 	</form>
 </md-toolbar>
 
-<p>{{vndb.status}}</p>
+<p>Credential status: {{vndb.status}}</p>
 <form #form="ngForm" name="vndb_credential_form">
 	<md-input type="text" placeholder="username" name="username" [(ngModel)]="vndb.username"></md-input>
 	<md-input type="password" placeholder="password" name="password" [(ngModel)]="vndb.password"></md-input>
