@@ -11,6 +11,8 @@
 </md-toolbar>
 
 <p>Credential status: {{vndb.status}}</p>
+<p>Toggle status: {{vndbToggleStatus()}} <button md-button on-click="toggleVndbCredentials()">toggle</button></p>
+
 <form #form="ngForm" name="vndb_credential_form">
 	<md-input type="text" placeholder="username" name="username" [(ngModel)]="vndb.username"></md-input>
 	<md-input type="password" placeholder="password" name="password" [(ngModel)]="vndb.password"></md-input>
