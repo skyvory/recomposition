@@ -7,7 +7,7 @@ import { VndbService } from '../vndb.service';
 import { LineamentService } from '../lineament.service';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'vn-character-selector',
 	templateUrl: 'vn-character.component.html'
 })

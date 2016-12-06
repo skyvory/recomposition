@@ -9,7 +9,7 @@ import { AuthenticationService } from './authentication.service';
 // import { contentHeaders } from './common/headers';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'login-selector',
 	templateUrl: './login.component.html',
 	providers: [AuthenticationService]

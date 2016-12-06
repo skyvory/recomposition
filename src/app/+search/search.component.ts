@@ -4,7 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { VnService } from '../vn.service';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'search-selector',
 	templateUrl: 'search.component.html'
 })

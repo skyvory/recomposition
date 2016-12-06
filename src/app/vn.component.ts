@@ -17,7 +17,7 @@ export class Vn {
 }
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'vn-selector',
 	templateUrl: 'vn.component.html'
 })

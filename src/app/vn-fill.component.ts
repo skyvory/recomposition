@@ -9,7 +9,7 @@ import { DeveloperService } from './developer.service';
 import { VndbService } from './vndb.service';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'vn-new-selector',
 	templateUrl: 'vn-fill.component.html'
 })
@@ -33,6 +33,7 @@ export class VnFillComponent implements OnInit{
 		// 	this.developers = response.data;
 		// });
 		this.loadDevelopers();
+		console.log(this.router.url);
 		if(this.router.url === "/vn/new") {
 			this.fillState = "new";
 		}
@@ -48,11 +49,14 @@ export class VnFillComponent implements OnInit{
 
 	loadDevelopers():void {
 		this.developerService.getDevelopers().subscribe(response => {
-			this.developers = response.data.map(repo => {
-				repo.value = repo.name_en ? repo.name_en.toLowerCase() : repo.name_jp;
-				return repo;
-			});
-		});
+			this.developers = response.data;
+			// this.developers = response.data.map(repo => {
+			// 	repo.value = repo.name_en ? repo.name_en.toLowerCase() : repo.name_jp;
+			// 	return repo;
+			// });
+		},
+		err => console.log(err)
+		);
 	}
 
 	loadVn(id:number):void {

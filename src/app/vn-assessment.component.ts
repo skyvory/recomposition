@@ -9,9 +9,9 @@ import { VnService } from './vn.service';
 import { VndbService } from './vndb.service';
 
 @Component({
-	moduleId: module.id,
+	// moduleId: module.id,
 	selector: 'vn-assessment-selector',
-	templateUrl: 'vn-assessment.component.html'
+	templateUrl: './vn-assessment.component.html'
 })
 
 export class VnAssessmentComponent implements OnInit, DoCheck {

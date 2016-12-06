@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 // import { LoginComponent } from './login.component';
 
 @Component({
-	selector: 'my-app',
+	selector: 'app-root',
 	template: `
 	<md-sidenav-layout>
 		<md-sidenav #start (open)="closeStartButton.focus()">
