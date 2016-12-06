@@ -115,7 +115,7 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 				this.assessment.id = response.id;
 			}
 
-			if(localStorage.getItem('vndb_toggle') == "0") {
+			if(localStorage.getItem('vndb_toggle') == "0" || !localStorage.getItem('vndb_toggle')) {
 				console.log("VNDB auto-update is off");
 				return;
 			}
