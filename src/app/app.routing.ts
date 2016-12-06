@@ -68,6 +68,10 @@ const appRoutes: Routes = [
 		canActivate: [AuthGuard]
 	},
 	{
+		path: 'setting',
+		loadChildren: 'app/+setting/setting.module#SettingModule'
+	},
+	{
 		path: '**',
 		redirectTo: '/vn',
 	},

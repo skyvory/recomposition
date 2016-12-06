@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { routing } from './app.routing';
 
 import { HomeModule } from './+home/home.module';
+import { SettingModule } from './+setting/setting.module';
 
 import { AuthenticationService } from './authentication.service';
 import { VnService } from './vn.service';
@@ -40,7 +41,8 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 		routing,
 		HomeModule,
 		MaterialModule.forRoot(),
-		Ng2PaginationModule
+		Ng2PaginationModule,
+		SettingModule
 	],
 	declarations: [
 		AppComponent,

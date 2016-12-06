@@ -1,0 +1,18 @@
+<md-toolbar>
+	<span>
+		Setting Page
+	</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<form #form="ngForm" name="search_form">
+		<md-input #search placeholder="keyword" align="end" name="search_query">
+		</md-input>
+		<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
+	</form>
+</md-toolbar>
+
+<p>{{vndb.status}}</p>
+<form #form="ngForm" name="vndb_credential_form">
+	<md-input type="text" placeholder="username" name="username" [(ngModel)]="vndb.username"></md-input>
+	<md-input type="password" placeholder="password" name="password" [(ngModel)]="vndb.password"></md-input>
+	<button md-button type="submit" on-click="setVndbCredentials()">Set</button>
+</form>
