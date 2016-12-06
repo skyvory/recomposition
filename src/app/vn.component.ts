@@ -34,11 +34,8 @@ export class VnComponent implements OnInit{
 	ngOnInit() {
 		this.route.params.forEach((params:Params) => {
 			if(params['page']) {
-				let prefix = params['page'].substring(0,1)
-				let page = params['page'].substring(1);
-				if(prefix == "p") {
-					this.query.page = page;
-				}
+				let page = params['page'];
+				this.query.page = page;
 			}
 			this.loadVns();
 		});

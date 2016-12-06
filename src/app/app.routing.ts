@@ -33,7 +33,7 @@ const appRoutes: Routes = [
 		canActivate: [AuthGuard],
 	},
 	{
-		path: 'vn/:page',
+		path: 'vn/p/:page',
 		component: VnComponent,
 		canActivate: [AuthGuard]
 	},
