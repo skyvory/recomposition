@@ -5,6 +5,8 @@ import { MaterialModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { VnRoutingModule } from './vn-routing.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
+import { VnAssessmentComponent } from './vn-assessment.component';
+
 
 @NgModule({
   imports: [
@@ -14,6 +16,6 @@ Ng2PaginationModule,
     FormsModule,
     VnRoutingModule
   ],
-  declarations: [VnComponent]
+  declarations: [VnComponent, VnAssessmentComponent]
 })
 export class VnModule { }

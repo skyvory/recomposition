@@ -4,9 +4,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 import * as moment from 'moment';
 
-import { AssessmentService } from './assessment.service';
-import { VnService } from './vn.service';
-import { VndbService } from './vndb.service';
+import { AssessmentService } from '../assessment.service';
+import { VnService } from '../vn.service';
+import { VndbService } from '../vndb.service';
 
 @Component({
 	// moduleId: module.id,

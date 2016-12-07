@@ -22,7 +22,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 // import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
-import { VnAssessmentComponent } from './vn-assessment.component';
+// import { VnAssessmentComponent } from './vn-assessment.component';
 import { VnCharacterComponent } from './+vn-character/vn-character.component';
 import { SearchComponent } from './+search/search.component';
 
@@ -33,6 +33,7 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { provideAuth } from 'angular2-jwt';
 import { MaterialModule } from '@angular/material';
 import { Ng2PaginationModule } from 'ng2-pagination';
+import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
 
 @NgModule({
 	imports: [
@@ -51,7 +52,7 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 		LoginComponent,
 		// VnComponent,
 		VnFillComponent,
-		VnAssessmentComponent,
+		// VnAssessmentComponent,
 		VnCharacterComponent,
 		SearchComponent
 	],
