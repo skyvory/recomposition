@@ -9,6 +9,7 @@ import { VnAssessmentComponent } from './vn-assessment.component';
 import { VnCharacterComponent } from './+vn-character/vn-character.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
+import { VnAssessmentWrapperComponent } from './vn-assessment-wrapper/vn-assessment-wrapper.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ Ng2PaginationModule,
     FormsModule,
     VnRoutingModule
   ],
-  declarations: [VnComponent, VnAssessmentComponent, VnCharacterComponent, VnFillComponent, VnWrapperComponent]
+  declarations: [VnComponent, VnAssessmentComponent, VnCharacterComponent, VnFillComponent, VnWrapperComponent, VnAssessmentWrapperComponent]
 })
 export class VnModule { }
