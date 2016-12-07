@@ -21,7 +21,7 @@ import { LineamentService } from './lineament.service';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 // import { VnComponent } from './vn.component';
-import { VnFillComponent } from './vn-fill.component';
+// import { VnFillComponent } from './vn-fill.component';
 // import { VnAssessmentComponent } from './vn-assessment.component';
 // import { VnCharacterComponent } from './+vn-character/vn-character.component';
 import { SearchComponent } from './+search/search.component';
@@ -51,7 +51,7 @@ import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
 		AppComponent,
 		LoginComponent,
 		// VnComponent,
-		VnFillComponent,
+		// VnFillComponent,
 		// VnAssessmentComponent,
 		// VnCharacterComponent,
 		SearchComponent

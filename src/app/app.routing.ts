@@ -34,16 +34,6 @@ const appRoutes: Routes = [
 		// canActivate: [AuthGuard],
 	},
 	{
-		path: 'vn/new',
-		component: VnFillComponent,
-		canActivate: [AuthGuard],
-	},
-	{
-		path: 'vn/:id/edit',
-		component: VnFillComponent,
-		canActivate: [AuthGuard],
-	},
-	{
 		path: 'search/:query',
 		component: SearchComponent,
 		canActivate: [AuthGuard]
