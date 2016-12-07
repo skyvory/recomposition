@@ -10,7 +10,12 @@ import { VnComponent } from './vn.component';
 			path: 'vn',
 			component: VnComponent,
 			canActivate: [AuthGuard]
-		}
+		},
+		{
+			path: 'vn/p/:page',
+			component: VnComponent,
+			canActivate: [AuthGuard]
+		},
 	])],
 	exports: [RouterModule]
 })
