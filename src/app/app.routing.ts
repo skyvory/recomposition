@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 // import { HomeComponent } from './+home/home.component';
-import { VnComponent } from './vn.component';
+// import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
 import { VnCharacterComponent } from './+vn-character/vn-character.component';
@@ -29,8 +29,9 @@ const appRoutes: Routes = [
 	},
 	{
 		path: 'vn',
-		component: VnComponent,
-		canActivate: [AuthGuard],
+		loadChildren: 'app/+vn/vn.module#VnModule'
+		// component: VnWrapperComponent,
+		// canActivate: [AuthGuard],
 	},
 	{
 		path: 'vn/p/:page',

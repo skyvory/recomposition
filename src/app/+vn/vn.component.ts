@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { VnService } from './vn.service';
+import { VnService } from '../vn.service';
 
 import { AuthHttp } from 'angular2-jwt';
 
@@ -19,7 +19,8 @@ export class Vn {
 @Component({
 	// moduleId: module.id,
 	selector: 'vn-selector',
-	templateUrl: 'vn.component.html'
+	templateUrl: './vn.component.html',
+	styleUrls: ['./vn.component.css']
 })
 
 export class VnComponent implements OnInit{

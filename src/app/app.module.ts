@@ -8,6 +8,7 @@ import { routing } from './app.routing';
 
 import { HomeModule } from './+home/home.module';
 import { SettingModule } from './+setting/setting.module';
+import { VnModule } from './+vn/vn.module';
 
 import { AuthenticationService } from './authentication.service';
 import { VnService } from './vn.service';
@@ -19,7 +20,7 @@ import { LineamentService } from './lineament.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
-import { VnComponent } from './vn.component';
+// import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
 import { VnCharacterComponent } from './+vn-character/vn-character.component';
@@ -42,12 +43,13 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 		HomeModule,
 		MaterialModule.forRoot(),
 		Ng2PaginationModule,
-		SettingModule
+		SettingModule,
+		VnModule
 	],
 	declarations: [
 		AppComponent,
 		LoginComponent,
-		VnComponent,
+		// VnComponent,
 		VnFillComponent,
 		VnAssessmentComponent,
 		VnCharacterComponent,
