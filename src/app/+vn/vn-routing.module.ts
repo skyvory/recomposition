@@ -6,12 +6,13 @@ import { VnComponent } from './vn.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
 import { VnCharacterComponent } from './+vn-character/vn-character.component';
 import { VnFillComponent } from './vn-fill.component';
+import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
 		{
 			path: 'vn',
-			component: VnComponent,
+			component: VnWrapperComponent,
 			canActivate: [AuthGuard]
 		},
 		{
