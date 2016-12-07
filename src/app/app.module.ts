@@ -33,7 +33,6 @@ import { AUTH_PROVIDERS } from 'angular2-jwt';
 import { provideAuth } from 'angular2-jwt';
 import { MaterialModule } from '@angular/material';
 import { Ng2PaginationModule } from 'ng2-pagination';
-import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
 
 @NgModule({
 	imports: [
