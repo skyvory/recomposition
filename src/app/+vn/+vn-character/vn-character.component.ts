@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { CharacterService } from '../character.service';
-import { VnService } from '../vn.service';
-import { VndbService } from '../vndb.service';
-import { LineamentService } from '../lineament.service';
+import { CharacterService } from '../../character.service';
+import { VnService } from '../../vn.service';
+import { VndbService } from '../../vndb.service';
+import { LineamentService } from '../../lineament.service';
 
 @Component({
 	// moduleId: module.id,

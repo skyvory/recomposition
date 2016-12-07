@@ -7,7 +7,7 @@ import { LoginComponent } from './login.component';
 // import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
-import { VnCharacterComponent } from './+vn-character/vn-character.component';
+// import { VnCharacterComponent } from './+vn-character/vn-character.component';
 import { SearchComponent } from './+search/search.component';
 
 const appRoutes: Routes = [
@@ -42,11 +42,6 @@ const appRoutes: Routes = [
 		path: 'vn/:id/edit',
 		component: VnFillComponent,
 		canActivate: [AuthGuard],
-	},
-	{
-		path: 'vn/:id/character',
-		component: VnCharacterComponent,
-		canActivate: [AuthGuard]
 	},
 	{
 		path: 'search/:query',

@@ -4,6 +4,7 @@ import { AuthGuard } from '../guards/auth.guard';
 
 import { VnComponent } from './vn.component';
 import { VnAssessmentComponent } from './vn-assessment.component';
+import { VnCharacterComponent } from './+vn-character/vn-character.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
@@ -21,6 +22,11 @@ import { VnAssessmentComponent } from './vn-assessment.component';
 			path: 'vn/:id/assessment',
 			component: VnAssessmentComponent,
 			canActivate: [AuthGuard],
+		},
+		{
+			path: 'vn/:id/character',
+			component: VnCharacterComponent,
+			canActivate: [AuthGuard]
 		},
 	])],
 	exports: [RouterModule]

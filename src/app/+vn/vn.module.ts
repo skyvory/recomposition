@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { VnRoutingModule } from './vn-routing.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { VnAssessmentComponent } from './vn-assessment.component';
-
+import { VnCharacterComponent } from './+vn-character/vn-character.component';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ Ng2PaginationModule,
     FormsModule,
     VnRoutingModule
   ],
-  declarations: [VnComponent, VnAssessmentComponent]
+  declarations: [VnComponent, VnAssessmentComponent, VnCharacterComponent]
 })
 export class VnModule { }
