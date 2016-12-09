@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/of';
 
 import { contentHeaders } from './common/headers';
 import { AuthHttp } from 'angular2-jwt';
@@ -19,6 +19,8 @@ export class VnService {
 		private http: Http,
 		private authenticationService: AuthenticationService
 	) {}
+
+	_vn:any = {};
 
 	// todo: change static optional parameter into optional array. That way, the component doesn't have to throw undefined value as arguments
 	getVns(limit:number = 10, page:number = 1, filter?:string):Observable<any> {
@@ -66,14 +68,21 @@ export class VnService {
 			;
 		}
 		else {
-			return this.http.get(`http://localhost/record/public/api/vn/${vnId}`, this.authenticationService.option)
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			if(this._vn && Object.keys(this._vn).length > 0 && this._vn.id == vnId) {
+				console.log("THISVN", this._vn);
+				return Observable.of(this._vn).map(instantResponse => instantResponse);
+			}
+			else {
+				return this.http.get(`http://localhost/record/public/api/vn/${vnId}`, this.authenticationService.option)
+					.map(
+						(response:Response) => {
+							this._vn = response.json();
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
 		}
 	}
 
