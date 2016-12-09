@@ -7,6 +7,7 @@ import { routing } from '../app.routing';
 import { FormsModule } from '@angular/forms';
 
 import { HomeRoutingModule } from './home-routing.module';
+import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { HomeRoutingModule } from './home-routing.module';
 		MaterialModule.forRoot(),
 	],
 	declarations: [
-		HomeComponent
+		HomeComponent,
+		HomeWrapperComponent
 	],
 	providers: [],
 	// exports: [

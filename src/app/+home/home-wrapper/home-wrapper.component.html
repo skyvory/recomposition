@@ -1,0 +1,28 @@
+<md-sidenav-layout>
+	<md-sidenav #start (open)="closeStartButton.focus()">
+		Navigation Menu
+		<br>
+		<a md-button routerLink="/home" routerLinkActive="active">Home</a>
+		<br>
+		<a md-button routerLink="/vn" routerLinkActive="active">VN</a>
+		<br>
+		<a md-button routerLink="/setting" routerLinkActive="active">Setting</a>
+		<br>
+		<button md-button #closeStartButton (click)="start.close()">Close</button>
+	</md-sidenav>
+
+	<md-toolbar style="position:fixed;">
+		<button md-button (click)="start.open()">Menu</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<form #form="ngForm" name="search_form">
+			<md-input #search placeholder="keyword" align="end" name="search_query">
+			</md-input>
+			<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
+		</form>
+	</md-toolbar>
+
+	<div class="app-content">
+		<home-selectors></home-selectors>
+	</div>
+	
+</md-sidenav-layout>
