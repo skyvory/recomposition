@@ -8,6 +8,7 @@ import { VnCharacterComponent } from './+vn-character/vn-character.component';
 import { VnFillComponent } from './vn-fill.component';
 import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
 import { VnAssessmentWrapperComponent } from './vn-assessment-wrapper/vn-assessment-wrapper.component';
+import { CharacterWrapperComponent } from './character-wrapper/character-wrapper.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
@@ -28,7 +29,7 @@ import { VnAssessmentWrapperComponent } from './vn-assessment-wrapper/vn-assessm
 		},
 		{
 			path: 'vn/:id/character',
-			component: VnCharacterComponent,
+			component: CharacterWrapperComponent,
 			canActivate: [AuthGuard]
 		},
 		{
