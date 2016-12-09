@@ -21,6 +21,7 @@ export class VnCharacterComponent implements OnInit {
 		private lineamentService: LineamentService
 	) {}
 
+@Input() vn;
 	@Input() characters:any = [];
 	vndb:any = {
 		characters: []
@@ -30,7 +31,7 @@ export class VnCharacterComponent implements OnInit {
 		this.route.params.forEach((params:Params) => {
 			let id = +params['id'];
 			this.loadCharacter(id);
-			this.loadVn(id);
+			// this.loadVn(id);
 			console.log("PARAM INIT EXECUTION");
 		});
 	}
@@ -45,7 +46,7 @@ export class VnCharacterComponent implements OnInit {
 		});
 	}
 
-	vn:any = [];
+	// vn:any = [];
 	loadVn(vn_id:number):void {
 		this.vnService.getVn(vn_id).subscribe(response => {
 			this.vn = response;

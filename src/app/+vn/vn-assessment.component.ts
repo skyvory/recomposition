@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, KeyValueDiffers } from '@angular/core';
+import { Component, OnInit, DoCheck, KeyValueDiffers, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -38,11 +38,12 @@ export class VnAssessmentComponent implements OnInit, DoCheck {
 		this.route.params.forEach((params: Params) => {
 			let id = +params['id'];
 			this.loadAssessment(id);
-			this.loadVn(id);
+			// this.loadVn(id);
 		});
 	}
 
-	vn:any = [];
+	// vn:any = [];
+	@Input() vn;
 	loadVn(vn_id:number):void {
 		this.vnService.getVn(vn_id).subscribe(response => {
 			this.vn = response;
