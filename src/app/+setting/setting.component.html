@@ -1,15 +1,3 @@
-<md-toolbar>
-	<span>
-		Setting Page
-	</span>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<form #form="ngForm" name="search_form">
-		<md-input #search placeholder="keyword" align="end" name="search_query">
-		</md-input>
-		<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
-	</form>
-</md-toolbar>
-
 <p>Credential status: {{vndb.status}}</p>
 <p>Toggle status: {{vndbToggleStatus()}} <button md-button on-click="toggleVndbCredentials()">toggle</button></p>
 
