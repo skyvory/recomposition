@@ -46,6 +46,12 @@ const appRoutes: Routes = [
 	{
 		path: 'setting',
 		loadChildren: 'app/+setting/setting.module#SettingModule'
+		// loadChildren: () => new Promise(resolve => {
+		// 	(require as any).ensure([], require => {
+		// 		resolve(require('./+setting/setting.module')['SettingModule']);
+		// 	})
+		// })
+		// loadChildren: () => require('es6-promise!./+setting/setting.module')('SettingModule')
 	},
 	{
 		path: '**',

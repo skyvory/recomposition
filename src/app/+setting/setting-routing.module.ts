@@ -7,6 +7,11 @@ import { SettingWrapperComponent } from './setting-wrapper/setting-wrapper.compo
 	imports: [RouterModule.forChild([
 		{
 			path: 'setting', component: SettingWrapperComponent
+			// path: '',
+			// children: [
+			// 	{ path: 'setting',
+			// 	component: SettingWrapperComponent}
+			// ]
 		}
 
 	])],
