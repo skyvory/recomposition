@@ -5,8 +5,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
 // import { HomeComponent } from './+home/home.component';
 // import { VnComponent } from './vn.component';
-import { VnFillComponent } from './vn-fill.component';
-import { VnAssessmentComponent } from './vn-assessment.component';
+// import { VnFillComponent } from './vn-fill.component';
+// import { VnAssessmentComponent } from './vn-assessment.component';
 // import { VnCharacterComponent } from './+vn-character/vn-character.component';
 import { SearchComponent } from './+search/search.component';
 
