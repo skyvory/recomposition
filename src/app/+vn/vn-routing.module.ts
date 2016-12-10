@@ -19,7 +19,7 @@ import { CharacterWrapperComponent } from './character-wrapper/character-wrapper
 		},
 		{
 			path: 'vn/p/:page',
-			component: VnComponent,
+			component: VnWrapperComponent,
 			canActivate: [AuthGuard]
 		},
 		{
