@@ -36,6 +36,15 @@ export class VnCharacterComponent implements OnInit {
 		});
 	}
 
+	ngOnChanges(changes:any) {
+		for(let propName in changes) {
+			console.log(propName);
+			if(propName === 'vn') {
+				this.vndb.vn_id = this.vn.vndb_vn_id;
+			}
+		}
+	}
+
 	debugDump(): any {
 		return JSON.stringify(this.characters.length);
 	}
