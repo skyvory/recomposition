@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { contentHeaders } from './common/headers';
 // import 'rxjs/add/operator/toPromise';
+import { Constant } from './const.config';
 
 @Injectable()
 export class AuthenticationService {
@@ -48,7 +49,7 @@ export class AuthenticationService {
 		// 	console.log(response);
 		// });
 		let body = JSON.stringify({ username: username, password: password });
-		return this.http.post('http://localhost/record/public/api/authenticate', body, {headers: contentHeaders })
+		return this.http.post(Constant.API_PATH + `authenticate`, body, {headers: contentHeaders })
 			.map((response: Response) => {
 				console.log(response);
 				let token = response.json() && response.json().token;

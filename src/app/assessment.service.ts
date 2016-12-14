@@ -19,7 +19,7 @@ export class AssessmentService {
 
 	getAssessment(vn_id:number):Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(`http://localhost/record/public/api/assessment/${vn_id}`, {headers: contentHeaders})
+			return this.authHttp.get(Constant.API_PATH + `assessment/${vn_id}`, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -29,7 +29,7 @@ export class AssessmentService {
 			;
 		}
 		else {
-			return this.http.get(`http://localhost/record/public/api/assessment/${vn_id}`, this.authenticationService.option)
+			return this.http.get(Constant.API_PATH + `assessment/${vn_id}`, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -60,7 +60,7 @@ export class AssessmentService {
 
 		if(assessment.id) {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.put(`http://localhost/record/public/api/assessment/${assessment.id}`, data, {headers: contentHeaders})
+				return this.authHttp.put(Constant.API_PATH + `assessment/${assessment.id}`, data, {headers: contentHeaders})
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -70,7 +70,7 @@ export class AssessmentService {
 				;
 			}
 			else {
-				return this.http.put(`http://localhost/record/public/api/assessment/${assessment.id}`, data, this.authenticationService.option)
+				return this.http.put(Constant.API_PATH + `assessment/${assessment.id}`, data, this.authenticationService.option)
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -82,7 +82,7 @@ export class AssessmentService {
 		}
 		else {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.post('http://localhost/record/public/api/assessment', data, {headers: contentHeaders})
+				return this.authHttp.post(Constant.API_PATH + `assessment`, data, {headers: contentHeaders})
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -92,7 +92,7 @@ export class AssessmentService {
 				;
 			}
 			else {
-				return this.http.post('http://localhost/record/public/api/assessment', data, this.authenticationService.option)
+				return this.http.post(Constant.API_PATH + `assessment`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();

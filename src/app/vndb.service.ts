@@ -27,7 +27,7 @@ export class VndbService {
 		console.log(data);
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post('http://localhost/record/public/vndb/vn', data, {headers: contentHeaders})
+			return this.authHttp.post(Constant.API_PATH + `vndb/vn`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -38,7 +38,7 @@ export class VndbService {
 			;
 		}
 		else {
-			return this.http.post('http://localhost/record/public/vndb/vn', data, this.authenticationService.option)
+			return this.http.post(Constant.API_PATH + `vndb/vn`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -58,7 +58,7 @@ export class VndbService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post('http://localhost/record/public/vndb/release', data, {headers: contentHeaders})
+			return this.authHttp.post(Constant.API_PATH + `vndb/release`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -69,7 +69,7 @@ export class VndbService {
 			;
 		}
 		else {
-			return this.http.post('http://localhost/record/public/vndb/release', data, this.authenticationService.option)
+			return this.http.post(Constant.API_PATH + `vndb/release`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -90,7 +90,7 @@ export class VndbService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post('http://localhost/record/public/vndb/setVote', data, {headers: contentHeaders})
+			return this.authHttp.post(Constant.API_PATH + `vndb/setVote`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return  response.json();
@@ -100,7 +100,7 @@ export class VndbService {
 			;
 		}
 		else {
-			return this.http.post('http://localhost/record/public/vndb/setVote', data, this.authenticationService.option)
+			return this.http.post(Constant.API_PATH + `vndb/setVote`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return  response.json();
@@ -120,7 +120,7 @@ export class VndbService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post('http://localhost/record/public/vndb/setStatus', data, {headers: contentHeaders})
+			return this.authHttp.post(Constant.API_PATH + `vndb/setStatus`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -130,7 +130,7 @@ export class VndbService {
 			;
 		}
 		else {
-			return this.http.post('http://localhost/record/public/vndb/setStatus', data, this.authenticationService.option)
+			return this.http.post(Constant.API_PATH + `vndb/setStatus`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -150,7 +150,7 @@ export class VndbService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post('http://localhost/record/public/vndb/character', data, {headers: contentHeaders})
+			return this.authHttp.post(Constant.API_PATH + `vndb/character`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -160,7 +160,7 @@ export class VndbService {
 			;
 		}
 		else {
-			return this.http.post('http://localhost/record/public/vndb/character', data, this.authenticationService.option)
+			return this.http.post(Constant.API_PATH + `vndb/character`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();

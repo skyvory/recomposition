@@ -37,7 +37,7 @@ export class VnService {
 		params.set('filter', filter.toString());
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get('http://localhost/record/public/api/vn', {headers: contentHeaders})
+			return this.authHttp.get(Constant.API_PATH + `vn`, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -47,7 +47,7 @@ export class VnService {
 			;
 		}
 		else {
-			return this.http.get('http://localhost/record/public/api/vn', this.authenticationService.optionParam(params))
+			return this.http.get(Constant.API_PATH + `vn`, this.authenticationService.optionParam(params))
 				.map(
 					(response:Response) => response.json()
 				)
@@ -58,7 +58,7 @@ export class VnService {
 
 	getVn(vnId:number):Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(`http://localhost/record/public/api/vn/${vnId}`, {headers:contentHeaders})
+			return this.authHttp.get(Constant.API_PATH + `vn/${vnId}`, {headers:contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -73,7 +73,7 @@ export class VnService {
 				return Observable.of(this._vn).map(instantResponse => instantResponse);
 			}
 			else {
-				return this.http.get(`http://localhost/record/public/api/vn/${vnId}`, this.authenticationService.option)
+				return this.http.get(Constant.API_PATH + `vn/${vnId}`, this.authenticationService.option)
 					.map(
 						(response:Response) => {
 							this._vn = response.json();
@@ -98,7 +98,7 @@ export class VnService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post('http://localhost/record/public/api/vn', data, {headers: contentHeaders})
+			return this.authHttp.post(Constant.API_PATH + `vn`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -108,7 +108,7 @@ export class VnService {
 			;
 		}
 		else {
-			return this.http.post('http://localhost/record/public/api/vn', data, this.authenticationService.option)
+			return this.http.post(Constant.API_PATH + `vn`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -132,7 +132,7 @@ export class VnService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.put(`http://localhost/record/public/api/vn/${vn.id}`, data, {headers:contentHeaders})
+			return this.authHttp.put(Constant.API_PATH + `vn/${vn.id}`, data, {headers:contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -142,7 +142,7 @@ export class VnService {
 			;
 		}
 		else {
-			return this.http.put(`http://localhost/record/public/api/vn/${vn.id}`, data, this.authenticationService.option)
+			return this.http.put(Constant.API_PATH + `vn/${vn.id}`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();

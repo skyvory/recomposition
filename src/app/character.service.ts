@@ -22,7 +22,7 @@ export class CharacterService {
 		params.set('vn_id', vn_id.toString());
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(`http://localhost/record/public/api/character`, {headers: contentHeaders, search: params})
+			return this.authHttp.get(Constant.API_PATH + `character`, {headers: contentHeaders, search: params})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -32,7 +32,7 @@ export class CharacterService {
 			;
 		}
 		else {
-			return this.http.get(`http://localhost/record/public/api/character`, this.authenticationService.optionParam(params))
+			return this.http.get(Constant.API_PATH + `character`, this.authenticationService.optionParam(params))
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -62,7 +62,7 @@ export class CharacterService {
 
 		if(character.id) {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.put(`http://localhost/record/public/api/character/${character.id}`, data, {headers: contentHeaders})
+				return this.authHttp.put(Constant.API_PATH + `character/${character.id}`, data, {headers: contentHeaders})
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -72,7 +72,7 @@ export class CharacterService {
 				;
 			}
 			else {
-				return this.http.put(`http://localhost/record/public/api/character/${character.id}`, data, this.authenticationService.option)
+				return this.http.put(Constant.API_PATH + `character/${character.id}`, data, this.authenticationService.option)
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -84,7 +84,7 @@ export class CharacterService {
 		}
 		else {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.post(`http://localhost/record/public/api/character`, data, {headers: contentHeaders})
+				return this.authHttp.post(Constant.API_PATH + `character`, data, {headers: contentHeaders})
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -94,7 +94,7 @@ export class CharacterService {
 				;
 			}
 			else {
-				return this.http.post(`http://localhost/record/public/api/character`, data, this.authenticationService.option)
+				return this.http.post(Constant.API_PATH + `character`, data, this.authenticationService.option)
 					.map(
 						(response:Response) => {
 							return response.json();
@@ -111,7 +111,7 @@ export class CharacterService {
 			//
 		}
 		else {
-			return this.http.delete(`http://localhost/record/public/api/character/${character_id}`, this.authenticationService.option)
+			return this.http.delete(Constant.API_PATH + `character/${character_id}`, this.authenticationService.option)
 				.map(() => null)
 				.catch(this.handleError);
 		}

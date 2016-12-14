@@ -22,7 +22,7 @@ export class DeveloperService {
 
 	getDevelopers(): Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get('http://localhost/record/public/api/developer', { headers: contentHeaders })
+			return this.authHttp.get(Constant.API_PATH + `developer`, { headers: contentHeaders })
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -32,7 +32,7 @@ export class DeveloperService {
 			;
 		}
 		else {
-			return this.http.get('http://localhost/record/public/api/developer', this.authenticationService.option)
+			return this.http.get(Constant.API_PATH + `developer`, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -48,7 +48,7 @@ export class DeveloperService {
 		params.set('name_en', name_en);
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get('http://localhost/record/public/api/developer', {headers: contentHeaders, search: params})
+			return this.authHttp.get(Constant.API_PATH + `developer`, {headers: contentHeaders, search: params})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -58,7 +58,7 @@ export class DeveloperService {
 			;
 		}
 		else {
-			return this.http.get('http://localhost/record/public/api/developer', this.authenticationService.optionParam(params))
+			return this.http.get(Constant.API_PATH + `developer`, this.authenticationService.optionParam(params))
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -76,7 +76,7 @@ export class DeveloperService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post('http://localhost/record/public/api/developer', data, {headers: contentHeaders})
+			return this.authHttp.post(Constant.API_PATH + `developer`, data, {headers: contentHeaders})
 				.map(
 					(response:Response) => {
 						return response.json();
@@ -86,7 +86,7 @@ export class DeveloperService {
 			;
 		}
 		else {
-			return this.http.post('http://localhost/record/public/api/developer', data, this.authenticationService.option)
+			return this.http.post(Constant.API_PATH + `developer`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
