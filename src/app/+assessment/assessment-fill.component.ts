@@ -10,11 +10,11 @@ import { VndbService } from '../vndb.service';
 
 @Component({
 	// moduleId: module.id,
-	selector: 'vn-assessment-selector',
-	templateUrl: './vn-assessment.component.html'
+	selector: 'assessment-fill-selector',
+	templateUrl: './assessment-fill.component.html'
 })
 
-export class VnAssessmentComponent implements OnInit, DoCheck {
+export class AssessmentFillComponent implements OnInit, DoCheck {
 	constructor(
 		public router: Router,
 		public route: ActivatedRoute,

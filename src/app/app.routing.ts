@@ -28,8 +28,8 @@ const appRoutes: Routes = [
 		component: LoginComponent,
 	},
 	{
-		path: 'vn',
-		loadChildren: 'app/+vn/vn.module#VnModule'
+		path: 'assessment',
+		loadChildren: 'app/+assessment/assessment.module#AssessmentModule'
 		// component: VnWrapperComponent,
 		// canActivate: [AuthGuard],
 	},

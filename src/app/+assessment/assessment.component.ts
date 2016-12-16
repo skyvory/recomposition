@@ -18,12 +18,12 @@ export class Vn {
 
 @Component({
 	// moduleId: module.id,
-	selector: 'vn-selector',
-	templateUrl: './vn.component.html',
-	styleUrls: ['./vn.component.css']
+	selector: 'assessment-selector',
+	templateUrl: './assessment.component.html',
+	styleUrls: ['./assessment.component.css']
 })
 
-export class VnComponent implements OnInit{
+export class AssessmentComponent implements OnInit{
 	constructor(
 		// public router:Router,
 		private vnService: VnService,

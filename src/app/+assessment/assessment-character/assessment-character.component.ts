@@ -8,11 +8,11 @@ import { LineamentService } from '../../lineament.service';
 
 @Component({
 	// moduleId: module.id,
-	selector: 'vn-character-selector',
-	templateUrl: 'vn-character.component.html'
+	selector: 'assessment-character-selector',
+	templateUrl: 'assessment-character.component.html'
 })
 
-export class VnCharacterComponent implements OnInit {
+export class AssessmentCharacterComponent implements OnInit {
 	constructor(
 		public route: ActivatedRoute,
 		public characterService: CharacterService,

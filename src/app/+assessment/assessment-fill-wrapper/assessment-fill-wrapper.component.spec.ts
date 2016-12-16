@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { VnWrapperComponent } from './vn-wrapper.component';
+import { AssessmentFillWrapperComponent } from './assessment-fill-wrapper.component';
 
-describe('VnWrapperComponent', () => {
-  let component: VnWrapperComponent;
-  let fixture: ComponentFixture<VnWrapperComponent>;
+describe('AssessmentFillWrapperComponent', () => {
+  let component: AssessmentFillWrapperComponent;
+  let fixture: ComponentFixture<AssessmentFillWrapperComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VnWrapperComponent ]
+      declarations: [ AssessmentFillWrapperComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VnWrapperComponent);
+    fixture = TestBed.createComponent(AssessmentFillWrapperComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

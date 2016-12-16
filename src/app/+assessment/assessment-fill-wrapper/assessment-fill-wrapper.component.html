@@ -4,7 +4,7 @@
 		<br>
 		<a md-button routerLink="/home" routerLinkActive="active">Home</a>
 		<br>
-		<a md-button routerLink="/vn" routerLinkActive="active">VN</a>
+		<a md-button routerLink="/assessment" routerLinkActive="active">Assessments</a>
 		<br>
 		<a md-button routerLink="/setting" routerLinkActive="active">Setting</a>
 		<br>
@@ -17,11 +17,11 @@
 		<span>{{vn.title_jp}}</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<span>
-			<a [routerLink]="['/vn', vn.id, 'assessment']">Assessment</a>
+			<a [routerLink]="['/assessment', vn.id, 'fill']">Fill</a>
 		</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<span>
-			<a [routerLink]="['/vn', vn.id, 'character']">Character</a>
+			<a [routerLink]="['/assessment', vn.id, 'character']">Character</a>
 		</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<form #form="ngForm" name="search_form">
@@ -32,7 +32,7 @@
 	</md-toolbar>
 
 	<div class="app-content">
-		<vn-character-selector [vn]="vn"></vn-character-selector>
+		<assessment-fill-selector [vn]="vn"></assessment-fill-selector>
 	</div>
 	
 </md-sidenav-layout>

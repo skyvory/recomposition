@@ -3,11 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { VnService } from '../../vn.service';
 
 @Component({
-  selector: 'app-character-wrapper',
-  templateUrl: './character-wrapper.component.html',
-  styleUrls: ['./character-wrapper.component.css']
+  selector: 'app-assessment-character-wrapper',
+  templateUrl: './assessment-character-wrapper.component.html',
+  styleUrls: ['./assessment-character-wrapper.component.css']
 })
-export class CharacterWrapperComponent implements OnInit {
+export class AssessmentCharacterWrapperComponent implements OnInit {
 
   constructor(		private route: ActivatedRoute,		private vnService: VnService,
 
