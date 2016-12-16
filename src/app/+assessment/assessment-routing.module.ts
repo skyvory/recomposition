@@ -45,4 +45,4 @@ import { AssessmentCharacterWrapperComponent } from './assessment-character-wrap
 	])],
 	exports: [RouterModule]
 })
-export class VnRoutingModule {}
+export class AssessmentRoutingModule {}

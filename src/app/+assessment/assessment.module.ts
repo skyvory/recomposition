@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AssessmentComponent } from './assessment.component';
 import { MaterialModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
-import { VnRoutingModule } from './assessment-routing.module';
+import { AssessmentRoutingModule } from './assessment-routing.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { AssessmentFillComponent } from './assessment-fill.component';
 import { AssessmentCharacterComponent } from './assessment-character/assessment-character.component';
@@ -18,7 +18,7 @@ import { AssessmentCharacterWrapperComponent } from './assessment-character-wrap
     MaterialModule.forRoot(),
 Ng2PaginationModule,
     FormsModule,
-    VnRoutingModule
+    AssessmentRoutingModule
   ],
   declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, VnFillComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent]
 })
