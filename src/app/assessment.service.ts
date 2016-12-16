@@ -40,6 +40,20 @@ export class AssessmentService {
 		}
 	}
 
+	getAssessments(limit:number = 10, page:number = 1, filter?:string):Observable<any> {
+		let params:URLSearchParams = new URLSearchParams();
+		params.set('limit', limit.toString());
+		params.set('page', page.toString());
+		params.set('filter', filter.toString());
+
+		return this.http.get(Constant.API_PATH + 'assessment', this.authenticationService.optionParam(params))
+			.map(
+				(response:Response) => response.json()
+			)
+			.catch(this.handleError)
+		;
+	}
+
 	saveAssessment(assessment:any):Observable<any> {
 		let data = {
 			id: assessment.id,

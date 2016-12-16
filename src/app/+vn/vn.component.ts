@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { VnService } from '../vn.service';
-
+import { AssessmentService } from '../assessment.service';
 import { AuthHttp } from 'angular2-jwt';
 
 export class Vn {
@@ -28,7 +28,8 @@ export class VnComponent implements OnInit{
 		// public router:Router,
 		private vnService: VnService,
 		public authHttp: AuthHttp,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private assessmentService: AssessmentService
 	) {}
 
 	vns: Vn[] = [];
@@ -55,7 +56,7 @@ export class VnComponent implements OnInit{
 	}
 
 	loadVns():void {
-		this.vnService.getVns(this.query.limit, this.query.page, this.query.filter).subscribe(response => {
+		this.assessmentService.getAssessments(this.query.limit, this.query.page, this.query.filter).subscribe(response => {
 			this.vns = response.data;
 			this.query.total = response.total;
 		});
