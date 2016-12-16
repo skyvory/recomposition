@@ -34,6 +34,10 @@ const appRoutes: Routes = [
 		// canActivate: [AuthGuard],
 	},
 	{
+		path: 'vn',
+		loadChildren: 'app/vn/vn.module'
+	},
+	{
 		path: 'search/:query',
 		component: SearchComponent,
 		canActivate: [AuthGuard]

@@ -7,7 +7,6 @@ import { AssessmentRoutingModule } from './assessment-routing.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { AssessmentFillComponent } from './assessment-fill.component';
 import { AssessmentCharacterComponent } from './assessment-character/assessment-character.component';
-import { VnFillComponent } from './vn-fill.component';
 import { AssessmentWrapperComponent } from './assessment-wrapper/assessment-wrapper.component';
 import { AssessmentFillWrapperComponent } from './assessment-fill-wrapper/assessment-fill-wrapper.component';
 import { AssessmentCharacterWrapperComponent } from './assessment-character-wrapper/assessment-character-wrapper.component';
@@ -20,6 +19,6 @@ Ng2PaginationModule,
     FormsModule,
     AssessmentRoutingModule
   ],
-  declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, VnFillComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent]
+  declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent]
 })
 export class AssessmentModule { }

@@ -5,7 +5,6 @@ import { AuthGuard } from '../guards/auth.guard';
 import { AssessmentComponent } from './assessment.component';
 import { AssessmentFillComponent } from './assessment-fill.component';
 import { AssessmentCharacterComponent } from './assessment-character/assessment-character.component';
-import { VnFillComponent } from './vn-fill.component';
 import { AssessmentWrapperComponent } from './assessment-wrapper/assessment-wrapper.component';
 import { AssessmentFillWrapperComponent } from './assessment-fill-wrapper/assessment-fill-wrapper.component';
 import { AssessmentCharacterWrapperComponent } from './assessment-character-wrapper/assessment-character-wrapper.component';
@@ -31,17 +30,7 @@ import { AssessmentCharacterWrapperComponent } from './assessment-character-wrap
 			path: 'assessment/:id/character',
 			component: AssessmentCharacterWrapperComponent,
 			canActivate: [AuthGuard]
-		},
-		{
-			path: 'vn/new',
-			component: VnFillComponent,
-			canActivate: [AuthGuard],
-		},
-		{
-			path: 'vn/:id/edit',
-			component: VnFillComponent,
-			canActivate: [AuthGuard],
-		},
+		}
 	])],
 	exports: [RouterModule]
 })

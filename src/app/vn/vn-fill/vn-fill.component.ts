@@ -4,9 +4,9 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { AuthHttp } from 'angular2-jwt';
-import { VnService } from '../vn.service';
-import { DeveloperService } from '../developer.service';
-import { VndbService } from '../vndb.service';
+import { VnService } from '../../vn.service';
+import { DeveloperService } from '../../developer.service';
+import { VndbService } from '../../vndb.service';
 
 @Component({
 	// moduleId: module.id,
