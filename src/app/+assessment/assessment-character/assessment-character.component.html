@@ -23,7 +23,7 @@
 					<button md-button *ngIf="chara.name" on-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</button><br>
 					<button md-button *ngIf="chara.aliases" on-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</button><br>
 					<button md-button *ngIf="chara.birthday" on-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
-					<button md-button *ngIf="chara.height" on-click="purgeCharacterProperty(chara, 'height')">height: {{chara.height}}</button><br>
+					<button md-button *ngIf="(chara.height || chara.weight)" on-click="purgeCharacterProperty(chara, 'height')">height-weight: {{chara.height}}-{{chara.weight}}</button><br>
 					<button md-button *ngIf="chara.bust" on-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
 				</div>
 			</div>

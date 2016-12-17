@@ -231,6 +231,7 @@ export class AssessmentCharacterComponent implements OnInit {
 				break;
 			case 'height':
 				this.characters[target_index].height = chara.height;
+				this.characters[target_index].weight = chara.weight;
 				break;
 			case 'bwh':
 				this.characters[target_index].bust = chara.bust;
