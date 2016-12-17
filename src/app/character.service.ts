@@ -57,6 +57,7 @@ export class CharacterService {
 			bust: character.bust,
 			waist: character.waist,
 			hip: character.hip,
+			blood_type: character.blood_type,
 			image: character.image,
 			vndb_character_id: character.vndb_character_id
 		};
