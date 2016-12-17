@@ -52,6 +52,7 @@ export class CharacterService {
 			betsumyou: character.betsumyou,
 			birthmonth: character.birthmonth,
 			birthday: character.birthday,
+			age: character.age,
 			height: character.height,
 			weight: character.weight,
 			bust: character.bust,
