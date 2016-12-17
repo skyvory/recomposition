@@ -232,6 +232,7 @@ export class AssessmentCharacterComponent implements OnInit {
 			case 'height':
 				this.characters[target_index].height = chara.height;
 				this.characters[target_index].weight = chara.weight;
+				this.characters[target_index].blood_type = chara.bloodt;
 				break;
 			case 'bwh':
 				this.characters[target_index].bust = chara.bust;
