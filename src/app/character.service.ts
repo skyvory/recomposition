@@ -53,6 +53,7 @@ export class CharacterService {
 			birthmonth: character.birthmonth,
 			birthday: character.birthday,
 			height: character.height,
+			weight: character.weight,
 			bust: character.bust,
 			waist: character.waist,
 			hip: character.hip,
