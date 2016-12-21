@@ -68,7 +68,7 @@ export class VnService {
 			;
 		}
 		else {
-			if(this._vn && Object.keys(this._vn).length > 0 && this._vn.id == vnId) {
+			if(this._vn && Object.keys(this._vn).length > 0 && this._vn.data.id == vnId) {
 				console.log("THISVN", this._vn);
 				return Observable.of(this._vn).map(instantResponse => instantResponse);
 			}

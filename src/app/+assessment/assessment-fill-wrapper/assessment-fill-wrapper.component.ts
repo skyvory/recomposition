@@ -27,7 +27,7 @@ export class AssessmentFillWrapperComponent implements OnInit {
 
 	loadVn(vn_id:number):void {
 		this.vnService.getVn(vn_id).subscribe(response => {
-			this.vn = response;
+			this.vn = response.data;
 		});
 	}
 

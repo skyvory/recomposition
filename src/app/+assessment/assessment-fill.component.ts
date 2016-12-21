@@ -44,11 +44,11 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 
 	// vn:any = [];
 	@Input() vn;
-	loadVn(vn_id:number):void {
-		this.vnService.getVn(vn_id).subscribe(response => {
-			this.vn = response;
-		});
-	}
+	// loadVn(vn_id:number):void {
+	// 	this.vnService.getVn(vn_id).subscribe(response => {
+	// 		this.vn = response;
+	// 	});
+	// }
 
 	loadAssessment(vn_id:number):void {
 		this.assessmentService.getAssessment(vn_id).subscribe(response => {

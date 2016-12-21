@@ -56,12 +56,12 @@ export class AssessmentCharacterComponent implements OnInit {
 	}
 
 	// vn:any = [];
-	loadVn(vn_id:number):void {
-		this.vnService.getVn(vn_id).subscribe(response => {
-			this.vn = response;
-			this.vndb.vn_id = response.vndb_vn_id;
-		});
-	}
+	// loadVn(vn_id:number):void {
+	// 	this.vnService.getVn(vn_id).subscribe(response => {
+	// 		this.vn = response;
+	// 		this.vndb.vn_id = response.vndb_vn_id;
+	// 	});
+	// }
 
 	onSubmit():void {
 		console.log("SUBMISSION");
