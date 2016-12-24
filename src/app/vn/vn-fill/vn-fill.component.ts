@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AuthHttp } from 'angular2-jwt';
+// import { AuthHttp } from 'angular2-jwt';
 import { VnService } from '../../vn.service';
 import { DeveloperService } from '../../developer.service';
 import { VndbService } from '../../vndb.service';
@@ -17,7 +17,7 @@ import { VndbService } from '../../vndb.service';
 export class VnFillComponent implements OnInit{
 	constructor(
 		public router:Router,
-		public authHttp: AuthHttp,
+		// public authHttp: AuthHttp,
 		private vnService: VnService,
 		private developerService: DeveloperService,
 		private vndbService: VndbService,
