@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 		FormsModule,
 		HomeRoutingModule,
 		MaterialModule.forRoot(),
+		FlexLayoutModule.forRoot()
 	],
 	declarations: [
 		HomeComponent,

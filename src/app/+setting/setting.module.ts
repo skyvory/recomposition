@@ -5,13 +5,15 @@ import { MaterialModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { SettingRoutingModule } from './setting-routing.module';
 import { SettingWrapperComponent } from './setting-wrapper/setting-wrapper.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
 		SettingRoutingModule,
-		MaterialModule.forRoot()
+		MaterialModule.forRoot(),
+		FlexLayoutModule.forRoot()
 	],
 	declarations: [SettingComponent, SettingWrapperComponent]
 })

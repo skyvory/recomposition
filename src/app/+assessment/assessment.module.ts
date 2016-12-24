@@ -10,11 +10,13 @@ import { AssessmentCharacterComponent } from './assessment-character/assessment-
 import { AssessmentWrapperComponent } from './assessment-wrapper/assessment-wrapper.component';
 import { AssessmentFillWrapperComponent } from './assessment-fill-wrapper/assessment-fill-wrapper.component';
 import { AssessmentCharacterWrapperComponent } from './assessment-character-wrapper/assessment-character-wrapper.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule.forRoot(),
+    FlexLayoutModule.forRoot(),
 Ng2PaginationModule,
     FormsModule,
     AssessmentRoutingModule

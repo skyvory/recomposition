@@ -34,6 +34,7 @@ import './rxjs-extensions';
 // import { provideAuth } from 'angular2-jwt';
 import { MaterialModule } from '@angular/material';
 import { Ng2PaginationModule } from 'ng2-pagination';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
 	imports: [
@@ -46,7 +47,8 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 		Ng2PaginationModule,
 		SettingModule,
 		AssessmentModule,
-		VnModule
+		VnModule,
+		FlexLayoutModule.forRoot()
 	],
 	declarations: [
 		AppComponent,

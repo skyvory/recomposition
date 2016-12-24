@@ -7,6 +7,7 @@ import { VnRoutingModule } from './vn-routing.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
 import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
     MaterialModule.forRoot(),
     Ng2PaginationModule,
     FormsModule,
-    VnRoutingModule
+    VnRoutingModule,
+    FlexLayoutModule.forRoot()
   ],
   declarations: [VnComponent, VnFillComponent, VnWrapperComponent]
 })
