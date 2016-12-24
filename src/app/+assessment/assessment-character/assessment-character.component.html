@@ -40,13 +40,13 @@
 	</div>
 </div>
 
-<div style="flex-wrap:wrap;flex-direction:row;display:flex; flex:1 1 0;">
-	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" style="flex:1 1 auto;flex-wrap:wrap; display:flex; flex-direction:column; max-width:500px;">
+<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item" >
 		<form #form="ngForm" name="characterForm" (ngSubmit)="onSubmit()">
 			<md-card-title>{{chara.yobikata}}</md-card-title>
 			<md-card-content>
-			<div style="display:flex; flex-direction:row; flex:1 1 0;">
-				<div style="flex:1 1 30%;">
+			<div fxLayout="row">
+				<div fxFlex="30">
 					<img [src]="chara.image" style="width:auto; max-width:100%; max-height:200px;">
 					<md-card-subtitle style="color:rgba(0,0,60,0.3);"><a href="https://vndb.oorg/c{{chara.vndb_character_id}}/edit" target="_blank">{{chara.vndb_character_id}}</a></md-card-subtitle>
 					<md-input placeholder="img" [(ngModel)]="chara.image" name="image" style="margin-top:10px;"></md-input>
@@ -61,24 +61,32 @@
 						</select>
 					</div>
 				</div>
-				<div style="flex:1 1 70%; background-color: #eff;">
+				<div fxFlex="70" style="background-color: #eff;">
 					<br>
-					<md-input placeholder="kanji" [(ngModel)]="chara.kanji" name="kanji" [style.background-color]="isNameMatch(chara.kanji, chara.paste_kanji) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
-					<md-input placeholder="paste" [(ngModel)]="chara.paste_kanji" name="paste_kanji" on-keypress="replaceValue($event, chara, 'kanji')" title="Enter to inject"></md-input>
+					<div fxLayout="row">
+						<md-input placeholder="kanji" [(ngModel)]="chara.kanji" name="kanji" [style.background-color]="isNameMatch(chara.kanji, chara.paste_kanji) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
+						<md-input placeholder="paste" [(ngModel)]="chara.paste_kanji" name="paste_kanji" on-keypress="replaceValue($event, chara, 'kanji')" title="Enter to inject"></md-input>
+					</div>
 					<br>
 					<md-input placeholder="yobikata" [(ngModel)]="chara.yobikata" name="yobikata"></md-input>
 					<br>
 					<md-input placeholder="betsumyou" [(ngModel)]="chara.betsumyou" name="betsumyou"></md-input><br>
-					<md-input placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth"></md-input>
-					<md-input placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday"></md-input>
-					<md-input placeholder="age" [(ngModel)]="chara.age" name="age"></md-input>
-					<md-input placeholder="height" [(ngModel)]="chara.height" name="height"></md-input>
-					<md-input placeholder="weight" [(ngModel)]="chara.weight" name="weight"></md-input>
+					<div fxLayout="row">
+						<md-input placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth"></md-input>
+						<md-input placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday"></md-input>
+						<md-input placeholder="age" [(ngModel)]="chara.age" name="age"></md-input>
+					</div>
+					<div fxLayout="row">
+						<md-input placeholder="height" [(ngModel)]="chara.height" name="height"></md-input>
+						<md-input placeholder="weight" [(ngModel)]="chara.weight" name="weight"></md-input>
+						<md-input placeholder="blood type" [(ngModel)]="chara.blood_type" name="blood_type"></md-input>
+					</div>
 					<br>
-					<md-input placeholder="bust" [(ngModel)]="chara.bust" name="bust"></md-input>
-					<md-input placeholder="waist" [(ngModel)]="chara.waist" name="waist"></md-input>
-					<md-input placeholder="hip" [(ngModel)]="chara.hip" name="hip"></md-input>
-					<md-input placeholder="blood_type" [(ngModel)]="chara.blood_type" name="blood_type"></md-input>
+					<div fxLayout="row">
+						<md-input placeholder="bust" [(ngModel)]="chara.bust" name="bust"></md-input>
+						<md-input placeholder="waist" [(ngModel)]="chara.waist" name="waist"></md-input>
+						<md-input placeholder="hip" [(ngModel)]="chara.hip" name="hip"></md-input>
+					</div>
 					<br>
 				</div>
 			</div>
