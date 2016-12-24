@@ -11,7 +11,7 @@ import { VndbService } from '../../vndb.service';
 @Component({
 	// moduleId: module.id,
 	selector: 'vn-new-selector',
-	templateUrl: 'vn-fill.component.html'
+	templateUrl: './vn-fill.component.html'
 })
 
 export class VnFillComponent implements OnInit{

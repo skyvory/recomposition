@@ -9,7 +9,7 @@ import { LineamentService } from '../../lineament.service';
 @Component({
 	// moduleId: module.id,
 	selector: 'assessment-character-selector',
-	templateUrl: 'assessment-character.component.html'
+	templateUrl: './assessment-character.component.html'
 })
 
 export class AssessmentCharacterComponent implements OnInit {

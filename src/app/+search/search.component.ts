@@ -6,7 +6,7 @@ import { VnService } from '../vn.service';
 @Component({
 	// moduleId: module.id,
 	selector: 'search-selector',
-	templateUrl: 'search.component.html'
+	templateUrl: './search.component.html'
 })
 
 export class SearchComponent implements OnInit {
