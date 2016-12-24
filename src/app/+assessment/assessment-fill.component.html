@@ -1,96 +1,101 @@
-Debug: {{debugDump()}}<br /><br />
+<!--Debug: {{debugDump()}}<br /><br />-->
 
 Custom Shortcut
 <button md-button>for copy {{vn.title_jp}}</button><br />
 
-<h3 style="display:inline;">Date Start</h3><span *ngIf="assessment.date_start" style="display:inline;">&#x2713;</span>
-<md-slide-toggle [(ngModel)]="has_change.date_start">Apply change</md-slide-toggle>
-<md-input placeholder="Date Start" [(ngModel)]="assessment_local.date_start"></md-input>
-<button md-button (click)="dateStartNow()">Now</button>
-<br />
+<div fxLayout="row">
+	<div fxFlex="60">
+		<button md-raised-button color="primary" (click)="saveAssessment()" style="position:fixed; top:173px; right:20px;">Save</button>
+		
+		<h3 style="display:inline;">Date Start</h3><span *ngIf="assessment.date_start" style="display:inline;">&#x2713;</span>
+		<md-slide-toggle [(ngModel)]="has_change.date_start">Apply change</md-slide-toggle>
+		<md-input placeholder="Date Start" [(ngModel)]="assessment_local.date_start"></md-input>
+		<button md-button (click)="dateStartNow()">Now</button>
+		<br />
 
-<h3 style="display:inline;">Date End</h3><span *ngIf="assessment.date_end" style="display:inline;">&#x2713;</span>
-<md-slide-toggle [(ngModel)]="has_change.date_end">Apply change</md-slide-toggle>
-<md-input placeholder="Date End" [(ngModel)]="assessment_local.date_end"></md-input>
-<button md-button (click)="dateEndNow()">Now</button>
-<br />
+		<h3 style="display:inline;">Date End</h3><span *ngIf="assessment.date_end" style="display:inline;">&#x2713;</span>
+		<md-slide-toggle [(ngModel)]="has_change.date_end">Apply change</md-slide-toggle>
+		<md-input placeholder="Date End" [(ngModel)]="assessment_local.date_end"></md-input>
+		<button md-button (click)="dateEndNow()">Now</button>
+		<br />
 
-Node<select [(ngModel)]="assessment.node" (ngModelChange)="assessment.node = $event">
-	<option value="vn">VN</option>
-	<option value="h">H</option>
-	<option value="hrpg">HRPG</option>
-	<option value="rpg">RPG</option>
-</select><br />
-Status<select [(ngModel)]="assessment.status" (ngModelChange)="assessment.status = $event">
-	<option value="finished">Fin</option>
-	<option value="halted">Halt</option>
-	<option value="decomposed">Decompose</option>
-</select><br />
-Story
-<md-radio-group [(ngModel)]="assessment.score_story">
-	<md-radio-button value="e">E</md-radio-button>
-	<md-radio-button value="d">D</md-radio-button>
-	<md-radio-button value="c">C</md-radio-button>
-	<md-radio-button value="b">B</md-radio-button>
-	<md-radio-button value="a">A</md-radio-button>
-	<md-radio-button value="s">S</md-radio-button>
-</md-radio-group><br />
-Naki
-<md-radio-group [(ngModel)]="assessment.score_naki">
-	<md-radio-button value="e">E</md-radio-button>
-	<md-radio-button value="d">D</md-radio-button>
-	<md-radio-button value="c">C</md-radio-button>
-	<md-radio-button value="b">B</md-radio-button>
-	<md-radio-button value="a">A</md-radio-button>
-	<md-radio-button value="s">S</md-radio-button>
-</md-radio-group><br />
-Nuki
-<md-radio-group [(ngModel)]="assessment.score_nuki">
-	<md-radio-button value="e">E</md-radio-button>
-	<md-radio-button value="d">D</md-radio-button>
-	<md-radio-button value="c">C</md-radio-button>
-	<md-radio-button value="b">B</md-radio-button>
-	<md-radio-button value="a">A</md-radio-button>
-	<md-radio-button value="s">S</md-radio-button>
-</md-radio-group><br />
-Comedy
-<md-radio-group [(ngModel)]="assessment.score_comedy">
-	<md-radio-button value="e">E</md-radio-button>
-	<md-radio-button value="d">D</md-radio-button>
-	<md-radio-button value="c">C</md-radio-button>
-	<md-radio-button value="b">B</md-radio-button>
-	<md-radio-button value="a">A</md-radio-button>
-	<md-radio-button value="s">S</md-radio-button>
-</md-radio-group><br />
-Graphic
-<md-radio-group [(ngModel)]="assessment.score_graphic">
-	<md-radio-button value="e">E</md-radio-button>
-	<md-radio-button value="d">D</md-radio-button>
-	<md-radio-button value="c">C</md-radio-button>
-	<md-radio-button value="b">B</md-radio-button>
-	<md-radio-button value="a">A</md-radio-button>
-	<md-radio-button value="s">S</md-radio-button>
-</md-radio-group><br />
-Overall<select [(ngModel)]="assessment.score_all" (ngModelChange)="assessment.score_all = $event">
-	<option value="0">0</option>
-	<option value="1">1</option>
-	<option value="2">2</option>
-	<option value="3">3</option>
-	<option value="4">4</option>
-	<option value="5">5</option>
-	<option value="6">6</option>
-	<option value="7">7</option>
-	<option value="8">8</option>
-	<option value="9">9</option>
-	<option value="10">10</option>
-</select><br />
-Savable<select [(ngModel)]="assessment.savable" (ngModelChange)="assessment.savable = $event">
-	<option value="unknown">Unknown</option>
-	<option value="yes">Savable</option>
-	<option value="no">No save</option>
-</select><br />
+		Node<select [(ngModel)]="assessment.node" (ngModelChange)="assessment.node = $event">
+			<option value="vn">VN</option>
+			<option value="h">H</option>
+			<option value="hrpg">HRPG</option>
+			<option value="rpg">RPG</option>
+		</select><br />
+		Status<select [(ngModel)]="assessment.status" (ngModelChange)="assessment.status = $event">
+			<option value="finished">Fin</option>
+			<option value="halted">Halt</option>
+			<option value="decomposed">Decompose</option>
+		</select><br />
+		Story
+		<md-radio-group [(ngModel)]="assessment.score_story">
+			<md-radio-button value="e">E</md-radio-button>
+			<md-radio-button value="d">D</md-radio-button>
+			<md-radio-button value="c">C</md-radio-button>
+			<md-radio-button value="b">B</md-radio-button>
+			<md-radio-button value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group><br />
+		Naki
+		<md-radio-group [(ngModel)]="assessment.score_naki">
+			<md-radio-button value="e">E</md-radio-button>
+			<md-radio-button value="d">D</md-radio-button>
+			<md-radio-button value="c">C</md-radio-button>
+			<md-radio-button value="b">B</md-radio-button>
+			<md-radio-button value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group><br />
+		Nuki
+		<md-radio-group [(ngModel)]="assessment.score_nuki">
+			<md-radio-button value="e">E</md-radio-button>
+			<md-radio-button value="d">D</md-radio-button>
+			<md-radio-button value="c">C</md-radio-button>
+			<md-radio-button value="b">B</md-radio-button>
+			<md-radio-button value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group><br />
+		Comedy
+		<md-radio-group [(ngModel)]="assessment.score_comedy">
+			<md-radio-button value="e">E</md-radio-button>
+			<md-radio-button value="d">D</md-radio-button>
+			<md-radio-button value="c">C</md-radio-button>
+			<md-radio-button value="b">B</md-radio-button>
+			<md-radio-button value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group><br />
+		Graphic
+		<md-radio-group [(ngModel)]="assessment.score_graphic">
+			<md-radio-button value="e">E</md-radio-button>
+			<md-radio-button value="d">D</md-radio-button>
+			<md-radio-button value="c">C</md-radio-button>
+			<md-radio-button value="b">B</md-radio-button>
+			<md-radio-button value="a">A</md-radio-button>
+			<md-radio-button value="s">S</md-radio-button>
+		</md-radio-group><br />
+		Overall<select [(ngModel)]="assessment.score_all" (ngModelChange)="assessment.score_all = $event">
+			<option value="0">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</select><br />
+		Savable<select [(ngModel)]="assessment.savable" (ngModelChange)="assessment.savable = $event">
+			<option value="unknown">Unknown</option>
+			<option value="yes">Savable</option>
+			<option value="no">No save</option>
+		</select><br />
 
-<md-slide-toggle [(ngModel)]="assessment.archive_savedata">Save data</md-slide-toggle>
-
-
-<button md-raised-button color="primary" (click)="saveAssessment()" style="position:fixed; top:160px; right:20px;">Save</button>
+		<md-slide-toggle [(ngModel)]="assessment.archive_savedata">Save data</md-slide-toggle>
+	</div>
+	<div fxFlex="40">
+	</div>
+</div>
