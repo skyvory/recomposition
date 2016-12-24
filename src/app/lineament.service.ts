@@ -6,14 +6,14 @@ import 'rxjs/add/operator/catch';
 // import 'rxjs/add/operator/throw';
 
 import { contentHeaders } from './common/headers';
-import { AuthHttp } from 'angular2-jwt';
+// import { AuthHttp } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
 import { Constant } from './const.config';
 
 @Injectable()
 export class LineamentService {
 	constructor(
-		private authHttp: AuthHttp,
+		// private authHttp: AuthHttp,
 		private authenticationService: AuthenticationService,
 		private http: Http
 	) {}
@@ -27,14 +27,14 @@ export class LineamentService {
 
 		if(lineament.id) {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.put(Constant.API_PATH + `lineament/${lineament.id}`, data, {headers: contentHeaders})
-					.map(
-						(response:Response) => {
-							return response.json();
-						}
-					)
-					.catch(this.handleError)
-				;
+				// return this.authHttp.put(Constant.API_PATH + `lineament/${lineament.id}`, data, {headers: contentHeaders})
+				// 	.map(
+				// 		(response:Response) => {
+				// 			return response.json();
+				// 		}
+				// 	)
+				// 	.catch(this.handleError)
+				// ;
 			}
 			else {
 				return this.http.put(Constant.API_PATH + `lineament/${lineament.id}`, data, this.authenticationService.option)
@@ -49,14 +49,14 @@ export class LineamentService {
 		}
 		else {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.post(Constant.API_PATH + `lineament`, data, {headers: contentHeaders})
-					.map(
-						(response:Response) => {
-							return response.json();
-						}
-					)
-					.catch(this.handleError)
-				;
+				// return this.authHttp.post(Constant.API_PATH + `lineament`, data, {headers: contentHeaders})
+				// 	.map(
+				// 		(response:Response) => {
+				// 			return response.json();
+				// 		}
+				// 	)
+				// 	.catch(this.handleError)
+				// ;
 			}
 			else {
 				return this.http.post(Constant.API_PATH + `lineament`, data, this.authenticationService.option)

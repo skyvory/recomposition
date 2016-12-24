@@ -8,14 +8,14 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/observable/of';
 
 import { contentHeaders } from './common/headers';
-import { AuthHttp } from 'angular2-jwt';
+// import { AuthHttp } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
 import { Constant } from './const.config';
 
 @Injectable()
 export class VnService {
 	constructor(
-		public authHttp: AuthHttp,
+		// public authHttp: AuthHttp,
 		private http: Http,
 		private authenticationService: AuthenticationService
 	) {}
@@ -37,14 +37,14 @@ export class VnService {
 		params.set('filter', filter.toString());
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(Constant.API_PATH + `vn`, {headers: contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.get(Constant.API_PATH + `vn`, {headers: contentHeaders})
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			return this.http.get(Constant.API_PATH + `vn`, this.authenticationService.optionParam(params))
@@ -58,14 +58,14 @@ export class VnService {
 
 	getVn(vnId:number):Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(Constant.API_PATH + `vn/${vnId}`, {headers:contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.get(Constant.API_PATH + `vn/${vnId}`, {headers:contentHeaders})
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			if(this._vn && Object.keys(this._vn).length > 0 && this._vn.data.id == vnId) {
@@ -98,14 +98,14 @@ export class VnService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post(Constant.API_PATH + `vn`, data, {headers: contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.post(Constant.API_PATH + `vn`, data, {headers: contentHeaders})
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			return this.http.post(Constant.API_PATH + `vn`, data, this.authenticationService.option)
@@ -132,14 +132,14 @@ export class VnService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.put(Constant.API_PATH + `vn/${vn.id}`, data, {headers:contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.put(Constant.API_PATH + `vn/${vn.id}`, data, {headers:contentHeaders})
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			return this.http.put(Constant.API_PATH + `vn/${vn.id}`, data, this.authenticationService.option)

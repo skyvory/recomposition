@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { VnService } from '../vn.service';
 import { AssessmentService } from '../assessment.service';
-import { AuthHttp } from 'angular2-jwt';
+// import { AuthHttp } from 'angular2-jwt';
 
 export class Vn {
 	id: number;
@@ -27,7 +27,7 @@ export class AssessmentComponent implements OnInit{
 	constructor(
 		// public router:Router,
 		private vnService: VnService,
-		public authHttp: AuthHttp,
+		// public authHttp: AuthHttp,
 		private route: ActivatedRoute,
 		private assessmentService: AssessmentService
 	) {}

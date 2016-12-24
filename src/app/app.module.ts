@@ -29,9 +29,9 @@ import { SearchComponent } from './+search/search.component';
 
 import './rxjs-extensions';
 
-import { AUTH_PROVIDERS } from 'angular2-jwt';
+// import { AUTH_PROVIDERS } from 'angular2-jwt';
 // for angular2-jwt configuration
-import { provideAuth } from 'angular2-jwt';
+// import { provideAuth } from 'angular2-jwt';
 import { MaterialModule } from '@angular/material';
 import { Ng2PaginationModule } from 'ng2-pagination';
 
@@ -58,17 +58,17 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 		SearchComponent
 	],
 	providers: [
-		AUTH_PROVIDERS,
+		// AUTH_PROVIDERS,
 		AuthGuard,
 		AuthenticationService,
 		VnService,
 		DeveloperService,
 		VndbService,
 		AssessmentService,
-		provideAuth({
-			tokenName: "recomposition_token",
-			noJwtError: false,
-		}),
+		// provideAuth({
+		// 	tokenName: "recomposition_token",
+		// 	noJwtError: false,
+		// }),
 		CharacterService,
 		LineamentService
 	],

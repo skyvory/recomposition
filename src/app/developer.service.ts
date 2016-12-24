@@ -8,28 +8,28 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/toPromise';
 
 import { contentHeaders } from './common/headers';
-import { AuthHttp } from 'angular2-jwt';
+// import { AuthHttp } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
 import { Constant } from './const.config';
 
 @Injectable()
 export class DeveloperService {
 	constructor(
-		public authHttp: AuthHttp,
+		// public authHttp: AuthHttp,
 		public authenticationService: AuthenticationService,
 		public http: Http
 	) {}
 
 	getDevelopers(): Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(Constant.API_PATH + `developer`, { headers: contentHeaders })
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.get(Constant.API_PATH + `developer`, { headers: contentHeaders })
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			return this.http.get(Constant.API_PATH + `developer`, this.authenticationService.option)
@@ -48,14 +48,14 @@ export class DeveloperService {
 		params.set('name_en', name_en);
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(Constant.API_PATH + `developer`, {headers: contentHeaders, search: params})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.get(Constant.API_PATH + `developer`, {headers: contentHeaders, search: params})
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			return this.http.get(Constant.API_PATH + `developer`, this.authenticationService.optionParam(params))
@@ -76,14 +76,14 @@ export class DeveloperService {
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.post(Constant.API_PATH + `developer`, data, {headers: contentHeaders})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.post(Constant.API_PATH + `developer`, data, {headers: contentHeaders})
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			return this.http.post(Constant.API_PATH + `developer`, data, this.authenticationService.option)

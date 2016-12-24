@@ -5,14 +5,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 import { contentHeaders } from './common/headers';
-import { AuthHttp } from 'angular2-jwt';
+// import { AuthHttp } from 'angular2-jwt';
 import { AuthenticationService } from './authentication.service';
 import { Constant } from './const.config';
 
 @Injectable()
 export class CharacterService {
 	constructor(
-		private authHttp: AuthHttp,
+		// private authHttp: AuthHttp,
 		private authenticationService: AuthenticationService,
 		private http: Http
 	) {}
@@ -22,14 +22,14 @@ export class CharacterService {
 		params.set('vn_id', vn_id.toString());
 
 		if(Constant.USE_ANGULAR2JWT) {
-			return this.authHttp.get(Constant.API_PATH + `character`, {headers: contentHeaders, search: params})
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			// return this.authHttp.get(Constant.API_PATH + `character`, {headers: contentHeaders, search: params})
+			// 	.map(
+			// 		(response:Response) => {
+			// 			return response.json();
+			// 		}
+			// 	)
+			// 	.catch(this.handleError)
+			// ;
 		}
 		else {
 			return this.http.get(Constant.API_PATH + `character`, this.authenticationService.optionParam(params))
@@ -65,14 +65,14 @@ export class CharacterService {
 
 		if(character.id) {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.put(Constant.API_PATH + `character/${character.id}`, data, {headers: contentHeaders})
-					.map(
-						(response:Response) => {
-							return response.json();
-						}
-					)
-					.catch(this.handleError)
-				;
+				// return this.authHttp.put(Constant.API_PATH + `character/${character.id}`, data, {headers: contentHeaders})
+				// 	.map(
+				// 		(response:Response) => {
+				// 			return response.json();
+				// 		}
+				// 	)
+				// 	.catch(this.handleError)
+				// ;
 			}
 			else {
 				return this.http.put(Constant.API_PATH + `character/${character.id}`, data, this.authenticationService.option)
@@ -87,14 +87,14 @@ export class CharacterService {
 		}
 		else {
 			if(Constant.USE_ANGULAR2JWT) {
-				return this.authHttp.post(Constant.API_PATH + `character`, data, {headers: contentHeaders})
-					.map(
-						(response:Response) => {
-							return response.json();
-						}
-					)
-					.catch(this.handleError)
-				;
+				// return this.authHttp.post(Constant.API_PATH + `character`, data, {headers: contentHeaders})
+				// 	.map(
+				// 		(response:Response) => {
+				// 			return response.json();
+				// 		}
+				// 	)
+				// 	.catch(this.handleError)
+				// ;
 			}
 			else {
 				return this.http.post(Constant.API_PATH + `character`, data, this.authenticationService.option)
