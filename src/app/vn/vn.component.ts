@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VnService } from '../vn.service';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { AssessmentListDialog } from './assessment-list-dialog';
 
 @Component({
 	selector: 'vn-selector',
@@ -9,7 +11,8 @@ import { VnService } from '../vn.service';
 export class VnComponent implements OnInit {
 
 	constructor(
-		private vnService: VnService
+		private vnService: VnService,
+		public dialog: MdDialog
 	) { }
 
 	vns: any = [];
@@ -29,6 +32,20 @@ export class VnComponent implements OnInit {
 			this.vns = response.data;
 			this.query.total = response.total;
 		});
+	}
+
+	dialogConfig:MdDialogConfig = {
+		width: '800px',
+		height: '500px',
+		position: {
+			top: '30px'
+		}
+	}
+
+	popAssessments(vn_id):void {
+		console.log("id", vn_id);
+		let dialogRef = this.dialog.open(AssessmentListDialog, this.dialogConfig);
+		dialogRef.componentInstance.vn_id = vn_id;
 	}
 
 }
