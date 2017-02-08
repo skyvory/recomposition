@@ -17,7 +17,7 @@ export class AssessmentService {
 		private authenticationService: AuthenticationService
 	) {}
 
-	getAssessment(vn_id:number):Observable<any> {
+	getAssessment(assessment_id:number):Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
 			// return this.authHttp.get(Constant.API_PATH + `assessment/${vn_id}`, {headers: contentHeaders})
 			// 	.map(
@@ -29,7 +29,7 @@ export class AssessmentService {
 			// ;
 		}
 		else {
-			return this.http.get(Constant.API_PATH + `assessment/${vn_id}`, this.authenticationService.option)
+			return this.http.get(Constant.API_PATH + `assessment/${assessment_id}`, this.authenticationService.option)
 				.map(
 					(response:Response) => {
 						return response.json();
