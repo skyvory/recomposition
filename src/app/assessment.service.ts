@@ -54,6 +54,26 @@ export class AssessmentService {
 		;
 	}
 
+	getAssessmentsV2(options?:any, filter?:any):Observable<any> {
+		let params:URLSearchParams = new URLSearchParams();
+		if(options && options.limit)
+			params.set('limit', options.limit.toString());
+		if(options && options.page)
+			params.set('page', options.page.toString());
+		if(filter.search)
+			params.set('filter', filter.search.toString());
+		if(filter.vn_id) {
+			params.set('vn_id', filter.vn_id.toString());
+		}
+
+		return this.http.get(Constant.API_PATH + 'assessment', this.authenticationService.optionParam(params))
+			.map(
+				(response:Response) => response.json()
+			)
+			.catch(this.handleError)
+		;
+	}
+
 	saveAssessment(assessment:any):Observable<any> {
 		let data = {
 			id: assessment.id,
