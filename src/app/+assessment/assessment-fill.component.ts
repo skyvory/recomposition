@@ -50,10 +50,10 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 	// 	});
 	// }
 
-	loadAssessment(vn_id:number):void {
-		this.assessmentService.getAssessment(vn_id).subscribe(response => {
+	loadAssessment(assessment_id:number):void {
+		this.assessmentService.getAssessment(assessment_id).subscribe(response => {
 			if(!response.id) {
-				this.assessment.vn_id = vn_id;
+				this.assessment.vn_id = this.vn.id;
 				this.assessment_local.date_start = moment().format('YYYY-MM-DD HH:mm:ss');
 				this.assessment_local.date_end = moment().format('YYYY-MM-DD HH:mm:ss');
 			}
