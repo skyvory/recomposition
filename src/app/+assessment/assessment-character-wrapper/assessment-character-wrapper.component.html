@@ -19,11 +19,11 @@
 		<span>{{vn.title_jp}}</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<span>
-			<a [routerLink]="['/assessment', vn.id, 'fill']">Fill</a>
+			<a [routerLink]="['/assessment', linkAssessmentId, 'fill']">Fill</a>
 		</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<span>
-			<a [routerLink]="['/vn', vn.id, 'character']">Character</a>
+			<a [routerLink]="['/vn', linkAssessmentId, 'character']">Character</a>
 		</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<form #form="ngForm" name="search_form">

@@ -5,6 +5,8 @@ import { CharacterService } from '../../character.service';
 import { VnService } from '../../vn.service';
 import { VndbService } from '../../vndb.service';
 import { LineamentService } from '../../lineament.service';
+import { AssessmentService } from '../../assessment.service';
+import { ActiveService } from '../../active.service';
 
 @Component({
 	// moduleId: module.id,
@@ -18,7 +20,9 @@ export class AssessmentCharacterComponent implements OnInit {
 		public characterService: CharacterService,
 		public vnService: VnService,
 		public vndbService: VndbService,
-		private lineamentService: LineamentService
+		private lineamentService: LineamentService,
+		private assessmentService: AssessmentService,
+		private active: ActiveService
 	) {}
 
 @Input() vn;
@@ -29,11 +33,22 @@ export class AssessmentCharacterComponent implements OnInit {
 
 	ngOnInit() {
 		this.route.params.forEach((params:Params) => {
-			let id = +params['id'];
-			this.loadCharacter(id);
+			let id = +params['assessmentId'];
+			this.preLoad(id);
 			// this.loadVn(id);
 			console.log("PARAM INIT EXECUTION");
 		});
+	}
+
+	preLoad(assessmentId:number):void {
+		if(this.active.assessment && this.active.assessment.vn_id) {
+			this.loadCharacter(this.active.assessment.vn_id);
+		}
+		else {
+			this.assessmentService.getAssessment(assessmentId).subscribe(response => {
+				this.loadCharacter(response.vn_id);
+			});
+		}
 	}
 
 	ngOnChanges(changes:any) {

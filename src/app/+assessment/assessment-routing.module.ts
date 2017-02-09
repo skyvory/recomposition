@@ -27,7 +27,7 @@ import { AssessmentCharacterWrapperComponent } from './assessment-character-wrap
 			canActivate: [AuthGuard],
 		},
 		{
-			path: 'assessment/:id/character',
+			path: 'assessment/:assessmentId/character',
 			component: AssessmentCharacterWrapperComponent,
 			canActivate: [AuthGuard]
 		}
