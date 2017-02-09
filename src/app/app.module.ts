@@ -18,6 +18,7 @@ import { VndbService } from './vndb.service';
 import { AssessmentService } from './assessment.service';
 import { CharacterService } from './character.service';
 import { LineamentService } from './lineament.service';
+import { ActiveService } from './active.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
@@ -72,7 +73,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		// 	noJwtError: false,
 		// }),
 		CharacterService,
-		LineamentService
+		LineamentService,
+		ActiveService
 	],
 	bootstrap: [ AppComponent ]
 })
