@@ -62,7 +62,7 @@ export class VnFillComponent implements OnInit{
 	loadVn(id:number):void {
 		this.vnService.getVn(id).subscribe(response => {
 			console.log(response);
-			this.vn = response;
+			this.vn = response.data;
 		});
 	}
 
