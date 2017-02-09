@@ -36,7 +36,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 
 	ngOnInit() {
 		this.route.params.forEach((params: Params) => {
-			let id = +params['id'];
+			let id = +params['assessmentId'];
 			this.loadAssessment(id);
 			// this.loadVn(id);
 		});

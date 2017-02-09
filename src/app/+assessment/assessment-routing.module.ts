@@ -22,7 +22,7 @@ import { AssessmentCharacterWrapperComponent } from './assessment-character-wrap
 			canActivate: [AuthGuard]
 		},
 		{
-			path: 'assessment/:id/fill',
+			path: 'assessment/:assessmentId/fill',
 			component: AssessmentFillWrapperComponent,
 			canActivate: [AuthGuard],
 		},

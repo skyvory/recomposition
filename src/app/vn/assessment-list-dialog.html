@@ -29,7 +29,7 @@
 		<p md-line>Updated: {{assessment.created_at}}</p>
 	</md-list-item>
 			<div fxFlex="15">
-				<a md-button on-click="dialogRef.close()" [routerLink]="['/assessment', vn_id, 'fill']">Compose</a>
+				<a md-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']">Compose</a>
 			</div>
 		</div>
 </md-list>
