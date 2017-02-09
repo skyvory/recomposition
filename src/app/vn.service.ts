@@ -21,8 +21,9 @@ export class VnService {
 	) {}
 
 	_vn:any = {};
+	// >>>to update local _vn value when any update occurs
 
-	// todo: change static optional parameter into optional array. That way, the component doesn't have to throw undefined value as arguments
+	// >>>todo: change static optional parameter into optional array. That way, the component doesn't have to throw undefined value as arguments
 	getVns(limit:number = 10, page:number = 1, filter?:string):Observable<any> {
 		if(typeof(limit) === 'undefined')
 			limit = 10;
