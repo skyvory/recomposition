@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { VnService } from '../vn.service';
+import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
+import { AssessmentListDialog } from '../vn/assessment-list-dialog';
 
 @Component({
 	// moduleId: module.id,
@@ -12,7 +14,8 @@ import { VnService } from '../vn.service';
 export class SearchComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
-		private vnService: VnService
+		private vnService: VnService,
+		public dialog: MdDialog
 	) {}
 
 	ngOnInit() {
@@ -47,6 +50,12 @@ export class SearchComponent implements OnInit {
 			this.vns = response.data;
 			this.query.total = response.total;
 		});
+	}
+
+	popAssessments(vn_id):void {
+		console.log("id", vn_id);
+		let dialogRef = this.dialog.open(AssessmentListDialog);
+		dialogRef.componentInstance.vn_id = vn_id;
 	}
 
 	debugDump(): any {

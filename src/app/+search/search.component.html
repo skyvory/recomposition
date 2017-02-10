@@ -64,8 +64,7 @@
 			</td>
 			<td>
 				<!-- <a md-button>Overview</a> -->
-				<a md-button [routerLink]="['/vn', vn.id, 'assessment']">Compose</a>
-				<a md-button [routerLink]="['/vn', vn.id, 'character']">Character</a>
+				<button md-button on-click="popAssessments(vn.id)">Assessments</button>
 				<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
 			</td>
 		<tr>
