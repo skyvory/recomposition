@@ -5,7 +5,7 @@
 </md-grid-list>-->
 
 <div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-	<md-card template="ngFor let vn of vns" fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item">
+	<md-card template="ngFor let vn of vns" fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item" style="margin: 10px 0;">
 		<md-card-title>{{vn.title_jp}}</md-card-title>
 		<md-card-content>
 			<div fxLayout="row">
@@ -13,8 +13,15 @@
 					<img [src]="vn.image" style="width:auto; max-width:100%; max-height:200px;">
 				</div>
 				<div fxFlex="70" style="background-color:#e2ffd9; margin:5px;">
-					<p><span class="vertical-align-label">Title : </span>{{vn.title_en}}</p>
-					<p><span class="vertical-align-label">Released : </span>{{vn.date_release}}</p>
+					<md-input-container style="width:100%;">
+						<input md-input placeholder="Title" disabled [(ngModel)]="vn.title_en" title="{{vn.title_en}}">
+					</md-input-container>
+					<md-input-container style="width:100%;">
+						<input md-input placeholder="By" disabled [(ngModel)]="vn.developer_name_en" title="{{vn.developer_name_jp}}">
+					</md-input-container>
+					<md-input-container>
+						<input md-input placeholder="Release date" disabled [(ngModel)]="vn.date_release">
+					</md-input-container>
 				</div>
 			</div>
 		</md-card-content>
