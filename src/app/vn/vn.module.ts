@@ -9,6 +9,7 @@ import { VnFillComponent } from './vn-fill/vn-fill.component';
 import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AssessmentListDialog } from './assessment-list-dialog';
+import { VnNewFabComponent } from './vn-wrapper/vn-new-fab.component';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { AssessmentListDialog } from './assessment-list-dialog';
     VnRoutingModule,
     FlexLayoutModule.forRoot()
   ],
-  declarations: [VnComponent, VnFillComponent, VnWrapperComponent, AssessmentListDialog],
+  declarations: [VnComponent, VnFillComponent, VnWrapperComponent, AssessmentListDialog, VnNewFabComponent],
   entryComponents: [
     AssessmentListDialog
   ]

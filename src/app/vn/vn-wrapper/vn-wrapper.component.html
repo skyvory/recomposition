@@ -1,4 +1,4 @@
-<md-sidenav-layout>
+<md-sidenav-container>
 	<md-sidenav #start (open)="closeStartButton.focus()">
 		Navigation Menu
 		<br>
@@ -32,5 +32,9 @@
 	<div class="app-content">
 		<vn-selector></vn-selector>
 	</div>
+
+	<!--<vn-new-fab-selector></vn-new-fab-selector>-->
 	
-</md-sidenav-layout>
+</md-sidenav-container>
+
+<div vn-new-fab-selector></div>
