@@ -28,20 +28,27 @@
 			<md-input-container style="width:100%;">
 				<input md-input placeholder="title en" [(ngModel)]="vn.title_en">
 			</md-input-container>
-			<md-input-container>
+			<md-input-container style="width:50%">
 				<input md-input placeholder="hashtag" [(ngModel)]="vn.hashtag">
 			</md-input-container>
 
-			{{vn.developer_id}}
-			<select [(ngModel)]="vn.developer_id" (ngModelChange)="vn.developer_id = $event">
-				<option *ngFor="let developer of developers" [ngValue]="developer.id">{{developer.name_en || "-"}} | {{developer.name_jp || "-"}}</option>
-			</select>
+			<br />
+			<div fxLayout="row">
+				<md-input-container fxFlex="30">
+					<input md-input disabled [(ngModel)]="vn.developer_id">
+				</md-input-container>
+				<md-select placeholder="Developer" [(ngModel)]="vn.developer_id" name="developer" fxFlex="70">
+					<md-option template="ngFor let developer of developers" [value]="developer.id">
+						{{developer.name_en || "-"}} | {{developer.name_jp || "-"}}
+					</md-option>
+				</md-select>
+			</div>
 
 			<br />
 			<md-input-container>
 				<input md-input placeholder="date release" type="date" [(ngModel)]="vn.date_release">
 			</md-input-container>
-			<md-input-container>
+			<md-input-container style="width:70%">
 				<input md-input placeholder="image url" [(ngModel)]="vn.image">
 			</md-input-container>
 			<br />
@@ -50,7 +57,9 @@
 			<button *ngIf="fillState == 'edit'" md-button (click)="updateVn()">Update</button>
 		</div>
 		<div fxFlex="20">
-			<img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;background-color:#ffffae;">
+			<div style="max-height:200px; max-width:300px; width:auto;height:200px;background-color:#65d8cc;">
+				<img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;height:200px;display:block;margin:auto;">
+			</div>
 			<br />
 
 			Dev create add-on
