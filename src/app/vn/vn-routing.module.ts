@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../guards/auth.guard';
 
-import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
+import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
 
 @NgModule({
 	imports: [RouterModule.forChild([
 		{
 			path: 'vn',
-			component: VnWrapperComponent,
+			component: VnComponent,
 			canActivate: [AuthGuard]
 		},
 		{

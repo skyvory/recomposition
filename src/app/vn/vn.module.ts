@@ -6,10 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { VnRoutingModule } from './vn-routing.module';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
-import { VnWrapperComponent } from './vn-wrapper/vn-wrapper.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AssessmentListDialog } from './assessment-list-dialog';
-import { VnNewFabComponent } from './vn-wrapper/vn-new-fab.component';
 
 
 @NgModule({
@@ -21,7 +19,7 @@ import { VnNewFabComponent } from './vn-wrapper/vn-new-fab.component';
     VnRoutingModule,
     FlexLayoutModule.forRoot()
   ],
-  declarations: [VnComponent, VnFillComponent, VnWrapperComponent, AssessmentListDialog, VnNewFabComponent],
+  declarations: [VnComponent, VnFillComponent, AssessmentListDialog],
   entryComponents: [
     AssessmentListDialog
   ]
