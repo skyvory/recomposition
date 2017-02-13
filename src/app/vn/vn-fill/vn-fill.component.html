@@ -1,49 +1,66 @@
-Debug: {{debugDump()}}<br /><br />
+<md-sidenav-container>
+	<md-sidenav #start (open)="closeStartButton.focus()">
+		Navigation Menu
+		<br>
+		<a md-button routerLink="/home" routerLinkActive="active">Home</a>
+		<br>
+		<a md-button routerLink="/assessment" routerLinkActive="active">Assessments</a>
+		<br>
+		<a md-button routerLink="/setting" routerLinkActive="active">Setting</a>
+		<br>
+		<button md-button #closeStartButton (click)="start.close()">Close</button>
+	</md-sidenav>
+	
+	<md-toolbar>
+		<button md-button (click)="start.open()">Menu</button>
+	</md-toolbar>
 
-<md-toolbar>
-	<span>
-		<a routerLink="/home" routerLinkActive="active">Home</a>
-	</span>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<span>
-		<strong>
-		<a routerLink="/vn" routerLinkActive="active">VN</a>
-		</strong>
-	</span>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<md-input placeholder="keyword" align="end">
-	</md-input>
-	<button md-button routerLink="/home" routerLinkActive="active">Search</button>
-</md-toolbar>
+	<button md-button on-click="goBack()">Return</button>
+	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+		<div fxFlex="50">
+			<md-input-container>
+				<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
+			</md-input-container>
+			<button md-button (click)="retrieveVndbVn()">Load</button>
+			<md-input-container style="width:100%;">
+				<input md-input placeholder="title jp" [(ngModel)]="vn.title_jp">
+			</md-input-container>
+			<md-input-container style="width:100%;">
+				<input md-input placeholder="title en" [(ngModel)]="vn.title_en">
+			</md-input-container>
+			<md-input-container>
+				<input md-input placeholder="hashtag" [(ngModel)]="vn.hashtag">
+			</md-input-container>
 
+			{{vn.developer_id}}
+			<select [(ngModel)]="vn.developer_id" (ngModelChange)="vn.developer_id = $event">
+				<option *ngFor="let developer of developers" [ngValue]="developer.id">{{developer.name_en || "-"}} | {{developer.name_jp || "-"}}</option>
+			</select>
 
-<button (click)="goBack()">Back</button>
-<md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id"></md-input>
-<button md-button (click)="retrieveVndbVn()">Load</button>
-<br />
+			<br />
+			<md-input-container>
+				<input md-input placeholder="date release" type="date" [(ngModel)]="vn.date_release">
+			</md-input-container>
+			<md-input-container>
+				<input md-input placeholder="image url" [(ngModel)]="vn.image">
+			</md-input-container>
+			<br />
 
-<md-input placeholder="title jp" [(ngModel)]="vn.title_jp"></md-input> <br />
-<md-input placeholder="title en" [(ngModel)]="vn.title_en"></md-input> <br />
-<md-input placeholder="hashtag" [(ngModel)]="vn.hashtag"></md-input> <br />
-{{vn.developer_id}}
-<select [(ngModel)]="vn.developer_id" (ngModelChange)="vn.developer_id = $event">
-	<option *ngFor="let developer of developers" [ngValue]="developer.id">{{developer.name_en || "-"}} | {{developer.name_jp || "-"}}</option>
-</select>
-<br />
-<md-input placeholder="date release" type="date" [(ngModel)]="vn.date_release"></md-input> <br />
-<md-input placeholder="image url" [(ngModel)]="vn.image"></md-input> <br />
-<button *ngIf="fillState == 'new'" md-button (click)="createVn()">Create</button>
-<button *ngIf="fillState == 'edit'" md-button (click)="updateVn()">Update</button>
+			<button *ngIf="fillState == 'new'" md-button (click)="createVn()">Create</button>
+			<button *ngIf="fillState == 'edit'" md-button (click)="updateVn()">Update</button>
+		</div>
+		<div fxFlex="20">
+			<img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;background-color:#ffffae;">
+			<br />
 
-<br />
-<img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;">
-
-<br />
-<br />
-<br />
-
-Dev create add-on
-<br />
-<md-input placeholder="name jp" #devNameJp></md-input> <br />
-<md-input placeholder="name en" #devNameEn></md-input> <br />
-<button md-button (click)="createDeveloper(devNameEn.value, devNameJp.value);">Add Dev</button>
+			Dev create add-on
+			<md-input-container style="width:100%;">
+				<input md-input placeholder="name jp" #devNameJp>
+			</md-input-container>
+			<md-input-container style="width:100%;">
+				<input md-input placeholder="name en" #devNameEn>
+			</md-input-container>
+			<button md-button (click)="createDeveloper(devNameEn.value, devNameJp.value);">Add Dev</button>
+		</div>
+	</div>
+</md-sidenav-container>
