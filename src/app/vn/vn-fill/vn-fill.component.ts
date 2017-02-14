@@ -27,6 +27,9 @@ export class VnFillComponent implements OnInit{
 
 	fillState:string = "";
 	developers:any[] = [];
+	toggle:any = {
+		advanceOptions: false
+	};
 
 	ngOnInit() {
 		// this.developerService.getDevelopers().subscribe(response => {

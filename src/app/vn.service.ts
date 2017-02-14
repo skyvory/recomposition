@@ -95,7 +95,8 @@ export class VnService {
 			developer_id: vn.developer_id,
 			date_release: vn.date_release,
 			vndb_vn_id: vn.vndb_vn_id,
-			image: vn.image
+			image: vn.image,
+			related_vn_id: vn.related_vn_id
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
@@ -129,7 +130,8 @@ export class VnService {
 			developer_id: vn.developer_id,
 			date_release: vn.date_release,
 			vndb_vn_id: vn.vndb_vn_id,
-			image: vn.image
+			image: vn.image,
+			related_vn_id: vn.related_vn_id
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {

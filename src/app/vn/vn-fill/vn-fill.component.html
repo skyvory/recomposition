@@ -53,6 +53,16 @@
 			</md-input-container>
 			<br />
 
+			<md-slide-toggle [(ngModel)]="toggle.advanceOptions" [color]="primary">Advance options</md-slide-toggle>
+			<br />
+
+			<div *ngIf="toggle.advanceOptions">
+				Add New Relation
+				<md-input-container>
+					<input md-input placeholder="Related VN ID" [(ngModel)]="vn.related_vn_id">
+				</md-input-container>
+			</div>
+
 			<button *ngIf="fillState == 'new'" md-button (click)="createVn()">Create</button>
 			<button *ngIf="fillState == 'edit'" md-button (click)="updateVn()">Update</button>
 		</div>
