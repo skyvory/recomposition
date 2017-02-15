@@ -1,28 +1,6 @@
 <md-sidenav-container>
 	<md-sidenav mode="side" opened="true" #start (open)="closeStartButton.focus()" fxLayout="row" style="background-color:rgba(255,255,255,0.6);">
-		<md-list>
-			<md-list-item>
-				<button md-raised-button routerLink="/home" routerLinkActive="active" style="width:100%">
-				Home
-				</button>
-			</md-list-item>
-			<md-divider></md-divider>
-			<md-list-item>
-				<button md-raised-button routerLink="/vn" routerLinkActive="active" style="width:100%;">VN</button>
-			</md-list-item>
-			<md-divider></md-divider>
-			<md-list-item>
-				<button md-raised-button routerLink="/assessment" routerLinkActive="active" style="width:100%;">Assessments</button>
-			</md-list-item>
-			<md-divider></md-divider>
-			<md-list-item>
-				<button md-raised-button routerLink="/setting" routerLinkActive="active" style="width:100%;">Setting</button>
-			</md-list-item>
-			<md-divider></md-divider>
-			<md-list-item>
-				<button md-raised-button disabled #closeStartButton (click)="start.close()" style="width:100%;">Close</button>
-			</md-list-item>
-		</md-list>
+		<sidebar-selector></sidebar-selector>
 	</md-sidenav>
 	
 	<md-toolbar>

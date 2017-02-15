@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { VnService } from '../../vn.service';
 import { DeveloperService } from '../../developer.service';
 import { VndbService } from '../../vndb.service';
+import { SidebarComponent } from '../../sidebar/sidebar.component';
 
 @Component({
 	// moduleId: module.id,

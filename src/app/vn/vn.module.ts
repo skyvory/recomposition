@@ -8,7 +8,7 @@ import { Ng2PaginationModule } from 'ng2-pagination';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AssessmentListDialog } from './assessment-list-dialog';
-
+import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 
 @NgModule({
   imports: [
@@ -17,7 +17,8 @@ import { AssessmentListDialog } from './assessment-list-dialog';
     Ng2PaginationModule,
     FormsModule,
     VnRoutingModule,
-    FlexLayoutModule.forRoot()
+    FlexLayoutModule.forRoot(),
+    SidebarsharedModule
   ],
   declarations: [VnComponent, VnFillComponent, AssessmentListDialog],
   entryComponents: [
