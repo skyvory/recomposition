@@ -4,13 +4,9 @@
 	</md-sidenav>
 
 	<md-toolbar>
-		<button md-button (click)="start.open()">Menu</button> &nbsp;&nbsp;&nbsp;&nbsp;
-		<span>
-			<a routerLink="/home" routerLinkActive="active">Home</a>
-		</span> &nbsp;&nbsp;&nbsp;&nbsp;
-		<span>
-			<a routerLink="/assessment" routerLinkActive="active">Assessments</a>
-		</span> &nbsp;&nbsp;&nbsp;&nbsp;
+		<!--<button md-button (click)="start.open()">Menu</button> &nbsp;&nbsp;&nbsp;&nbsp;-->
+		VN List
+		<span style="flex: 1 1 auto;"></span>
 		<form #form="ngForm" name="search_form">
 			<md-input #search placeholder="keyword" align="end" name="search_query">
 			</md-input>
@@ -18,8 +14,9 @@
 		</form>
 	</md-toolbar>
 
-	<div style="height:64px;">
-		<button md-fab style="position:relative;" routerLink="/vn/new" routerLinkActive="active">
+	<div style="height:64px;" fxLayout="row">
+		<span style="flex: 1 1 auto;"></span>
+		<button md-fab style="position:relative;margin:0 18px;" routerLink="/vn/new" routerLinkActive="active">
 			<md-icon class="md-24">add</md-icon>
 		</button>
 	</div>
