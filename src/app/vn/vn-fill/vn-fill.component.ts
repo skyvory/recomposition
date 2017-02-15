@@ -40,11 +40,9 @@ export class VnFillComponent implements OnInit{
 		}
 		else if(this.router.url.split('/')[1] === "vn" && this.router.url.split('/')[3] === "edit") {
 			this.fillState = "edit";
-			this.route.params.forEach((params: Params) => {
-				// convert the route parameter value to a number with the JavaScript (+) operator
-				let id = +params['id'];
-				this.loadVn(id);
-			});
+			// convert the route parameter value to a number with the JavaScript (+) operator
+			let id = +this.route.snapshot.params['id'];
+			this.loadVn(id);
 		}
 	}
 
