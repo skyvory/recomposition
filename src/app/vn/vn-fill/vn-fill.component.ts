@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
 
 // import { AuthHttp } from 'angular2-jwt';
 import { VnService } from '../../vn.service';
@@ -23,7 +22,6 @@ export class VnFillComponent implements OnInit{
 		private developerService: DeveloperService,
 		private vndbService: VndbService,
 		private route: ActivatedRoute,
-		private location: Location
 	) {}
 
 	fillState:string = "";
@@ -181,9 +179,5 @@ export class VnFillComponent implements OnInit{
 				reject(err);
 			});
 		})
-	}
-
-	goBack():void {
-		this.location.back();
 	}
 }

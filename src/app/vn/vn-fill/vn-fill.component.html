@@ -4,10 +4,10 @@
 	</md-sidenav>
 	
 	<md-toolbar>
-		<button md-button (click)="start.open()">Menu</button>
+		<span>Filling {{vn.title_jp}}</span>
+		<!--<button md-button disabled (click)="start.open()">Menu</button>-->
 	</md-toolbar>
 
-	<button md-button on-click="goBack()">Return</button>
 	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
 		<div fxFlex="50">
 			<md-input-container>
@@ -55,8 +55,8 @@
 				</md-input-container>
 			</div>
 
-			<button *ngIf="fillState == 'new'" md-button (click)="createVn()">Create</button>
-			<button *ngIf="fillState == 'edit'" md-button (click)="updateVn()">Update</button>
+			<button *ngIf="fillState == 'new'" md-raised-button (click)="createVn()">Create</button>
+			<button *ngIf="fillState == 'edit'" md-raised-button (click)="updateVn()">Update</button>
 		</div>
 		<div fxFlex="20">
 			<div style="max-height:200px; max-width:300px; width:auto;height:200px;background-color:#65d8cc;">
