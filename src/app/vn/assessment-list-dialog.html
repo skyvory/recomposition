@@ -2,34 +2,32 @@
 	<h3 md-subheader>Assessments</h3>
 	<button md-button on-click="newAssessment()" style="margin:20px;">New Assessment</button>
 	<md-divider></md-divider>
-		<div fxLayout="row" template="ngFor let assessment of assessments">
-	<md-list-item fxFlex="85" style="background-color:#cce3e1;" >
-		<md-icon md-list-avatar>note</md-icon>
-		<h4 md-line>
-			<span>Status: {{assessment.status}}</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>Start: {{assessment.date_start}}</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>End: {{assessment.date_end}}</span>
-		</h4>
-		<p md-line>
-			<span>Node: {{assessment.node}}</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>Story: {{assessment.score_story}}</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>Naki: {{assessment.score_naki}}</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>Nuki: {{assessment.score_nuki}}</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>Commedy: {{assessment.score_comedy}}</span>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<span>Graphic: {{assessment.score_graphic}}</span>
-		</p>
-		<p md-line>Overall: {{assessment.score_all}}</p>
-		<p md-line>Updated: {{assessment.created_at}}</p>
-	</md-list-item>
-			<div fxFlex="15">
-				<a md-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']">Compose</a>
-			</div>
+
+	<h3 *ngIf="assessments.length < 1">
+		no assessment yet
+	</h3>
+
+	<div fxLayout="row" template="ngFor let assessment of assessments">
+		<md-list-item fxFlex="85" style="background-color:#cce3e1;">
+			<md-icon md-list-avatar>note</md-icon>
+			<h4 md-line>
+				<span>Status: {{assessment.status}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>Start: {{assessment.date_start}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>End: {{assessment.date_end}}</span>
+			</h4>
+			<p md-line>
+				<span>Node: {{assessment.node}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>Story: {{assessment.score_story}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>Naki: {{assessment.score_naki}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>Nuki: {{assessment.score_nuki}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>Commedy: {{assessment.score_comedy}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+				<span>Graphic: {{assessment.score_graphic}}</span>
+			</p>
+			<p md-line>Overall: {{assessment.score_all}}</p>
+			<p md-line>Updated: {{assessment.created_at}}</p>
+		</md-list-item>
+		<div fxFlex="15">
+			<a md-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']">Compose</a>
 		</div>
+	</div>
 </md-list>
