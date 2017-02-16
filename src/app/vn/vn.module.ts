@@ -9,6 +9,7 @@ import { VnFillComponent } from './vn-fill/vn-fill.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AssessmentListDialog } from './assessment-list-dialog';
 import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
+import { VnResolve } from '../vn.resolve';
 
 @NgModule({
   imports: [
@@ -23,6 +24,9 @@ import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
   declarations: [VnComponent, VnFillComponent, AssessmentListDialog],
   entryComponents: [
     AssessmentListDialog
+  ],
+  providers: [
+    VnResolve
   ]
 })
 export class VnModule { }

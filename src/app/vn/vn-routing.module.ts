@@ -4,13 +4,17 @@ import { AuthGuard } from '../guards/auth.guard';
 
 import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
+import { VnResolve } from '../vn.resolve';
 
 @NgModule({
 	imports: [RouterModule.forChild([
 		{
 			path: 'vn',
 			component: VnComponent,
-			canActivate: [AuthGuard]
+			canActivate: [AuthGuard],
+			resolve: {
+				vns: VnResolve
+			}
 		},
 		{
 			path: 'vn/new',
@@ -25,4 +29,4 @@ import { VnFillComponent } from './vn-fill/vn-fill.component';
 	])],
 	exports: [RouterModule]
 })
-export class VnRoutingModule {}
+export class VnRoutingModule { }

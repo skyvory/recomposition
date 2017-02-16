@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VnService } from '../vn.service';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { AssessmentListDialog } from './assessment-list-dialog';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'vn-selector',
@@ -12,12 +13,17 @@ export class VnComponent implements OnInit {
 
 	constructor(
 		private vnService: VnService,
-		public dialog: MdDialog
+		public dialog: MdDialog,
+		private route: ActivatedRoute
 	) { }
 
 	vns: any = [];
 	ngOnInit() {
-		this.loadVns();
+		let resolvedVns = this.route.snapshot.data['vns'];
+		console.log("RESOLVED", resolvedVns);
+		this.vns = resolvedVns.data;
+		this.query.total = resolvedVns.total;
+		// this.loadVns();
 	}
 
 	query:any = {
