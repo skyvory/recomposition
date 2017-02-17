@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { SettingRoutingModule } from './setting-routing.module';
 import { SettingWrapperComponent } from './setting-wrapper/setting-wrapper.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 
 @NgModule({
 	imports: [
@@ -13,7 +14,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		FormsModule,
 		SettingRoutingModule,
 		MaterialModule.forRoot(),
-		FlexLayoutModule.forRoot()
+		FlexLayoutModule.forRoot(),
+		SidebarsharedModule
 	],
 	declarations: [SettingComponent, SettingWrapperComponent]
 })
