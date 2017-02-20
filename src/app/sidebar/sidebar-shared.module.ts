@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar.component';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { routing } from '../app.routing';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule.forRoot(),
     FlexLayoutModule.forRoot(),
-    routing
+    RouterModule
   ],
   declarations: [SidebarComponent],
   exports: [

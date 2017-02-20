@@ -36,6 +36,7 @@ import './rxjs-extensions';
 import { MaterialModule } from '@angular/material';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SidebarsharedModule } from './sidebar/sidebar-shared.module';
 
 @NgModule({
 	imports: [
@@ -49,7 +50,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		SettingModule,
 		AssessmentModule,
 		VnModule,
-		FlexLayoutModule.forRoot()
+		FlexLayoutModule.forRoot(),
+		SidebarsharedModule
 	],
 	declarations: [
 		AppComponent,
