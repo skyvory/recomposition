@@ -9,7 +9,7 @@
 	</md-toolbar>
 
 	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-		<div fxFlex="50">
+		<div fxFlex="40">
 			<md-input-container>
 				<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
 			</md-input-container>
@@ -58,7 +58,7 @@
 			<button *ngIf="fillState == 'new'" md-raised-button (click)="createVn()">Create</button>
 			<button *ngIf="fillState == 'edit'" md-raised-button (click)="updateVn()">Update</button>
 		</div>
-		<div fxFlex="20">
+		<div fxFlex="40">
 			<div style="max-height:200px; max-width:300px; width:auto;height:200px;background-color:#65d8cc;">
 				<img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;height:200px;display:block;margin:auto;">
 			</div>
