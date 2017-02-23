@@ -49,6 +49,9 @@
 			<br />
 
 			<div *ngIf="toggle.advanceOptions">
+
+				
+				
 				Add New Relation
 				<md-input-container>
 					<input md-input placeholder="Related VN ID" [(ngModel)]="vn.related_vn_id">
@@ -72,6 +75,24 @@
 				<input md-input placeholder="name en" #devNameEn>
 			</md-input-container>
 			<button md-button (click)="createDeveloper(devNameEn.value, devNameJp.value);">Add Dev</button>
+
+			<md-divider></md-divider>
+
+			<div class="flex-container" fxLayout="row" template="ngIf vn.relations">
+				<div fxFlex="100">
+					<md-list>
+						<h3 md-subheader>Relations</h3>
+						<md-list-item template="ngFor let relation of vn.relations" style="padding:0 0;">
+							<md-icon md-list-avatar>folder</md-icon>
+							<h4 md-line>{{relation.title_jp}}</h4>
+							<p md-line>{{relation.date_release}}</p>
+							<button md-button on-click="removeRelation(relation)" style="min-width:10px; line-height:18px; padding:0;" title="remove relation">x</button>
+						</md-list-item>
+						<md-divider></md-divider>
+					</md-list>
+				</div>
+			</div>
+			
 		</div>
 	</div>
 </md-sidenav-container>

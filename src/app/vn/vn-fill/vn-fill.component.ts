@@ -175,6 +175,18 @@ export class VnFillComponent implements OnInit{
 			err => {
 				reject(err);
 			});
-		})
+		});
+	}
+
+	removeRelation(relation:any):void {
+		let group_id = relation.group_id;
+		let vn_id = relation.id;
+		this.vnService.removeRelation(group_id, vn_id).subscribe(response => {
+			if(response) {
+				let index = this.vn.relations.indexOf(relation);
+				this.vn.relations.splice(index, 1);
+				console.log("relation removed", response);
+			}
+		});
 	}
 }
