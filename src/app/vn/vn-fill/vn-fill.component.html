@@ -20,10 +20,14 @@
 			<md-input-container style="width:100%;">
 				<input md-input placeholder="title en" [(ngModel)]="vn.title_en">
 			</md-input-container>
-			<md-input-container style="width:50%">
-				<input md-input placeholder="hashtag" [(ngModel)]="vn.hashtag">
-			</md-input-container>
-
+			<div fxLayout="row">
+				<md-input-container style="width:65%">
+					<input md-input placeholder="alias" [(ngModel)]="vn.alias">
+				</md-input-container>
+				<md-input-container style="width:35%">
+					<input md-input placeholder="hashtag" [(ngModel)]="vn.hashtag">
+				</md-input-container>
+			</div>
 			<br />
 			<div fxLayout="row">
 				<md-input-container fxFlex="30">

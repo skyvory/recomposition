@@ -91,6 +91,7 @@ export class VnService {
 		let data = JSON.stringify({
 			title_jp: vn.title_jp,
 			title_en: vn.title_en,
+			alias: vn.alias,
 			hashtag: vn.hashtag,
 			developer_id: vn.developer_id,
 			date_release: vn.date_release,
@@ -126,6 +127,7 @@ export class VnService {
 			id: vn.id,
 			title_jp: vn.title_jp,
 			title_en: vn.title_en,
+			alias: vn.alias,
 			hashtag: vn.hashtag,
 			developer_id: vn.developer_id,
 			date_release: vn.date_release,

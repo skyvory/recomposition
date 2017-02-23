@@ -68,6 +68,7 @@ export class VnFillComponent implements OnInit{
 	vn:any = {
 		title_jp: '',
 		title_en: '',
+		alias: '',
 		hashtag: '',
 		developer_id: '',
 		date_release: '',
@@ -103,7 +104,7 @@ export class VnFillComponent implements OnInit{
 			let vndb_vn = response.data.items['0'];
 			this.vn.title_jp = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
 			this.vn.title_en = vndb_vn.title ? vndb_vn.title : "n/a";
-			this.vn.hashtag = vndb_vn.aliases;
+			this.vn.alias = vndb_vn.aliases;
 			this.vn.date_release = vndb_vn.released;
 			this.vn.image = vndb_vn.image;
 		});
