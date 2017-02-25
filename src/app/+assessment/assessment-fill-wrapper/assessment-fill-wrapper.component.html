@@ -1,16 +1,6 @@
-<md-sidenav-layout>
-	<md-sidenav #start (open)="closeStartButton.focus()">
-		Navigation Menu
-		<br>
-		<a md-button routerLink="/home" routerLinkActive="active">Home</a>
-		<br>
-		<a md-button routerLink="/vn" routerLinkActive="active">VN</a>
-		<br>
-		<a md-button routerLink="/assessment" routerLinkActive="active">Assessments</a>
-		<br>
-		<a md-button routerLink="/setting" routerLinkActive="active">Setting</a>
-		<br>
-		<button md-button #closeStartButton (click)="start.close()">Close</button>
+<md-sidenav-container>
+	<md-sidenav mode="side" opened="true" #start (open)="closeStartButton.focus()" fxLayout="row" style="background-color:rgba(85, 90, 99,0.6);">
+		<sidebar-selector></sidebar-selector>
 	</md-sidenav>
 
 	<md-toolbar style="position:fixed;">
@@ -37,4 +27,4 @@
 		<assessment-fill-selector [vn]="vn"></assessment-fill-selector>
 	</div>
 	
-</md-sidenav-layout>
+</md-sidenav-container>
