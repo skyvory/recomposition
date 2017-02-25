@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		FormsModule,
 		HomeRoutingModule,
 		MaterialModule.forRoot(),
-		FlexLayoutModule.forRoot()
+		FlexLayoutModule.forRoot(),
+		SidebarsharedModule
 	],
 	declarations: [
 		HomeComponent,
