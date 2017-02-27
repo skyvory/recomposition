@@ -57,6 +57,17 @@ export class VnService {
 
 	}
 
+	instantVn(vnId:number):Observable<any> {
+		if(this._vn && Object.keys(this._vn).length > 0 && this._vn.data.id == vnId) {
+			console.log("Instant VN", this._vn);
+			return Observable.of(this._vn).map(instantResponse => instantResponse);
+		}
+		else {
+			console.log("Empty instant VN")
+			return null;
+		}
+	}
+
 	getVn(vnId:number):Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
 			// return this.authHttp.get(Constant.API_PATH + `vn/${vnId}`, {headers:contentHeaders})
@@ -69,9 +80,8 @@ export class VnService {
 			// ;
 		}
 		else {
-			if(this._vn && Object.keys(this._vn).length > 0 && this._vn.data.id == vnId) {
-				console.log("THISVN", this._vn);
-				return Observable.of(this._vn).map(instantResponse => instantResponse);
+			if(this.instantVn(vnId)) {
+				return this.instantVn(vnId);
 			}
 			else {
 				return this.http.get(Constant.API_PATH + `vn/${vnId}`, this.authenticationService.option)
