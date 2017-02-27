@@ -160,6 +160,7 @@ export class VnService {
 			return this.http.put(Constant.API_PATH + `vn/${vn.id}`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
+						this._vn = null;
 						return response.json();
 					}
 				)
