@@ -279,6 +279,7 @@ export class AssessmentCharacterComponent implements OnInit {
 			waist: '',
 			hip: '',
 			image: '',
+			description: '',
 			vndb_character_id: '',
 			vn_id: this.vn.id
 		});

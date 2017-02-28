@@ -1,6 +1,3 @@
-{{debugDump()}}<br /><br />
-<!-- <input [(ngModel)]="characters[Object.keys(this)[0]].yobikata"> -->
-
 <button md-button on-click="newCharacter($event)" style="position:fixed; right:6px; bottom:6px;">Add</button>
 
 <md-input placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid"></md-input>
@@ -88,6 +85,12 @@
 						<md-input placeholder="hip" [(ngModel)]="chara.hip" name="hip"></md-input>
 					</div>
 					<br>
+					<md-input-container style="width:100%;">
+						<textarea md-input placeholder="description" [(ngModel)]="chara.description" name="description" style="resize:vertical;"></textarea>
+					</md-input-container>
+					 <!--<md-input-container class="example-full-width">
+					<textarea md-input placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+					</md-input-container>-->
 				</div>
 			</div>
 			</md-card-content>

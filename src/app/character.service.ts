@@ -60,6 +60,7 @@ export class CharacterService {
 			hip: character.hip,
 			blood_type: character.blood_type,
 			image: character.image,
+			description: character.description,
 			vndb_character_id: character.vndb_character_id
 		};
 
