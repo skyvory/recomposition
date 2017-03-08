@@ -118,14 +118,14 @@ export class VnFillComponent implements OnInit{
 					if(response.data.items[i].producers) {
 						for(let j in response.data.items[i].producers) {
 							if(response.data.items[i].producers[j].developer == true) {
-								let check = this.checkDeveloper(response.data.items[i].producers[j].name);
+								let check = this.checkDeveloper(response.data.items[i].producers[j].original);
 								check.then(dev => {
 									this.vn.developer_id = dev.id;
 									console.log("DEV", dev);
 								},
 								reason => {
 									console.log("REASON", reason);
-									let reg = this.createDeveloper(response.data.items[i].producers[j].name, response.data.items[i].producers[j].original);
+									let reg = this.createDeveloper(response.data.items[i].producers[j].original, '', response.data.items[i].producers[j].name);
 									reg.then(dev => {
 										console.log("successfully create developer", dev);
 										this.vn.developer_id = dev.id;
@@ -154,10 +154,10 @@ export class VnFillComponent implements OnInit{
 		});
 	}
 
-	checkDeveloper(name_en:string):Promise<any> {
+	checkDeveloper(original:string):Promise<any> {
 		return new Promise<string>((resolve, reject) => {
-			this.developerService.searchDeveloper(name_en).subscribe(response => {
-				if(name_en == response.name_en) {
+			this.developerService.searchDeveloper(original).subscribe(response => {
+				if(original == response.original) {
 					resolve(response);
 				}
 				else {
@@ -167,9 +167,9 @@ export class VnFillComponent implements OnInit{
 		});
 	}
 
-	createDeveloper(name_en:string, name_jp:string):Promise<any> {
+	createDeveloper(original:string, furi:string, romaji:string):Promise<any> {
 		return new Promise<string>((resolve, reject) => {
-			this.developerService.createDeveloper(name_en, name_jp).subscribe(response => {
+			this.developerService.createDeveloper(original, furi, romaji).subscribe(response => {
 				this.developers.push(response);
 				resolve(response);
 			},

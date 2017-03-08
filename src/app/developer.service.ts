@@ -43,9 +43,9 @@ export class DeveloperService {
 		}
 	}
 
-	searchDeveloper(name_en:string):Observable<any> {
+	searchDeveloper(original:string):Observable<any> {
 		let params: URLSearchParams = new URLSearchParams();
-		params.set('name_en', name_en);
+		params.set('original', original);
 
 		if(Constant.USE_ANGULAR2JWT) {
 			// return this.authHttp.get(Constant.API_PATH + `developer`, {headers: contentHeaders, search: params})
@@ -69,10 +69,11 @@ export class DeveloperService {
 		}
 	}
 
-	createDeveloper(name_en:string, name_jp:string):Observable<any> {
+	createDeveloper(original:string, furi:string, romaji:string):Observable<any> {
 		let data = JSON.stringify({
-			name_en: name_en,
-			name_jp: name_jp
+			original: original,
+			furi: furi,
+			romaji: romaji
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {

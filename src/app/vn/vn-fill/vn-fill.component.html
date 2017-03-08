@@ -35,7 +35,7 @@
 				</md-input-container>
 				<md-select placeholder="Developer" [(ngModel)]="vn.developer_id" name="developer" fxFlex="70">
 					<md-option template="ngFor let developer of developers" [value]="developer.id">
-						{{developer.name_en || "-"}} | {{developer.name_jp || "-"}}
+						{{developer.original || "-"}} | {{developer.romaji || "-"}}
 					</md-option>
 				</md-select>
 			</div>
@@ -76,12 +76,15 @@
 
 			Dev create add-on
 			<md-input-container style="width:100%;">
-				<input md-input placeholder="name jp" #devNameJp>
+				<input md-input placeholder="Original" #devOriginal>
 			</md-input-container>
 			<md-input-container style="width:100%;">
-				<input md-input placeholder="name en" #devNameEn>
+				<input md-input placeholder="Furi" #devFuri>
 			</md-input-container>
-			<button md-button (click)="createDeveloper(devNameEn.value, devNameJp.value);">Add Dev</button>
+			<md-input-container style="width:100%;">
+				<input md-input placeholder="Romaji" #devRomaji>
+			</md-input-container>
+			<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);">Add Dev</button>
 
 			<md-divider></md-divider>
 
