@@ -195,4 +195,15 @@ export class VnService {
 		console.warn("this error is handled in private handleError");
 		return Observable.throw(error);
 	}
+
+	refreshCover(vn_id:any):Observable<any> {
+		return this.http.post(Constant.API_PATH + `vn/refreshCover/${vn_id}`, '', this.authenticationService.option)
+			.map(
+				(response:Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
 }

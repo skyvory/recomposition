@@ -190,4 +190,12 @@ export class VnFillComponent implements OnInit{
 			}
 		});
 	}
+
+	refreshCover(vn_id:any):void {
+		this.vnService.refreshCover(vn_id).subscribe(response => {
+			if(response) {
+				console.log("Cover refreshed!");
+			}
+		});
+	}
 }
