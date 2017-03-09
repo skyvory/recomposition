@@ -99,8 +99,8 @@ export class VnService {
 
 	createVn(vn:any):Observable<any> {
 		let data = JSON.stringify({
-			title_jp: vn.title_jp,
-			title_en: vn.title_en,
+			title_original: vn.title_original,
+			title_romaji: vn.title_romaji,
 			alias: vn.alias,
 			hashtag: vn.hashtag,
 			developer_id: vn.developer_id,
@@ -135,8 +135,8 @@ export class VnService {
 	updateVn(vn:any):Observable<any> {
 		let data = JSON.stringify({
 			id: vn.id,
-			title_jp: vn.title_jp,
-			title_en: vn.title_en,
+			title_original: vn.title_original,
+			title_romaji: vn.title_romaji,
 			alias: vn.alias,
 			hashtag: vn.hashtag,
 			developer_id: vn.developer_id,

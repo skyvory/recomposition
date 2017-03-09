@@ -66,8 +66,8 @@ export class VnFillComponent implements OnInit{
 	}
 
 	vn:any = {
-		title_jp: '',
-		title_en: '',
+		title_original: '',
+		title_romaji: '',
 		alias: '',
 		hashtag: '',
 		developer_id: '',
@@ -102,8 +102,8 @@ export class VnFillComponent implements OnInit{
 		this.vndbService.getVndbVn(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
 			console.log(response);
 			let vndb_vn = response.data.items['0'];
-			this.vn.title_jp = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
-			this.vn.title_en = vndb_vn.title ? vndb_vn.title : "n/a";
+			this.vn.title_original = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
+			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : "n/a";
 			this.vn.alias = vndb_vn.aliases;
 			this.vn.date_release = vndb_vn.released;
 			this.vn.image = vndb_vn.image;

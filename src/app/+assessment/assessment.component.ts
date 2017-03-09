@@ -7,8 +7,8 @@ import { AssessmentService } from '../assessment.service';
 
 export class Vn {
 	id: number;
-	title_jp: string;
-	title_en: string;
+	title_original: string;
+	title_romaji: string;
 	hashtag: string;
 	developer_id: number;
 	date_release: string;
