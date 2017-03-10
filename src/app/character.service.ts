@@ -47,9 +47,9 @@ export class CharacterService {
 		let data = {
 			vn_id: character.vn_id,
 			id: character.id,
-			kanji: character.kanji,
-			yobikata: character.yobikata,
-			betsumyou: character.betsumyou,
+			name_original: character.name_original,
+			name_furigana: character.name_furigana,
+			name_betsumyou: character.name_betsumyou,
 			birthmonth: character.birthmonth,
 			birthday: character.birthday,
 			age: character.age,

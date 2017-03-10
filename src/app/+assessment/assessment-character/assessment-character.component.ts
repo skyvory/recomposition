@@ -134,9 +134,9 @@ export class AssessmentCharacterComponent implements OnInit {
 		if(!chara.original.match(/[a-zA-Z]/i)) {
 			chara.original = chara.original.replace(/ /g, '　');
 		}
-		character.kanji = chara.original;
-		character.betsumyou = chara.aliases;
-		character.yobikata = chara.name;
+		character.name_original = chara.original;
+		character.name_betsumyou = chara.aliases;
+		character.name_furigana = chara.name;
 		character.birthmonth = chara.birthday[1];
 		character.birthday = chara.birthday[0];
 		character.height = chara.height;
@@ -185,7 +185,7 @@ export class AssessmentCharacterComponent implements OnInit {
 
 	saveCharacter(chara) {
 		this.characterService.saveCharacter(chara).subscribe(response => {
-			console.log("Update to " + chara.kanji + " saved successfully!");
+			console.log("Update to " + chara.name_original + " saved successfully!");
 			if(!chara.id) {
 				let index = this.characters.indexOf(chara);
 				this.characters[index].id = response.id;
@@ -196,13 +196,13 @@ export class AssessmentCharacterComponent implements OnInit {
 
 	deleteCharacter(event, chara) {
 		event.preventDefault();
-		if(confirm("Delete " + chara.kanji + " ?")) {
+		if(confirm("Delete " + chara.name_original + " ?")) {
 			if(chara.id) {
 				this.characterService.deleteCharacter(chara.id).subscribe(response => {});
 			}
 			let index = this.characters.indexOf(chara);
 			this.characters.splice(index, 1);
-			console.log(chara.kanji + " deleted");
+			console.log(chara.name_original + " deleted");
 		}
 	}
 
@@ -233,14 +233,14 @@ export class AssessmentCharacterComponent implements OnInit {
 			case 'id':
 				this.characters[target_index].vndb_character_id = chara.id;
 				break;
-			case 'kanji':
-				this.characters[target_index].kanji = chara.original;
+			case 'name_original':
+				this.characters[target_index].name_original = chara.original;
 				break;
-			case 'betsumyou':
-				this.characters[target_index].betsumyou = chara.alias;
+			case 'name_betsumyou':
+				this.characters[target_index].name_betsumyou = chara.alias;
 				break;
-			case 'yobikata':
-				this.characters[target_index].yobikata = chara.name;
+			case 'name_furigana':
+				this.characters[target_index].name_furigana = chara.name;
 				break;
 			case 'birthdate':
 				this.characters[target_index].birthmonth = chara.birthday[1];
@@ -269,9 +269,9 @@ export class AssessmentCharacterComponent implements OnInit {
 		console.log("EV", ev);
 		let new_chara = Object.assign({}, {
 			id: null,
-			kanji: '',
-			yobikata: '',
-			betsumyou: '',
+			name_original: '',
+			name_furigana: '',
+			name_betsumyou: '',
 			birthmonth: '',
 			birthday: '',
 			height: '',
@@ -298,10 +298,10 @@ export class AssessmentCharacterComponent implements OnInit {
 	}
 
 	replaceValue(event, chara, target) {
-		if(event.which === 13 && chara.kanji !== chara.paste_kanji) {
+		if(event.which === 13 && chara.name_original !== chara.paste_name_original) {
 			event.preventDefault();
-			if(target === 'kanji') { 
-				chara.kanji = chara.paste_kanji;
+			if(target === 'name_original') { 
+				chara.name_original = chara.paste_name_original;
 			}
 		}
 	}

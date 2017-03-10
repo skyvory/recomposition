@@ -16,9 +16,9 @@
 					<button md-button *ngIf="chara.id" on-click="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
 				</div>
 				<div style="flex: 1 1 70%;">
-					<button md-button *ngIf="chara.original" on-click="purgeCharacterProperty(chara, 'kanji')">original: {{chara.original}}</button><br>
-					<button md-button *ngIf="chara.name" on-click="purgeCharacterProperty(chara, 'yobikata')">name: {{chara.name}}</button><br>
-					<button md-button *ngIf="chara.aliases" on-click="purgeCharacterProperty(chara, 'betsumyou')">alias: {{chara.aliases}}</button><br>
+					<button md-button *ngIf="chara.original" on-click="purgeCharacterProperty(chara, 'name_original')">original: {{chara.original}}</button><br>
+					<button md-button *ngIf="chara.name" on-click="purgeCharacterProperty(chara, 'name_furigana')">name: {{chara.name}}</button><br>
+					<button md-button *ngIf="chara.aliases" on-click="purgeCharacterProperty(chara, 'name_betsumyou')">alias: {{chara.aliases}}</button><br>
 					<button md-button *ngIf="chara.birthday" on-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
 					<button md-button *ngIf="(chara.height || chara.weight || chara.bloodt)" on-click="purgeCharacterProperty(chara, 'height')">height-weight-blood: {{chara.height}}-{{chara.weight}}-{{chara.bloodt}}</button><br>
 					<button md-button *ngIf="chara.bust" on-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
@@ -26,7 +26,7 @@
 			</div>
 			<div>
 				<select *ngIf="characters" [(ngModel)]="chara.link" name="link">
-					<option *ngFor="let chara_scope of characters" [ngValue]="chara_scope.id">{{chara_scope.kanji}}</option>
+					<option *ngFor="let chara_scope of characters" [ngValue]="chara_scope.id">{{chara_scope.name_original}}</option>
 				</select><br>
 			</div>
 			<md-card-actions align="end">
@@ -40,7 +40,7 @@
 <div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
 	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item" >
 		<form #form="ngForm" name="characterForm" (ngSubmit)="onSubmit()">
-			<md-card-title>{{chara.yobikata}}</md-card-title>
+			<md-card-title>{{chara.name_furigana}}</md-card-title>
 			<md-card-content>
 			<div fxLayout="row">
 				<div fxFlex="30">
@@ -61,13 +61,13 @@
 				<div fxFlex="70" style="background-color: #eff;">
 					<br>
 					<div fxLayout="row">
-						<md-input placeholder="kanji" [(ngModel)]="chara.kanji" name="kanji" [style.background-color]="isNameMatch(chara.kanji, chara.paste_kanji) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
-						<md-input placeholder="paste" [(ngModel)]="chara.paste_kanji" name="paste_kanji" on-keypress="replaceValue($event, chara, 'kanji')" title="Enter to inject"></md-input>
+						<md-input placeholder="original name" [(ngModel)]="chara.name_original" name="originalname" [style.background-color]="isNameMatch(chara.name_original, chara.paste_name_original) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
+						<md-input placeholder="paste" [(ngModel)]="chara.paste_name_original" name="paste_name_original" on-keypress="replaceValue($event, chara, 'name_original')" title="Enter to inject"></md-input>
 					</div>
 					<br>
-					<md-input placeholder="yobikata" [(ngModel)]="chara.yobikata" name="yobikata"></md-input>
+					<md-input placeholder="furigana" [(ngModel)]="chara.name_furigana" name="furigana"></md-input>
 					<br>
-					<md-input placeholder="betsumyou" [(ngModel)]="chara.betsumyou" name="betsumyou"></md-input><br>
+					<md-input placeholder="alias" [(ngModel)]="chara.name_betsumyou" name="alias"></md-input><br>
 					<div fxLayout="row">
 						<md-input placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth"></md-input>
 						<md-input placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday"></md-input>
