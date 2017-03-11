@@ -9,10 +9,12 @@ import { Constant } from './const.config';
 @Injectable()
 export class AuthenticationService {
 	public token: string;
+	public authorization_bearer: string;
 
 	constructor(private http: Http) {
 		var currentUser = localStorage.getItem('recomposition_token');
 		this.token = currentUser;
+		this.authorization_bearer = 'Bearer ' + this.token;
 	}
 
 	// private headers = new Headers({'Content-Type': 'application/json'});
