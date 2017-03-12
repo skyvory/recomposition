@@ -118,7 +118,8 @@ export class VnFillComponent implements OnInit{
 					if(response.data.items[i].producers) {
 						for(let j in response.data.items[i].producers) {
 							if(response.data.items[i].producers[j].developer == true) {
-								let check = this.checkDeveloper(response.data.items[i].producers[j].original);
+								let producerToCheck = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+								let check = this.checkDeveloper(producerToCheck);
 								check.then(dev => {
 									this.vn.developer_id = dev.id;
 									console.log("DEV", dev);
