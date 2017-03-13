@@ -19,6 +19,7 @@ import { AssessmentService } from './assessment.service';
 import { CharacterService } from './character.service';
 import { LineamentService } from './lineament.service';
 import { ActiveService } from './active.service';
+import { FileUploadService } from './file-upload.service';
 
 import { AuthGuard } from './guards/auth.guard';
 import { LoginComponent } from './login.component';
@@ -76,7 +77,8 @@ import { SidebarsharedModule } from './sidebar/sidebar-shared.module';
 		// }),
 		CharacterService,
 		LineamentService,
-		ActiveService
+		ActiveService,
+		FileUploadService
 	],
 	bootstrap: [ AppComponent ]
 })

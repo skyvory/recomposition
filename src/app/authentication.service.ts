@@ -9,10 +9,12 @@ import { Constant } from './const.config';
 @Injectable()
 export class AuthenticationService {
 	public token: string;
+	public authorization_bearer: string;
 
 	constructor(private http: Http) {
 		var currentUser = localStorage.getItem('recomposition_token');
 		this.token = currentUser;
+		this.authorization_bearer = 'Bearer ' + this.token;
 	}
 
 	// private headers = new Headers({'Content-Type': 'application/json'});
@@ -39,6 +41,17 @@ export class AuthenticationService {
 		headers.append('Accept', 'application/json, text/plain');
 		headers.append('Content-Type', 'application/json;charset=utf-8');
 		let options = new RequestOptions({ headers: headers, search: params });
+		return options;
+	}
+
+	public optionOnUpload:any = this.constructOptionsOnUpload();
+	private constructOptionsOnUpload():any {
+		let token = localStorage.getItem('recomposition_token');
+		let headers = new Headers();
+		headers.append('Authorization', 'Bearer ' + token);
+		headers.append('Accept', 'application/json, text/plain');
+		headers.append('Content-Type', 'multipart/form-data; charset=utf-8; boundary=' + Math.random().toString().substr(2));
+		let options = new RequestOptions({ headers: headers });
 		return options;
 	}
 
