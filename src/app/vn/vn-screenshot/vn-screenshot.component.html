@@ -4,23 +4,10 @@
 	</md-sidenav>
 	
 	<md-toolbar>
-		<span>Screenshots page of {{vn?.title_original}}</span>
+		<span>Screenshots page of {{vn.title_original}}</span>
     <span style="flex: 1 1 auto;"></span>
-    <!--<a md-raised-button [routerLink]="['/vn', vn.id, 'edit']">Fill</a>-->
+    <a md-raised-button [routerLink]="['/vn', vn.id, 'edit']">Fill</a>
 	</md-toolbar>
-	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-		<!--<div fxFlex="100">
-      >>>repeat show screenshots
-			<md-input-container>
-				<input md-input placeholder="description" [(ngModel)]="imagewhatever">
-			</md-input-container>
-      >>>selection to change screentype
-			<button md-button on-click="update()">Update</button>
-      >>>delete button is floating at the corner of the image
-		</div>-->
-    
-		Manual selection <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
-	</div>
 
 	<style>
 		.drop-zone {
@@ -28,12 +15,14 @@
 			height: 130px;
 			border-radius: 50%;
 			border: dotted 3px lightgray;
+			margin: 20px 30px;
 		}
 		.drop-zone-over {
 			width: 130px;
 			height: 130px;
 			border-radius: 50%;
 			border: dotted 3px green;
+			margin: 20px 30px;
 		}
 		.drop-zone-text {
 			position: relative;
@@ -43,15 +32,57 @@
 			transform: translate(-50%, -50%);
 		}
 	</style>
-	
-	<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, 1)">
-		<span class="drop-zone-text">Title</span>
+
+
+	Manual selection <input type="file" ng2FileSelect [uploader]="uploader" multiple disabled/><br/>
+
+	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+		<div fxFlex="20">
+			<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 1}" (fileOver)="fileOverBase($event,1)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, 1)">
+				<span class="drop-zone-text">Title</span>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 2}" (fileOver)="fileOverBase($event,2)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, 2)">
+				<span class="drop-zone-text">Gameplay</span>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 3}" (fileOver)="fileOverBase($event,3)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, 3)">
+				<span class="drop-zone-text">Configuration</span>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 4}" (fileOver)="fileOverBase($event,4)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, 4)">
+				<span class="drop-zone-text">Save/Load</span>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 5}" (fileOver)="fileOverBase($event,5)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, 5)">
+				<span class="drop-zone-text">Extra</span>
+			</div>
+		</div>
 	</div>
 
 
+
+
+	<!--<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+		<div fxFlex="20">
+      >>>repeat show screenshots
+			<md-input-container>
+				<input md-input placeholder="description" [(ngModel)]="imagewhatever">
+			</md-input-container>
+      >>>selection to change screentype
+			<button md-button on-click="update()">Update</button>
+      >>>delete button is floating at the corner of the image
+		</div>
+	</div>-->
+
+	
+
 <div *ngFor="let item of uploader.queue">
 	<p>{{item?.file?.name}}</p>
-		<button type="button" class="btn btn-warning btn-xs" (click)="uploadItem(item)" >Upload</button>
 </div>
 
 
