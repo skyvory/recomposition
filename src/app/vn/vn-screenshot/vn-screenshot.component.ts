@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { VnService } from '../../vn.service';
 import { FileUploadService } from '../../file-upload.service';
-// import { Ng2FileDropAcceptedFile } from 'ng2-file-drop';
 import { FileUploader } from 'ng2-file-upload';
 
 @Component({
@@ -32,17 +31,15 @@ export class VnScreenshotComponent implements OnInit {
 		});
 	}
 
-  fileChange(event) {
-    console.log(event);
-    
-    let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      let file: File = fileList[0];
-      this.fileUploadService.uploadScreenshots(this.vn.id, 1, file).subscribe(response => {
-        console.log(response);
-      });
-    }
-  }
+  // fileChange(event) {
+  //   let fileList: FileList = event.target.files;
+  //   if (fileList.length > 0) {
+  //     let file: File = fileList[0];
+  //     this.fileUploadService.uploadScreenshots(this.vn.id, 1, file).subscribe(response => {
+  //       console.log(response);
+  //     });
+  //   }
+  // }
 
   public uploader:FileUploader = this.fileUploadService.uploadInstance;
   public hasBaseDropZoneOver:boolean = false;
@@ -50,24 +47,13 @@ export class VnScreenshotComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  // DEPRECATED!
-  // uploadItem(item):void {
-  //   console.log(item);
-  //   this.fileUploadService.uploadScreenshots(item._file).subscribe(response => {
-  //     console.log("end transmission");
-  //   });
-  // }
-
   dropTrigger(event, category):void {
-    // console.info(ev);
     let droppedFiles = event.dataTransfer.files;
     for(let i = 0; i < droppedFiles.length; i++) {
-      // console.log(ev.dataTransfer.files[i]);
       this.fileUploadService.uploadScreenshots(this.vn.id,category, droppedFiles[i]).subscribe(response => {
         console.log("RESPONSE", response);
       });
     }
-    // console.log(ev.dataTransfer.files);
   }
 
   
