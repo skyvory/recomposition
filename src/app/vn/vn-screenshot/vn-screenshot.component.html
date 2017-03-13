@@ -4,7 +4,7 @@
 	</md-sidenav>
 	
 	<md-toolbar>
-		<!--<span>Screenshots page of {{vn.title_original}}</span>-->
+		<span>Screenshots page of {{vn?.title_original}}</span>
     <span style="flex: 1 1 auto;"></span>
     <!--<a md-raised-button [routerLink]="['/vn', vn.id, 'edit']">Fill</a>-->
 	</md-toolbar>
@@ -18,16 +18,34 @@
 			<button md-button on-click="update()">Update</button>
       >>>delete button is floating at the corner of the image
 		</div>-->
-    whatever
-		<input name="file" type="file" on-change="fileChange($event)">
+    Legacy upload <input name="file" type="file" on-change="fileChange($event)">
+		New <input type="file" ng2FileSelect [uploader]="uploader" multiple  /><br/>
 	</div>
 
-
+	<style>
+		.drop-zone {
+			width: 130px;
+			height: 130px;
+			border-radius: 50%;
+			border: dotted 3px lightgray;
+		}
+		.drop-zone-over {
+			width: 130px;
+			height: 130px;
+			border-radius: 50%;
+			border: dotted 3px green;
+		}
+		.drop-zone-text {
+			position: relative;
+			float: left;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	</style>
 	
-	<!--<div (drop)="fileDrop($event, droppedFile)" (dragover)="allowDrop($event)" style="width:600px;height:600px;background-color:#afcfbe;"></div>-->
-
-	<div style="height:600px;width:800px;background-color: #afcfbe;" ng2FileDrop [uploader]="uploader" (fileOver)="fileOverBase($event)" (drop)="dropTrigger($event)">
-		drop zone
+	<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, 1)">
+		<span class="drop-zone-text">Title</span>
 	</div>
 
 

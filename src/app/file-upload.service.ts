@@ -21,23 +21,21 @@ export class FileUploadService {
     private authenticationService: AuthenticationService
   ) { }
 
+  // ng2-file-upload option variable
   options = {
-    // url: 'vn/screenshot',
     url: Constant.API_PATH + 'vn/screenshot',
     authToken: this.authenticationService.authorization_bearer,
-    randomshit: 'jfoijeijwifjejwjf'
   };
   
+  // Prepare object of ng2-file-uploader to be used in component
   public uploadInstance: FileUploader = new FileUploader(this.options);
 
-  uploading():void {
-    this.uploadInstance.setOptions(this.options);
-  }
-  
-  doUpload(file: any): Observable<any> {
-    console.log("LAUNCH", file);
+  uploadScreenshots(vn_id:number, screen_category:number, file: any): Observable<any> {
+    // console.log("LAUNCH", file);
     let formData: FormData = new FormData();
     formData.append('screenshot', file);
+    formData.append('vn_id', vn_id);
+    formData.append('screen_category', screen_category);
     // formData.append('file[]', file, file.name);
     // let headers = new Headers();
     // headers.append('Content-Type', 'multipart/form-data');

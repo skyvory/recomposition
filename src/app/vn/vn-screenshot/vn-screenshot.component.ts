@@ -21,30 +21,24 @@ export class VnScreenshotComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    let id = +this.route.snapshot.params['id'];
+    this.loadVn(id);
   }
 
-  private supportedFileTypes: string[] = ['image/jpg', 'image/jpeg', 'image/png', 'image/gif', 'image/bmp'];
-
-  // private dragFileAccepted(acceptedFile:Ng2FileDropAcceptedFile) {
-  //   console.log("ACCEPT", acceptedFile);
-  //   // Load the image
-  //   let fileReader = new FileReader();
-  //   fileReader.onload = () => {
-  //     console.log("result", fileReader.result);
-  //   };
-
-  //   fileReader.readAsDataURL(acceptedFile.file);
-  // }
+  vn:any;
+  loadVn(id:number):void {
+		this.vnService.getVn(id).subscribe(response => {
+			this.vn = response.data;
+		});
+	}
 
   fileChange(event) {
     console.log(event);
-
-    
     
     let fileList: FileList = event.target.files;
     if (fileList.length > 0) {
       let file: File = fileList[0];
-      this.fileUploadService.doUpload(file).subscribe(response => {
+      this.fileUploadService.uploadScreenshots(this.vn.id, 1, file).subscribe(response => {
         console.log(response);
       });
     }
@@ -52,24 +46,28 @@ export class VnScreenshotComponent implements OnInit {
 
   public uploader:FileUploader = this.fileUploadService.uploadInstance;
   public hasBaseDropZoneOver:boolean = false;
-  public hasAnotherDropZoneOver:boolean = false;
-
   public fileOverBase(e:any):void {
     this.hasBaseDropZoneOver = e;
   }
 
-  public fileOverAnother(e:any):void {
-    this.hasAnotherDropZoneOver = e;
-  }
-  uploadItem(item):void {
-    console.log(item);
-    this.fileUploadService.doUpload(item._file).subscribe(response => {
-      console.log("end transmission");
-    });
-  }
-  dropTrigger(ev):void {
-    console.info(ev);
-    // ev.dataTransfer.files[0]
+  // DEPRECATED!
+  // uploadItem(item):void {
+  //   console.log(item);
+  //   this.fileUploadService.uploadScreenshots(item._file).subscribe(response => {
+  //     console.log("end transmission");
+  //   });
+  // }
+
+  dropTrigger(event, category):void {
+    // console.info(ev);
+    let droppedFiles = event.dataTransfer.files;
+    for(let i = 0; i < droppedFiles.length; i++) {
+      // console.log(ev.dataTransfer.files[i]);
+      this.fileUploadService.uploadScreenshots(this.vn.id,category, droppedFiles[i]).subscribe(response => {
+        console.log("RESPONSE", response);
+      });
+    }
+    // console.log(ev.dataTransfer.files);
   }
 
   
