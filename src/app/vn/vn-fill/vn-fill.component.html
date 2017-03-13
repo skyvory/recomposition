@@ -6,6 +6,10 @@
 	<md-toolbar>
 		<span>Filling {{vn.title_original}}</span>
 		<!--<button md-button disabled (click)="start.open()">Menu</button>-->
+		<span style="flex: 1 1 auto;"></span>
+		<a md-raised-button [routerLink]="['/vn', vn.id, 'edit-screenshot']">Screenshots</a>
+		<!--<a [routerLink]="['/assessment', linkAssessmentId, 'character']">Character</a>-->
+
 	</md-toolbar>
 
 	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
