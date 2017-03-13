@@ -1,0 +1,43 @@
+<md-sidenav-container>
+	<md-sidenav mode="side" opened="true" #start (open)="closeStartButton.focus()" fxLayout="row" style="background-color:rgba(85, 90, 99,0.6);">
+		<sidebar-selector></sidebar-selector>
+	</md-sidenav>
+	
+	<md-toolbar>
+		<!--<span>Screenshots page of {{vn.title_original}}</span>-->
+    <span style="flex: 1 1 auto;"></span>
+    <!--<a md-raised-button [routerLink]="['/vn', vn.id, 'edit']">Fill</a>-->
+	</md-toolbar>
+	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+		<!--<div fxFlex="100">
+      >>>repeat show screenshots
+			<md-input-container>
+				<input md-input placeholder="description" [(ngModel)]="imagewhatever">
+			</md-input-container>
+      >>>selection to change screentype
+			<button md-button on-click="update()">Update</button>
+      >>>delete button is floating at the corner of the image
+		</div>-->
+    whatever
+		<input name="file" type="file" on-change="fileChange($event)">
+	</div>
+
+
+	
+	<!--<div (drop)="fileDrop($event, droppedFile)" (dragover)="allowDrop($event)" style="width:600px;height:600px;background-color:#afcfbe;"></div>-->
+
+	<div style="height:600px;width:800px;background-color: #afcfbe;" ng2FileDrop [uploader]="uploader" (fileOver)="fileOverBase($event)" (drop)="dropTrigger($event)">
+		drop zone
+	</div>
+
+
+<div *ngFor="let item of uploader.queue">
+	<p>{{item?.file?.name}}</p>
+		<button type="button" class="btn btn-warning btn-xs" (click)="uploadItem(item)" >Upload</button>
+</div>
+
+
+<!--<div style="height:600px;width:800px;background-color: #afcfbe;" ng2FileDrop [ng2FileDropSupportedFileTypes]="supportedFileTypes" (ng2FileDropFileAccepted)="dragFileAccepted($event)">
+		drop zone
+</div>-->
+</md-sidenav-container>

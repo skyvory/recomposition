@@ -10,6 +10,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AssessmentListDialog } from './assessment-list-dialog';
 import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 import { VnResolve } from '../vn.resolve';
+import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
+// import { Ng2FileDropModule } from 'ng2-file-drop';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -19,9 +22,11 @@ import { VnResolve } from '../vn.resolve';
     FormsModule,
     VnRoutingModule,
     FlexLayoutModule.forRoot(),
-    SidebarsharedModule
+    SidebarsharedModule,
+    // Ng2FileDropModule,
+    FileUploadModule
   ],
-  declarations: [VnComponent, VnFillComponent, AssessmentListDialog],
+  declarations: [VnComponent, VnFillComponent, AssessmentListDialog, VnScreenshotComponent],
   entryComponents: [
     AssessmentListDialog
   ],
