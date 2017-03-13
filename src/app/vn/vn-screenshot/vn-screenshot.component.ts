@@ -24,7 +24,7 @@ export class VnScreenshotComponent implements OnInit {
     this.loadVn(id);
   }
 
-  vn:any;
+  vn:any = {};
   loadVn(id:number):void {
 		this.vnService.getVn(id).subscribe(response => {
 			this.vn = response.data;
