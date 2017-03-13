@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { VnService } from '../../vn.service';
 import { FileUploadService } from '../../file-upload.service';
@@ -13,7 +12,6 @@ import { FileUploader } from 'ng2-file-upload';
 export class VnScreenshotComponent implements OnInit {
 
   constructor(
-    public router: Router,
     private vnService: VnService,
     private route: ActivatedRoute,
     private fileUploadService: FileUploadService
