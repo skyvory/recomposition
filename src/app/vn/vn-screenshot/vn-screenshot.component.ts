@@ -20,6 +20,7 @@ export class VnScreenshotComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.snapshot.params['id'];
     this.loadVn(id);
+    this.loadScreenshots(id);
   }
 
   vn:any = {};
@@ -43,6 +44,14 @@ export class VnScreenshotComponent implements OnInit {
   public hasBaseDropZoneOver:boolean = false;
   public fileOverBase(e:any, cat):void {
     this.hasBaseDropZoneOver = e ? cat : e;
+  }
+
+  screenshots:any = [];
+
+  loadScreenshots(vn_id:number):void {
+    this.vnService.getScreenshots(vn_id).subscribe(response => {
+      this.screenshots = response.data;
+    });
   }
 
   dropTrigger(event, category):void {

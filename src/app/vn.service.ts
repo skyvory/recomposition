@@ -206,4 +206,15 @@ export class VnService {
 			.catch(this.handleError)
 		;
 	}
+
+	getScreenshots(vn_id:number) {
+		return this.http.get(Constant.API_PATH + `vn/screenshots/${vn_id}`, this.authenticationService.option)
+			.map(
+				(response:Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
 }

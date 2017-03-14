@@ -64,6 +64,54 @@
 		</div>
 	</div>
 
+	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+		<div fxFlex="20">
+			<div template="ngFor let shot of screenshots">
+				<div class="screenshot-item-container" template="ngIf shot.screen_category == 1">
+					<div class="screenshot-image-container" style="position:relative;">
+						<img src="{{shot.local_url}}" style="margin-left:auto;margin-right:auto;max-width:100%;max-height:100%;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div template="ngFor let shot of screenshots">
+				<div class="screenshot-item-container" template="ngIf shot.screen_category == 2">
+					<div class="screenshot-image-container" style="position:relative;">
+						<img src="{{shot.local_url}}" style="margin-left:auto;margin-right:auto;max-width:100%;max-height:100%;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div template="ngFor let shot of screenshots">
+				<div class="screenshot-item-container" template="ngIf shot.screen_category == 3">
+					<div class="screenshot-image-container" style="position:relative;">
+						<img src="{{shot.local_url}}" style="margin-left:auto;margin-right:auto;max-width:100%;max-height:100%;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div template="ngFor let shot of screenshots">
+				<div class="screenshot-item-container" template="ngIf shot.screen_category == 4">
+					<div class="screenshot-image-container" style="position:relative;">
+						<img src="{{shot.local_url}}" style="margin-left:auto;margin-right:auto;max-width:100%;max-height:100%;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div fxFlex="20">
+			<div template="ngFor let shot of screenshots">
+				<div class="screenshot-item-container" template="ngIf shot.screen_category == 5">
+					<div class="screenshot-image-container" style="position:relative;">
+						<img src="{{shot.local_url}}" style="margin-left:auto;margin-right:auto;max-width:100%;max-height:100%;">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
 
 
 
@@ -81,12 +129,4 @@
 
 	
 
-<div *ngFor="let item of uploader.queue">
-	<p>{{item?.file?.name}}</p>
-</div>
-
-
-<!--<div style="height:600px;width:800px;background-color: #afcfbe;" ng2FileDrop [ng2FileDropSupportedFileTypes]="supportedFileTypes" (ng2FileDropFileAccepted)="dragFileAccepted($event)">
-		drop zone
-</div>-->
 </md-sidenav-container>
