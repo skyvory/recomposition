@@ -96,6 +96,9 @@ export class VnScreenshotComponent implements OnInit {
           if(this.uploadQueue.length > 0) {
             this.fireUpload();
           }
+          else {
+            this.isNowUploading = false;
+          }
         });
       }
     }
