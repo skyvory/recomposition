@@ -54,12 +54,50 @@ export class VnScreenshotComponent implements OnInit {
     });
   }
 
+  uploadQueue:any = [];
+  isNowUploading:boolean = false;
+
   dropTrigger(event, category):void {
     let droppedFiles = event.dataTransfer.files;
     for(let i = 0; i < droppedFiles.length; i++) {
-      this.fileUploadService.uploadScreenshots(this.vn.id,category, droppedFiles[i]).subscribe(response => {
-        console.log("RESPONSE", response);
-      });
+      let itemToQueue = {
+        vn_id: this.vn.id,
+        category: category,
+        file: droppedFiles[i]
+      };
+      console.log("ITEM TO QUEUE", itemToQueue);
+      this.uploadQueue.push(itemToQueue);
+    }
+
+    if(!this.isNowUploading) {
+      this.isNowUploading = true;
+      this.fireUpload();
+    }
+  }
+
+  fireUpload():void {
+    if(this.uploadQueue.length > 0) {
+      let firstServe = this.uploadQueue[Object.keys(this.uploadQueue)[0]];
+      if(firstServe) {
+        this.fileUploadService.uploadScreenshots(firstServe.vn_id, firstServe.category, firstServe.file).subscribe(response => {
+          this.screenshots.push(response.data);
+          let index = this.uploadQueue.indexOf(firstServe);
+
+          // Indexing stability trial to test integrity of index between Object.keys and indexOf
+          if(JSON.stringify(firstServe) === JSON.stringify(this.uploadQueue[Object.keys(this.uploadQueue)[index]]))
+            console.log("INDEX STABILITY TRIAL", true, "with index", index);
+          else
+            console.warn("INDEX STABILITY TRIAL", false, "indexOf vs Object.keys return diverse result");
+          // End block of index stability trial
+
+          this.uploadQueue.splice(index, 1);
+
+          // Recurse upload for next queue
+          if(this.uploadQueue.length > 0) {
+            this.fireUpload();
+          }
+        });
+      }
     }
   }
 
