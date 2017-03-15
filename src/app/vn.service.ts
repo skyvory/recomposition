@@ -217,4 +217,15 @@ export class VnService {
 			.catch(this.handleError)
 		;
 	}
+
+	deleteScreenshot(screenshot_id:number) {
+		return this.http.delete(Constant.API_PATH + `vn/screenshot/${screenshot_id}`, this.authenticationService.option)
+			.map(
+				(response:Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
 }

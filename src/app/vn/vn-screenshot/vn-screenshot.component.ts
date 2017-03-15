@@ -101,6 +101,11 @@ export class VnScreenshotComponent implements OnInit {
     }
   }
 
-  
+  deleteScreenshot(screenshot:any):void {
+    this.vnService.deleteScreenshot(screenshot.id).subscribe(response => {
+      let index = this.screenshots.indexOf(screenshot);
+      this.screenshots.splice(index, 1);
+    });
+  }
 
 }
