@@ -228,4 +228,19 @@ export class VnService {
 			.catch(this.handleError)
 		;
 	}
+
+	updateScreenshot(screenshot:any) {
+		let data = {
+			description: screenshot.description
+		}
+		
+		return this.http.put(Constant.API_PATH + `vn/screenshot/${screenshot.id}`, data, this.authenticationService.option)
+			.map(
+				(response:Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
 }

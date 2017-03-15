@@ -108,4 +108,11 @@ export class VnScreenshotComponent implements OnInit {
     });
   }
 
+  updateScreenshot(screenshot:any):void {
+    console.log(screenshot);
+    this.vnService.updateScreenshot(screenshot).subscribe(response => {
+      console.log("update success");
+    });
+  }
+
 }

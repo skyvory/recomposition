@@ -37,3 +37,8 @@
   right: 0px;
   top: 0px;
 }
+.screenshot-save-button {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
