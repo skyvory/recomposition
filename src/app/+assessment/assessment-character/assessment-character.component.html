@@ -1,8 +1,14 @@
-<button md-button on-click="newCharacter($event)" style="position:fixed; right:6px; bottom:6px;">Add</button>
 
-<md-input placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid"></md-input>
-<button md-button on-click="retrieveVndbCharacter()">Load</button>
-<br />
+<div style="height:64px;" fxLayout="row">
+	<md-input placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid"></md-input>
+	<button md-button on-click="retrieveVndbCharacter()">Load</button>
+
+	<span style="flex: 1 1 auto;"></span>
+
+	<button md-fab style="position:relative; margin:0 18px;" on-click="newCharacter($event)">
+		<md-icon class="md-24">add</md-icon>
+	</button>
+</div>
 
 <div template="ngIf vndb.characters && vndb.characters.length > 0">
 	<button md-button on-click="saveAllVndbCharacters()">Save All</button>
@@ -38,17 +44,18 @@
 </div>
 
 <div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item" >
+	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" fxFlex="33" fxFlex.sm="100" fxFlex.md="50"
+	 fxFlex.lg="33" class="flex-item">
 		<form #form="ngForm" name="characterForm" (ngSubmit)="onSubmit()">
 			<md-card-title>{{chara.name_furigana}}</md-card-title>
 			<md-card-content>
-			<div fxLayout="row">
-				<div fxFlex="30">
-					<img [src]="chara.image" style="width:auto; max-width:100%; max-height:200px;">
-					<md-card-subtitle style="color:rgba(0,0,60,0.3);"><a href="https://vndb.org/c{{chara.vndb_character_id}}/edit" target="_blank">{{chara.vndb_character_id}}</a></md-card-subtitle>
-					<md-input placeholder="img" [(ngModel)]="chara.image" name="image" style="margin-top:10px;"></md-input>
-					<div style="display:flex; flex-direction:row; margin:20px 0;">
-						<select [(ngModel)]="chara.mark" (ngModelChange)="saveMark(chara)" name="mark">
+				<div fxLayout="row">
+					<div fxFlex="30">
+						<img [src]="chara.image" style="width:auto; max-width:100%; max-height:200px;">
+						<md-card-subtitle style="color:rgba(0,0,60,0.3);"><a href="https://vndb.org/c{{chara.vndb_character_id}}/edit" target="_blank">{{chara.vndb_character_id}}</a></md-card-subtitle>
+						<md-input placeholder="img" [(ngModel)]="chara.image" name="image" style="margin-top:10px;"></md-input>
+						<div style="display:flex; flex-direction:row; margin:20px 0;">
+							<select [(ngModel)]="chara.mark" (ngModelChange)="saveMark(chara)" name="mark">
 							<option value="s">s</option>
 							<option value="a">a</option>
 							<option value="b">b</option>
@@ -56,43 +63,44 @@
 							<option value="d">d</option>
 							<option value="e">e</option>
 						</select>
+						</div>
 					</div>
-				</div>
-				<div fxFlex="70" style="background-color: #eff;">
-					<br>
-					<div fxLayout="row">
-						<md-input placeholder="original name" [(ngModel)]="chara.name_original" name="originalname" [style.background-color]="isNameMatch(chara.name_original, chara.paste_name_original) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
-						<md-input placeholder="paste" [(ngModel)]="chara.paste_name_original" name="paste_name_original" on-keypress="replaceValue($event, chara, 'name_original')" title="Enter to inject"></md-input>
-					</div>
-					<br>
-					<md-input placeholder="furigana" [(ngModel)]="chara.name_furigana" name="furigana"></md-input>
-					<br>
-					<md-input placeholder="alias" [(ngModel)]="chara.name_betsumyou" name="alias"></md-input><br>
-					<div fxLayout="row">
-						<md-input placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth"></md-input>
-						<md-input placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday"></md-input>
-						<md-input placeholder="age" [(ngModel)]="chara.age" name="age"></md-input>
-					</div>
-					<div fxLayout="row">
-						<md-input placeholder="height" [(ngModel)]="chara.height" name="height"></md-input>
-						<md-input placeholder="weight" [(ngModel)]="chara.weight" name="weight"></md-input>
-						<md-input placeholder="blood type" [(ngModel)]="chara.blood_type" name="blood_type"></md-input>
-					</div>
-					<br>
-					<div fxLayout="row">
-						<md-input placeholder="bust" [(ngModel)]="chara.bust" name="bust"></md-input>
-						<md-input placeholder="waist" [(ngModel)]="chara.waist" name="waist"></md-input>
-						<md-input placeholder="hip" [(ngModel)]="chara.hip" name="hip"></md-input>
-					</div>
-					<br>
-					<md-input-container style="width:100%;">
-						<textarea md-input placeholder="description" [(ngModel)]="chara.description" name="description" style="resize:vertical;"></textarea>
-					</md-input-container>
-					 <!--<md-input-container class="example-full-width">
+					<div fxFlex="70" style="background-color: #eff;">
+						<br>
+						<div fxLayout="row">
+							<md-input placeholder="original name" [(ngModel)]="chara.name_original" name="originalname" [style.background-color]="isNameMatch(chara.name_original, chara.paste_name_original) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
+							<md-input placeholder="paste" [(ngModel)]="chara.paste_name_original" name="paste_name_original" on-keypress="replaceValue($event, chara, 'name_original')"
+							 title="Enter to inject"></md-input>
+						</div>
+						<br>
+						<md-input placeholder="furigana" [(ngModel)]="chara.name_furigana" name="furigana"></md-input>
+						<br>
+						<md-input placeholder="alias" [(ngModel)]="chara.name_betsumyou" name="alias"></md-input><br>
+						<div fxLayout="row">
+							<md-input placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth"></md-input>
+							<md-input placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday"></md-input>
+							<md-input placeholder="age" [(ngModel)]="chara.age" name="age"></md-input>
+						</div>
+						<div fxLayout="row">
+							<md-input placeholder="height" [(ngModel)]="chara.height" name="height"></md-input>
+							<md-input placeholder="weight" [(ngModel)]="chara.weight" name="weight"></md-input>
+							<md-input placeholder="blood type" [(ngModel)]="chara.blood_type" name="blood_type"></md-input>
+						</div>
+						<br>
+						<div fxLayout="row">
+							<md-input placeholder="bust" [(ngModel)]="chara.bust" name="bust"></md-input>
+							<md-input placeholder="waist" [(ngModel)]="chara.waist" name="waist"></md-input>
+							<md-input placeholder="hip" [(ngModel)]="chara.hip" name="hip"></md-input>
+						</div>
+						<br>
+						<md-input-container style="width:100%;">
+							<textarea md-input placeholder="description" [(ngModel)]="chara.description" name="description" style="resize:vertical;"></textarea>
+						</md-input-container>
+						<!--<md-input-container class="example-full-width">
 					<textarea md-input placeholder="Address">1600 Amphitheatre Pkwy</textarea>
 					</md-input-container>-->
+					</div>
 				</div>
-			</div>
 			</md-card-content>
 
 			<md-card-actions align="end">
@@ -104,6 +112,3 @@
 </div>
 
 
-<button md-fab style="position:fixed; right:10px; bottom:10px;" on-click="newCharacter($event)">
-	<md-icon class="md-24">add</md-icon>
-</button>
