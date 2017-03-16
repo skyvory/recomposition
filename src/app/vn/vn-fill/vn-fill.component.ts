@@ -30,17 +30,13 @@ export class VnFillComponent implements OnInit{
 	};
 
 	ngOnInit() {
-		// this.developerService.getDevelopers().subscribe(response => {
-		// 	this.developers = response.data;
-		// });
 		this.loadDevelopers();
-		console.log(this.router.url);
 		if(this.router.url === "/vn/new") {
 			this.fillState = "new";
 		}
 		else if(this.router.url.split('/')[1] === "vn" && this.router.url.split('/')[3] === "edit") {
 			this.fillState = "edit";
-			// convert the route parameter value to a number with the JavaScript (+) operator
+			// Convert the route parameter value to a number with the JavaScript (+) operator
 			let id = +this.route.snapshot.params['id'];
 			this.loadVn(id);
 		}
@@ -60,7 +56,6 @@ export class VnFillComponent implements OnInit{
 
 	loadVn(id:number):void {
 		this.vnService.getVn(id).subscribe(response => {
-			console.log(response);
 			this.vn = response.data;
 		});
 	}
@@ -97,10 +92,8 @@ export class VnFillComponent implements OnInit{
 	retrieveVndbVn():void {
 		let vndb_user = localStorage.getItem('vndb_user');
 		let vndb_pass = localStorage.getItem('vndb_pass');
-		console.log(vndb_user);
 
 		this.vndbService.getVndbVn(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
-			console.log(response);
 			let vndb_vn = response.data.items['0'];
 			this.vn.title_original = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
 			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : "n/a";
@@ -110,7 +103,6 @@ export class VnFillComponent implements OnInit{
 		});
 
 		this.vndbService.getVndbRelease(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
-			console.log(response);
 			let vndb_release = response.data.items['0'];
 			if(response.data.items) {
 				let toBreak = false;
@@ -122,10 +114,9 @@ export class VnFillComponent implements OnInit{
 								let check = this.checkDeveloper(producerToCheck);
 								check.then(dev => {
 									this.vn.developer_id = dev.id;
-									console.log("DEV", dev);
 								},
 								reason => {
-									console.log("REASON", reason);
+									console.log("Fail reason", reason);
 									let reg = this.createDeveloper(response.data.items[i].producers[j].original, '', response.data.items[i].producers[j].name);
 									reg.then(dev => {
 										console.log("successfully create developer", dev);
