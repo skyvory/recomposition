@@ -37,8 +37,6 @@ export class AssessmentCharacterComponent implements OnInit {
 		this.route.params.forEach((params:Params) => {
 			let id = +params['assessmentId'];
 			this.preLoad(id);
-			// this.loadVn(id);
-			console.log("PARAM INIT EXECUTION");
 		});
 	}
 
@@ -55,7 +53,6 @@ export class AssessmentCharacterComponent implements OnInit {
 
 	ngOnChanges(changes:any) {
 		for(let propName in changes) {
-			console.log(propName);
 			if(propName === 'vn') {
 				this.vndb.vn_id = this.vn.vndb_vn_id;
 			}
@@ -81,11 +78,10 @@ export class AssessmentCharacterComponent implements OnInit {
 	// }
 
 	onSubmit():void {
-		console.log("SUBMISSION");
+		//
 	}
 
 	retrieveVndbCharacter():void {
-		console.log("HUH");
 		if(!localStorage.getItem('vndb_user') || !localStorage.getItem('vndb_pass')) {
 			this.toast.pop('VNDB credential is not set yet');
 			return;
@@ -94,18 +90,13 @@ export class AssessmentCharacterComponent implements OnInit {
 		let fetch = (page:number) => {
 			this.toast.pop("Retrieving page " + page + " of VNDB characters...");
 			this.vndbService.getCharacters(this.vndb.vn_id, page).subscribe(response => {
-				console.log(response);
 				let characters = response.data.items;
 				// chara processing
-				console.log("c", characters);
 				if(characters) {
 					for(let i in characters) {
 						if(characters[i].gender == "f" || characters[i].gender == "b") {
-							console.log("CHAR",characters[i]);
 							this.vndb.characters.push(characters[i]);
-							console.log("VNDB", this.vndb);
 						}
-						console.log(i);
 					}
 				}
 				this.toast.pop("VNDB characters get!");
@@ -131,8 +122,6 @@ export class AssessmentCharacterComponent implements OnInit {
 	saveVndbCharacter(chara, callback = null):void {
 		let character:any = [];
 		character.vn_id = this.vn.id;
-		console.log(this.vn);
-		console.log(character);
 		if(!chara.original.match(/[a-zA-Z]/i)) {
 			chara.original = chara.original.replace(/ /g, '　');
 		}
@@ -152,7 +141,6 @@ export class AssessmentCharacterComponent implements OnInit {
 
 		this.characterService.saveCharacter(character).subscribe(response => {
 			this.toast.pop(chara.original + " saved successfully!");
-			console.log(response);
 			// Remove selected VNDB character first
 			this.removeVndbCharacter(chara);
 			// Then append saved character to scope
@@ -170,15 +158,10 @@ export class AssessmentCharacterComponent implements OnInit {
 	saveAllVndbCharacters():void {
 		let save = () => {
 			this.saveVndbCharacter(this.vndb.characters[0], (success_response) => {
-				console.log("success response", success_response);
-				console.log(this.vndb.characters);
-				console.log(this.vndb.characters.length);
 				if(success_response.success && this.vndb.characters.length) {
-					console.log("GODO");
 					save();
 				}
 				else {
-					console.log("HUH");
 				}
 			});
 		}
@@ -187,13 +170,12 @@ export class AssessmentCharacterComponent implements OnInit {
 
 	saveCharacter(chara) {
 		this.characterService.saveCharacter(chara).subscribe(response => {
-			this.toast.pop("Update to " + chara.name_original + " saved successfully!");
 			if(!chara.id) {
 				let index = this.characters.indexOf(chara);
 				this.characters[index].id = response.id;
 			}
+			this.toast.pop("Update to " + chara.name_original + " saved successfully!");
 		});
-		//>>>assign new id to new character
 	}
 
 	deleteCharacter(event, chara) {
@@ -209,7 +191,6 @@ export class AssessmentCharacterComponent implements OnInit {
 	}
 
 	saveMark(chara) {
-		console.log(chara);
 		let lineament = {
 			id: chara.lineament_id || null,
 			character_id: chara.id,
@@ -226,7 +207,6 @@ export class AssessmentCharacterComponent implements OnInit {
 	}
 
 	purgeCharacterProperty(chara, property) {
-		console.log(chara, property);
 		let target_index = this.characters.map(function(e) {
 			return e.id;
 		}).indexOf(parseInt(chara.link));
@@ -268,7 +248,6 @@ export class AssessmentCharacterComponent implements OnInit {
 	}
 
 	newCharacter(ev) {
-		console.log("EV", ev);
 		let new_chara = Object.assign({}, {
 			id: null,
 			name_original: '',
