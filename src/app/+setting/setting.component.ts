@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastService } from '../toaster/toast.service';
 
 @Component({
 	selector: 'app-setting',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingComponent implements OnInit {
 
-	constructor() { }
+	constructor(
+		private toast:ToastService
+	) { }
 
 	ngOnInit() {
 		this.loadVndbCredentials();
@@ -30,6 +33,7 @@ export class SettingComponent implements OnInit {
 		localStorage.setItem('vndb_user', this.vndb.username);
 		localStorage.setItem('vndb_pass', this.vndb.password);
 		localStorage.setItem('vndb_toggle', "1");
+		this.toast.pop("VNDB credential set");
 	}
 
 	checkVndbCredentials():void {
@@ -46,11 +50,11 @@ export class SettingComponent implements OnInit {
 	toggleVndbCredentials():void {
 		if(!localStorage.getItem('vndb_toggle').length || localStorage.getItem('vndb_toggle') == "0") {
 			localStorage.setItem('vndb_toggle', "1");
-			console.log('VNDB auto-update is set to on');
+			this.toast.pop('VNDB auto-update is set to on');
 		}
 		else {
 			localStorage.setItem('vndb_toggle', "0");
-			console.log('VNDB auto-update is set to off');
+			this.toast.pop('VNDB auto-update is set to off');
 		}
 	}
 
