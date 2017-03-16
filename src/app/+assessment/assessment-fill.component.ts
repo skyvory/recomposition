@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { AssessmentService } from '../assessment.service';
 import { VnService } from '../vn.service';
 import { VndbService } from '../vndb.service';
+import { ToastService } from '../toaster/toast.service';
 
 @Component({
 	// moduleId: module.id,
@@ -21,7 +22,8 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 		public assessmentService: AssessmentService,
 		public vnService: VnService,
 		public vndbService:VndbService,
-		private differs: KeyValueDiffers
+		private differs: KeyValueDiffers,
+		private toast: ToastService
 	) {
 		this.differ = differs.find({}).create(null);
 	}
@@ -111,26 +113,26 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 
 		
 		this.assessmentService.saveAssessment(this.assessment).subscribe(response => {
-			console.log("Assessment saved", response);
+			this.toast.pop("Assessment saved");
 			if(!this.assessment.id) {
 				this.assessment.id = response.id;
 			}
 
 			if(localStorage.getItem('vndb_toggle') == "0" || !localStorage.getItem('vndb_toggle')) {
-				console.log("VNDB auto-update is off");
+				this.toast.pop("VNDB auto-update is off");
 				return;
 			}
 			else if(!localStorage.getItem('vndb_user') || !localStorage.getItem('vndb_pass')) {
-				console.log("VNDB credential is not set yet");
+				this.toast.pop("VNDB credential is not set yet");
 				return;
 			}
 			if(isNaN(Number(this.vn.vndb_vn_id)) ||this.vn.vndb_vn_id !== parseInt(this.vn.vndb_vn_id) || isNaN(parseInt(this.vn.vndb_vn_id))) {
-				console.log("No VNDB ID identified");
+				this.toast.pop("No VNDB ID identified");
 			}
 
 			if(this.has_change.score_all && this.vn.vndb_vn_id) {
 				this.vndbService.setVote(this.vn.vndb_vn_id, this.assessment.score_all).subscribe(response => {
-					console.log("VOTE OK", response);
+					this.toast.pop("Vote saved");
 				},
 				err => {
 					console.log("ERROR VOTE", err)
@@ -147,7 +149,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 
 				if(status) {
 					this.vndbService.setStatus(this.vn.vndb_vn_id, status).subscribe(response => {
-						console.log("STATUS OK", response);
+						console.log("Status saved");
 					},
 					err => {
 						console.log("ERROR STATUS", err);
