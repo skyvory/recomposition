@@ -114,16 +114,17 @@ export class VnFillComponent implements OnInit{
 					if(response.data.items[i].producers) {
 						for(let j in response.data.items[i].producers) {
 							if(response.data.items[i].producers[j].developer == true) {
-								let producerToCheck = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+								let devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+								let devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : response.data.items[i].producers[j].name;
 								this.toast.pop("Checking if Developer exist in database...");
-								let check = this.checkDeveloper(producerToCheck);
+								let check = this.checkDeveloper(devOrig);
 								check.then(dev => {
 									this.vn.developer_id = dev.id;
 								},
 								reason => {
 									console.log("Fail reason", reason);
 									this.toast.pop("Developer not found. Automatically creating Developer...");
-									let reg = this.createDeveloper(response.data.items[i].producers[j].original, '', response.data.items[i].producers[j].name);
+									let reg = this.createDeveloper(devOrig, '', devRoman);
 									reg.then(dev => {
 										this.toast.pop("Developer automatically created and applied to this VN");
 										this.vn.developer_id = dev.id;
