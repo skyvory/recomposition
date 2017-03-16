@@ -10,7 +10,6 @@ import { VndbService } from '../vndb.service';
 import { ToastService } from '../toaster/toast.service';
 
 @Component({
-	// moduleId: module.id,
 	selector: 'assessment-fill-selector',
 	templateUrl: './assessment-fill.component.html'
 })
@@ -40,17 +39,10 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 		this.route.params.forEach((params: Params) => {
 			let id = +params['assessmentId'];
 			this.loadAssessment(id);
-			// this.loadVn(id);
 		});
 	}
 
-	// vn:any = [];
 	@Input() vn;
-	// loadVn(vn_id:number):void {
-	// 	this.vnService.getVn(vn_id).subscribe(response => {
-	// 		this.vn = response;
-	// 	});
-	// }
 
 	loadAssessment(assessment_id:number):void {
 		this.assessmentService.getAssessment(assessment_id).subscribe(response => {
@@ -61,7 +53,6 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 			}
 			else {
 				this.assessment = response;
-				// this.assessment.date_start = moment.utc(response.date_start).toDate();
 				this.assessment_local.date_start = response.date_start ? moment.utc(response.date_start, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
 				this.assessment_local.date_end = response.date__end ? moment.utc(response.date_end, 'YYYY-MM-DD HH:mm:ss').local().format('YYYY-MM-DD HH:mm:ss') : moment().format('YYYY-MM-DD HH:mm:ss');
 			}
@@ -95,7 +86,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 	};
 
 	saveAssessment():void {
-		// format archive_savedata into writtable value
+		// Format archive_savedata into writtable value
 		if(this.assessment.archive_savedata == true) {
 			this.assessment.archive_savedata = 1;
 		}
@@ -103,7 +94,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 			this.assessment.archive_savedata = 0;
 		}
 
-		// convert datetime to UTC
+		// Convert datetime to UTC
 		if(this.has_change.date_start) {
 			this.assessment.date_start = moment(this.assessment_local.date_start, 'YYYY-MM-DD HH:mm:ss').utc().format('YYYY-MM-DD HH:mm:ss');
 		}
