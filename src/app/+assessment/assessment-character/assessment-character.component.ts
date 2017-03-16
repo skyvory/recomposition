@@ -7,6 +7,7 @@ import { VndbService } from '../../vndb.service';
 import { LineamentService } from '../../lineament.service';
 import { AssessmentService } from '../../assessment.service';
 import { ActiveService } from '../../active.service';
+import { ToastService } from '../../toaster/toast.service';
 
 @Component({
 	// moduleId: module.id,
@@ -22,7 +23,8 @@ export class AssessmentCharacterComponent implements OnInit {
 		public vndbService: VndbService,
 		private lineamentService: LineamentService,
 		private assessmentService: AssessmentService,
-		private active: ActiveService
+		private active: ActiveService,
+		private toast: ToastService
 	) {}
 
 @Input() vn;
@@ -85,12 +87,12 @@ export class AssessmentCharacterComponent implements OnInit {
 	retrieveVndbCharacter():void {
 		console.log("HUH");
 		if(!localStorage.getItem('vndb_user') || !localStorage.getItem('vndb_pass')) {
-			console.log('VNDB credential is not set yet');
+			this.toast.pop('VNDB credential is not set yet');
 			return;
 		}
 
 		let fetch = (page:number) => {
-			console.log("Retrieving page " + page + " of VNDB characters...");
+			this.toast.pop("Retrieving page " + page + " of VNDB characters...");
 			this.vndbService.getCharacters(this.vndb.vn_id, page).subscribe(response => {
 				console.log(response);
 				let characters = response.data.items;
@@ -106,7 +108,7 @@ export class AssessmentCharacterComponent implements OnInit {
 						console.log(i);
 					}
 				}
-				console.log("VNDB characters get!");
+				this.toast.pop("VNDB characters get!");
 				// fetch next batch of character if there's more than 25. This extreme case occurs particularly with releases from SQUEEZ
 				if(response.data.more == true) {
 					page++;
@@ -149,7 +151,7 @@ export class AssessmentCharacterComponent implements OnInit {
 		character.vndb_character_id = chara.id;
 
 		this.characterService.saveCharacter(character).subscribe(response => {
-			console.log(chara.original + " saved successfully!");
+			this.toast.pop(chara.original + " saved successfully!");
 			console.log(response);
 			// Remove selected VNDB character first
 			this.removeVndbCharacter(chara);
@@ -185,7 +187,7 @@ export class AssessmentCharacterComponent implements OnInit {
 
 	saveCharacter(chara) {
 		this.characterService.saveCharacter(chara).subscribe(response => {
-			console.log("Update to " + chara.name_original + " saved successfully!");
+			this.toast.pop("Update to " + chara.name_original + " saved successfully!");
 			if(!chara.id) {
 				let index = this.characters.indexOf(chara);
 				this.characters[index].id = response.id;
@@ -202,7 +204,7 @@ export class AssessmentCharacterComponent implements OnInit {
 			}
 			let index = this.characters.indexOf(chara);
 			this.characters.splice(index, 1);
-			console.log(chara.name_original + " deleted");
+			this.toast.pop(chara.name_original + " deleted");
 		}
 	}
 
@@ -219,7 +221,7 @@ export class AssessmentCharacterComponent implements OnInit {
 				let index = this.characters.indexOf(chara);
 				this.characters[index].lineament_id = response.id;
 			}
-			console.log("Lineament update success");
+			this.toast.pop("Lineament update success");
 		});
 	}
 
@@ -285,7 +287,7 @@ export class AssessmentCharacterComponent implements OnInit {
 		});
 
 		this.characters = this.characters.concat(new_chara);
-		console.log('new chara instance prepared');
+		this.toast.pop('New chara instance prepared');
 	}
 
 	isNameMatch(current_name, original_name):boolean {
