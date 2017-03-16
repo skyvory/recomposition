@@ -6,6 +6,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { VnService } from '../../vn.service';
 import { DeveloperService } from '../../developer.service';
 import { VndbService } from '../../vndb.service';
+import { ToastService } from '../../toaster/toast.service';
 
 @Component({
 	// moduleId: module.id,
@@ -21,6 +22,7 @@ export class VnFillComponent implements OnInit{
 		private developerService: DeveloperService,
 		private vndbService: VndbService,
 		private route: ActivatedRoute,
+		private toast: ToastService
 	) {}
 
 	fillState:string = "";
@@ -77,14 +79,14 @@ export class VnFillComponent implements OnInit{
 
 	createVn():void {
 		this.vnService.createVn(this.vn).subscribe(response => {
-			console.log("VN created successfully", response);
+			this.toast.pop("VN created successfully");
 			this.router.navigate(['/vn']);
 		});
 	}
 
 	updateVn():void {
 		this.vnService.updateVn(this.vn).subscribe(response => {
-			console.log("VN updated successfully", response);
+			this.toast.pop("VN updated successfully");
 			this.router.navigate(['/vn']);
 		});
 	}
@@ -94,6 +96,7 @@ export class VnFillComponent implements OnInit{
 		let vndb_pass = localStorage.getItem('vndb_pass');
 
 		this.vndbService.getVndbVn(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
+			this.toast.pop("VNDB VN retrieved");
 			let vndb_vn = response.data.items['0'];
 			this.vn.title_original = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
 			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : "n/a";
@@ -103,6 +106,7 @@ export class VnFillComponent implements OnInit{
 		});
 
 		this.vndbService.getVndbRelease(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
+			this.toast.pop("VNDB Release retrieved");
 			let vndb_release = response.data.items['0'];
 			if(response.data.items) {
 				let toBreak = false;
@@ -111,15 +115,17 @@ export class VnFillComponent implements OnInit{
 						for(let j in response.data.items[i].producers) {
 							if(response.data.items[i].producers[j].developer == true) {
 								let producerToCheck = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+								this.toast.pop("Checking if Developer exist in database...");
 								let check = this.checkDeveloper(producerToCheck);
 								check.then(dev => {
 									this.vn.developer_id = dev.id;
 								},
 								reason => {
 									console.log("Fail reason", reason);
+									this.toast.pop("Developer not found. Automatically creating Developer...");
 									let reg = this.createDeveloper(response.data.items[i].producers[j].original, '', response.data.items[i].producers[j].name);
 									reg.then(dev => {
-										console.log("successfully create developer", dev);
+										this.toast.pop("Developer automatically created and applied to this VN");
 										this.vn.developer_id = dev.id;
 									},
 									fail => {
@@ -142,7 +148,7 @@ export class VnFillComponent implements OnInit{
 			}
 		},
 		fail => {
-			// fail get notification
+			this.toast.pop("Failed to retrieve from VNDB for some reason");
 		});
 	}
 
@@ -178,7 +184,7 @@ export class VnFillComponent implements OnInit{
 			if(response) {
 				let index = this.vn.relations.indexOf(relation);
 				this.vn.relations.splice(index, 1);
-				console.log("relation removed", response);
+				this.toast.pop("relation removed");
 			}
 		});
 	}
@@ -186,7 +192,7 @@ export class VnFillComponent implements OnInit{
 	refreshCover(vn_id:any):void {
 		this.vnService.refreshCover(vn_id).subscribe(response => {
 			if(response) {
-				console.log("Cover refreshed!");
+				this.toast.pop("Cover refreshed!");
 			}
 		});
 	}
