@@ -123,7 +123,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 
 			if(this.has_change.score_all && this.vn.vndb_vn_id) {
 				this.vndbService.setVote(this.vn.vndb_vn_id, this.assessment.score_all).subscribe(response => {
-					this.toast.pop("Vote saved");
+					this.toast.pop("VNDB Vote saved");
 				},
 				err => {
 					console.log("ERROR VOTE", err)
@@ -140,7 +140,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 
 				if(status) {
 					this.vndbService.setStatus(this.vn.vndb_vn_id, status).subscribe(response => {
-						console.log("Status saved");
+						this.toast.pop("VNDB Status saved");
 					},
 					err => {
 						console.log("ERROR STATUS", err);
