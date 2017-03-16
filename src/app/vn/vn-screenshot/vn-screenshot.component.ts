@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { VnService } from '../../vn.service';
 import { FileUploadService } from '../../file-upload.service';
 import { FileUploader } from 'ng2-file-upload';
+import { ToastService } from '../../toaster/toast.service';
 
 @Component({
   selector: 'app-vn-screenshot',
@@ -14,7 +15,8 @@ export class VnScreenshotComponent implements OnInit {
   constructor(
     private vnService: VnService,
     private route: ActivatedRoute,
-    private fileUploadService: FileUploadService
+    private fileUploadService: FileUploadService,
+    private toast: ToastService
   ) { }
 
   ngOnInit() {
@@ -91,6 +93,7 @@ export class VnScreenshotComponent implements OnInit {
           // End block of index stability trial
 
           this.uploadQueue.splice(index, 1);
+          this.toast.pop(firstServe.file.name + ' successfully saved');
 
           // Recurse upload for next queue
           if(this.uploadQueue.length > 0) {
@@ -108,13 +111,14 @@ export class VnScreenshotComponent implements OnInit {
     this.vnService.deleteScreenshot(screenshot.id).subscribe(response => {
       let index = this.screenshots.indexOf(screenshot);
       this.screenshots.splice(index, 1);
+      this.toast.pop('Deleted!');
     });
   }
 
   updateScreenshot(screenshot:any):void {
     console.log(screenshot);
     this.vnService.updateScreenshot(screenshot).subscribe(response => {
-      console.log("update success");
+      this.toast.pop('Updated!');
     });
   }
 
