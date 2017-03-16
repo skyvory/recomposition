@@ -38,6 +38,7 @@ import { MaterialModule } from '@angular/material';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarsharedModule } from './sidebar/sidebar-shared.module';
+import { ToastService } from './toaster/toast.service';
 
 @NgModule({
 	imports: [
@@ -78,7 +79,8 @@ import { SidebarsharedModule } from './sidebar/sidebar-shared.module';
 		CharacterService,
 		LineamentService,
 		ActiveService,
-		FileUploadService
+		FileUploadService,
+		ToastService
 	],
 	bootstrap: [ AppComponent ]
 })
