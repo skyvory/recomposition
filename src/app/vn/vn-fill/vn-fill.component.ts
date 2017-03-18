@@ -70,7 +70,8 @@ export class VnFillComponent implements OnInit{
 		developer_id: '',
 		date_release: '',
 		vndb_vn_id: '',
-		image: ''
+		image: '',
+		game_engine: ''
 	}
 
 	debugDump():any {

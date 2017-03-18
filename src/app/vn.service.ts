@@ -107,6 +107,7 @@ export class VnService {
 			date_release: vn.date_release,
 			vndb_vn_id: vn.vndb_vn_id,
 			image: vn.image,
+			game_engine: vn.game_engine,
 			related_vn_id: vn.related_vn_id
 		});
 
@@ -143,6 +144,7 @@ export class VnService {
 			date_release: vn.date_release,
 			vndb_vn_id: vn.vndb_vn_id,
 			image: vn.image,
+			game_engine: vn.game_engine,
 			related_vn_id: vn.related_vn_id
 		});
 
