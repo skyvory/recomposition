@@ -81,19 +81,22 @@
 			<br />
 			<br />
 
-			Dev create add-on
-			<md-input-container style="width:100%;">
-				<input md-input placeholder="Original" #devOriginal>
-			</md-input-container>
-			<md-input-container style="width:100%;">
-				<input md-input placeholder="Furi" #devFuri>
-			</md-input-container>
-			<md-input-container style="width:100%;">
-				<input md-input placeholder="Romaji" #devRomaji>
-			</md-input-container>
-			<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);">Add Dev</button>
+			<div template="ngIf toggle.advanceOptions">
+				Dev create add-on
+				<md-input-container style="width:100%;">
+					<input md-input placeholder="Original" #devOriginal>
+				</md-input-container>
+				<md-input-container style="width:100%;">
+					<input md-input placeholder="Furi" #devFuri>
+				</md-input-container>
+				<md-input-container style="width:100%;">
+					<input md-input placeholder="Romaji" #devRomaji>
+				</md-input-container>
+				<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);">Add Dev</button>
+				
+				<md-divider></md-divider>
+			</div>
 
-			<md-divider></md-divider>
 
 			<div class="flex-container" fxLayout="row" template="ngIf vn.relations">
 				<div fxFlex="100">
