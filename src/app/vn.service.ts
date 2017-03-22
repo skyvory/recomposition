@@ -245,4 +245,20 @@ export class VnService {
 			.catch(this.handleError)
 		;
 	}
+
+	portalSearchVn(search_query:string) {
+		let data = {
+			vndb_username_hash: localStorage.getItem('vndb_user_hash'),
+			vndb_password_hash: localStorage.getItem('vndb_pass_hash')
+		};
+		
+		return this.http.post(Constant.API_PATH + `portal/search/${search_query}`, data, this.authenticationService.option)
+			.map(
+				(response:Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+		;
+	}
 }
