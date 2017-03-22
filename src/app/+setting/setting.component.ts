@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from '../toaster/toast.service';
+import { SettingService } from '../setting.service';
 
 @Component({
 	selector: 'app-setting',
@@ -9,7 +10,8 @@ import { ToastService } from '../toaster/toast.service';
 export class SettingComponent implements OnInit {
 
 	constructor(
-		private toast:ToastService
+		private toast:ToastService,
+		private settingService:SettingService
 	) { }
 
 	ngOnInit() {
@@ -26,19 +28,20 @@ export class SettingComponent implements OnInit {
 
 	loadVndbCredentials():void {
 		this.vndb.username = localStorage.getItem('vndb_user');
-		this.vndb.password = localStorage.getItem('vndb_pass');
+		this.vndb.password = '';
 	}
 
 	setVndbCredentials():void {
-		localStorage.setItem('vndb_user', this.vndb.username);
-		localStorage.setItem('vndb_pass', this.vndb.password);
-		localStorage.setItem('vndb_toggle', "1");
-		this.toast.pop("VNDB credential set");
+		this.settingService.saveVndbCredentials(this.vndb.username, this.vndb.password).subscribe(response => {
+			localStorage.setItem('vndb_toggle', "1");
+			this.toast.pop("VNDB credential set");
+		});
+		
 	}
 
 	checkVndbCredentials():void {
-		let u = localStorage.getItem('vndb_user');
-		let p = localStorage.getItem('vndb_pass');
+		let u = localStorage.getItem('vndb_user_hash');
+		let p = localStorage.getItem('vndb_pass_hash');
 		if(u && p) {
 			this.vndb.status = "Credential is already set";
 		}
