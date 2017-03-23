@@ -198,4 +198,16 @@ export class VnFillComponent implements OnInit{
 			}
 		});
 	}
+
+	portalSearchVn(search_query:string):void {
+		if(!localStorage.getItem('vndb_user_hash') || !localStorage.getItem('vndb_pass_hash')) {
+			this.toast.pop("VNDB creential hasn't set yet");
+			return;
+		}
+		
+		this.vnService.portalSearchVn(search_query).subscribe(response => {
+			console.log(response);
+			this.toast.pop("Portal search completed");
+		});
+	}
 }

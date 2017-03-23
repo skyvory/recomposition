@@ -18,6 +18,10 @@
 				<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
 			</md-input-container>
 			<button md-button (click)="retrieveVndbVn()">Load</button>
+			<md-input-container>
+				<input md-input placeholder="search" #portalsearch>
+			</md-input-container>
+			<button md-button on-click="portalSearchVn(portalsearch.value)">Search</button>
 			<md-input-container style="width:100%;">
 				<input md-input placeholder="original title" [(ngModel)]="vn.title_original">
 			</md-input-container>
@@ -93,7 +97,7 @@
 					<input md-input placeholder="Romaji" #devRomaji>
 				</md-input-container>
 				<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);">Add Dev</button>
-				
+
 				<md-divider></md-divider>
 			</div>
 
