@@ -113,7 +113,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 				this.toast.pop("VNDB auto-update is off");
 				return;
 			}
-			else if(!localStorage.getItem('vndb_user') || !localStorage.getItem('vndb_pass')) {
+			else if(!localStorage.getItem('vndb_user_hash') || !localStorage.getItem('vndb_pass_hash')) {
 				this.toast.pop("VNDB credential is not set yet");
 				return;
 			}

@@ -85,8 +85,8 @@ export class VndbService {
 		let data = JSON.stringify({
 			vndb_id: vndb_vn_id,
 			vote: score_all,
-			username: localStorage.getItem('vndb_user'),
-			password: localStorage.getItem('vndb_pass')
+			vndb_username_hash: localStorage.getItem('vndb_user_hash'),
+			vndb_password_hash: localStorage.getItem('vndb_pass_hash')
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
@@ -115,8 +115,8 @@ export class VndbService {
 		let data = JSON.stringify({
 			vndb_id: vndb_vn_id,
 			status: status,
-			username: localStorage.getItem('vndb_user'),
-			password: localStorage.getItem('vndb_pass')
+			vndb_username_hash: localStorage.getItem('vndb_user_hash'),
+			vndb_password_hash: localStorage.getItem('vndb_pass_hash')
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
