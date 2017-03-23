@@ -50,11 +50,11 @@ export class VndbService {
 		}
 	}
 
-	getVndbRelease(vndb_vn_id:number, username:string, password:string): Observable<any> {
+	getVndbRelease(vndb_vn_id:number, vndb_username_hash:string, vndb_password_hash:string): Observable<any> {
 		let data = JSON.stringify({
 			vndb_id: vndb_vn_id,
-			username: username,
-			password: password
+			vndb_username_hash: vndb_username_hash,
+			vndb_password_hash: vndb_password_hash
 		});
 
 		if(Constant.USE_ANGULAR2JWT) {
