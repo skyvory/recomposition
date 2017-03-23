@@ -82,7 +82,7 @@ export class AssessmentCharacterComponent implements OnInit {
 	}
 
 	retrieveVndbCharacter():void {
-		if(!localStorage.getItem('vndb_user') || !localStorage.getItem('vndb_pass')) {
+		if(!localStorage.getItem('vndb_user_hash') || !localStorage.getItem('vndb_pass_hash')) {
 			this.toast.pop('VNDB credential is not set yet');
 			return;
 		}
