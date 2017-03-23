@@ -93,10 +93,10 @@ export class VnFillComponent implements OnInit{
 	}
 
 	retrieveVndbVn():void {
-		let vndb_user = localStorage.getItem('vndb_user');
-		let vndb_pass = localStorage.getItem('vndb_pass');
+		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
+		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
 
-		this.vndbService.getVndbVn(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
+		this.vndbService.getVndbVn(this.vn.vndb_vn_id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
 			this.toast.pop("VNDB VN retrieved");
 			let vndb_vn = response.data.items['0'];
 			this.vn.title_original = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
@@ -106,7 +106,7 @@ export class VnFillComponent implements OnInit{
 			this.vn.image = vndb_vn.image;
 		});
 
-		this.vndbService.getVndbRelease(this.vn.vndb_vn_id, vndb_user, vndb_pass).subscribe(response => {
+		this.vndbService.getVndbRelease(this.vn.vndb_vn_id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
 			this.toast.pop("VNDB Release retrieved");
 			let vndb_release = response.data.items['0'];
 			if(response.data.items) {
