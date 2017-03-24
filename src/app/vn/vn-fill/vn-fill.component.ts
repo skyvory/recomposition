@@ -202,6 +202,10 @@ export class VnFillComponent implements OnInit{
 		egs: null
 	};
 	selectVndbDestination(event:any, vndbNode:any) {
+		if(event == false) {
+			this.searchDestination.vndb = null;
+			return;
+		}
 		for(let i = 0; i < this.portalSearch.vndb.length; i++) {
 			if(this.portalSearch.vndb[i].id != vndbNode.id) {
 				this.portalSearch.vndb[i].selected = false;
@@ -210,6 +214,10 @@ export class VnFillComponent implements OnInit{
 		this.searchDestination.vndb = vndbNode;
 	}
 	selectEgsDestination(event:any, egsNode:any) {
+		if(event == false) {
+			this.searchDestination.egs = null;
+			return;
+		}
 		for(let i = 0; i < this.portalSearch.egs.length; i++) {
 			if(this.portalSearch.egs[i].id != egsNode.id) {
 				this.portalSearch.egs[i].selected = false;
