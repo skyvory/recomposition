@@ -98,10 +98,14 @@ export class VnFillComponent implements OnInit{
 	}
 
 	applyDestination():void {
-
 		let vndb_vn = this.searchDestination.vndb;
 		let egs_game = this.searchDestination.egs;
 		console.log(vndb_vn, egs_game);
+
+		if(!vndb_vn && !egs_game) {
+			this.toast.pop("You need to select at least one search result to apply");
+			return;
+		}
 
 		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
 		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
