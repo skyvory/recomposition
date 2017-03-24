@@ -108,6 +108,9 @@ export class VnService {
 			vndb_vn_id: vn.vndb_vn_id,
 			image: vn.image,
 			game_engine: vn.game_engine,
+			homepage: vn.homepage,
+			twitter: vn.twitter,
+			erogamescape_game_id: vn.erogamescape_game_id,
 			related_vn_id: vn.related_vn_id
 		});
 
@@ -145,6 +148,9 @@ export class VnService {
 			vndb_vn_id: vn.vndb_vn_id,
 			image: vn.image,
 			game_engine: vn.game_engine,
+			homepage: vn.homepage,
+			twitter: vn.twitter,
+			erogamescape_game_id: vn.erogamescape_game_id,
 			related_vn_id: vn.related_vn_id
 		});
 

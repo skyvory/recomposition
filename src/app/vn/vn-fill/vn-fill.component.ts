@@ -73,6 +73,9 @@ export class VnFillComponent implements OnInit{
 		date_release: '',
 		vndb_vn_id: '',
 		image: '',
+		homepage: '',
+		twitter: '',
+		erogamescape_game_id: '',
 		game_engine: ''
 	}
 

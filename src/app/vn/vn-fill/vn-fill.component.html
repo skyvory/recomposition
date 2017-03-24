@@ -103,15 +103,27 @@
 			<div *ngIf="toggle.advanceOptions">
 
 				<md-input-container>
-					<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
+					<input md-input placeholder="Homepage" [(ngModel)]="vn.homepage">
 				</md-input-container>
-				<button md-raised-button (click)="retrieveVndbVn()">Load</button>
+				<md-input-container>
+					<input md-input placeholder="Twitter" [(ngModel)]="vn.twitter">
+				</md-input-container>
+				<br />
 
 				<md-input-container>
 					<input md-input placeholder="Game Engine" [(ngModel)]="vn.game_engine">
 				</md-input-container>
 				<br />
-				
+
+				<md-input-container>
+					<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
+				</md-input-container>
+				<button md-raised-button (click)="retrieveVndbVn()">Load</button>
+				<md-input-container>
+					<input md-input placeholder="EGS Game ID" [(ngModel)]="vn.erogamescape_game_id">
+				</md-input-container>
+				<br />
+
 				<md-input-container>
 					<input md-input placeholder="Related VN ID" [(ngModel)]="vn.related_vn_id">
 				</md-input-container>
