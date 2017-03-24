@@ -61,10 +61,7 @@
 
 	<div class="vn-fill-area flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
 		<div fxFlex="40">
-			<md-input-container>
-				<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
-			</md-input-container>
-			<button md-raised-button (click)="retrieveVndbVn()">Load</button>
+			
 			<md-input-container style="width:100%;">
 				<input md-input placeholder="original title" [(ngModel)]="vn.title_original">
 			</md-input-container>
@@ -106,6 +103,11 @@
 			<div *ngIf="toggle.advanceOptions">
 
 				<md-input-container>
+					<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
+				</md-input-container>
+				<button md-raised-button (click)="retrieveVndbVn()">Load</button>
+
+				<md-input-container>
 					<input md-input placeholder="Game Engine" [(ngModel)]="vn.game_engine">
 				</md-input-container>
 				<br />
@@ -124,7 +126,7 @@
 				<img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;height:200px;display:block;margin:auto;">
 			</div>
 			<br />
-			<button md-raised-button on-click="refreshCover(vn.id)">Force refresh</button>
+			<button md-raised-button on-click="refreshCover(vn.id)" template="ngIf toggle.advanceOptions">Force refresh</button>
 			<br />
 			<br />
 
