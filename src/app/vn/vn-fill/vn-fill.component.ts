@@ -11,7 +11,9 @@ import { ToastService } from '../../toaster/toast.service';
 @Component({
 	// moduleId: module.id,
 	selector: 'vn-new-selector',
-	templateUrl: './vn-fill.component.html'
+	templateUrl: './vn-fill.component.html',
+	styleUrls: ['./vn-fill.component.css']
+
 })
 
 export class VnFillComponent implements OnInit{
@@ -207,7 +209,14 @@ export class VnFillComponent implements OnInit{
 		
 		this.vnService.portalSearchVn(search_query).subscribe(response => {
 			console.log(response);
+			this.portalSearch.vndb = response.data.vndb.items;
+			this.portalSearch.egs = response.data.egs;
 			this.toast.pop("Portal search completed");
 		});
 	}
+
+	portalSearch:any = {
+		vndb: [],
+		egs: []
+	};
 }

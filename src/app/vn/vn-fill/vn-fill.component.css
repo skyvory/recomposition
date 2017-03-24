@@ -1,0 +1,14 @@
+.portal-search-result-area {
+  margin-bottom: 90px;
+}
+.portal-vndb-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.portal-vndb-card {
+  padding: 0px;
+}
+.portal-vndb-property {
+  padding: 2px 10px;
+}
