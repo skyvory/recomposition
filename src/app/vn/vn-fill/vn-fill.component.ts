@@ -198,8 +198,8 @@ export class VnFillComponent implements OnInit{
 	}
 
 	searchDestination:any = {
-		vndb: [],
-		egs: []
+		vndb: null,
+		egs: null
 	};
 	selectVndbDestination(event:any, vndbNode:any) {
 		for(let i = 0; i < this.portalSearch.vndb.length; i++) {
