@@ -97,6 +97,123 @@ export class VnFillComponent implements OnInit{
 		});
 	}
 
+	applyDestination():void {
+
+		let vndb_vn = this.searchDestination.vndb;
+		let egs_game = this.searchDestination.egs;
+		console.log(vndb_vn, egs_game);
+
+		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
+		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
+
+		if(vndb_vn) {
+			this.vn.title_original = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
+			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : "n/a";
+			this.vn.alias = vndb_vn.aliases;
+			this.vn.date_release = vndb_vn.released;
+			this.vn.image = vndb_vn.image;
+			this.vn.vndb_vn_id = vndb_vn.id;
+		}
+		
+		if(egs_game) {
+			this.vn.title_original = egs_game.gamename;
+			this.vn.title_furigana = egs_game.gamefurigana;
+			this.vn.date_release = this.vn.date_release != egs_game.sellday ? egs_game.sellday : this.vn.date_release;
+			this.vn.erogamescape_game_id = egs_game.id;
+			this.vn.homepage = egs_game.shoukai ? egs_game.shoukai : null;
+			this.vn.twitter = egs_game.twitter ? egs_game.twitter : null;
+		}
+
+
+		let devOrig = null, devFuri = null, devRoman = null;
+		
+		// Request for VNDB Release if one vndb search result is selected as autofill source
+		if(vndb_vn) {
+			this.vndbService.getVndbRelease(vndb_vn.id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
+				this.toast.pop("VNDB Release retrieved");
+				let vndb_release = response.data.items['0'];
+				if(response.data.items) {
+					let toBreak = false;
+					for(let i in response.data.items) {
+						if(response.data.items[i].producers) {
+							for(let j in response.data.items[i].producers) {
+								if(response.data.items[i].producers[j].developer == true) {
+									devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+									devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : response.data.items[i].producers[j].name;
+									
+									toBreak = true;
+								}
+
+								if(toBreak == true) {
+									break;
+								}
+							}
+						}
+						if(toBreak == true) {
+							break;
+						}
+					}
+				}
+			});
+		}
+
+		// Overwrite and fill Developer property from EGS search result if one of the results is selected
+		if(egs_game) {
+			if(vndb_vn) {
+				if(egs_game.brandname != devOrig) {
+					this.toast.pop("Different VNDB Developer vs EGS Brandname");
+					devOrig = egs_game.brandname;
+				}
+			}
+			else {
+				devOrig = egs_game.brandname;
+			}
+			devFuri = egs_game.brandfurigana;
+		}
+
+		// Developer properties has been filled. Commence checking to database.
+		this.toast.pop("checking dev in db...");
+		let check = this.checkDeveloper(devOrig);
+		check.then(dev => {
+			this.vn.developer_id = dev.id;
+		},
+		reason => {
+			console.log("Fail reason", reason);
+			this.toast.pop("Developer not found. Automatically creating Developer...");
+			let reg = this.createDeveloper(devOrig, devFuri, devRoman);
+			reg.then(dev => {
+				this.toast.pop("developer automatically created and applied to this VN");
+				this.vn.developer_id = dev.id;
+			},
+			fail => {
+				console.log("Fail in promise", fail);
+			});
+		});
+
+
+	}
+
+	searchDestination:any = {
+		vndb: [],
+		egs: []
+	};
+	selectVndbDestination(event:any, vndbNode:any) {
+		for(let i = 0; i < this.portalSearch.vndb.length; i++) {
+			if(this.portalSearch.vndb[i].id != vndbNode.id) {
+				this.portalSearch.vndb[i].selected = false;
+			}
+		}
+		this.searchDestination.vndb = vndbNode;
+	}
+	selectEgsDestination(event:any, egsNode:any) {
+		for(let i = 0; i < this.portalSearch.egs.length; i++) {
+			if(this.portalSearch.egs[i].id != egsNode.id) {
+				this.portalSearch.egs[i].selected = false;
+			}
+		}
+		this.searchDestination.egs = egsNode;
+	}
+
 	retrieveVndbVn():void {
 		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
 		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
