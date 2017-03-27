@@ -131,71 +131,95 @@ export class VnFillComponent implements OnInit{
 
 		let devOrig = null, devFuri = null, devRoman = null;
 		
-		// Request for VNDB Release if one vndb search result is selected as autofill source
-		if(vndb_vn) {
-			this.vndbService.getVndbRelease(vndb_vn.id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
-				this.toast.pop("VNDB Release retrieved");
-				let vndb_release = response.data.items['0'];
-				if(response.data.items) {
-					let toBreak = false;
-					for(let i in response.data.items) {
-						if(response.data.items[i].producers) {
-							for(let j in response.data.items[i].producers) {
-								if(response.data.items[i].producers[j].developer == true) {
-									devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
-									devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : response.data.items[i].producers[j].name;
-									
-									toBreak = true;
-								}
 
+		// Request for VNDB Release if one vndb search result is selected as autofill source
+		let developerHandleOnVndb = ():Promise<any> => {
+			return new Promise<any>((resolve, reject) => {
+				if(vndb_vn) {
+					this.vndbService.getVndbRelease(vndb_vn.id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
+						this.toast.pop("VNDB Release retrieved");
+						let vndb_release = response.data.items['0'];
+						if(response.data.items) {
+							let toBreak = false;
+							for(let i in response.data.items) {
+								if(response.data.items[i].producers) {
+									for(let j in response.data.items[i].producers) {
+										if(response.data.items[i].producers[j].developer == true) {
+											devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+											devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : response.data.items[i].producers[j].name;
+											
+											toBreak = true;
+										}
+
+										if(toBreak == true) {
+											break;
+										}
+									}
+								}
 								if(toBreak == true) {
 									break;
 								}
 							}
 						}
-						if(toBreak == true) {
-							break;
-						}
-					}
+
+						resolve(true);
+					}),
+					(err) => reject(false);
+				}
+				else {
+					resolve(false);
 				}
 			});
 		}
 
 		// Overwrite and fill Developer property from EGS search result if one of the results is selected
-		if(egs_game) {
-			if(vndb_vn) {
-				if(egs_game.brandname != devOrig) {
-					this.toast.pop("Different VNDB Developer vs EGS Brandname");
-					devOrig = egs_game.brandname;
+		let developerHandleOnEgs = ():Promise<any> => {
+			return new Promise<any>((resolve, reject) => {
+				if(egs_game) {
+					if(vndb_vn) {
+						if(egs_game.brandname != devOrig) {
+							this.toast.pop("Different VNDB Developer vs EGS Brandname");
+							devOrig = egs_game.brandname;
+						}
+					}
+					else {
+						devOrig = egs_game.brandname;
+					}
+					devFuri = egs_game.brandfurigana;
+					resolve(true);
 				}
-			}
-			else {
-				devOrig = egs_game.brandname;
-			}
-			devFuri = egs_game.brandfurigana;
+				else {
+					resolve(false);
+				}
+			});
 		}
 
-		// Developer properties has been filled. Commence checking to database.
-		this.toast.pop("checking dev in db...");
-		let check = this.checkDeveloper(devOrig);
-		check.then(dev => {
-			this.vn.developer_id = dev.id;
-		},
-		reason => {
-			console.log("Fail reason", reason);
-			this.toast.pop("Developer not found. Automatically creating Developer...");
-			let reg = this.createDeveloper(devOrig, devFuri, devRoman);
-			reg.then(dev => {
-				this.toast.pop("developer automatically created and applied to this VN");
-				this.vn.developer_id = dev.id;
-			},
-			fail => {
-				console.log("Fail in promise", fail);
+		developerHandleOnVndb().then(res => {
+			console.log("is vndb source selected", res);
+			developerHandleOnEgs().then(res => {
+				console.log("is egs source selected", res);
+				// Developer properties has been filled. Commence checking to database.
+				this.toast.pop("checking dev in db...");
+				let check = this.checkDeveloper(devOrig);
+				check.then(dev => {
+					this.vn.developer_id = dev.id;
+				},
+				reason => {
+					console.log("Fail reason", reason);
+					this.toast.pop("Developer not found. Automatically creating Developer...");
+					let reg = this.createDeveloper(devOrig, devFuri, devRoman);
+					reg.then(dev => {
+						this.toast.pop("developer automatically created and applied to this VN");
+						this.vn.developer_id = dev.id;
+					},
+					fail => {
+						console.log("Fail in promise", fail);
+					});
+				});
 			});
 		});
-
-
 	}
+
 
 	searchDestination:any = {
 		vndb: null,
