@@ -100,9 +100,10 @@ export class VnFillComponent implements OnInit{
 	applyDestination():void {
 		let vndb_vn = this.searchDestination.vndb;
 		let egs_game = this.searchDestination.egs;
-		console.log(vndb_vn, egs_game);
+		let vndb_release = this.searchDestination.vndbRelease;
+		console.log(vndb_vn, egs_game, vndb_release);
 
-		if(!vndb_vn && !egs_game) {
+		if(!vndb_vn && !egs_game && !vndb_release) {
 			this.toast.pop("You need to select at least one search result to apply");
 			return;
 		}
@@ -117,6 +118,13 @@ export class VnFillComponent implements OnInit{
 			this.vn.date_release = vndb_vn.released;
 			this.vn.image = vndb_vn.image;
 			this.vn.vndb_vn_id = vndb_vn.id;
+		}
+
+		if(vndb_release) {
+			this.vn.title_original = vndb_release.original ? vndb_release.original : vndb_release.title;
+			this.vn.title_romaji = vndb_release.title ? vndb_release.title : vndb_release.original;
+			this.vn.date_release = vndb_release.released;
+			this.vn.vndb_release_id = vndb_release.id;
 		}
 		
 		if(egs_game) {
@@ -172,6 +180,33 @@ export class VnFillComponent implements OnInit{
 			});
 		}
 
+		// Apply developer property from producers array in selected vndb release search result
+		let developerHandleOnVndbRelease = ():Promise<any> => {
+			return new Promise<any>((resolve, reject) => {
+				if(vndb_release) {
+					let toBreak = false;
+					if(vndb_release.producers) {
+						for(let i in vndb_release.producers) {
+							if(vndb_release.producers[i].developer == true) {
+								devOrig = vndb_release.producers[i].original ? vndb_release.producers[i].original : vndb_release.producers[i].name;
+								devRoman = vndb_release.producers[i].original != null ? vndb_release.producers[i].name : vndb_release.producers[i].original;
+								
+								toBreak = true;
+							}
+
+							if(toBreak == true) {
+								break;
+							}
+						}
+					}
+					resolve(true);
+				}
+				else {
+					resolve(false);
+				}
+			});
+		}
+
 		// Overwrite and fill Developer property from EGS search result if one of the results is selected
 		let developerHandleOnEgs = ():Promise<any> => {
 			return new Promise<any>((resolve, reject) => {
@@ -196,34 +231,37 @@ export class VnFillComponent implements OnInit{
 
 		developerHandleOnVndb().then(res => {
 			console.log("is vndb source selected", res);
-			developerHandleOnEgs().then(res => {
-				console.log("is egs source selected", res);
-				// Developer properties has been filled. Commence checking to database.
-				this.toast.pop("checking dev in db...");
-				let check = this.checkDeveloper(devOrig);
-				check.then(dev => {
-					this.vn.developer_id = dev.id;
-				},
-				reason => {
-					console.log("Fail reason", reason);
-					this.toast.pop("Developer not found. Automatically creating Developer...");
-					let reg = this.createDeveloper(devOrig, devFuri, devRoman);
-					reg.then(dev => {
-						this.toast.pop("developer automatically created and applied to this VN");
+			developerHandleOnVndbRelease().then(res => {
+				console.log("is vndb release source selected", res);
+				developerHandleOnEgs().then(res => {
+					console.log("is egs source selected", res);
+					// Developer properties has been filled. Commence checking to database.
+					this.toast.pop("checking dev in db...");
+					let check = this.checkDeveloper(devOrig);
+					check.then(dev => {
 						this.vn.developer_id = dev.id;
 					},
-					fail => {
-						console.log("Fail in promise", fail);
+					reason => {
+						console.log("Fail reason", reason);
+						this.toast.pop("Developer not found. Automatically creating Developer...");
+						let reg = this.createDeveloper(devOrig, devFuri, devRoman);
+						reg.then(dev => {
+							this.toast.pop("developer automatically created and applied to this VN");
+							this.vn.developer_id = dev.id;
+						},
+						fail => {
+							console.log("Fail in promise", fail);
+						});
 					});
 				});
 			});
 		});
 	}
 
-
 	searchDestination:any = {
 		vndb: null,
-		egs: null
+		egs: null,
+		vndbRelease: null
 	};
 	selectVndbDestination(event:any, vndbNode:any) {
 		if(event == false) {
@@ -373,6 +411,30 @@ export class VnFillComponent implements OnInit{
 
 	portalSearch:any = {
 		vndb: [],
-		egs: []
+		egs: [],
+		vndbRelease: []
 	};
+
+	retrieveVndbReleases(vndb_id:number):void {
+		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
+		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
+
+		this.vndbService.getVndbRelease(vndb_id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
+			this.toast.pop("VNDB Release retrieved");
+			this.portalSearch.vndbRelease = response.data.items;
+		});
+	}
+
+	selectVndbReleaseDestination(event:any, vndbReleaseNode:any) {
+		if(event == false) {
+			this.searchDestination.vndbRelease = null;
+			return;
+		}
+		for(let i = 0; i < this.portalSearch.vndbRelease.length; i++) {
+			if(this.portalSearch.vndbRelease[i].id != vndbReleaseNode.id) {
+				this.portalSearch.vndbRelease[i].selected = false;
+			}
+		}
+		this.searchDestination.vndbRelease = vndbReleaseNode;
+	}
 }

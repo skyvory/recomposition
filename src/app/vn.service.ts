@@ -111,6 +111,7 @@ export class VnService {
 			homepage: vn.homepage,
 			twitter: vn.twitter,
 			erogamescape_game_id: vn.erogamescape_game_id,
+			vndb_release_id: vn.vndb_release_id,
 			related_vn_id: vn.related_vn_id
 		});
 
@@ -151,6 +152,7 @@ export class VnService {
 			homepage: vn.homepage,
 			twitter: vn.twitter,
 			erogamescape_game_id: vn.erogamescape_game_id,
+			vndb_release_id: vn.vndb_release_id,
 			related_vn_id: vn.related_vn_id
 		});
 

@@ -41,9 +41,35 @@
 					</div>
 				</div>
 				<md-card-actions align="end">
+					<button md-raised-button on-click="retrieveVndbReleases(vndbNode.id)">Pull Releases</button>
+					&nbsp;&nbsp;&nbsp;&nbsp;
 					<md-checkbox [(ngModel)]="vndbNode.selected" (ngModelChange)="selectVndbDestination($event, vndbNode)"></md-checkbox>
 				</md-card-actions>
 			</md-card>
+
+
+			<div class="portal-search-result-vndb-release" template="ngIf portalSearch.vndbRelease?.length">
+				<h4>Releases</h4>
+				<md-card template="ngFor let vndbReleaseNode of portalSearch.vndbRelease" class="portal-vndb-card">
+					<p>Original: {{vndbReleaseNode.original}}</p>
+					<p>Title: {{vndbReleaseNode.title}}</p>
+					<p>Released: {{vndbReleaseNode.released}}</p>
+					<md-chip-list>
+						<span template="ngIf vndbReleaseNode.platforms.length">
+							<md-chip template="ngFor let platform of vndbReleaseNode.platforms" color="primary" selected="true">{{platform}}</md-chip>
+						</span>
+						<md-chip template="ngIf vndbReleaseNode.patch" color="accent" selected="true">patch</md-chip>
+						<md-chip template="ngIf vndbReleaseNode.type == 'trial'" color="warn" selected="true">trial</md-chip>
+						<md-chip>R{{vndbReleaseNode.minage}}</md-chip>
+					</md-chip-list>
+					<md-card-actions align="end">
+						<md-checkbox [(ngModel)]="vndbReleaseNode.selected" (ngModelChange)="selectVndbReleaseDestination($event, vndbReleaseNode)"></md-checkbox>
+					</md-card-actions>
+				</md-card>
+			
+			</div>
+			
+
 		</div>
 
 		<div class="portal-search-result-egs" template="ngIf portalSearch.egs?.length" fxFlex="45">
@@ -120,6 +146,9 @@
 					<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
 				</md-input-container>
 				<button md-raised-button (click)="retrieveVndbVn()">Load</button>
+				<md-input-container>
+					<input md-input placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id">
+				</md-input-container>
 				<md-input-container>
 					<input md-input placeholder="EGS Game ID" [(ngModel)]="vn.erogamescape_game_id">
 				</md-input-container>
