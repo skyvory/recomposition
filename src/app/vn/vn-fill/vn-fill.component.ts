@@ -112,7 +112,7 @@ export class VnFillComponent implements OnInit{
 
 		if(vndb_vn) {
 			this.vn.title_original = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
-			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : "n/a";
+			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : vndb_vn.original;
 			this.vn.alias = vndb_vn.aliases;
 			this.vn.date_release = vndb_vn.released;
 			this.vn.image = vndb_vn.image;
