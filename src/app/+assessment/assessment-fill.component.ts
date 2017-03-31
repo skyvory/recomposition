@@ -11,7 +11,8 @@ import { ToastService } from '../toaster/toast.service';
 
 @Component({
 	selector: 'assessment-fill-selector',
-	templateUrl: './assessment-fill.component.html'
+	templateUrl: './assessment-fill.component.html',
+	styleUrls: ['./assessment-fill.component.css']
 })
 
 export class AssessmentFillComponent implements OnInit, DoCheck {

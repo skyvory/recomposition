@@ -22,7 +22,7 @@
 	<span style="flex: 1 1 auto;"></span>
 
 	<div fxFlex="90">
-		<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch" fxLayoutGap="30px">
+		<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch" fxLayoutGap="30px" style="margin:0 0 30px 0;">
 			<md-card fxFlex="40">
 				<md-card-header>
 					<md-card-title>
@@ -60,85 +60,115 @@
 			</md-card>
 		</div>
 
+		<md-select placeholder="Node" [(ngModel)]="assessment.node" (ngModelChange)="assessment.node = $event" name="node">
+			<md-option value="vn">VN</md-option>
+			<md-option value="h">H</md-option>
+			<md-option value="hrpg">HRPG</md-option>
+			<md-option value="rpg">RPG</md-option>
+		</md-select>
 
-		Node<select [(ngModel)]="assessment.node" (ngModelChange)="assessment.node = $event">
-			<option value="vn">VN</option>
-			<option value="h">H</option>
-			<option value="hrpg">HRPG</option>
-			<option value="rpg">RPG</option>
-		</select><br />
-		Status<select [(ngModel)]="assessment.status" (ngModelChange)="assessment.status = $event">
-			<option value="finished">Fin</option>
-			<option value="halted">Halt</option>
-			<option value="decomposed">Decompose</option>
-		</select><br />
-		Story
-		<md-radio-group [(ngModel)]="assessment.score_story">
-			<md-radio-button value="e">E</md-radio-button>
-			<md-radio-button value="d">D</md-radio-button>
-			<md-radio-button value="c">C</md-radio-button>
-			<md-radio-button value="b">B</md-radio-button>
-			<md-radio-button value="a">A</md-radio-button>
-			<md-radio-button value="s">S</md-radio-button>
-		</md-radio-group><br />
-		Naki
-		<md-radio-group [(ngModel)]="assessment.score_naki">
-			<md-radio-button value="e">E</md-radio-button>
-			<md-radio-button value="d">D</md-radio-button>
-			<md-radio-button value="c">C</md-radio-button>
-			<md-radio-button value="b">B</md-radio-button>
-			<md-radio-button value="a">A</md-radio-button>
-			<md-radio-button value="s">S</md-radio-button>
-		</md-radio-group><br />
-		Nuki
-		<md-radio-group [(ngModel)]="assessment.score_nuki">
-			<md-radio-button value="e">E</md-radio-button>
-			<md-radio-button value="d">D</md-radio-button>
-			<md-radio-button value="c">C</md-radio-button>
-			<md-radio-button value="b">B</md-radio-button>
-			<md-radio-button value="a">A</md-radio-button>
-			<md-radio-button value="s">S</md-radio-button>
-		</md-radio-group><br />
-		Comedy
-		<md-radio-group [(ngModel)]="assessment.score_comedy">
-			<md-radio-button value="e">E</md-radio-button>
-			<md-radio-button value="d">D</md-radio-button>
-			<md-radio-button value="c">C</md-radio-button>
-			<md-radio-button value="b">B</md-radio-button>
-			<md-radio-button value="a">A</md-radio-button>
-			<md-radio-button value="s">S</md-radio-button>
-		</md-radio-group><br />
-		Graphic
-		<md-radio-group [(ngModel)]="assessment.score_graphic">
-			<md-radio-button value="e">E</md-radio-button>
-			<md-radio-button value="d">D</md-radio-button>
-			<md-radio-button value="c">C</md-radio-button>
-			<md-radio-button value="b">B</md-radio-button>
-			<md-radio-button value="a">A</md-radio-button>
-			<md-radio-button value="s">S</md-radio-button>
-		</md-radio-group><br />
-		Overall<select [(ngModel)]="assessment.score_all" (ngModelChange)="assessment.score_all = $event">
-			<option value="0">0</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-		</select><br />
-		Savable<select [(ngModel)]="assessment.savable" (ngModelChange)="assessment.savable = $event">
-			<option value="unknown">Unknown</option>
-			<option value="yes">Savable</option>
-			<option value="no">No save</option>
-		</select><br />
+		<md-select placeholder="Status" [(ngModel)]="assessment.status" (ngModelChange)="assessment.status = $event" name="status">
+			<md-option value="finished">Fin</md-option>
+			<md-option value="halted">Halt</md-option>
+			<md-option value="decomposed">Decompose</md-option>
+		</md-select>
 
-		<md-slide-toggle [(ngModel)]="assessment.archive_savedata">Save data</md-slide-toggle>
-	</div>
+		<br /><br />
+
+		<table class="score-table">
+			<tr>
+				<th>Story</th>
+				<th>Naki</th>
+				<th>Nuki</th>
+				<th>Comedy</th>
+				<th>Graphic</th>
+			</tr>
+			<tr>
+				<td>
+					<md-radio-group [(ngModel)]="assessment.score_story" class="score-radio-group">
+						<md-radio-button value="s">S</md-radio-button>
+						<md-radio-button value="a">A</md-radio-button>
+						<md-radio-button value="b">B</md-radio-button>
+						<md-radio-button value="c">C</md-radio-button>
+						<md-radio-button value="d">D</md-radio-button>
+						<md-radio-button value="e">E</md-radio-button>
+					</md-radio-group>
+				</td>
+				<td>
+					<md-radio-group [(ngModel)]="assessment.score_naki" class="score-radio-group">
+						<md-radio-button value="s">S</md-radio-button>
+						<md-radio-button value="a">A</md-radio-button>
+						<md-radio-button value="b">B</md-radio-button>
+						<md-radio-button value="c">C</md-radio-button>
+						<md-radio-button value="d">D</md-radio-button>
+						<md-radio-button value="e">E</md-radio-button>
+					</md-radio-group>
+				</td>
+				<td>
+					<md-radio-group [(ngModel)]="assessment.score_nuki" class="score-radio-group">
+						<md-radio-button value="s">S</md-radio-button>
+						<md-radio-button value="a">A</md-radio-button>
+						<md-radio-button value="b">B</md-radio-button>
+						<md-radio-button value="c">C</md-radio-button>
+						<md-radio-button value="d">D</md-radio-button>
+						<md-radio-button value="e">E</md-radio-button>
+					</md-radio-group>
+				</td>
+				<td>
+					<md-radio-group [(ngModel)]="assessment.score_comedy" class="score-radio-group">
+						<md-radio-button value="s">S</md-radio-button>
+						<md-radio-button value="a">A</md-radio-button>
+						<md-radio-button value="b">B</md-radio-button>
+						<md-radio-button value="c">C</md-radio-button>
+						<md-radio-button value="d">D</md-radio-button>
+						<md-radio-button value="e">E</md-radio-button>
+					</md-radio-group>
+				</td>
+				<td>
+					<md-radio-group [(ngModel)]="assessment.score_graphic" class="score-radio-group">
+						<md-radio-button value="s">S</md-radio-button>
+						<md-radio-button value="a">A</md-radio-button>
+						<md-radio-button value="b">B</md-radio-button>
+						<md-radio-button value="c">C</md-radio-button>
+						<md-radio-button value="d">D</md-radio-button>
+						<md-radio-button value="e">E</md-radio-button>
+					</md-radio-group>
+				</td>
+			</tr>
+		</table>
+
+		<br />
+
+		<md-select placeholder="Overall" [(ngModel)]="assessment.score_all" (ngModelChange)="assessment.score_all = $event" name="overall">
+			<md-option value="10">10</md-option>
+			<md-option value="9">9</md-option>
+			<md-option value="8">8</md-option>
+			<md-option value="7">7</md-option>
+			<md-option value="6">6</md-option>
+			<md-option value="5">5</md-option>
+			<md-option value="4">4</md-option>
+			<md-option value="3">3</md-option>
+			<md-option value="2">2</md-option>
+			<md-option value="1">1</md-option>
+			<md-option value="0">0</md-option>
+		</md-select>
+		
+		<br /><br /><br />
+
+		<table class="save-table">
+			<tr>
+				<td>
+					<md-select placeholder="Savable" [(ngModel)]="assessment.savable" (ngModelChange)="assessment.savable = $event" name="savable">
+						<md-option value="unknown">Unknown</md-option>
+						<md-option value="yes">Savable</md-option>
+						<md-option value="no">No save</md-option>
+					</md-select>
+				</td>
+				<td>
+					<md-slide-toggle [(ngModel)]="assessment.archive_savedata">Save Data</md-slide-toggle>
+				</td>
+			</tr>
+		</table>
+
 	<span style="flex: 1 1 auto;"></span>
-	<!--<div fxFlex="40">-->
-	<!--</div>-->
 </div>
