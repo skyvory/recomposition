@@ -25,9 +25,13 @@
 		<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch" fxLayoutGap="30px">
 			<md-card fxFlex="40">
 				<md-card-header>
-					<md-card-title><h3>Date Start</h3></md-card-title>
+					<md-card-title>
+						<h3>Date Start</h3>
+					</md-card-title>
 					<md-card-subtitle>
-						<span *ngIf="assessment.date_start" title="Assigned">&#x2713;</span>
+						<md-chip-list>
+							<md-chip template="ngIf assessment.date_start" selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
+						</md-chip-list>
 					</md-card-subtitle>
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
@@ -39,9 +43,13 @@
 
 			<md-card fxFlex="40">
 				<md-card-header>
-					<md-card-title><h3>Date End</h3></md-card-title>
+					<md-card-title>
+						<h3>Date End</h3>
+					</md-card-title>
 					<md-card-subtitle>
-						<span *ngIf="assessment.date_end" title="Assigned">&#x2713;</span>
+						<md-chip-list>
+							<md-chip template="ngIf assessment.date_end" selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
+						</md-chip-list>
 					</md-card-subtitle>
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
