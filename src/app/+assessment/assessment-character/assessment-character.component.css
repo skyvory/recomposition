@@ -1,0 +1,8 @@
+.drop-zone {
+  border: dotted 3px lightgray;
+  /*margin: 20px 30px;*/
+}
+.drop-zone-over {
+  border: dotted 3px green;
+  /*margin: 20px 30px;*/
+}

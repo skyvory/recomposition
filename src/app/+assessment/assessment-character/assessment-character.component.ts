@@ -8,11 +8,14 @@ import { LineamentService } from '../../lineament.service';
 import { AssessmentService } from '../../assessment.service';
 import { ActiveService } from '../../active.service';
 import { ToastService } from '../../toaster/toast.service';
+import { FileUploadService } from '../../file-upload.service';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
 	// moduleId: module.id,
 	selector: 'assessment-character-selector',
-	templateUrl: './assessment-character.component.html'
+	templateUrl: './assessment-character.component.html',
+	styleUrls: ['./assessment-character.component.css']
 })
 
 export class AssessmentCharacterComponent implements OnInit {
@@ -24,7 +27,8 @@ export class AssessmentCharacterComponent implements OnInit {
 		private lineamentService: LineamentService,
 		private assessmentService: AssessmentService,
 		private active: ActiveService,
-		private toast: ToastService
+		private toast: ToastService,
+		private fileUploadService: FileUploadService,
 	) {}
 
 @Input() vn;
@@ -290,4 +294,64 @@ export class AssessmentCharacterComponent implements OnInit {
 	customTrackBy(index:number, object:any):any {
 		return index;
 	}
+
+	public uploader:FileUploader = this.fileUploadService.uploadInstance;
+	public hasBaseDropZoneOver:boolean = false;
+	public fileOverBase(e:any, id:number):void {
+		this.hasBaseDropZoneOver = e ? id : e;
+	}
+
+	uploadQueue:any = [];
+	isNowUploading:boolean = false;
+
+	dropTrigger(event, chara):void {
+		let character_id = chara.id;
+    let droppedFiles = event.dataTransfer.files;
+    for(let i = 0; i < droppedFiles.length; i++) {
+      let itemToQueue = {
+        character_id: character_id,
+        file: droppedFiles[i],
+				chara: chara
+      };
+      console.log("ITEM TO QUEUE", itemToQueue);
+      this.uploadQueue.push(itemToQueue);
+    }
+
+    if(!this.isNowUploading) {
+      this.isNowUploading = true;
+      this.fireUpload();
+    }
+  }
+
+	fireUpload():void {
+    if(this.uploadQueue.length > 0) {
+      let firstServe = this.uploadQueue[Object.keys(this.uploadQueue)[0]];
+      if(firstServe) {
+        this.characterService.uploadImage(firstServe.character_id, firstServe.file).subscribe(response => {
+					let chara_index = this.characters.indexOf(firstServe.chara);
+					this.characters[chara_index].local_url = response.data.local_url;
+					this.characters[chara_index].local_image = response.data.local_image;
+          let index = this.uploadQueue.indexOf(firstServe);
+
+          // Indexing stability trial to test integrity of index between Object.keys and indexOf
+          if(JSON.stringify(firstServe) === JSON.stringify(this.uploadQueue[Object.keys(this.uploadQueue)[index]]))
+            console.log("INDEX STABILITY TRIAL", true, "with index", index);
+          else
+            console.warn("INDEX STABILITY TRIAL", false, "indexOf vs Object.keys return diverse result");
+          // End block of index stability trial
+
+          this.uploadQueue.splice(index, 1);
+          this.toast.pop(firstServe.file.name + ' successfully saved');
+
+          // Recurse upload for next queue
+          if(this.uploadQueue.length > 0) {
+            this.fireUpload();
+          }
+          else {
+            this.isNowUploading = false;
+          }
+        });
+      }
+    }
+  }
 }

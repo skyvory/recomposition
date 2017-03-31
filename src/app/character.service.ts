@@ -126,4 +126,28 @@ export class CharacterService {
 		console.warn("this error is handled in private handleError");
 		return Observable.throw(error.json().error || error);
 	}
+
+	public uploadImage(character_id:number, file:any):Observable<any> {
+		let formData:FormData = new FormData();
+		formData.append('image', file);
+		formData.append('character_id', character_id);
+
+		return Observable.fromPromise(new Promise((resolve, reject) => {
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = () => {
+				if(xhr.readyState === 4) {
+					if(xhr.status === 200) {
+						resolve(JSON.parse(xhr.response));
+					}
+					else {
+						reject(JSON.parse(xhr.response));
+					}
+				}
+			};
+
+			xhr.open('POST', Constant.API_PATH + 'character/store-image', true);
+			xhr.setRequestHeader('Authorization', this.authenticationService.authorization_bearer);
+			xhr.send(formData);
+		}));
+	}
 }

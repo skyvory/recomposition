@@ -51,7 +51,9 @@
 			<md-card-content>
 				<div fxLayout="row">
 					<div fxFlex="30">
-						<img [src]="chara.image" style="width:auto; max-width:100%; max-height:200px;">
+						<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == chara.id}" (fileOver)="fileOverBase($event,chara.id)" [uploader]="uploader" class="drop-zone" (drop)="dropTrigger($event, chara)" style="height:200px;width:90%;background-color:aquamarine;">
+							<img [src]="chara.local_url" style="width:auto; max-width:100%; max-height:200px;">
+						</div>
 						<md-card-subtitle style="color:rgba(0,0,60,0.3);"><a href="https://vndb.org/c{{chara.vndb_character_id}}/edit" target="_blank">{{chara.vndb_character_id}}</a></md-card-subtitle>
 						<md-input placeholder="img" [(ngModel)]="chara.image" name="image" style="margin-top:10px;"></md-input>
 						<div style="display:flex; flex-direction:row; margin:20px 0;">

@@ -12,6 +12,7 @@ import { AssessmentFillWrapperComponent } from './assessment-fill-wrapper/assess
 import { AssessmentCharacterWrapperComponent } from './assessment-character-wrapper/assessment-character-wrapper.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 Ng2PaginationModule,
     FormsModule,
     AssessmentRoutingModule,
-    SidebarsharedModule
+    SidebarsharedModule,
+    FileUploadModule
   ],
   declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent]
 })
