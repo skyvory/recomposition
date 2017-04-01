@@ -5,7 +5,7 @@
 
 	<md-toolbar style="position:fixed;">
 		Assessment of &nbsp;
-		<span>{{vn.title_original}}</span>
+		<span title="{{vn.title_original}}">{{limitedVnOriginalTitle}}</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<span>
 			<a [routerLink]="['/assessment', linkAssessmentId, 'fill']">Fill</a>

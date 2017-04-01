@@ -30,11 +30,13 @@ export class AssessmentFillWrapperComponent implements OnInit {
 
 	vn:any = [];
 	linkAssessmentId:number;
+	limitedVnOriginalTitle:string = '';
 
 	loadVn(vn_id:number):void {
 		this.vnService.getVn(vn_id).subscribe(response => {
 			this.vn = response.data;
 			console.log(this.vn);
+			this.limitedVnOriginalTitle = this.vn.title_original.length > 12 ? this.vn.title_original.substring(0, 12).trim() + '...' : this.vn.title_original;
 		});
 	}
 
