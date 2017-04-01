@@ -13,6 +13,7 @@ import { AssessmentCharacterWrapperComponent } from './assessment-character-wrap
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ Ng2PaginationModule,
     FormsModule,
     AssessmentRoutingModule,
     SidebarsharedModule,
-    FileUploadModule
+    FileUploadModule,
+    ClipboardModule
   ],
   declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent]
 })

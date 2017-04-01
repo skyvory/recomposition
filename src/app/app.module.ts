@@ -40,6 +40,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarsharedModule } from './sidebar/sidebar-shared.module';
 import { ToastService } from './toaster/toast.service';
 import { SettingService } from './setting.service';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
 	imports: [
@@ -54,7 +55,8 @@ import { SettingService } from './setting.service';
 		AssessmentModule,
 		VnModule,
 		FlexLayoutModule.forRoot(),
-		SidebarsharedModule
+		SidebarsharedModule,
+		ClipboardModule
 	],
 	declarations: [
 		AppComponent,
