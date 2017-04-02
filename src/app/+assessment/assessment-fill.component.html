@@ -135,17 +135,8 @@
 		<br />
 
 		<md-select placeholder="Overall" [(ngModel)]="assessment.score_all" (ngModelChange)="assessment.score_all = $event" name="overall">
-			<md-option value="10">10</md-option>
-			<md-option value="9">9</md-option>
-			<md-option value="8">8</md-option>
-			<md-option value="7">7</md-option>
-			<md-option value="6">6</md-option>
-			<md-option value="5">5</md-option>
-			<md-option value="4">4</md-option>
-			<md-option value="3">3</md-option>
-			<md-option value="2">2</md-option>
-			<md-option value="1">1</md-option>
-			<md-option value="0">0</md-option>
+			<md-option template="ngFor let val of [10,9,8,7,6,5,4,3,2,1]" [value]="val">{{val}}</md-option>
+			<md-option [value]="0">0</md-option>
 		</md-select>
 		
 		<br /><br /><br />
