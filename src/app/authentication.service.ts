@@ -78,6 +78,26 @@ export class AuthenticationService {
 			});
 	}
 
+	isJwtTokenValid():Observable<boolean> {
+		let token = localStorage.getItem('recomposition_token');
+		return this.http.get(Constant.API_PATH + 'authentication/validity', this.option)
+			.map(
+				(response:Response) => {
+					if(response.json().user) {
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+			)
+			.catch(error => {
+				if(error.json().error) {
+					return Observable.throw(error.json().error);
+				}
+			});
+	}
+
 	logout(): void {
 		this.token = null;
 		localStorage.removeItem('recomposition_token');

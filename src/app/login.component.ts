@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit() {
 		//this.authenticationService.logout();
+		this.preAuth();
 	}
 
 	login(event:any, username:any, password:any) {
@@ -36,6 +37,17 @@ export class LoginComponent implements OnInit {
 					console.log("ERROR LOGIN");
 				}
 			});
+	}
+
+	preAuth():void {
+		this.authenticationService.isJwtTokenValid().subscribe(response => {
+			if(response === true) {
+				this.router.navigate(['/home']);
+			}
+		},
+		error => {
+			console.log("Token error", error);
+		});
 	}
 	
 	// login(event:any, username:any, password:any) {
