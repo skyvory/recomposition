@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AuthenticationService } from './authentication.service';
-
+import { ToastService } from './toaster/toast.service';
 
 
 // import { Http, Headers } from '@angular/http';
@@ -18,7 +17,8 @@ import { AuthenticationService } from './authentication.service';
 export class LoginComponent implements OnInit {
 	constructor(
 		private router: Router,
-		private authenticationService: AuthenticationService
+		private authenticationService: AuthenticationService,
+		private toast: ToastService
 	) {}
 
 	ngOnInit() {
@@ -40,14 +40,17 @@ export class LoginComponent implements OnInit {
 	}
 
 	preAuth():void {
-		this.authenticationService.isJwtTokenValid().subscribe(response => {
-			if(response === true) {
-				this.router.navigate(['/home']);
-			}
-		},
-		error => {
-			console.log("Token error", error);
-		});
+		if(this.authenticationService.isTokenReady()) {
+			this.toast.pop("Logging you in automatically...");
+			this.authenticationService.isJwtTokenValid().subscribe(response => {
+				if(response === true) {
+					this.router.navigate(['/home']);
+				}
+			},
+			error => {
+				console.log("Token error", error);
+			});
+		}
 	}
 	
 	// login(event:any, username:any, password:any) {

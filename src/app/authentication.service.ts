@@ -98,6 +98,15 @@ export class AuthenticationService {
 			});
 	}
 
+	isTokenReady():boolean {
+		if(localStorage.getItem('recomposition_token')) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	logout(): void {
 		this.token = null;
 		localStorage.removeItem('recomposition_token');
