@@ -30,7 +30,13 @@ export class VnFillComponent implements OnInit{
 	fillState:string = "";
 	developers:any[] = [];
 	toggle:any = {
-		advanceOptions: false
+		advanceOptions: false,
+		portalSearchButtonDisable: false,
+		portalDestinationApplyButtonDisable: false,
+		portalDestinationPullReleasesButtonDisable: false,
+		vndbIdLoadButtonDisable: false,
+		addDeveloperButtonDisable: false,
+		saveButtonDisable: false
 	};
 
 	ngOnInit() {
@@ -84,14 +90,24 @@ export class VnFillComponent implements OnInit{
 	}
 
 	createVn():void {
-		this.vnService.createVn(this.vn).subscribe(response => {
+		this.toggle.saveButtonDisable = true;
+		this.vnService.createVn(this.vn)
+		.finally(() => {
+			this.toggle.saveButtonDisable = false;
+		})
+		.subscribe(response => {
 			this.toast.pop("VN created successfully");
 			this.router.navigate(['/vn']);
 		});
 	}
 
 	updateVn():void {
-		this.vnService.updateVn(this.vn).subscribe(response => {
+		this.toggle.saveButtonDisable = true;
+		this.vnService.updateVn(this.vn)
+		.finally(() => {
+			this.toggle.saveButtonDisable = false;
+		}).
+		subscribe(response => {
 			this.toast.pop("VN updated successfully");
 			this.router.navigate(['/vn']);
 		});
@@ -107,6 +123,8 @@ export class VnFillComponent implements OnInit{
 			this.toast.pop("You need to select at least one search result to apply");
 			return;
 		}
+
+		this.toggle.portalDestinationApplyButtonDisable = true;
 
 		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
 		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
@@ -240,6 +258,8 @@ export class VnFillComponent implements OnInit{
 					let check = this.checkDeveloper(devOrig);
 					check.then(dev => {
 						this.vn.developer_id = dev.id;
+						this.toggle.portalDestinationApplyButtonDisable = false;
+						
 					},
 					reason => {
 						console.log("Fail reason", reason);
@@ -248,9 +268,11 @@ export class VnFillComponent implements OnInit{
 						reg.then(dev => {
 							this.toast.pop("developer automatically created and applied to this VN");
 							this.vn.developer_id = dev.id;
+							this.toggle.portalDestinationApplyButtonDisable = false;
 						},
 						fail => {
 							console.log("Fail in promise", fail);
+							this.toggle.portalDestinationApplyButtonDisable = false;
 						});
 					});
 				});
@@ -289,6 +311,8 @@ export class VnFillComponent implements OnInit{
 	}
 
 	retrieveVndbVn():void {
+		this.toggle.vndbIdLoadButtonDisable = true;
+		
 		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
 		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
 
@@ -317,6 +341,7 @@ export class VnFillComponent implements OnInit{
 								let check = this.checkDeveloper(devOrig);
 								check.then(dev => {
 									this.vn.developer_id = dev.id;
+									this.toggle.vndbIdLoadButtonDisable = false;
 								},
 								reason => {
 									console.log("Fail reason", reason);
@@ -325,9 +350,11 @@ export class VnFillComponent implements OnInit{
 									reg.then(dev => {
 										this.toast.pop("Developer automatically created and applied to this VN");
 										this.vn.developer_id = dev.id;
+										this.toggle.vndbIdLoadButtonDisable = false;
 									},
 									fail => {
 										console.log("fail in promise", fail);
+										this.toggle.vndbIdLoadButtonDisable = false;
 									});
 								});
 
@@ -364,12 +391,15 @@ export class VnFillComponent implements OnInit{
 	}
 
 	createDeveloper(original:string, furi:string, romaji:string):Promise<any> {
+		this.toggle.addDeveloperButtonDisable = true;
 		return new Promise<string>((resolve, reject) => {
 			this.developerService.createDeveloper(original, furi, romaji).subscribe(response => {
 				this.developers.push(response);
+				this.toggle.addDeveloperButtonDisable = false;
 				resolve(response);
 			},
 			err => {
+				this.toggle.addDeveloperButtonDisable = false;
 				reject(err);
 			});
 		});
@@ -400,12 +430,14 @@ export class VnFillComponent implements OnInit{
 			this.toast.pop("VNDB creential hasn't set yet");
 			return;
 		}
+		this.toggle.portalSearchButtonDisable = true;
 		
 		this.vnService.portalSearchVn(search_query).subscribe(response => {
 			console.log(response);
 			this.portalSearch.vndb = response.data.vndb.items;
 			this.portalSearch.egs = response.data.egs;
 			this.toast.pop("Portal search completed");
+			this.toggle.portalSearchButtonDisable = false;
 		});
 	}
 
@@ -415,13 +447,17 @@ export class VnFillComponent implements OnInit{
 		vndbRelease: []
 	};
 
-	retrieveVndbReleases(vndb_id:number):void {
+	retrieveVndbReleases(vndb_id:number, event:any):void {
+		// Disable the pressed button
+		event.target.disabled = true;
+
 		let vndb_user_hash = localStorage.getItem('vndb_user_hash');
 		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
 
 		this.vndbService.getVndbRelease(vndb_id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
 			this.toast.pop("VNDB Release retrieved");
 			this.portalSearch.vndbRelease = response.data.items;
+			event.target.disabled = false;
 		});
 	}
 
@@ -436,5 +472,13 @@ export class VnFillComponent implements OnInit{
 			}
 		}
 		this.searchDestination.vndbRelease = vndbReleaseNode;
+	}
+
+	mockindividual(event):void {
+		console.log(event);
+		event.target.disabled = true;
+		setTimeout(function() {
+			event.target.disabled = false;
+		}, 3000);
 	}
 }

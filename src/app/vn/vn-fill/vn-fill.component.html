@@ -20,12 +20,12 @@
 				<md-input-container fxFlex="80" style="width:100%;">
 					<input md-input placeholder="search" #portalsearch value=''>
 				</md-input-container>
-				<button md-raised-button type="submit" on-click="portalSearchVn(portalsearch.value)">Search</button>
+				<button md-raised-button type="submit" on-click="portalSearchVn(portalsearch.value)" [disabled]="toggle.portalSearchButtonDisable">Search</button>
 			</form>
 		</div>
 	</div>
 
-	<button md-button on-click="applyDestination()" template="ngIf searchDestination.vndb || searchDestination.egs || searchDestination.vndbRelease">Apply</button>
+	<button md-button on-click="applyDestination()" template="ngIf searchDestination.vndb || searchDestination.egs || searchDestination.vndbRelease" [disabled]="toggle.portalDestinationApplyButtonDisable">Apply</button>
 	
 	<div class="portal-search-result-area flex-container" fxLayout="row" fxLayoutWrap="wrap" template="ngIf portalSearch.vndb?.length || portalSearch.egs?.length" fxLayoutAlign="space-around stretch">
 		<div class="portal-search-result-vndb" template="ngIf portalSearch.vndb?.length" fxFlex="45">
@@ -41,7 +41,7 @@
 					</div>
 				</div>
 				<md-card-actions align="end">
-					<button md-raised-button on-click="retrieveVndbReleases(vndbNode.id)">Pull Releases</button>
+					<button md-raised-button on-click="retrieveVndbReleases(vndbNode.id, $event)" [disabled]="toggle.portalDestinationPullReleasesButtonDisable">Pull Releases</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<md-checkbox [(ngModel)]="vndbNode.selected" (ngModelChange)="selectVndbDestination($event, vndbNode)"></md-checkbox>
 				</md-card-actions>
@@ -145,7 +145,7 @@
 				<md-input-container>
 					<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
 				</md-input-container>
-				<button md-raised-button (click)="retrieveVndbVn()">Load</button>
+				<button md-raised-button (click)="retrieveVndbVn()" [disabled]="toggle.vndbIdLoadButtonDisable">Load</button>
 				<md-input-container>
 					<input md-input placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id">
 				</md-input-container>
@@ -160,8 +160,9 @@
 
 			</div>
 
-			<button *ngIf="fillState == 'new'" md-raised-button (click)="createVn()">Create</button>
-			<button *ngIf="fillState == 'edit'" md-raised-button (click)="updateVn()">Update</button>
+			<button *ngIf="fillState == 'new'" md-raised-button (click)="createVn()" [disabled]="toggle.saveButtonDisable">Create</button>
+			<button *ngIf="fillState == 'edit'" md-raised-button (click)="updateVn()" [disabled]="toggle.saveButtonDisable">Update</button>
+			<md-progress-circle template="ngIf toggle.saveButtonDisable" mode="indeterminate" style="height: 25px;width: 25px;display: inline-block;"></md-progress-circle>
 		</div>
 		<div fxFlex="40">
 			<div style="max-height:200px; max-width:300px; width:auto;height:200px;background-color:#65d8cc;">
@@ -183,7 +184,7 @@
 				<md-input-container style="width:100%;">
 					<input md-input placeholder="Romaji" #devRomaji>
 				</md-input-container>
-				<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);">Add Dev</button>
+				<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);" [disabled]="toggle.addDeveloperButtonDisable">Add Dev</button>
 
 				<md-divider></md-divider>
 			</div>
