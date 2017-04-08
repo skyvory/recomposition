@@ -82,7 +82,8 @@ export class VnFillComponent implements OnInit{
 		homepage: '',
 		twitter: '',
 		erogamescape_game_id: '',
-		game_engine: ''
+		game_engine: '',
+		relations: []
 	}
 
 	debugDump():any {
