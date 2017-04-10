@@ -4,7 +4,11 @@
 	<button md-fab color="accent" on-click="closeDialog()" class="close-button"><md-icon>close</md-icon></button>
 	<md-divider></md-divider>
 
-	<div class="assessments-container">
+	<div class="loader-container" template="ngIf isRetrievingAssessments">
+		<img src="../../assets/images/f57a733f9d382ae4bc0e2ad0de1fc707.gif" alt="loading assessments..." class="loader-image">
+	</div>
+
+	<div class="assessments-container" template="ngIf !isRetrievingAssessments">
 		<h3 *ngIf="assessments.length < 1">
 			no assessment yet
 		</h3>

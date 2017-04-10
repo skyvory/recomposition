@@ -17,16 +17,22 @@ export class AssessmentListDialog {
 
 	vn_id:string;
 	assessments:any = [];
+	isRetrievingAssessments:boolean = false;
 
 	ngOnInit() {
 		this.loadAssessment(this.vn_id);
 	}
 
 	loadAssessment(vn_id) {
+		this.isRetrievingAssessments = true;
 		let filter = {
 			vn_id: vn_id
 		}
-		this.assessmentService.getAssessmentsV2(undefined, filter).subscribe(result => {
+		this.assessmentService.getAssessmentsV2(undefined, filter)
+		.finally(() => {
+			this.isRetrievingAssessments = false;
+		})
+		.subscribe(result => {
 			this.assessments = result.data;
 		});
 	}
