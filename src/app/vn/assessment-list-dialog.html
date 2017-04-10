@@ -1,33 +1,49 @@
 <md-list dense>
 	<h3 md-subheader>Assessments</h3>
-	<button md-button on-click="newAssessment()" style="margin:20px;">New Assessment</button>
+	<button md-button on-click="newAssessment()" style="margin:20px;"><md-icon>add_box</md-icon> New Assessment</button>
+	<button md-fab color="accent" on-click="closeDialog()" class="close-button"><md-icon>close</md-icon></button>
 	<md-divider></md-divider>
 
-	<h3 *ngIf="assessments.length < 1">
-		no assessment yet
-	</h3>
+	<div class="assessments-container">
+		<h3 *ngIf="assessments.length < 1">
+			no assessment yet
+		</h3>
 
-	<div fxLayout="row" template="ngFor let assessment of assessments">
-		<md-list-item fxFlex="85" style="background-color:#cce3e1;">
-			<md-icon md-list-avatar>note</md-icon>
-			<h4 md-line>
-				<span>Status: {{assessment.status}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-				<span>Start: {{assessment.date_start}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-				<span>End: {{assessment.date_end}}</span>
-			</h4>
-			<p md-line>
-				<span>Node: {{assessment.node}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-				<span>Story: {{assessment.score_story}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-				<span>Naki: {{assessment.score_naki}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-				<span>Nuki: {{assessment.score_nuki}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-				<span>Commedy: {{assessment.score_comedy}}</span> &nbsp;&nbsp;&nbsp;&nbsp;
-				<span>Graphic: {{assessment.score_graphic}}</span>
-			</p>
-			<p md-line>Overall: {{assessment.score_all}}</p>
-			<p md-line>Updated: {{assessment.created_at}}</p>
-		</md-list-item>
-		<div fxFlex="15">
-			<a md-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']">Compose</a>
+		<div fxLayout="row" template="ngFor let assessment of assessments">
+			<md-list-item fxFlex="85" class="assessment-item">
+				<md-icon md-list-avatar>note</md-icon>
+				<h4 md-line>
+					<span>Status: <strong>{{assessment.status || '-'}}</strong></span><br />
+					<span>Start: <strong>{{assessment.date_start || '-'}}</strong></span> / 
+					<span>End: <strong>{{assessment.date_end || '-'}}</strong></span>
+				</h4>
+				<div md-line>
+					<table class="score-table">
+						<tr>
+							<th>Node</th>
+							<th>Story</th>
+							<th>Naki</th>
+							<th>Nuki</th>
+							<th>Comedy</th>
+							<th>Graphic</th>
+						</tr>
+						<tr>
+							<td>{{assessment.node || '-'}}</td>
+							<td>{{assessment.score_story || '-'}}</td>
+							<td>{{assessment.score_naki || '-'}}</td>
+							<td>{{assessment.score_nuki || '-'}}</td>
+							<td>{{assessment.score_comedy || '-'}}</td>
+							<td>{{assessment.score_graphic || '-'}}</td>
+						</tr>
+					</table>
+				</div>
+				<p md-line>Overall: <strong>{{assessment.score_all || '-'}}</strong></p>
+				<p md-line>Created: <strong>{{assessment.created_at}}</strong></p>
+			</md-list-item>
+			<div fxFlex="15">
+				<a md-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']" color="primary" class="compose-button">Compose</a>
+			</div>
+			<md-divider></md-divider>
 		</div>
 	</div>
 </md-list>

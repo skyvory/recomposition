@@ -41,10 +41,11 @@ export class VnComponent implements OnInit {
 	}
 
 	dialogConfig:MdDialogConfig = {
-		width: '800px',
-		height: '500px',
+		width: '90%',
+		height: '85%',
 		position: {
-			top: '30px'
+			top: '30px',
+			left: 'auto'
 		}
 	}
 

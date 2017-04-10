@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 
 @Component({
 	selector: 'assessment-list-dialog-selector',
-	templateUrl: './assessment-list-dialog.html'
+	templateUrl: './assessment-list-dialog.html',
+	styleUrls: ['./assessment-list-dialog.css']
 })
 export class AssessmentListDialog {
 	constructor(
@@ -41,4 +42,9 @@ export class AssessmentListDialog {
 			this.router.navigate(['/assessment', assessment.id, 'fill']);
 		})
 	}
+
+	closeDialog():void {
+		this.dialogRef.close();
+	}
+	
 }

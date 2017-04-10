@@ -1,0 +1,29 @@
+.score-table {
+  text-align: center;
+  vertical-align: top;
+}
+
+table td, table th {
+  border-width: 1px;
+  border-style: solid;
+  border-color: darkcyan;
+}
+
+table th {
+  font-weight: normal;
+}
+
+.assessment-item {
+  background-color:#cce3e1;
+  margin: 5px 8px;
+}
+
+.compose-button {
+  margin: 5px 2px;
+}
+
+.close-button {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
