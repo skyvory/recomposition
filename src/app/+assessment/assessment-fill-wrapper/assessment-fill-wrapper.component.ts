@@ -21,6 +21,7 @@ export class AssessmentFillWrapperComponent implements OnInit {
   	) { }
 
   ngOnInit() {
+		this.linkAssessmentId = +this.route.snapshot.params['assessmentId'];
 		let resolvedAssessment = this.route.snapshot.data['assessment'];
 		this.loadVn(resolvedAssessment.vn_id);
   }
