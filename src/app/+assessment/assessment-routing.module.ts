@@ -8,6 +8,7 @@ import { AssessmentCharacterComponent } from './assessment-character/assessment-
 import { AssessmentWrapperComponent } from './assessment-wrapper/assessment-wrapper.component';
 import { AssessmentFillWrapperComponent } from './assessment-fill-wrapper/assessment-fill-wrapper.component';
 import { AssessmentCharacterWrapperComponent } from './assessment-character-wrapper/assessment-character-wrapper.component';
+import { AssessmentResolve } from './assessment.resolve';
 
 @NgModule({
 	imports: [RouterModule.forChild([
@@ -25,6 +26,9 @@ import { AssessmentCharacterWrapperComponent } from './assessment-character-wrap
 			path: 'assessment/:assessmentId/fill',
 			component: AssessmentFillWrapperComponent,
 			canActivate: [AuthGuard],
+			resolve: {
+				assessment: AssessmentResolve
+			}
 		},
 		{
 			path: 'assessment/:assessmentId/character',

@@ -21,11 +21,8 @@ export class AssessmentFillWrapperComponent implements OnInit {
   	) { }
 
   ngOnInit() {
-  	this.route.params.forEach((params: Params) => {
-			let id = +params['assessmentId'];
-			this.linkAssessmentId = id;
-			this.preLoad(id);
-		});
+		let resolvedAssessment = this.route.snapshot.data['assessment'];
+		this.loadVn(resolvedAssessment.vn_id);
   }
 
 	vn:any = [];
@@ -35,16 +32,8 @@ export class AssessmentFillWrapperComponent implements OnInit {
 	loadVn(vn_id:number):void {
 		this.vnService.getVn(vn_id).subscribe(response => {
 			this.vn = response.data;
-			console.log(this.vn);
 			this.limitedVnOriginalTitle = this.vn.title_original.length > 12 ? this.vn.title_original.substring(0, 12).trim() + '...' : this.vn.title_original;
 		});
-	}
-
-	preLoad(assessment_id:number):void {
-		this.assessmentService.getAssessment(assessment_id).subscribe(response => {
-			this.active.assessment = response;
-			this.loadVn(response.vn_id);
-		})
 	}
 
 }

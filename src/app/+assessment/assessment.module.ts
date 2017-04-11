@@ -14,6 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ClipboardModule } from 'ngx-clipboard';
+import { AssessmentResolve } from './assessment.resolve';
 
 @NgModule({
   imports: [
@@ -27,6 +28,9 @@ Ng2PaginationModule,
     FileUploadModule,
     ClipboardModule
   ],
-  declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent]
+  declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent],
+  providers: [
+    AssessmentResolve
+  ]
 })
 export class AssessmentModule { }
