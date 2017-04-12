@@ -18,6 +18,7 @@ export class AuthenticationService {
 	}
 
 	// private headers = new Headers({'Content-Type': 'application/json'});
+	public user:any;
 
 	public option:any = this.constructOptions();
 	private constructOptions():any {
@@ -71,6 +72,10 @@ export class AuthenticationService {
 
 					localStorage.setItem('recomposition_token', token);
 
+					let user = response.json().user;
+					localStorage.setItem('recomposition_user', JSON.stringify(user));
+					this.user = user;
+
 					return true;
 				} else {
 					return false;
@@ -84,6 +89,8 @@ export class AuthenticationService {
 			.map(
 				(response:Response) => {
 					if(response.json().user) {
+						this.user = JSON.parse(localStorage.getItem('recomposition_user'));
+						console.log(this.user);
 						return true;
 					}
 					else {
