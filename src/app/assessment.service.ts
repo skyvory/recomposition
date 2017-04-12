@@ -17,6 +17,17 @@ export class AssessmentService {
 		private authenticationService: AuthenticationService
 	) {}
 
+	_assessment:any = {};
+
+	instantAssessment(assessment_id):Observable<any> {
+		if(this._assessment && Object.keys(this._assessment).length > 0  && this._assessment.id == assessment_id) {
+			return Observable.of(this._assessment).map(instantResponse => instantResponse);
+		}
+		else {
+			return null;
+		}
+	}
+
 	getAssessment(assessment_id:number):Observable<any> {
 		if(Constant.USE_ANGULAR2JWT) {
 			// return this.authHttp.get(Constant.API_PATH + `assessment/${vn_id}`, {headers: contentHeaders})
@@ -29,14 +40,20 @@ export class AssessmentService {
 			// ;
 		}
 		else {
-			return this.http.get(Constant.API_PATH + `assessment/${assessment_id}`, this.authenticationService.option)
-				.map(
-					(response:Response) => {
-						return response.json();
-					}
-				)
-				.catch(this.handleError)
-			;
+			if(this.instantAssessment(assessment_id)) {
+				return this.instantAssessment(assessment_id);
+			}
+			else {
+				return this.http.get(Constant.API_PATH + `assessment/${assessment_id}`, this.authenticationService.option)
+					.map(
+						(response:Response) => {
+							this._assessment = response.json();
+							return response.json();
+						}
+					)
+					.catch(this.handleError)
+				;
+			}
 		}
 	}
 
@@ -107,6 +124,7 @@ export class AssessmentService {
 				return this.http.put(Constant.API_PATH + `assessment/${assessment.id}`, data, this.authenticationService.option)
 					.map(
 						(response:Response) => {
+							this._assessment = data;
 							return response.json();
 						}
 					)
@@ -129,6 +147,7 @@ export class AssessmentService {
 				return this.http.post(Constant.API_PATH + `assessment`, data, this.authenticationService.option)
 				.map(
 					(response:Response) => {
+						this._assessment = data;
 						return response.json();
 					}
 				)
