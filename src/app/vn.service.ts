@@ -59,11 +59,9 @@ export class VnService {
 
 	instantVn(vnId:number):Observable<any> {
 		if(this._vn && Object.keys(this._vn).length > 0 && this._vn.data.id == vnId) {
-			console.log("Instant VN", this._vn);
 			return Observable.of(this._vn).map(instantResponse => instantResponse);
 		}
 		else {
-			console.log("Empty instant VN")
 			return null;
 		}
 	}
