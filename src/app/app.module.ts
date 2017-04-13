@@ -54,7 +54,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 		SettingModule,
 		AssessmentModule,
 		VnModule,
-		FlexLayoutModule.forRoot(),
+		FlexLayoutModule,
 		SidebarsharedModule,
 		ClipboardModule
 	],

@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
+    FlexLayoutModule,
     RouterModule
   ],
   declarations: [SidebarComponent],

@@ -21,7 +21,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     Ng2PaginationModule,
     FormsModule,
     VnRoutingModule,
-    FlexLayoutModule.forRoot(),
+    FlexLayoutModule,
     SidebarsharedModule,
     // Ng2FileDropModule,
     FileUploadModule

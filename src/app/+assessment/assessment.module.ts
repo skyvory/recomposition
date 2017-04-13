@@ -20,7 +20,7 @@ import { AssessmentResolve } from './assessment.resolve';
   imports: [
     CommonModule,
     MaterialModule.forRoot(),
-    FlexLayoutModule.forRoot(),
+    FlexLayoutModule,
 Ng2PaginationModule,
     FormsModule,
     AssessmentRoutingModule,

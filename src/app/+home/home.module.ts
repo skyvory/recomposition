@@ -18,7 +18,7 @@ import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 		FormsModule,
 		HomeRoutingModule,
 		MaterialModule.forRoot(),
-		FlexLayoutModule.forRoot(),
+		FlexLayoutModule,
 		SidebarsharedModule
 	],
 	declarations: [
