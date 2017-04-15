@@ -13,18 +13,20 @@ import { VnResolve } from '../vn.resolve';
 import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
 // import { Ng2FileDropModule } from 'ng2-file-drop';
 import { FileUploadModule } from 'ng2-file-upload';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     Ng2PaginationModule,
     FormsModule,
     VnRoutingModule,
     FlexLayoutModule,
     SidebarsharedModule,
     // Ng2FileDropModule,
-    FileUploadModule
+    FileUploadModule,
+    BrowserAnimationsModule
   ],
   declarations: [VnComponent, VnFillComponent, AssessmentListDialog, VnScreenshotComponent],
   entryComponents: [

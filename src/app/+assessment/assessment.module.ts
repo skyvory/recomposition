@@ -15,18 +15,20 @@ import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ClipboardModule } from 'ngx-clipboard';
 import { AssessmentResolve } from './assessment.resolve';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     FlexLayoutModule,
 Ng2PaginationModule,
     FormsModule,
     AssessmentRoutingModule,
     SidebarsharedModule,
     FileUploadModule,
-    ClipboardModule
+    ClipboardModule,
+    BrowserAnimationsModule
   ],
   declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent],
   providers: [

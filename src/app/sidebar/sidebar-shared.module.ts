@@ -4,13 +4,15 @@ import { SidebarComponent } from './sidebar.component';
 import { MaterialModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     FlexLayoutModule,
-    RouterModule
+    RouterModule,
+    BrowserAnimationsModule
   ],
   declarations: [SidebarComponent],
   exports: [

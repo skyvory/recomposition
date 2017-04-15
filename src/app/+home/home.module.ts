@@ -10,6 +10,7 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,9 +18,10 @@ import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 		CommonModule,
 		FormsModule,
 		HomeRoutingModule,
-		MaterialModule.forRoot(),
+		MaterialModule,
 		FlexLayoutModule,
-		SidebarsharedModule
+		SidebarsharedModule,
+		BrowserAnimationsModule
 	],
 	declarations: [
 		HomeComponent,

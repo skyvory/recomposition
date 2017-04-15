@@ -41,6 +41,7 @@ import { SidebarsharedModule } from './sidebar/sidebar-shared.module';
 import { ToastService } from './toaster/toast.service';
 import { SettingService } from './setting.service';
 import { ClipboardModule } from 'ngx-clipboard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	imports: [
@@ -49,14 +50,15 @@ import { ClipboardModule } from 'ngx-clipboard';
 		HttpModule,
 		routing,
 		HomeModule,
-		MaterialModule.forRoot(),
+		MaterialModule,
 		Ng2PaginationModule,
 		SettingModule,
 		AssessmentModule,
 		VnModule,
 		FlexLayoutModule,
 		SidebarsharedModule,
-		ClipboardModule
+		ClipboardModule,
+		BrowserAnimationsModule
 	],
 	declarations: [
 		AppComponent,

@@ -7,15 +7,17 @@ import { SettingRoutingModule } from './setting-routing.module';
 import { SettingWrapperComponent } from './setting-wrapper/setting-wrapper.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		FormsModule,
 		SettingRoutingModule,
-		MaterialModule.forRoot(),
+		MaterialModule,
 		FlexLayoutModule,
-		SidebarsharedModule
+		SidebarsharedModule,
+		BrowserAnimationsModule
 	],
 	declarations: [SettingComponent, SettingWrapperComponent]
 })
