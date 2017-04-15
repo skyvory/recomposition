@@ -8,8 +8,9 @@
 		VN List
 		<span style="flex: 1 1 auto;"></span>
 		<form #form="ngForm" name="search_form">
-			<md-input #search placeholder="keyword" align="end" name="search_query">
-			</md-input>
+			<md-input-container>
+			<input mdInput #search placeholder="keyword" align="end" name="search_query">
+			</md-input-container>
 			<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
 		</form>
 	</md-toolbar>
@@ -32,13 +33,13 @@
 						</div>
 						<div fxFlex="70" style="background-color:#e2ffd9; margin:5px;">
 							<md-input-container style="width:100%;">
-								<input md-input placeholder="Title" disabled [(ngModel)]="vn.title_romaji" title="{{vn?.title_romaji}}">
+								<input mdInput placeholder="Title" disabled [(ngModel)]="vn.title_romaji" title="{{vn?.title_romaji}}">
 							</md-input-container>
 							<md-input-container style="width:100%;">
-								<input md-input placeholder="By" disabled [(ngModel)]="vn.developer_romaji" title="{{vn?.developer_original}}">
+								<input mdInput placeholder="By" disabled [(ngModel)]="vn.developer_romaji" title="{{vn?.developer_original}}">
 							</md-input-container>
 							<md-input-container>
-								<input md-input placeholder="Release date" disabled [(ngModel)]="vn.date_release">
+								<input mdInput placeholder="Release date" disabled [(ngModel)]="vn.date_release">
 							</md-input-container>
 						</div>
 					</div>

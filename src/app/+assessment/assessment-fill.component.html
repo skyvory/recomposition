@@ -31,7 +31,9 @@
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
 					<md-slide-toggle [(ngModel)]="has_change.date_start">Apply change</md-slide-toggle>
-					<md-input placeholder="Date Start" [(ngModel)]="assessment_local.date_start"></md-input>
+					<md-input-container>
+						<input mdInput placeholder="Date Start" [(ngModel)]="assessment_local.date_start">
+					</md-input-container>
 					<button md-button (click)="dateStartNow()">Now</button>
 				</md-card-content>
 			</md-card>
@@ -49,7 +51,9 @@
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
 					<md-slide-toggle [(ngModel)]="has_change.date_end">Apply change</md-slide-toggle>
-					<md-input placeholder="Date End" [(ngModel)]="assessment_local.date_end"></md-input>
+					<md-input-container>
+						<input mdInput placeholder="Date End" [(ngModel)]="assessment_local.date_end">
+					</md-input-container>
 					<button md-button (click)="dateEndNow()">Now</button>
 				</md-card-content>
 			</md-card>

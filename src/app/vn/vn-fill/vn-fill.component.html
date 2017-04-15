@@ -18,7 +18,7 @@
 		<div fxFlex="90">
 			<form #form="ngForm" name="portalSearchForm">
 				<md-input-container fxFlex="80" style="width:100%;">
-					<input md-input placeholder="search" #portalsearch value=''>
+					<input mdInput placeholder="search" #portalsearch value=''>
 				</md-input-container>
 				<button md-raised-button type="submit" on-click="portalSearchVn(portalsearch.value)" [disabled]="toggle.portalSearchButtonDisable">Search</button>
 			</form>
@@ -90,23 +90,23 @@
 		<div fxFlex="40">
 			
 			<md-input-container style="width:100%;">
-				<input md-input placeholder="original title" [(ngModel)]="vn.title_original">
+				<input mdInput placeholder="original title" [(ngModel)]="vn.title_original">
 			</md-input-container>
 			<md-input-container style="width:100%;">
-				<input md-input placeholder="romaji title" [(ngModel)]="vn.title_romaji">
+				<input mdInput placeholder="romaji title" [(ngModel)]="vn.title_romaji">
 			</md-input-container>
 			<div fxLayout="row">
 				<md-input-container style="width:65%">
-					<input md-input placeholder="alias" [(ngModel)]="vn.alias">
+					<input mdInput placeholder="alias" [(ngModel)]="vn.alias">
 				</md-input-container>
 				<md-input-container style="width:35%">
-					<input md-input placeholder="hashtag" [(ngModel)]="vn.hashtag">
+					<input mdInput placeholder="hashtag" [(ngModel)]="vn.hashtag">
 				</md-input-container>
 			</div>
 			<br />
 			<div fxLayout="row">
 				<md-input-container fxFlex="30">
-					<input md-input disabled [(ngModel)]="vn.developer_id">
+					<input mdInput disabled [(ngModel)]="vn.developer_id">
 				</md-input-container>
 				<md-select placeholder="Developer" [(ngModel)]="vn.developer_id" name="developer" fxFlex="70">
 					<md-option template="ngFor let developer of developers" [value]="developer.id">
@@ -117,10 +117,10 @@
 
 			<br />
 			<md-input-container>
-				<input md-input placeholder="date release" type="date" [(ngModel)]="vn.date_release">
+				<input mdInput placeholder="date release" type="date" [(ngModel)]="vn.date_release">
 			</md-input-container>
 			<md-input-container style="width:70%">
-				<input md-input placeholder="image url" [(ngModel)]="vn.image">
+				<input mdInput placeholder="image url" [(ngModel)]="vn.image">
 			</md-input-container>
 			<br />
 
@@ -130,32 +130,32 @@
 			<div *ngIf="toggle.advanceOptions">
 
 				<md-input-container>
-					<input md-input placeholder="Homepage" [(ngModel)]="vn.homepage">
+					<input mdInput placeholder="Homepage" [(ngModel)]="vn.homepage">
 				</md-input-container>
 				<md-input-container>
-					<input md-input placeholder="Twitter" [(ngModel)]="vn.twitter">
-				</md-input-container>
-				<br />
-
-				<md-input-container>
-					<input md-input placeholder="Game Engine" [(ngModel)]="vn.game_engine">
+					<input mdInput placeholder="Twitter" [(ngModel)]="vn.twitter">
 				</md-input-container>
 				<br />
 
 				<md-input-container>
-					<input md-input placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
+					<input mdInput placeholder="Game Engine" [(ngModel)]="vn.game_engine">
+				</md-input-container>
+				<br />
+
+				<md-input-container>
+					<input mdInput placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
 				</md-input-container>
 				<button md-raised-button (click)="retrieveVndbVn()" [disabled]="toggle.vndbIdLoadButtonDisable">Load</button>
 				<md-input-container>
-					<input md-input placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id">
+					<input mdInput placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id">
 				</md-input-container>
 				<md-input-container>
-					<input md-input placeholder="EGS Game ID" [(ngModel)]="vn.erogamescape_game_id">
+					<input mdInput placeholder="EGS Game ID" [(ngModel)]="vn.erogamescape_game_id">
 				</md-input-container>
 				<br />
 
 				<md-input-container>
-					<input md-input placeholder="Related VN ID" [(ngModel)]="vn.related_vn_id">
+					<input mdInput placeholder="Related VN ID" [(ngModel)]="vn.related_vn_id">
 				</md-input-container>
 
 			</div>
@@ -176,13 +176,13 @@
 			<div template="ngIf toggle.advanceOptions">
 				Dev create add-on
 				<md-input-container style="width:100%;">
-					<input md-input placeholder="Original" #devOriginal>
+					<input mdInput placeholder="Original" #devOriginal>
 				</md-input-container>
 				<md-input-container style="width:100%;">
-					<input md-input placeholder="Furi" #devFuri>
+					<input mdInput placeholder="Furi" #devFuri>
 				</md-input-container>
 				<md-input-container style="width:100%;">
-					<input md-input placeholder="Romaji" #devRomaji>
+					<input mdInput placeholder="Romaji" #devRomaji>
 				</md-input-container>
 				<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);" [disabled]="toggle.addDeveloperButtonDisable">Add Dev</button>
 

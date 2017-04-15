@@ -7,8 +7,9 @@
 		Search Results
 		<span style="flex: 1 1 auto;"></span>
 		<form #form="ngForm" name="search_form">
-			<md-input #search placeholder="keyword" align="end" name="search_query">
-			</md-input>
+			<md-input-container>
+				<input mdInput #search placeholder="keyword" align="end" name="search_query">
+			</md-input-container>
 			<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
 		</form>
 	</md-toolbar>

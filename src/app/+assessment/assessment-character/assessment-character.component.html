@@ -1,6 +1,8 @@
 
 <div style="height:64px;" fxLayout="row">
-	<md-input placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid"></md-input>
+	<md-input-container>
+		<input mdInput placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid">
+	</md-input-container>
 	<button md-button on-click="retrieveVndbCharacter()">Load</button>
 
 	<span style="flex: 1 1 auto;"></span>
@@ -55,7 +57,9 @@
 							<img [src]="chara.local_url" style="width:auto; max-width:100%; max-height:200px;">
 						</div>
 						<md-card-subtitle style="color:rgba(0,0,60,0.3);"><a href="https://vndb.org/c{{chara.vndb_character_id}}/edit" target="_blank">{{chara.vndb_character_id}}</a></md-card-subtitle>
-						<md-input placeholder="img" [(ngModel)]="chara.image" name="image" style="margin-top:10px;"></md-input>
+						<md-input-container>
+							<input mdInput placeholder="img" [(ngModel)]="chara.image" name="image" style="margin-top:10px;">
+						</md-input-container>
 						<div style="display:flex; flex-direction:row; margin:20px 0;">
 							<select [(ngModel)]="chara.mark" (ngModelChange)="saveMark(chara)" name="mark">
 							<option value="s">s</option>
@@ -70,36 +74,62 @@
 					<div fxFlex="70" style="background-color: #eff;">
 						<br>
 						<div fxLayout="row">
-							<md-input placeholder="original name" [(ngModel)]="chara.name_original" name="originalname" [style.background-color]="isNameMatch(chara.name_original, chara.paste_name_original) ? '' : 'rgba(255,0,0,0.5)'"></md-input>
-							<md-input placeholder="paste" [(ngModel)]="chara.paste_name_original" name="paste_name_original" on-keypress="replaceValue($event, chara, 'name_original')"
-							 title="Enter to inject"></md-input>
+							<md-input-container>
+								<input mdInput placeholder="original name" [(ngModel)]="chara.name_original" name="originalname" [style.background-color]="isNameMatch(chara.name_original, chara.paste_name_original) ? '' : 'rgba(255,0,0,0.5)'">
+							</md-input-container>
+							<md-input-container>
+								<input mdInput placeholder="paste" [(ngModel)]="chara.paste_name_original" name="paste_name_original" on-keypress="replaceValue($event, chara, 'name_original')"
+							 title="Enter to inject">
+							</md-input-container>
 						</div>
 						<br>
-						<md-input placeholder="furigana" [(ngModel)]="chara.name_furigana" name="furigana"></md-input>
+						<md-input-container>
+							<input mdInput placeholder="furigana" [(ngModel)]="chara.name_furigana" name="furigana">
+						</md-input-container>
 						<br>
-						<md-input placeholder="alias" [(ngModel)]="chara.name_betsumyou" name="alias"></md-input><br>
+						<md-input-container>
+							<input mdInput placeholder="alias" [(ngModel)]="chara.name_betsumyou" name="alias"><br>
+						</md-input-container>
 						<div fxLayout="row">
-							<md-input placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth"></md-input>
-							<md-input placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday"></md-input>
-							<md-input placeholder="age" [(ngModel)]="chara.age" name="age"></md-input>
+							<md-input-container>
+								<input mdInput placeholder="birthmonth" [(ngModel)]="chara.birthmonth" name="birthmonth">
+							</md-input-container>
+							<md-input-container>
+								<input mdInput placeholder="birthday" [(ngModel)]="chara.birthday" name="birthday">
+							</md-input-container>
+							<md-input-container>
+								<input mdInput placeholder="age" [(ngModel)]="chara.age" name="age">
+							</md-input-container>
 						</div>
 						<div fxLayout="row">
-							<md-input placeholder="height" [(ngModel)]="chara.height" name="height"></md-input>
-							<md-input placeholder="weight" [(ngModel)]="chara.weight" name="weight"></md-input>
-							<md-input placeholder="blood type" [(ngModel)]="chara.blood_type" name="blood_type"></md-input>
+							<md-input-container>
+								<input mdInput placeholder="height" [(ngModel)]="chara.height" name="height">
+							</md-input-container>
+							<md-input-container>
+								<input mdInput placeholder="weight" [(ngModel)]="chara.weight" name="weight">
+							</md-input-container>
+							<md-input-container>
+								<input mdInput placeholder="blood type" [(ngModel)]="chara.blood_type" name="blood_type">
+							</md-input-container>
 						</div>
 						<br>
 						<div fxLayout="row">
-							<md-input placeholder="bust" [(ngModel)]="chara.bust" name="bust"></md-input>
-							<md-input placeholder="waist" [(ngModel)]="chara.waist" name="waist"></md-input>
-							<md-input placeholder="hip" [(ngModel)]="chara.hip" name="hip"></md-input>
+							<md-input-container>
+								<input mdInput placeholder="bust" [(ngModel)]="chara.bust" name="bust">
+							</md-input-container>
+							<md-input-container>
+								<input mdInput placeholder="waist" [(ngModel)]="chara.waist" name="waist">
+							</md-input-container>
+							<md-input-container>
+								<input mdInput placeholder="hip" [(ngModel)]="chara.hip" name="hip">
+							</md-input-container>
 						</div>
 						<br>
 						<md-input-container style="width:100%;">
-							<textarea md-input placeholder="description" [(ngModel)]="chara.description" name="description" style="resize:vertical;"></textarea>
+							<textarea mdInput placeholder="description" [(ngModel)]="chara.description" name="description" style="resize:vertical;"></textarea>
 						</md-input-container>
 						<!--<md-input-container class="example-full-width">
-					<textarea md-input placeholder="Address">1600 Amphitheatre Pkwy</textarea>
+					<textarea mdInput placeholder="Address">1600 Amphitheatre Pkwy</textarea>
 					</md-input-container>-->
 					</div>
 				</div>
