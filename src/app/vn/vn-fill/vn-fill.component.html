@@ -162,7 +162,7 @@
 
 			<button *ngIf="fillState == 'new'" md-raised-button (click)="createVn()" [disabled]="toggle.saveButtonDisable">Create</button>
 			<button *ngIf="fillState == 'edit'" md-raised-button (click)="updateVn()" [disabled]="toggle.saveButtonDisable">Update</button>
-			<md-progress-circle template="ngIf toggle.saveButtonDisable" mode="indeterminate" style="height: 25px;width: 25px;display: inline-block;"></md-progress-circle>
+			<md-progress-spinner template="ngIf toggle.saveButtonDisable" mode="indeterminate" style="height: 25px;width: 25px;display: inline-block;"></md-progress-spinner>
 		</div>
 		<div fxFlex="40">
 			<div style="max-height:200px; max-width:300px; width:auto;height:200px;background-color:#65d8cc;">
