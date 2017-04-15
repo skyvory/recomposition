@@ -41,104 +41,114 @@
 
 	<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
 		<div fxFlex="20">
-			<div template="ngFor let shot of screenshots">
-				<div class="screenshot-item-container" template="ngIf shot.screen_category == 1">
-					<div class="screenshot-image-container">
-						<img src="{{shot.local_url}}" class="screenshot-image">
-						<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
-							<md-icon>delete</md-icon>
-						</button>
-						<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
-							<md-icon>save</md-icon>
-						</button>
+			<ng-template ngFor let-shot [ngForOf]="screenshots">
+				<ng-template [ngIf]="shot.screen_category == 1">
+					<div class="screenshot-item-container">
+						<div class="screenshot-image-container">
+							<img src="{{shot.local_url}}" class="screenshot-image">
+							<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+								<md-icon>delete</md-icon>
+							</button>
+							<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+								<md-icon>save</md-icon>
+							</button>
+						</div>
+						<md-input-container>
+							<input mdInput placeholder="description" [(ngModel)]="shot.description">
+						</md-input-container>
+						
+						<md-divider></md-divider>
 					</div>
-					<md-input-container>
-						<input mdInput placeholder="description" [(ngModel)]="shot.description">
-					</md-input-container>
-					
-					<md-divider></md-divider>
-				</div>
-			</div>
+				</ng-template>
+			</ng-template>
 		</div>
 		<div fxFlex="20">
-			<div template="ngFor let shot of screenshots">
-				<div class="screenshot-item-container" template="ngIf shot.screen_category == 2">
-					<div class="screenshot-image-container">
-						<img src="{{shot.local_url}}" class="screenshot-image">
-						<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
-							<md-icon>delete</md-icon>
-						</button>
-						<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
-							<md-icon>save</md-icon>
-						</button>
-					</div>
-					<md-input-container>
-						<input mdInput placeholder="description" [(ngModel)]="shot.description">
-					</md-input-container>
+			<ng-template ngFor let-shot [ngForOf]="screenshots">
+				<ng-template [ngIf]="shot.screen_category == 2">
+					<div class="screenshot-item-container">
+						<div class="screenshot-image-container">
+							<img src="{{shot.local_url}}" class="screenshot-image">
+							<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+								<md-icon>delete</md-icon>
+							</button>
+							<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+								<md-icon>save</md-icon>
+							</button>
+						</div>
+						<md-input-container>
+							<input mdInput placeholder="description" [(ngModel)]="shot.description">
+						</md-input-container>
 
-					<md-divider></md-divider>
-				</div>
-			</div>
+						<md-divider></md-divider>
+					</div>
+				</ng-template>
+			</ng-template>
 		</div>
 		<div fxFlex="20">
-			<div template="ngFor let shot of screenshots">
-				<div class="screenshot-item-container" template="ngIf shot.screen_category == 3">
-					<div class="screenshot-image-container">
-						<img src="{{shot.local_url}}" class="screenshot-image">
-						<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
-							<md-icon>delete</md-icon>
-						</button>
-						<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
-							<md-icon>save</md-icon>
-						</button>
-					</div>
-					<md-input-container>
-						<input mdInput placeholder="description" [(ngModel)]="shot.description">
-					</md-input-container>
+			<ng-template ngFor let-shot [ngForOf]="screenshots">
+				<ng-template [ngIf]="shot.screen_category == 3">
+					<div class="screenshot-item-container">
+						<div class="screenshot-image-container">
+							<img src="{{shot.local_url}}" class="screenshot-image">
+							<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+								<md-icon>delete</md-icon>
+							</button>
+							<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+								<md-icon>save</md-icon>
+							</button>
+						</div>
+						<md-input-container>
+							<input mdInput placeholder="description" [(ngModel)]="shot.description">
+						</md-input-container>
 
-					<md-divider></md-divider>
-				</div>
-			</div>
+						<md-divider></md-divider>
+					</div>
+				</ng-template>
+			</ng-template>
 		</div>
 		<div fxFlex="20">
-			<div template="ngFor let shot of screenshots">
-				<div class="screenshot-item-container" template="ngIf shot.screen_category == 4">
-					<div class="screenshot-image-container">
-						<img src="{{shot.local_url}}" class="screenshot-image">
-						<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
-							<md-icon>delete</md-icon>
-						</button>
-						<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
-							<md-icon>save</md-icon>
-						</button>
-					</div>
-					<md-input-container>
-						<input mdInput placeholder="description" [(ngModel)]="shot.description">
-					</md-input-container>
+			<ng-template ngFor let-shot [ngForOf]="screenshots">
+				<ng-template [ngIf]="shot.screen_category == 4">
+					<div class="screenshot-item-container">
+						<div class="screenshot-image-container">
+							<img src="{{shot.local_url}}" class="screenshot-image">
+							<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+								<md-icon>delete</md-icon>
+							</button>
+							<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+								<md-icon>save</md-icon>
+							</button>
+						</div>
+						<md-input-container>
+							<input mdInput placeholder="description" [(ngModel)]="shot.description">
+						</md-input-container>
 
-					<md-divider></md-divider>
-				</div>
-			</div>
+						<md-divider></md-divider>
+					</div>
+				</ng-template>
+			</ng-template>
 		</div>
 		<div fxFlex="20">
-			<div template="ngFor let shot of screenshots">
-				<div class="screenshot-item-container" template="ngIf shot.screen_category == 5">
-					<div class="screenshot-image-container">
-						<img src="{{shot.local_url}}" class="screenshot-image">
-						<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
-							<md-icon>delete</md-icon>
-						</button>
-						<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
-							<md-icon>save</md-icon>
-						</button>
+			<ng-template ngFor let-shot [ngForOf]="screenshots">
+				<ng-template [ngIf]="shot.screen_category == 5">
+					<div class="screenshot-item-container">
+						<div class="screenshot-image-container">
+							<img src="{{shot.local_url}}" class="screenshot-image">
+							<button md-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+								<md-icon>delete</md-icon>
+							</button>
+							<button md-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+								<md-icon>save</md-icon>
+							</button>
+						</div>
+						<md-input-container>
+							<input mdInput placeholder="description" [(ngModel)]="shot.description">
+						</md-input-container>
+						
+						<md-divider></md-divider>
 					</div>
-					<md-input-container>
-						<input mdInput placeholder="description" [(ngModel)]="shot.description">
-					</md-input-container>
-					
-					<md-divider></md-divider>
-				</div>
-			</div>
+				</ng-template>
+			</ng-template>
 		</div>
 	</div>
 

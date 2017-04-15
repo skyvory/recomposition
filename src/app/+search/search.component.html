@@ -26,44 +26,46 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr template="ngFor let vn of vns | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: query.page, totalItems: query.total}">
-				<td>{{vn.id}}</td>
-				<td>{{vn.title_original}}</td>
-				<td>{{vn.date_release}}</td>
-				<td>
-					<span *ngIf="vn.node =='vn'">
-						<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
-						<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
-						<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
-						<span>-</span>
-						<span>{{vn.node || "x"}}</span>
-						<span>{{vn.score_story || "x"}}</span>
-						<span>{{vn.score_naki || "x"}}</span>
-						<span>{{vn.score_nuki || "x"}}</span>
-						<span>{{vn.score_comedy || "x"}}</span>
-						<span>{{vn.score_graphic || "x"}}</span>
-						<span>{{vn.score_all || "x"}}</span>
-					</span>
-					<span *ngIf="vn.node != 'vn'">
-						<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
-						<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
-						<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
-						<span>-</span>
-						<span>{{vn.node || "x"}}</span>
-						<span>{{vn.score_nuki || "x"}}</span>
-						<span>{{vn.score_all || "x"}}</span>
-					</span>
-				</td>
-				<td>
-					<span *ngIf="vn.date_start && vn.date_end && vn.node && vn.score_story && vn.score_naki && vn.score_nuki && vn.score_comedy && vn.score_graphic && vn.score_all && vn.status">&#x2713;</span>
-					<span *ngIf="!vn.date_start || !vn.date_end || !vn.node || !vn.score_story || !vn.score_naki || !vn.score_nuki || !vn.score_comedy || !vn.score_graphic || !vn.score_all || !vn.status">&#x2718;</span>
-				</td>
-				<td>
-					<!-- <a md-button>Overview</a> -->
-					<button md-button on-click="popAssessments(vn.id)">Assessments</button>
-					<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
-				</td>
-			<tr>
+			<ng-template ngFor let-vn [ngForOf]="vns | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: query.page, totalItems: query.total}">
+				<tr>
+					<td>{{vn.id}}</td>
+					<td>{{vn.title_original}}</td>
+					<td>{{vn.date_release}}</td>
+					<td>
+						<span *ngIf="vn.node =='vn'">
+							<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
+							<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
+							<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
+							<span>-</span>
+							<span>{{vn.node || "x"}}</span>
+							<span>{{vn.score_story || "x"}}</span>
+							<span>{{vn.score_naki || "x"}}</span>
+							<span>{{vn.score_nuki || "x"}}</span>
+							<span>{{vn.score_comedy || "x"}}</span>
+							<span>{{vn.score_graphic || "x"}}</span>
+							<span>{{vn.score_all || "x"}}</span>
+						</span>
+						<span *ngIf="vn.node != 'vn'">
+							<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
+							<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
+							<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
+							<span>-</span>
+							<span>{{vn.node || "x"}}</span>
+							<span>{{vn.score_nuki || "x"}}</span>
+							<span>{{vn.score_all || "x"}}</span>
+						</span>
+					</td>
+					<td>
+						<span *ngIf="vn.date_start && vn.date_end && vn.node && vn.score_story && vn.score_naki && vn.score_nuki && vn.score_comedy && vn.score_graphic && vn.score_all && vn.status">&#x2713;</span>
+						<span *ngIf="!vn.date_start || !vn.date_end || !vn.node || !vn.score_story || !vn.score_naki || !vn.score_nuki || !vn.score_comedy || !vn.score_graphic || !vn.score_all || !vn.status">&#x2718;</span>
+					</td>
+					<td>
+						<!-- <a md-button>Overview</a> -->
+						<button md-button on-click="popAssessments(vn.id)">Assessments</button>
+						<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
+					</td>
+				</tr>
+			</ng-template>
 		</tbody>
 	</table>
 

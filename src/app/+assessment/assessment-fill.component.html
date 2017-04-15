@@ -25,7 +25,9 @@
 					</md-card-title>
 					<md-card-subtitle>
 						<md-chip-list>
-							<md-chip template="ngIf assessment.date_start" selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
+							<ng-template [ngIf]="assessment.date_start">
+								<md-chip selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
+							</ng-template>
 						</md-chip-list>
 					</md-card-subtitle>
 				</md-card-header>
@@ -45,7 +47,9 @@
 					</md-card-title>
 					<md-card-subtitle>
 						<md-chip-list>
-							<md-chip template="ngIf assessment.date_end" selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
+							<ng-template [ngIf]="assessment.date_end">
+								<md-chip selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
+							</ng-template>
 						</md-chip-list>
 					</md-card-subtitle>
 				</md-card-header>
@@ -139,7 +143,9 @@
 		<br />
 
 		<md-select placeholder="Overall" [(ngModel)]="assessment.score_all" (ngModelChange)="assessment.score_all = $event" name="overall">
-			<md-option template="ngFor let val of [10,9,8,7,6,5,4,3,2,1]" [value]="val">{{val}}</md-option>
+			<ng-template ngFor let-val [ngForOf]="[10,9,8,7,6,5,4,3,2,1]">
+				<md-option [value]="val">{{val}}</md-option>
+			</ng-template>
 			<md-option [value]="0">0</md-option>
 		</md-select>
 		

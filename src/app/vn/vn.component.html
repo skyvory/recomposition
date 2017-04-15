@@ -24,32 +24,34 @@
 
 	<div>
 		<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-			<md-card template="ngFor let vn of vns" fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item" style="margin: 10px 0;">
-				<md-card-title>{{vn?.title_original}}</md-card-title>
-				<md-card-content>
-					<div fxLayout="row">
-						<div fxFlex="30" style="background-color:#d3d1cb;">
-							<img [src]="vn.image" style="width:auto; max-width:100%; max-height:200px;">
+			<ng-template ngFor let-vn [ngForOf]="vns">
+				<md-card fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item" style="margin: 10px 0;">
+					<md-card-title>{{vn?.title_original}}</md-card-title>
+					<md-card-content>
+						<div fxLayout="row">
+							<div fxFlex="30" style="background-color:#d3d1cb;">
+								<img [src]="vn.image" style="width:auto; max-width:100%; max-height:200px;">
+							</div>
+							<div fxFlex="70" style="background-color:#e2ffd9; margin:5px;">
+								<md-input-container style="width:100%;">
+									<input mdInput placeholder="Title" disabled [(ngModel)]="vn.title_romaji" title="{{vn?.title_romaji}}">
+								</md-input-container>
+								<md-input-container style="width:100%;">
+									<input mdInput placeholder="By" disabled [(ngModel)]="vn.developer_romaji" title="{{vn?.developer_original}}">
+								</md-input-container>
+								<md-input-container>
+									<input mdInput placeholder="Release date" disabled [(ngModel)]="vn.date_release">
+								</md-input-container>
+							</div>
 						</div>
-						<div fxFlex="70" style="background-color:#e2ffd9; margin:5px;">
-							<md-input-container style="width:100%;">
-								<input mdInput placeholder="Title" disabled [(ngModel)]="vn.title_romaji" title="{{vn?.title_romaji}}">
-							</md-input-container>
-							<md-input-container style="width:100%;">
-								<input mdInput placeholder="By" disabled [(ngModel)]="vn.developer_romaji" title="{{vn?.developer_original}}">
-							</md-input-container>
-							<md-input-container>
-								<input mdInput placeholder="Release date" disabled [(ngModel)]="vn.date_release">
-							</md-input-container>
-						</div>
-					</div>
-				</md-card-content>
+					</md-card-content>
 
-				<md-card-actions align="end">
-					<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
-					<button md-button on-click="popAssessments(vn.id)">Assessments</button>
-				</md-card-actions>
-			</md-card>
+					<md-card-actions align="end">
+						<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
+						<button md-button on-click="popAssessments(vn.id)">Assessments</button>
+					</md-card-actions>
+				</md-card>
+			</ng-template>
 		</div>
 	</div>
 </md-sidenav-container>

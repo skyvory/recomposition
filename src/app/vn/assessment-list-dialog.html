@@ -4,50 +4,56 @@
 	<button md-fab color="accent" on-click="closeDialog()" class="close-button"><md-icon>close</md-icon></button>
 	<md-divider></md-divider>
 
-	<div class="loader-container" template="ngIf isRetrievingAssessments">
-		<img src="../../assets/images/f57a733f9d382ae4bc0e2ad0de1fc707.gif" alt="loading assessments..." class="loader-image">
-	</div>
-
-	<div class="assessments-container" template="ngIf !isRetrievingAssessments">
-		<h3 *ngIf="assessments.length < 1">
-			no assessment yet
-		</h3>
-
-		<div fxLayout="row" template="ngFor let assessment of assessments">
-			<md-list-item fxFlex="85" class="assessment-item">
-				<md-icon md-list-avatar>note</md-icon>
-				<h4 md-line>
-					<span>Status: <strong>{{assessment.status || '-'}}</strong></span><br />
-					<span>Start: <strong>{{assessment.date_start || '-'}}</strong></span> / 
-					<span>End: <strong>{{assessment.date_end || '-'}}</strong></span>
-				</h4>
-				<div md-line>
-					<table class="score-table">
-						<tr>
-							<th>Node</th>
-							<th>Story</th>
-							<th>Naki</th>
-							<th>Nuki</th>
-							<th>Comedy</th>
-							<th>Graphic</th>
-						</tr>
-						<tr>
-							<td>{{assessment.node || '-'}}</td>
-							<td>{{assessment.score_story || '-'}}</td>
-							<td>{{assessment.score_naki || '-'}}</td>
-							<td>{{assessment.score_nuki || '-'}}</td>
-							<td>{{assessment.score_comedy || '-'}}</td>
-							<td>{{assessment.score_graphic || '-'}}</td>
-						</tr>
-					</table>
-				</div>
-				<p md-line>Overall: <strong>{{assessment.score_all || '-'}}</strong></p>
-				<p md-line>Created: <strong>{{assessment.created_at}}</strong></p>
-			</md-list-item>
-			<div fxFlex="15">
-				<a md-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']" color="primary" class="compose-button">Compose</a>
-			</div>
-			<md-divider></md-divider>
+	<ng-template [ngIf]="isRetrievingAssessments">
+		<div class="loader-container">
+			<img src="../../assets/images/f57a733f9d382ae4bc0e2ad0de1fc707.gif" alt="loading assessments..." class="loader-image">
 		</div>
-	</div>
+	</ng-template>
+
+	<ng-template [ngIf]="!isRetrievingAssessments">
+		<div class="assessments-container">
+			<h3 *ngIf="assessments.length < 1">
+				no assessment yet
+			</h3>
+
+			<ng-template ngFor let-assessment [ngForOf]="assessments">
+				<div fxLayout="row">
+					<md-list-item fxFlex="85" class="assessment-item">
+						<md-icon md-list-avatar>note</md-icon>
+						<h4 md-line>
+							<span>Status: <strong>{{assessment.status || '-'}}</strong></span><br />
+							<span>Start: <strong>{{assessment.date_start || '-'}}</strong></span> / 
+							<span>End: <strong>{{assessment.date_end || '-'}}</strong></span>
+						</h4>
+						<div md-line>
+							<table class="score-table">
+								<tr>
+									<th>Node</th>
+									<th>Story</th>
+									<th>Naki</th>
+									<th>Nuki</th>
+									<th>Comedy</th>
+									<th>Graphic</th>
+								</tr>
+								<tr>
+									<td>{{assessment.node || '-'}}</td>
+									<td>{{assessment.score_story || '-'}}</td>
+									<td>{{assessment.score_naki || '-'}}</td>
+									<td>{{assessment.score_nuki || '-'}}</td>
+									<td>{{assessment.score_comedy || '-'}}</td>
+									<td>{{assessment.score_graphic || '-'}}</td>
+								</tr>
+							</table>
+						</div>
+						<p md-line>Overall: <strong>{{assessment.score_all || '-'}}</strong></p>
+						<p md-line>Created: <strong>{{assessment.created_at}}</strong></p>
+					</md-list-item>
+					<div fxFlex="15">
+						<a md-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']" color="primary" class="compose-button">Compose</a>
+					</div>
+					<md-divider></md-divider>
+				</div>
+			</ng-template>
+		</div>
+	</ng-template>
 </md-list>

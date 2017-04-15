@@ -12,41 +12,45 @@
 	</button>
 </div>
 
-<div template="ngIf vndb.characters && vndb.characters.length > 0">
-	<button md-button on-click="saveAllVndbCharacters()">Save All</button>
-	<div style="display: flex; flex-direction: row; overflow-x: auto;">
-		<md-card template="ngFor let chara of vndb.characters" style="flex: 1 1 30%;">
-			<md-card-title>{{chara.name}}</md-card-title>
-			<md-card-subtitle>{{chara.description}}</md-card-subtitle>
-			<div style="display: flex; flex-direction: row">
-				<div style="flex: 1 1 30%">
-					<img src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px;" on-click="purgeCharacterProperty(chara, 'image')">
-					<button md-button *ngIf="chara.id" on-click="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
-				</div>
-				<div style="flex: 1 1 70%;">
-					<button md-button *ngIf="chara.original" on-click="purgeCharacterProperty(chara, 'name_original')">original: {{chara.original}}</button><br>
-					<button md-button *ngIf="chara.name" on-click="purgeCharacterProperty(chara, 'name_furigana')">name: {{chara.name}}</button><br>
-					<button md-button *ngIf="chara.aliases" on-click="purgeCharacterProperty(chara, 'name_betsumyou')">alias: {{chara.aliases}}</button><br>
-					<button md-button *ngIf="chara.birthday" on-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
-					<button md-button *ngIf="(chara.height || chara.weight || chara.bloodt)" on-click="purgeCharacterProperty(chara, 'height')">height-weight-blood: {{chara.height}}-{{chara.weight}}-{{chara.bloodt}}</button><br>
-					<button md-button *ngIf="chara.bust" on-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
-				</div>
-			</div>
-			<div>
-				<select *ngIf="characters" [(ngModel)]="chara.link" name="link">
-					<option *ngFor="let chara_scope of characters" [ngValue]="chara_scope.id">{{chara_scope.name_original}}</option>
-				</select><br>
-			</div>
-			<md-card-actions align="end">
-				<button md-button on-click="removeVndbCharacter(chara)">remove</button>
-				<button md-button on-click="saveVndbCharacter(chara)">save</button>
-			</md-card-actions>
-		</md-card>
+<ng-template [ngIf]="vndb.characters && vndb.characters.length > 0">
+	<div>
+		<button md-button on-click="saveAllVndbCharacters()">Save All</button>
+		<div style="display: flex; flex-direction: row; overflow-x: auto;">
+			<ng-template ngFor let-chara [ngForOf]="vndb.characters">
+				<md-card style="flex: 1 1 30%;">
+					<md-card-title>{{chara.name}}</md-card-title>
+					<md-card-subtitle>{{chara.description}}</md-card-subtitle>
+					<div style="display: flex; flex-direction: row">
+						<div style="flex: 1 1 30%">
+							<img src="{{chara.image}}" style="width:auto; max-width:100%; max-height:200px;" on-click="purgeCharacterProperty(chara, 'image')">
+							<button md-button *ngIf="chara.id" on-click="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
+						</div>
+						<div style="flex: 1 1 70%;">
+							<button md-button *ngIf="chara.original" on-click="purgeCharacterProperty(chara, 'name_original')">original: {{chara.original}}</button><br>
+							<button md-button *ngIf="chara.name" on-click="purgeCharacterProperty(chara, 'name_furigana')">name: {{chara.name}}</button><br>
+							<button md-button *ngIf="chara.aliases" on-click="purgeCharacterProperty(chara, 'name_betsumyou')">alias: {{chara.aliases}}</button><br>
+							<button md-button *ngIf="chara.birthday" on-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
+							<button md-button *ngIf="(chara.height || chara.weight || chara.bloodt)" on-click="purgeCharacterProperty(chara, 'height')">height-weight-blood: {{chara.height}}-{{chara.weight}}-{{chara.bloodt}}</button><br>
+							<button md-button *ngIf="chara.bust" on-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
+						</div>
+					</div>
+					<div>
+						<select *ngIf="characters" [(ngModel)]="chara.link" name="link">
+							<option *ngFor="let chara_scope of characters" [ngValue]="chara_scope.id">{{chara_scope.name_original}}</option>
+						</select><br>
+					</div>
+					<md-card-actions align="end">
+						<button md-button on-click="removeVndbCharacter(chara)">remove</button>
+						<button md-button on-click="saveVndbCharacter(chara)">save</button>
+					</md-card-actions>
+				</md-card>
+			</ng-template>
+		</div>
 	</div>
-</div>
+</ng-template>
 
 <div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-	<md-card template="ngFor let chara of characters; trackBy:customTrackBy; let i=index;" fxFlex="33" fxFlex.sm="100" fxFlex.md="50"
+	<md-card *ngFor="let chara of characters; trackBy:customTrackBy; let i=index;" fxFlex="33" fxFlex.sm="100" fxFlex.md="50"
 	 fxFlex.lg="33" class="flex-item">
 		<form #form="ngForm" name="characterForm" (ngSubmit)="onSubmit()">
 			<md-card-title>{{chara.name_furigana}}</md-card-title>
