@@ -7,13 +7,7 @@
 		Characters of &nbsp;
 		<span title="{{vn.title_original}}">{{limitedVnOriginalTitle}}</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;
-		<span>
-			<a [routerLink]="['/assessment', linkAssessmentId, 'fill']">Fill</a>
-		</span>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<span>
-			<a [routerLink]="['/vn', linkAssessmentId, 'character']">Character</a>
-		</span>
+
 		<span style="flex: 1 1 auto;"></span>
 		<form #form="ngForm" name="search_form">
 			<md-input-container>
@@ -21,6 +15,20 @@
 			</md-input-container>
 			<button type="submit" md-button routerLink="/search/{{search.value}}" routerLinkActive="active">Search</button>
 		</form>
+		
+		<md-toolbar-row class="secondary-toolbar">
+			<span>
+				<a [routerLink]="['/assessment', linkAssessmentId, 'fill']" routerLinkActive="sub-assessment-navigation-active">
+					<button md-raised-button class="sub-assessment-button">Fill</button>
+				</a>
+			</span>
+			<!--&nbsp;&nbsp;&nbsp;-->
+			<span>
+				<a [routerLink]="['/assessment', linkAssessmentId, 'character']" routerLinkActive="sub-assessment-navigation-active">
+					<button md-raised-button class="sub-assessment-button">Character</button>
+				</a>
+			</span>
+		</md-toolbar-row>
 	</md-toolbar>
 
 	<div class="app-content">

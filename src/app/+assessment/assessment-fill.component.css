@@ -6,6 +6,7 @@
   text-align: center;
   vertical-align: top;
   min-width: 60%;
+  margin-left: -30px;
 }
 
 table {
@@ -41,4 +42,14 @@ table tr th:last-child {
 .save-table td {
   vertical-align: middle;
   padding: 10px;
+}
+
+.fill-container {
+  margin: 0 0 30px 0;
+}
+
+.command-container {
+  height: 34px;
+  padding: 0 0 0 20px;
+  margin: 0 0 20px 0;
 }

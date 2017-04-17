@@ -1,5 +1,5 @@
 <!--Debug: {{debugDump()}}<br /><br />-->
-<div style="height:34px;padding: 0 0 0 20px;margin: 0 0 20px 0;" fxLayout="row">
+<div class="command-container" style="" fxLayout="row">
 	<button md-raised-button color="primary" on-click="saveAssessment()" style="line-height:30px;">Save</button>
 	<span style="flex: 1 1 auto;"></span>
 	<button md-icon-button [mdMenuTriggerFor]="menu" style="position:relative;margin:0 18px;">
@@ -17,7 +17,7 @@
 	<span style="flex: 1 1 auto;"></span>
 
 	<div fxFlex="90">
-		<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch" fxLayoutGap="30px" style="margin:0 0 30px 0;">
+		<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch" fxLayoutGap="30px" class="fill-container">
 			<md-card fxFlex="40">
 				<md-card-header>
 					<md-card-title>
@@ -32,11 +32,12 @@
 					</md-card-subtitle>
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
-					<md-slide-toggle [(ngModel)]="has_change.date_start">Apply change</md-slide-toggle>
 					<md-input-container>
 						<input mdInput placeholder="Date Start" [(ngModel)]="assessment_local.date_start">
 					</md-input-container>
 					<button md-button (click)="dateStartNow()">Now</button>
+					<br />
+					<md-slide-toggle [(ngModel)]="has_change.date_start">Apply change</md-slide-toggle>
 				</md-card-content>
 			</md-card>
 
@@ -54,11 +55,12 @@
 					</md-card-subtitle>
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
-					<md-slide-toggle [(ngModel)]="has_change.date_end">Apply change</md-slide-toggle>
 					<md-input-container>
 						<input mdInput placeholder="Date End" [(ngModel)]="assessment_local.date_end">
 					</md-input-container>
 					<button md-button (click)="dateEndNow()">Now</button>
+					<br />
+					<md-slide-toggle [(ngModel)]="has_change.date_end">Apply change</md-slide-toggle>
 				</md-card-content>
 			</md-card>
 		</div>
@@ -140,7 +142,7 @@
 			</tr>
 		</table>
 
-		<br />
+		<br /><br />
 
 		<md-select placeholder="Overall" [(ngModel)]="assessment.score_all" (ngModelChange)="assessment.score_all = $event" name="overall">
 			<ng-template ngFor let-val [ngForOf]="[10,9,8,7,6,5,4,3,2,1]">
