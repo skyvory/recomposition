@@ -1,28 +1,25 @@
-<md-list>
-	<md-list-item>
-		<button md-raised-button on-click="goBack()">Return</button>
-	</md-list-item>
-	<md-divider></md-divider>
-
-	<md-list-item>
-		<button md-raised-button routerLink="/home" routerLinkActive="active" style="width:100%">
-			Home
-		</button>
-	</md-list-item>
-	<md-divider></md-divider>
-	<md-list-item>
-		<button md-raised-button routerLink="/vn" routerLinkActive="active" style="width:100%;">VN</button>
-	</md-list-item>
-	<md-divider></md-divider>
-	<md-list-item>
-		<button md-raised-button routerLink="/assessment" routerLinkActive="active" style="width:100%;">Assessments</button>
-	</md-list-item>
-	<md-divider></md-divider>
-	<md-list-item>
-		<button md-raised-button routerLink="/setting" routerLinkActive="active" style="width:100%;">Setting</button>
-	</md-list-item>
-	<md-divider></md-divider>
-	<md-list-item>
-		<button md-raised-button disabled #closeStartButton (click)="start.close()" style="width:100%;">Close</button>
-	</md-list-item>
-</md-list>
+<nav>
+	<h3>Main menu</h3>
+	<ul style="list-style-type: none;margin: 0;padding: 0;">
+		<li>
+			<a routerLink="/home" routerLinkActive="active-router-link-class">
+				Home
+			</a>
+		</li>
+		<li>
+			<a routerLink="/vn" routerLinkActive="active-router-link-class">
+				VN
+			</a>
+		</li>
+		<li>
+			<a routerLink="/assessment" routerLinkActive="active-router-link-class">
+				Assessments
+			</a>
+		</li>
+		<li>
+			<a routerLink="/setting" routerLinkActive="active-router-link-class">
+				Settings
+			</a>
+		</li>
+	</ul>
+</nav>

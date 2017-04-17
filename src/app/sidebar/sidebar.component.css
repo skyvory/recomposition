@@ -1,0 +1,85 @@
+nav h3 {
+	border: none;
+	font-size: 10px;
+	letter-spacing: 1px;
+	line-height: 24px;
+	text-transform: uppercase;
+	font-weight: 400;
+	margin: 0;
+	padding: 0 16px;
+  background: rgba(0,0,0,.32);
+  color: aqua;
+}
+
+nav ul > li {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  /*margin: 0 10px 0 0;*/
+  padding: 0;
+  border-bottom-color: aqua;
+}
+
+nav a {
+  box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 35px;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  padding: 0 16px;
+  position: relative;
+  color: whitesmoke;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav a:hover, nav a:focus {
+  color: #111;
+  background-color: aliceblue;
+}
+
+.active-router-link-class {
+  background-color: darkcyan;
+  /*border-radius: 1.5em 1.5em 1em 1em;*/
+  outline: none;
+  border-color: #9ecaed;
+  -webkit-animation: airial 3.6s infinite;
+	-moz-animation: airial 3.6s infinite;
+	-o-animation: airial 3.6s infinite;
+	animation: airial 3.6s infinite;
+
+}
+
+@-webkit-keyframes airial {
+  0%, 2%, 100% {
+    box-shadow: 0 0 10px #9ecaed;
+  }
+  49%, 51% {
+    box-shadow: 0 0 20px #9ecaed;
+  }
+}
+@-moz-keyframes airial {
+  0%, 2%, 100% {
+    box-shadow: 0 0 10px #9ecaed;
+  }
+  49%, 51% {
+    box-shadow: 0 0 20px #9ecaed;
+  }
+}
+@-o-keyframes airial {
+  0%, 2%, 100% {
+    box-shadow: 0 0 10px #9ecaed;
+  }
+  49%, 51% {
+    box-shadow: 0 0 20px #9ecaed;
+  }
+}
+@keyframes airial {
+  0%, 2%, 100% {
+    box-shadow: 0 0 10px #9ecaed;
+  }
+  49%, 51% {
+    box-shadow: 0 0 20px #9ecaed;
+  }
+}

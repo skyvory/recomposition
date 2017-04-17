@@ -10,3 +10,17 @@ html, body, material-app, md-sidenav-layout, md-sidenav-container {
 .app-content {
 	margin-top: 64px;
 }
+
+/*Sidenav global styling*/
+md-sidenav-container md-sidenav {
+	display: block;
+	position: absolute;
+	min-width: 5vw;
+	box-sizing: border-box;
+	height: 100%;
+	overflow-y: auto;
+	box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+}
+md-sidenav-container md-sidenav, md-sidenav sidebar-selector {
+	  width: 15vw;
+}
