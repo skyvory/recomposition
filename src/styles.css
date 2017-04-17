@@ -25,7 +25,7 @@ md-sidenav-container md-sidenav, md-sidenav sidebar-selector {
 	  width: 15vw;
 }
 
-/*Gloval toolbar styling*/
+/*Global toolbar styling*/
 md-sidenav-container > .mat-sidenav-content > md-toolbar {
 	background-color: rgba(201, 215, 237, 0.3);
 }
