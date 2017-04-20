@@ -42,6 +42,7 @@ import { ToastService } from './toaster/toast.service';
 import { SettingService } from './setting.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StaffOnlyGuard } from './guards/staff-only.guard';
 
 @NgModule({
 	imports: [
@@ -72,6 +73,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	providers: [
 		// AUTH_PROVIDERS,
 		AuthGuard,
+		StaffOnlyGuard,
 		AuthenticationService,
 		VnService,
 		DeveloperService,

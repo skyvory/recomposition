@@ -118,4 +118,16 @@ export class AuthenticationService {
 		this.token = null;
 		localStorage.removeItem('recomposition_token');
 	}
+
+	activeUser():any {
+		let savedUser = localStorage.getItem('recomposition_user');
+		if(savedUser) {
+			this.user = JSON.parse(savedUser);
+			return this.user;
+		}
+		else {
+			return null;
+		}
+	
+	}
 }
