@@ -1,27 +1,26 @@
 <md-sidenav-container>
-	<md-sidenav mode="side" opened="true" #start (open)="closeStartButton.focus()" fxLayout="row" style="background-color:rgba(85, 90, 99,0.6);">
+	<md-sidenav mode="side" opened="true" #start (open)="closeStartButton.focus()" fxLayout="row" class="sidebar-area">
 		<sidebar-selector></sidebar-selector>
 	</md-sidenav>
 	
 	<md-toolbar>
 		<span>Filling {{vn.title_original}}</span>
-		<!--<button md-button disabled (click)="start.open()">Menu</button>-->
-		<span style="flex: 1 1 auto;"></span>
+		<span class="spanning-flex"></span>
 		<a md-raised-button [routerLink]="['/vn', vn.id, 'edit-screenshot']">Screenshots</a>
-		<!--<a [routerLink]="['/assessment', linkAssessmentId, 'character']">Character</a>-->
-
 	</md-toolbar>
 
 	<div class="flex-container" fxLayout="column">
 
 	<div class="portal-search-area flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-		<div fxFlex="90">
+		<div fxFlex="70">
 			<form #form="ngForm" name="portalSearchForm">
-				<md-input-container fxFlex="80" style="width:100%;">
+				<md-input-container class="full-width">
 					<input mdInput placeholder="search" #portalsearch value=''>
 				</md-input-container>
-				<button md-raised-button type="submit" on-click="portalSearchVn(portalsearch.value)" [disabled]="toggle.portalSearchButtonDisable">Search</button>
 			</form>
+		</div>
+		<div fxFlex="20">
+				<button md-raised-button type="submit" on-click="portalSearchVn(portalsearch.value)" [disabled]="toggle.portalSearchButtonDisable" class="portal-search-button">Search</button>
 		</div>
 	</div>
 
@@ -113,17 +112,17 @@
 	<div class="vn-fill-area flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
 		<div fxFlex="40">
 			
-			<md-input-container style="width:100%;">
+			<md-input-container class="full-width">
 				<input mdInput placeholder="original title" [(ngModel)]="vn.title_original">
 			</md-input-container>
-			<md-input-container style="width:100%;">
+			<md-input-container class="full-width">
 				<input mdInput placeholder="romaji title" [(ngModel)]="vn.title_romaji">
 			</md-input-container>
-			<div fxLayout="row">
-				<md-input-container style="width:65%">
+			<div fxLayout="row" fxLayoutAlign="space-between start">
+				<md-input-container class="width-60">
 					<input mdInput placeholder="alias" [(ngModel)]="vn.alias">
 				</md-input-container>
-				<md-input-container style="width:35%">
+				<md-input-container class="width-30">
 					<input mdInput placeholder="hashtag" [(ngModel)]="vn.hashtag">
 				</md-input-container>
 			</div>
@@ -145,12 +144,12 @@
 			<md-input-container>
 				<input mdInput placeholder="date release" type="date" [(ngModel)]="vn.date_release">
 			</md-input-container>
-			<md-input-container style="width:70%">
+			<md-input-container class="full-width">
 				<input mdInput placeholder="image url" [(ngModel)]="vn.image">
 			</md-input-container>
 			<br />
 
-			<md-slide-toggle [(ngModel)]="toggle.advanceOptions" [color]="primary">Advance options</md-slide-toggle>
+			<md-slide-toggle [(ngModel)]="toggle.advanceOptions" [color]="primary" class="advance-toggle">Advance options</md-slide-toggle>
 			<br />
 
 			<div *ngIf="toggle.advanceOptions">
@@ -186,15 +185,15 @@
 
 			</div>
 
-			<button *ngIf="fillState == 'new'" md-raised-button (click)="createVn()" [disabled]="toggle.saveButtonDisable">Create</button>
-			<button *ngIf="fillState == 'edit'" md-raised-button (click)="updateVn()" [disabled]="toggle.saveButtonDisable">Update</button>
+			<button *ngIf="fillState == 'new'" md-raised-button (click)="createVn()" [disabled]="toggle.saveButtonDisable" color="primary">Create</button>
+			<button *ngIf="fillState == 'edit'" md-raised-button (click)="updateVn()" [disabled]="toggle.saveButtonDisable" color="primary">Update</button>
 			<ng-template [ngIf]="toggle.saveButtonDisable">
-				<md-progress-spinner mode="indeterminate" style="height: 25px;width: 25px;display: inline-block;"></md-progress-spinner>
+				<md-progress-spinner mode="indeterminate" class="saving-spinner"></md-progress-spinner>
 			</ng-template>
 		</div>
 		<div fxFlex="40">
-			<div style="max-height:200px; max-width:300px; width:auto;height:200px;background-color:#65d8cc;">
-				<img src="{{vn.image}}" style="max-height:200px; max-width:300px; width:auto;height:200px;display:block;margin:auto;">
+			<div class="cover-image-container">
+				<img src="{{vn.image}}" class="cover-image">
 			</div>
 			<br />
 			<ng-template [ngIf]="toggle.advanceOptions">
@@ -206,13 +205,13 @@
 			<ng-template [ngIf]="toggle.advanceOptions">
 				<div>
 					Dev create add-on
-					<md-input-container style="width:100%;">
+					<md-input-container class="full-width">
 						<input mdInput placeholder="Original" #devOriginal>
 					</md-input-container>
-					<md-input-container style="width:100%;">
+					<md-input-container class="full-width">
 						<input mdInput placeholder="Furi" #devFuri>
 					</md-input-container>
-					<md-input-container style="width:100%;">
+					<md-input-container class="full-width">
 						<input mdInput placeholder="Romaji" #devRomaji>
 					</md-input-container>
 					<button md-button (click)="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value);" [disabled]="toggle.addDeveloperButtonDisable">Add Dev</button>
@@ -228,11 +227,11 @@
 						<md-list>
 							<h3 md-subheader>Relations</h3>
 							<ng-template ngFor let-relation [ngForOf]=" vn.relations">
-								<md-list-item style="padding:0 0;">
+								<md-list-item class="relation-list">
 									<md-icon md-list-avatar>folder</md-icon>
 									<h4 md-line>{{relation.title_original}}</h4>
 									<p md-line>{{relation.date_release}}</p>
-									<button md-button on-click="removeRelation(relation)" style="min-width:10px; line-height:18px; padding:0;" title="remove relation">x</button>
+									<button md-button on-click="removeRelation(relation)" class="remove-relation-button" title="remove relation">x</button>
 								</md-list-item>
 							</ng-template>
 							<md-divider></md-divider>
