@@ -10,6 +10,7 @@ import { ActiveService } from '../../active.service';
 import { ToastService } from '../../toaster/toast.service';
 import { FileUploadService } from '../../file-upload.service';
 import { FileUploader } from 'ng2-file-upload';
+import { AuthenticationService } from '../../authentication.service';
 
 @Component({
 	// moduleId: module.id,
@@ -29,6 +30,7 @@ export class AssessmentCharacterComponent implements OnInit {
 		private active: ActiveService,
 		private toast: ToastService,
 		private fileUploadService: FileUploadService,
+		private authenticationService: AuthenticationService
 	) {}
 
 @Input() vn;
@@ -36,12 +38,14 @@ export class AssessmentCharacterComponent implements OnInit {
 	vndb:any = {
 		characters: []
 	};
+	user:any = {};
 
 	ngOnInit() {
 		this.route.params.forEach((params:Params) => {
 			let id = +params['assessmentId'];
 			this.preLoad(id);
 		});
+		this.user = this.authenticationService.activeUser();
 	}
 
 	preLoad(assessmentId:number):void {

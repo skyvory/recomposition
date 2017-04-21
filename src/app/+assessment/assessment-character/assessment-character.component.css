@@ -6,3 +6,63 @@
   border: dotted 3px green;
   /*margin: 20px 30px;*/
 }
+.chara-image-container {
+  height: 200px;
+  width: 90%;
+  border-color: aquamarine;
+}
+.chara-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 200px;
+}
+md-input-container.full-width {
+  width: 100%;
+}
+.description-input {
+  resize: vertical;
+}
+.sub-bar {
+  height: 64px;
+}
+.spanning-flex {
+  flex: 1 1 auto;
+}
+.new-chara-button {
+  position: relative;
+  margin: 0 18px;
+}
+.flex-30 {
+  flex: 1 1 30%;
+}
+.flex-70 {
+  flex: 1 1 70%;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row
+}
+.card-subtitle {
+  color: rgba(0,0,60,0.3);
+}
+.chara-mark-selection {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0;
+}
+.chara-properties-container {
+  background-color: #eff;
+}
+.vndb-chara-container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+}
+.vndb-chara-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 200px;
+}
+.chara-image-input {
+  margin-top: 10px;
+}
