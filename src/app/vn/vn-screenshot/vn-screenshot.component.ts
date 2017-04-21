@@ -43,7 +43,7 @@ export class VnScreenshotComponent implements OnInit {
   // }
 
   public uploader:FileUploader = this.fileUploadService.uploadInstance;
-  public hasBaseDropZoneOver:boolean = false;
+  public hasBaseDropZoneOver:number = 0;
   public fileOverBase(e:any, cat):void {
     this.hasBaseDropZoneOver = e ? cat : e;
   }

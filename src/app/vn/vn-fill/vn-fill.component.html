@@ -1,5 +1,5 @@
 <md-sidenav-container>
-	<md-sidenav mode="side" opened="true" #start (open)="closeStartButton.focus()" fxLayout="row" class="sidebar-area">
+	<md-sidenav mode="side" opened="true" #start fxLayout="row" class="sidebar-area">
 		<sidebar-selector></sidebar-selector>
 	</md-sidenav>
 	
@@ -149,7 +149,7 @@
 			</md-input-container>
 			<br />
 
-			<md-slide-toggle [(ngModel)]="toggle.advanceOptions" [color]="primary" class="advance-toggle">Advance options</md-slide-toggle>
+			<md-slide-toggle [(ngModel)]="toggle.advanceOptions" color="primary" class="advance-toggle">Advance options</md-slide-toggle>
 			<br />
 
 			<div *ngIf="toggle.advanceOptions">

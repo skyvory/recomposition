@@ -3,6 +3,7 @@ import { VnService } from '../vn.service';
 import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
 import { AssessmentListDialog } from './assessment-list-dialog';
 import { ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
 	selector: 'vn-selector',
@@ -14,7 +15,8 @@ export class VnComponent implements OnInit {
 	constructor(
 		private vnService: VnService,
 		public dialog: MdDialog,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private authenticationService: AuthenticationService
 	) { }
 
 	vns: any = [];
