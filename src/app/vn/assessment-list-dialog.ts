@@ -13,11 +13,11 @@ export class AssessmentListDialog {
 		public dialogRef: MdDialogRef<AssessmentListDialog>,
 		private assessmentService: AssessmentService,
 		private router: Router
-	) {}
+	) { }
 
-	vn_id:string;
-	assessments:any = [];
-	isRetrievingAssessments:boolean = false;
+	vn_id: string;
+	assessments: any = [];
+	isRetrievingAssessments: boolean = false;
 
 	ngOnInit() {
 		this.loadAssessment(this.vn_id);
@@ -29,16 +29,16 @@ export class AssessmentListDialog {
 			vn_id: vn_id
 		}
 		this.assessmentService.getAssessmentsV2(undefined, filter)
-		.finally(() => {
-			this.isRetrievingAssessments = false;
-		})
-		.subscribe(result => {
-			this.assessments = result.data;
-		});
+			.finally(() => {
+				this.isRetrievingAssessments = false;
+			})
+			.subscribe(result => {
+				this.assessments = result.data;
+			});
 	}
 
 	// New assessment immediately created to avoid routing complication. One example case is where user would reload new assessment route and shown prepared assessment fill instead of newly inserted assessment
-	newAssessment():void {
+	newAssessment(): void {
 		let assessment = {
 			vn_id: this.vn_id
 		}
@@ -49,7 +49,7 @@ export class AssessmentListDialog {
 		})
 	}
 
-	closeDialog():void {
+	closeDialog(): void {
 		this.dialogRef.close();
 	}
 
