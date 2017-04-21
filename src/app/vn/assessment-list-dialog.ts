@@ -52,5 +52,26 @@ export class AssessmentListDialog {
 	closeDialog():void {
 		this.dialogRef.close();
 	}
+
+	iconStatus(assessment: any): string {
+		if (assessment.status == 'finished' && assessment.date_start && assessment.date_end) {
+			return 'assignment_turned_in';
+		}
+		else if (assessment.status == 'dropped') {
+			return 'assignment_returned';
+		}
+		else if (assessment.status == 'halted') {
+			return 'assignment';
+		}
+		else if (assessment.date_start && assessment.status != 'finished' && assessment.status != 'dropped' && assessment.status != 'halted' && !assessment.date_end) {
+			return 'visibility';
+		}
+		else if (!assessment.date_start && !assessment.date_end) {
+			return 'insert_drive_file';
+		}
+		else {
+			return 'assignment_late';
+		}
+	}
 	
 }
