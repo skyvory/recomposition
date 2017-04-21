@@ -36,3 +36,9 @@ table th {
 .new-assessment-button {
   margin:20px;
 }
+.score-table.incomplete th, .score-table.incomplete td {
+  border-color: #ea395c;
+}
+.score-table.complete th, .score-table.complete td {
+  border-color: #6dda76;
+}

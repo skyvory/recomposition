@@ -6,7 +6,7 @@
 
 	<ng-template [ngIf]="isRetrievingAssessments">
 		<div class="loader-container">
-			<img src="../../assets/images/f57a733f9d382ae4bc0e2ad0de1fc707.gif" alt="loading assessments..." class="loader-image">
+			<img src="../../assets/images/f57a733f9d382ae4bc0e2ad0de1fc707.gif" class="loader-image">
 		</div>
 	</ng-template>
 
@@ -30,7 +30,7 @@
 							<span>End: <strong>{{assessment.date_end || '-'}}</strong></span>
 						</h4>
 						<div md-line>
-							<table class="score-table">
+							<table class="score-table" [class.incomplete]="!assessment.score_all || !assessment.store_story || !assessment.store_naki || !assessment.store_nuki || !assessment.store_comedy || !assessment.store_graphic" [class.complete]="assessment.score_all && assessment.store_story && assessment.store_naki && assessment.store_nuki && assessment.store_comedy && assessment.store_graphic">
 								<thead>
 									<tr>
 										<th>Node</th>
