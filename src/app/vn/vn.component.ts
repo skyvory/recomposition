@@ -20,12 +20,13 @@ export class VnComponent implements OnInit {
 	) { }
 
 	vns: any = [];
+	user:any={};
 	ngOnInit() {
 		let resolvedVns = this.route.snapshot.data['vns'];
 		console.log("RESOLVED", resolvedVns);
 		this.vns = resolvedVns.data;
 		this.query.total = resolvedVns.total;
-		// this.loadVns();
+		this.user = this.authenticationService.activeUser();
 	}
 
 	query:any = {

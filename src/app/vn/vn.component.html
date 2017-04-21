@@ -17,9 +17,11 @@
 
 	<div style="height:64px;" fxLayout="row">
 		<span style="flex: 1 1 auto;"></span>
-		<button md-fab style="position:relative;margin:0 18px;" routerLink="/vn/new" routerLinkActive="active">
-			<md-icon class="md-24">add</md-icon>
-		</button>
+		<ng-template [ngIf]="user.role == 'administrator'">
+			<button md-fab style="position:relative;margin:0 18px;" routerLink="/vn/new" routerLinkActive="active">
+				<md-icon class="md-24">add</md-icon>
+			</button>
+		</ng-template>
 	</div>
 
 	<div>
@@ -47,8 +49,12 @@
 					</md-card-content>
 
 					<md-card-actions align="end">
-						<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
-						<button md-button on-click="popAssessments(vn.id)">Assessments</button>
+						<ng-template [ngIf]="user.role == 'administrator'">
+							<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
+						</ng-template>
+						<ng-template [ngIf]="user.role != 'guest'">
+							<button md-button on-click="popAssessments(vn.id)">Assessments</button>
+						</ng-template>
 					</md-card-actions>
 				</md-card>
 			</ng-template>
