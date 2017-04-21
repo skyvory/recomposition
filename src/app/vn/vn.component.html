@@ -1,12 +1,12 @@
 <md-sidenav-container>
-	<md-sidenav mode="side" opened="true" #start fxLayout="row" style="background-color:rgba(85, 90, 99,0.6);">
+	<md-sidenav mode="side" opened="true" #start fxLayout="row">
 		<sidebar-selector></sidebar-selector>
 	</md-sidenav>
 
 	<md-toolbar>
 		<!--<button md-button (click)="start.open()">Menu</button> &nbsp;&nbsp;&nbsp;&nbsp;-->
 		VN List
-		<span style="flex: 1 1 auto;"></span>
+		<span class="spanning-flex"></span>
 		<form #form="ngForm" name="search_form">
 			<md-input-container>
 			<input mdInput #search placeholder="keyword" align="end" name="search_query">
@@ -15,10 +15,10 @@
 		</form>
 	</md-toolbar>
 
-	<div style="height:64px;" fxLayout="row">
-		<span style="flex: 1 1 auto;"></span>
+	<div fxLayout="row">
+		<span class="spanning-flex"></span>
 		<ng-template [ngIf]="user.role == 'administrator'">
-			<button md-fab style="position:relative;margin:0 18px;" routerLink="/vn/new" routerLinkActive="active">
+			<button md-fab class="new-vn-button" routerLink="/vn/new" routerLinkActive="active">
 				<md-icon class="md-24">add</md-icon>
 			</button>
 		</ng-template>
@@ -27,18 +27,18 @@
 	<div>
 		<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
 			<ng-template ngFor let-vn [ngForOf]="vns">
-				<md-card fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item" style="margin: 10px 0;">
+				<md-card fxFlex="33" fxFlex.sm="100" fxFlex.md="50" fxFlex.lg="33" class="flex-item vn-card">
 					<md-card-title>{{vn?.title_original}}</md-card-title>
 					<md-card-content>
 						<div fxLayout="row">
-							<div fxFlex="30" style="background-color:#d3d1cb;">
-								<img [src]="vn.image" style="width:auto; max-width:100%; max-height:200px;">
+							<div fxFlex="30" class="vn-image-container">
+								<img [src]="vn.image" class="vn-image">
 							</div>
-							<div fxFlex="70" style="background-color:#e2ffd9; margin:5px;">
-								<md-input-container style="width:100%;">
+							<div fxFlex="70" class="vn-properties-area">
+								<md-input-container class="full-width">
 									<input mdInput placeholder="Title" disabled [(ngModel)]="vn.title_romaji" title="{{vn?.title_romaji}}">
 								</md-input-container>
-								<md-input-container style="width:100%;">
+								<md-input-container class="full-width">
 									<input mdInput placeholder="By" disabled [(ngModel)]="vn.developer_romaji" title="{{vn?.developer_original}}">
 								</md-input-container>
 								<md-input-container>
@@ -50,10 +50,10 @@
 
 					<md-card-actions align="end">
 						<ng-template [ngIf]="user.role == 'administrator'">
-							<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
+							<a md-raised-button color="accent" [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
 						</ng-template>
 						<ng-template [ngIf]="user.role != 'guest'">
-							<button md-button on-click="popAssessments(vn.id)">Assessments</button>
+							<button md-raised-button color="primary" on-click="popAssessments(vn.id)">Assessments</button>
 						</ng-template>
 					</md-card-actions>
 				</md-card>
