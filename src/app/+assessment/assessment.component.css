@@ -1,0 +1,35 @@
+.sub-toolbar {
+  height: 64px;
+  padding-top: 26px;
+  margin-left: 30px;
+}
+.filtering-selection {
+  margin: 0 15px;
+}
+td > p {
+  margin: 0;
+}
+.action-button {
+  line-height: 20px;
+  width: 100%;
+}
+.action-button:hover {
+  background-color: #9cebdf;
+  color: #000;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+tr {
+  border-bottom: 10px double #d829dc;
+}
+tr:last-child {
+  border-bottom: none;
+}
+td {
+  border-right: 2px dotted #f58b4b;
+}
+td:last-child {
+  border-right: none;
+}

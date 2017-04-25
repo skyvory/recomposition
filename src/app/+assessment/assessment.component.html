@@ -1,61 +1,70 @@
-<table>
+<div class="sub-toolbar" fxLayout="row">
+	<md-select placeholder="status filter" [(ngModel)]="filter.status" (ngModelChange)="pessimisticFiltering()" class="filtering-selection">
+		<md-option value="ongoing">Ongoing</md-option>
+		<md-option value="halted">Halted</md-option>
+		<md-option value="finished">Dropped</md-option>
+		<md-option value="dropped">Dropped</md-option>
+		<md-option value="all">All</md-option>
+	</md-select>
+	<md-select placeholder="node filter" [(ngModel)]="filter.node" (ngModelChange)="pessimisticFiltering()" class="filtering-selection">
+		<md-option value="vn">VN</md-option>
+		<md-option value="h">Nukige</md-option>
+		<md-option value="rpg">RPG</md-option>
+		<md-option value="hrpg">HRPG</md-option>
+		<md-option value="all">All</md-option>
+	</md-select>
+	<md-select placeholder="period filter" [(ngModel)]="filter.period" (ngModelChange)="pessimisticFiltering()" class="filtering-selection">
+		<md-option value="all">All time</md-option>
+		<md-option value="year">This year</md-option>
+		<md-option value="yesteryear">Last year</md-option>
+	</md-select>
+	<span style="flex: 1 1 auto;"></span>
+</div>
+
+<table class="assessments-table">
 	<thead>
 		<tr>
-			<th>ID</th>
-			<th>Title</th>
-			<th>Released</th>
-			<th>Predictive Eye</th>
-			<th>One Seal</th>
-			<th>Action</th>
+			<th style="width: 3vw;"></th>
+			<th style="width: 40vw;">Title</th>
+			<th style="width: 10vw;">Predictive Eye</th>
+			<th style="width: 20vw;">Status/Node/Created At</th>
+			<th style="width: 5vw;"></th>
 		</tr>
 	</thead>
 	<tbody>
-		<ng-template ngFor let-vn [ngForOf]="vns | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: query.page, totalItems: query.total}">
+		<ng-template ngFor let-assessment [ngForOf]="assessments | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: options.page, totalItems: options.total}">
 			<tr>
-				<td>{{vn.id}}</td>
-				<td>{{vn.title_original}}</td>
-				<td>{{vn.date_release}}</td>
 				<td>
-					<span *ngIf="vn.node =='vn'">
-						<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
-						<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
-						<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
-						<span>-</span>
-						<span>{{vn.node || "x"}}</span>
-						<span>{{vn.score_story || "x"}}</span>
-						<span>{{vn.score_naki || "x"}}</span>
-						<span>{{vn.score_nuki || "x"}}</span>
-						<span>{{vn.score_comedy || "x"}}</span>
-						<span>{{vn.score_graphic || "x"}}</span>
-						<span>{{vn.score_all || "x"}}</span>
-					</span>
-					<span *ngIf="vn.node != 'vn'">
-						<span *ngIf="vn.date_start && !vn.date_end && !vn.status">reading</span>
-						<span *ngIf="!vn.date_start && !vn.date_end && !vn.status">idle</span>
-						<span *ngIf="vn.date_start && vn.date_end && !vn.status">indistinguishable</span>
-						<span>-</span>
-						<span>{{vn.node || "x"}}</span>
-						<span>{{vn.score_nuki || "x"}}</span>
-						<span>{{vn.score_all || "x"}}</span>
-					</span>
+					<span *ngIf="assessment.date_start && assessment.date_end && assessment.node && assessment.score_story && assessment.score_naki && assessment.score_nuki && assessment.score_comedy && assessment.score_graphic && assessment.score_all && assessment.status">&#x2713;</span>
+					<span *ngIf="!assessment.date_start || !assessment.date_end || !assessment.node || !assessment.score_story || !assessment.score_naki || !assessment.score_nuki || !assessment.score_comedy || !assessment.score_graphic || !assessment.score_all || !assessment.status">&#x2718;</span>
+				</td>
+				<td><a [routerLink]="['/vn', assessment.vn_id, 'edit']">{{assessment.title_original}}</a></td>
+				<td>
+					<span>{{assessment.score_story || "x"}}</span>
+					<span>{{assessment.score_naki || "x"}}</span>
+					<span>{{assessment.score_nuki || "x"}}</span>
+					<span>{{assessment.score_comedy || "x"}}</span>
+					<span>{{assessment.score_graphic || "x"}}</span>
+					<span>{{assessment.score_all || "x"}}</span>
 				</td>
 				<td>
-					<span *ngIf="vn.date_start && vn.date_end && vn.node && vn.score_story && vn.score_naki && vn.score_nuki && vn.score_comedy && vn.score_graphic && vn.score_all && vn.status">&#x2713;</span>
-					<span *ngIf="!vn.date_start || !vn.date_end || !vn.node || !vn.score_story || !vn.score_naki || !vn.score_nuki || !vn.score_comedy || !vn.score_graphic || !vn.score_all || !vn.status">&#x2718;</span>
+					<p>Status: 
+						<span *ngIf="assessment.date_start && !assessment.date_end && !assessment.status">reading</span>
+						<span *ngIf="!assessment.date_start && !assessment.date_end && !assessment.status">idle</span>
+						<span *ngIf="assessment.date_start && assessment.date_end && !assessment.status">indistinguishable</span>
+						<span *ngIf="assessment.status">{{assessment.status}}</span>
+					</p>
+					<p>Node: {{assessment.node}}</p>
+					<p>Created: {{assessment.created_at}}</p>
 				</td>
 				<td>
-					<!-- <button md-button>Overview</button> -->
-					<a md-button [routerLink]="['/assessment', vn.id, 'fill']">Compose</a>
-					<a md-button [routerLink]="['/assessment', vn.id, 'character']">Character</a>
-					<a md-button [routerLink]="['/vn', vn.id, 'edit']">Edit</a>
+					<a md-raised-button [routerLink]="['/assessment', assessment.id, 'fill']" color="primary" class="action-button">Compose</a>
+					<a md-raised-button [routerLink]="['/assessment', assessment.id, 'character']" color="primary" class="action-button">Character</a>
 				</td>
 			</tr>
 		</ng-template>
+		
 	</tbody>
 </table>
-
-<button md-fab style="position:fixed; right:10px; bottom:10px;" routerLink="/vn/new" routerLinkActive="active">
-	<md-icon class="md-24">add</md-icon>
-</button>
 
 <pagination-controls (pageChange)="changePage($event)" id="pagina"></pagination-controls>
