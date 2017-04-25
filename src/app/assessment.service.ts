@@ -72,15 +72,27 @@ export class AssessmentService {
 	}
 
 	getAssessmentsV2(options?:any, filter?:any):Observable<any> {
+
 		let params:URLSearchParams = new URLSearchParams();
+
 		if(options && options.limit)
 			params.set('limit', options.limit.toString());
 		if(options && options.page)
 			params.set('page', options.page.toString());
+
 		if(filter.search)
-			params.set('filter', filter.search.toString());
+			params.set('search_filter', filter.search.toString());
 		if(filter.vn_id) {
 			params.set('vn_id', filter.vn_id.toString());
+		}
+		if(filter.period) {
+			params.set('period_filter', filter.period.toString());
+		}
+		if(filter.status) {
+			params.set('status_filter', filter.status.toString());
+		}
+		if(filter.node) {
+			params.set('node_filter', filter.node.toString());
 		}
 
 		return this.http.get(Constant.API_PATH + 'assessment', this.authenticationService.optionParam(params))
