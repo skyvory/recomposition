@@ -7,21 +7,23 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	constructor(private router: Router) { }
 
 	canActivate() {
-		if (tokenNotExpired('recomposition_token')) {
-			return true;
+		if(localStorage.getItem('recomposition_token')) {
+			if (tokenNotExpired('recomposition_token')) {
+				return true;
+			}
+			alert('TOKEN IS EXPIRED');
 		}
-
-		alert('TOKEN IS EXPIRED');
 		this.router.navigate(['/login']);
 		return false;
 	}
 
 	canActivateChild() {
-		if (tokenNotExpired('recomposition_token')) {
-			return true;
+		if(localStorage.getItem('recomposition_token')) {
+			if (tokenNotExpired('recomposition_token')) {
+				return true;
+			}
+			alert('TOKEN IS EXPIRED');
 		}
-
-		alert('TOKEN IS EXPIRED');
 		this.router.navigate(['/login']);
 		return false;
 	}
