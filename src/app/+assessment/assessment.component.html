@@ -34,18 +34,27 @@
 	<tbody>
 		<ng-template ngFor let-assessment [ngForOf]="assessments | paginate: {id: 'pagina', itemsPerPage: 10, currentPage: options.page, totalItems: options.total}">
 			<tr>
-				<td>
+				<td class="center-text">
 					<span *ngIf="assessment.date_start && assessment.date_end && assessment.node && assessment.score_story && assessment.score_naki && assessment.score_nuki && assessment.score_comedy && assessment.score_graphic && assessment.score_all && assessment.status">&#x2713;</span>
 					<span *ngIf="!assessment.date_start || !assessment.date_end || !assessment.node || !assessment.score_story || !assessment.score_naki || !assessment.score_nuki || !assessment.score_comedy || !assessment.score_graphic || !assessment.score_all || !assessment.status">&#x2718;</span>
 				</td>
 				<td><a [routerLink]="['/vn', assessment.vn_id, 'edit']">{{assessment.title_original}}</a></td>
-				<td>
+				<td class="center-text">
 					<span>{{assessment.score_story || "x"}}</span>
 					<span>{{assessment.score_naki || "x"}}</span>
 					<span>{{assessment.score_nuki || "x"}}</span>
 					<span>{{assessment.score_comedy || "x"}}</span>
 					<span>{{assessment.score_graphic || "x"}}</span>
 					<span>{{assessment.score_all || "x"}}</span>
+					<br />
+					<p [ngSwitch]="playtimeCalculation(assessment)" title="{{assessment.date_start}} - {{assessment.date_end}}">
+						<ng-template [ngSwitchCase]="0">
+							uncleared yet
+						</ng-template>
+						<ng-template ngSwitchDefault>
+							{{playtimeCalculation(assessment)}} days
+						</ng-template>
+					</p>
 				</td>
 				<td>
 					<p>Status: 

@@ -57,11 +57,23 @@ export class AssessmentComponent implements OnInit{
 	}
 
 	loadAssessments():void {
-		console.log(this.options);
 		this.assessmentService.getAssessmentsV2(this.options, this.filter).subscribe(response => {
 			this.assessments = response.data;
 			this.options.total = response.total;
 		});
+	}
+
+	playtimeCalculation(assessment:any):number {
+		if(!assessment.date_start || !assessment.date_end) {
+			return 0;
+		}
+		
+		let start = new Date(assessment.date_start);
+		let end = new Date(assessment.date_end);
+		let oneday = 24*60*60*1000;
+		let dayDiff = Math.round(Math.abs((start.getTime() - end.getTime()) / (oneday)));
+		return dayDiff;
+
 	}
 
 	countdownLoader:any;

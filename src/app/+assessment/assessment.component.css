@@ -33,3 +33,6 @@ td {
 td:last-child {
   border-right: none;
 }
+.center-text {
+  text-align: center;
+}
