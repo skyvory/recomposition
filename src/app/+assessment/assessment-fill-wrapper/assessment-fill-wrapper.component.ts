@@ -34,7 +34,12 @@ export class AssessmentFillWrapperComponent implements OnInit {
 		this.vnService.getVn(vn_id).subscribe(response => {
 			this.vn = response.data;
 			this.limitedVnOriginalTitle = this.vn.title_original.length > 12 ? this.vn.title_original.substring(0, 12).trim() + '...' : this.vn.title_original;
+			this.vn.title_original_for_search = this.sanitizeSearchString(this.vn.title_original);
 		});
+	}
+
+	sanitizeSearchString(search_query:string):string {
+		return search_query.replace(/[-!?]/g, '');
 	}
 
 }
