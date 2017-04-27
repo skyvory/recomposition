@@ -6,7 +6,7 @@
   text-align: center;
   vertical-align: top;
   min-width: 60%;
-  margin-left: -30px;
+  margin-left: -20px;
 }
 
 table {
@@ -55,4 +55,26 @@ table tr th:last-child {
 }
 .vndb-temp-checkbox {
   margin: 5px 5px 0 10px;
+}
+.date-card {
+  padding: 15px;
+}
+.date-card-title > h3, .date-card-title > md-chip-list {
+  display: inline-block;
+}
+.external-link-chip {
+  clear: both;
+}
+
+.external-link-chip > span {
+  float: right;
+  font-size: 2em;
+}
+.sidebar-container {
+  font-family: 'Segoe UI Light', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* CUSTOM FORCE HACK */
+.mat-chip {
+  margin-bottom: 5px !important;
 }

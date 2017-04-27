@@ -17,21 +17,20 @@
 </div>
 
 <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
-	<span style="flex: 1 1 auto;"></span>
-
-	<div fxFlex="90">
+	<div fxFlex="70">
 		<div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start stretch" fxLayoutGap="30px" class="fill-container">
-			<md-card fxFlex="40">
+			<md-card fxFlex="45" class="date-card">
 				<md-card-header>
-					<md-card-title>
+					<md-card-title class="date-card-title">
 						<h3>Date Start</h3>
-					</md-card-title>
-					<md-card-subtitle>
 						<md-chip-list>
 							<ng-template [ngIf]="assessment.date_start">
 								<md-chip selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
 							</ng-template>
 						</md-chip-list>
+					</md-card-title>
+					<md-card-subtitle>
+						Entering the world
 					</md-card-subtitle>
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
@@ -44,17 +43,18 @@
 				</md-card-content>
 			</md-card>
 
-			<md-card fxFlex="40">
+			<md-card fxFlex="45" class="date-card">
 				<md-card-header>
-					<md-card-title>
+					<md-card-title class="date-card-title">
 						<h3>Date End</h3>
-					</md-card-title>
-					<md-card-subtitle>
 						<md-chip-list>
 							<ng-template [ngIf]="assessment.date_end">
 								<md-chip selected="true" color="primary" style="line-height:9px;">&#x2713; Assigned</md-chip>
 							</ng-template>
 						</md-chip-list>
+					</md-card-title>
+					<md-card-subtitle>
+						Accomplishing the world
 					</md-card-subtitle>
 				</md-card-header>
 				<md-card-content style="padding: 20px 0;">
@@ -171,5 +171,47 @@
 			</tr>
 		</table>
 
-	<span style="flex: 1 1 auto;"></span>
+		<span style="flex: 1 1 auto;"></span>
+	</div>
+
+	<div fxFlex="20" class="sidebar-container">
+		<h3>Search Assistance</h3>
+		<md-chip-list class="mat-chip-list-stacked">
+			<ng-template [ngIf]="vn.vndb_vn_id">
+			<a href="https://vndb.org/v{{vn.vndb_vn_id}}" target="_blank">
+				<md-chip selected="true" color="" class="external-link-chip">
+					Open in VNDB
+					<span>&#9002;&#9002;</span>
+				</md-chip>
+			</a>
+			</ng-template>
+			<ng-template [ngIf]="vn.erogamescape_game_id">
+				<a href="https://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game={{vn.erogamescape_game_id}}" target="_blank">
+				<md-chip selected="true" color="" class="external-link-chip">
+					EGSに開く
+					<span>&#9002;&#9002;</span>
+				</md-chip>
+				</a>
+			</ng-template>
+			<a href="https://encrypted.google.com/search?q={{vn.title_original}} 攻略" target="_blank">
+				<md-chip selected="true" color="" class="external-link-chip">
+					攻略を探す
+					<span>&#9002;&#9002;</span>
+				</md-chip>
+			</a>
+			<a href="https://encrypted.google.com/search?q={{vn.title_original}} セーフデータ" target="_blank">
+				<md-chip selected="true" color="" class="external-link-chip">
+					セーフデータを探す
+					<span>&#9002;&#9002;</span>
+				</md-chip>
+			</a>
+			<a href="https://encrypted.google.com/search?q={{vn.title_original}} キャラ" target="_blank">
+				<md-chip selected="true" color="" class="external-link-chip">
+					キャラクターデータを探す
+					<span>&#9002;&#9002;</span>
+				</md-chip>
+			</a>
+		
+		</md-chip-list>
+	</div>	
 </div>
