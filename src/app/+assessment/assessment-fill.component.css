@@ -53,3 +53,6 @@ table tr th:last-child {
   padding: 0 0 0 20px;
   margin: 0 0 20px 0;
 }
+.vndb-temp-checkbox {
+  margin: 5px 5px 0 10px;
+}

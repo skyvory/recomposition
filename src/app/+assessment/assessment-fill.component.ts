@@ -29,8 +29,10 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 	}
 
 	differ: any;
-
 	assessment:any = [];
+	toggle:any = {
+		temporary_vndb: localStorage.getItem('vndb_toggle') == "1" ? true : false,
+	};
 
 	debugDump():any {
 		return JSON.stringify(this.has_change);
@@ -110,6 +112,10 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 				this.assessment.id = response.id;
 			}
 
+			if(this.toggle.temporary_vndb === false) {
+				this.toast.pop("VNDB update is skipped");
+				return;
+			}
 			if(localStorage.getItem('vndb_toggle') == "0" || !localStorage.getItem('vndb_toggle')) {
 				this.toast.pop("VNDB auto-update is off");
 				return;

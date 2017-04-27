@@ -1,6 +1,9 @@
 <!--Debug: {{debugDump()}}<br /><br />-->
 <div class="command-container" style="" fxLayout="row">
 	<button md-raised-button color="primary" on-click="saveAssessment()" style="line-height:30px;">Save</button>
+	<div class="vndb-temp-checkbox">
+		<md-checkbox [(ngModel)]="toggle.temporary_vndb" title="Toogle to enable VNDB vote and status update">VNDB Push</md-checkbox>
+	</div>
 	<span style="flex: 1 1 auto;"></span>
 	<button md-icon-button [mdMenuTriggerFor]="menu" style="position:relative;margin:0 18px;">
 		<md-icon>more_vert</md-icon>
