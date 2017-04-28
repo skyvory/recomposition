@@ -19,7 +19,7 @@ nav ul > li {
   border-bottom-color: aqua;
 }
 
-nav a {
+.main-ul li a {
   box-sizing: border-box;
   display: block;
   font-size: 14px;
@@ -32,6 +32,22 @@ nav a {
   position: relative;
   color: whitesmoke;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-ul li a {
+  box-sizing: border-box;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 45px;
+  text-decoration: none;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  padding: 0 16px;
+  position: relative;
+  color: whitesmoke;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: -5px;
 }
 
 nav a:hover, nav a:focus {
@@ -84,8 +100,18 @@ nav a:hover, nav a:focus {
   }
 }
 
-.sidebar-ul {
+.main-ul, .profile-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+.profile-text {
+  margin-right: 3vw;
+  float: right;
+}
+.profile-image {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: 8px;
 }
