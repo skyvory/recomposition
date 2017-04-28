@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './authentication.service';
-import { ToastService } from './toaster/toast.service';
+import { AuthenticationService } from '../authentication.service';
+import { ToastService } from '../toaster/toast.service';
 
 
 // import { Http, Headers } from '@angular/http';

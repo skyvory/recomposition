@@ -22,7 +22,7 @@ import { ActiveService } from './active.service';
 import { FileUploadService } from './file-upload.service';
 
 import { AuthGuard } from './guards/auth.guard';
-import { LoginComponent } from './login.component';
+import { LoginModule } from './login/login.module';
 // import { VnComponent } from './vn.component';
 // import { VnFillComponent } from './vn-fill.component';
 // import { VnAssessmentComponent } from './vn-assessment.component';
@@ -59,11 +59,11 @@ import { StaffOnlyGuard } from './guards/staff-only.guard';
 		FlexLayoutModule,
 		SidebarsharedModule,
 		ClipboardModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		LoginModule
 	],
 	declarations: [
 		AppComponent,
-		LoginComponent,
 		// VnComponent,
 		// VnFillComponent,
 		// VnAssessmentComponent,

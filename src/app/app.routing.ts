@@ -2,7 +2,6 @@ import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
-import { LoginComponent } from './login.component';
 import { SearchComponent } from './+search/search.component';
 
 const appRoutes: Routes = [
@@ -14,10 +13,6 @@ const appRoutes: Routes = [
 	{
 		path: 'home',
 		loadChildren: 'app/+home/home.module#HomeModule',
-	},
-	{
-		path: 'login',
-		component: LoginComponent,
 	},
 	{
 		path: 'assessment',
@@ -43,7 +38,7 @@ const appRoutes: Routes = [
 	},
 	{
 		path: '**',
-		redirectTo: '/vn',
+		redirectTo: '/home',
 	},
 ];
 
