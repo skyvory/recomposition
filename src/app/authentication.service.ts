@@ -114,9 +114,11 @@ export class AuthenticationService {
 		}
 	}
 
-	logout(): void {
+	logout(): boolean {
 		this.token = null;
 		localStorage.removeItem('recomposition_token');
+		localStorage.removeItem('recomposition_user');
+		return true;
 	}
 
 	activeUser():any {
