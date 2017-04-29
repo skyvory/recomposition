@@ -2,12 +2,15 @@
 	<h3>{{user.username}}</h3>
 	<ul class="profile-ul">
 		<li>
-			<a href="#">
+			<a [mdMenuTriggerFor]="profileMenu">
 				<img src="../../assets/images/giphy.gif" class="profile-image">
 				<span class="profile-text">Profile</span>
 			</a>
 		</li>
 	</ul>
+	<md-menu #profileMenu="mdMenu" [overlapTrigger]="false" xPosition="before">
+		<button md-menu-item on-click="logout()" class="logout-menu">Log Out</button>
+	</md-menu>
 	<h3>Main menu</h3>
 	<ul class="main-ul">
 		<li>
