@@ -24,6 +24,34 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		//this.authenticationService.logout();
 		this.preAuth();
+		this.loopCast();
+	}
+
+	bg1style:any = '';
+	bg2style:any = '';
+	bg3style:any = '';
+	bg1position:any = 0;
+	bg2position:any = 0;
+	bg3position:any = 0;
+	loopCast():void {
+		setInterval(() => {
+			this.bg1position +=2;
+			this.bg1style = this.bg1position+"px bottom";
+			this.bg2position +=1;
+			this.bg2style = this.bg2position+"px bottom";
+			this.bg3position +=0.7;
+			this.bg3style = this.bg3position+"px bottom";
+
+			if(this.bg1position > 795) {
+				this.bg1position = 0;
+			}
+			if(this.bg1position > 778) {
+				this.bg1position = 0;
+			}
+			if(this.bg1position > 962) {
+				this.bg1position = 0;
+			}
+		},70);
 	}
 
 	login(event:any, username:any, password:any) {
