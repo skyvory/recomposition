@@ -38,3 +38,29 @@
   0% { background-position: 0 bottom; }
   100% { background-position: 962px bottom; }
 }
+
+.login-area {
+  display: table-cell;
+  vertical-align: middle;
+}
+.login-form-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 30vw;
+  background-color: rgba(30, 30, 230, 0.3);
+  border-radius: 30px;
+  padding: 10px;
+}
+.full-width {
+  width: 100%;
+}
+.eye-field {
+  display: table;
+  height:100%;
+  width:100%;
+  background-color:rgba(151, 190, 252, 0.1);
+}
+.submit-button {
+  margin-left: auto;
+  margin-right: auto;
+}

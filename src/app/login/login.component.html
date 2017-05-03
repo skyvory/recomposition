@@ -1,14 +1,23 @@
-<div style="height:100%;width:100%;background-color:rgba(0,0,0,0.3);">
+<div style="" class="eye-field">
 
-    <form role="form" (submit)="login($event, username.value, password.value)">
-        <input type="text" #username placeholder="Username">
-        <input type="password" #password placeholder="Password">
-        <button type="submit">Submit</button>
-    </form>
+    <div class="login-area">
+        <div class="login-form-container">
+            <form role="form" (submit)="login($event, username.value, password.value)" class="login-form">
+                <md-input-container class="full-width">
+                    <input mdInput type="text" #username placeholder="Username">
+                </md-input-container>
+                <md-input-container class="full-width">
+                    <input mdInput type="password" #password placeholder="Password">
+                </md-input-container>
+                <br />
+                <button md-button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+        </div>
 
-<div id="bg1" class="bgs" [style.background-position]="bg1style" [@shardState]="stateOfShard1" style="background-position: 444px bottom;"></div>
-<div id="bg2" class="bgs" [style.background-position]="bg2style" [@shardState]="stateOfShard2" style="background-position: 705px bottom;"></div>
-<div id="bg3" class="bgs" [style.background-position]="bg3style" [@shardState]="stateOfShard3" style="background-position: 332.5px bottom;"></div>
+    <div id="bg1" class="bgs" [style.background-position]="bg1style" [@shardState]="stateOfShard1" style="background-position: 444px bottom;"></div>
+    <div id="bg2" class="bgs" [style.background-position]="bg2style" [@shardState]="stateOfShard2" style="background-position: 705px bottom;"></div>
+    <div id="bg3" class="bgs" [style.background-position]="bg3style" [@shardState]="stateOfShard3" style="background-position: 332.5px bottom;"></div>
 
 </div>
 <!--<a [routerLink]="['/signup']">Sign Up</a>-->
