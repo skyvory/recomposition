@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { ToastService } from '../toaster/toast.service';
-
 import { trigger, state, animate, transition, style } from '@angular/animations';
 
 // import { Http, Headers } from '@angular/http';
@@ -51,9 +50,19 @@ export class LoginComponent implements OnInit {
 		this.loopCast();
 
 		setTimeout(() => {
-			this.stateOfShard = 'active';
+			this.stateOfShard1 = 'active';
 		}, 3000);
+		setTimeout(() => {
+			this.stateOfShard2 = 'active';
+		}, 5000);
+		setTimeout(() => {
+			this.stateOfShard3 = 'active';
+		}, 8000);
 	}
+	
+	stateOfShard1:string = "inactive";
+	stateOfShard2:string = "inactive";
+	stateOfShard3:string = "inactive";
 
 	bg1style:any = '';
 	bg2style:any = '';
@@ -84,8 +93,6 @@ export class LoginComponent implements OnInit {
 			}
 		},70);
 	}
-	
-	stateOfShard:any = "inactive";
 
 	login(event:any, username:any, password:any) {
 		event.preventDefault();
