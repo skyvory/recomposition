@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { ToastService } from '../toaster/toast.service';
 
+import { trigger, state, animate, transition, style } from '@angular/animations';
 
 // import { Http, Headers } from '@angular/http';
 // import { contentHeaders } from './common/headers';
@@ -11,7 +12,30 @@ import { ToastService } from '../toaster/toast.service';
 	// moduleId: module.id,
 	selector: 'login-selector',
 	templateUrl: './login.component.html',
-	providers: [AuthenticationService]
+	styleUrls: ['./login.component.css'],
+	providers: [AuthenticationService],
+	animations: [
+		trigger('shardState', [
+			state('inactive', style({
+				opacity: '0',
+			})),
+			state('active', style({
+				opacity: '1',
+			})),
+			transition('inactive => active', animate('5000ms ease-in')),
+			transition('active => inactive', animate('300ms ease-out'))
+		]),
+		trigger('activationState', [
+			state('enter', style({
+				transform: 'scale(1)',
+			})),
+			state('leave', style({
+				transform: 'scale(0)',
+			})),
+			transition('leave => enter', animate('2000ms ease-in')),
+			transition('enter => leave', animate('2000ms ease-out'))
+		])
+	]
 })
 
 export class LoginComponent implements OnInit {
@@ -25,6 +49,10 @@ export class LoginComponent implements OnInit {
 		//this.authenticationService.logout();
 		this.preAuth();
 		this.loopCast();
+
+		setTimeout(() => {
+			this.stateOfShard = 'active';
+		}, 3000);
 	}
 
 	bg1style:any = '';
@@ -53,6 +81,8 @@ export class LoginComponent implements OnInit {
 			}
 		},70);
 	}
+	
+	stateOfShard:any = "inactive";
 
 	login(event:any, username:any, password:any) {
 		event.preventDefault();
