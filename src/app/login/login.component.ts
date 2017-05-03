@@ -35,11 +35,11 @@ export class LoginComponent implements OnInit {
 	bg3position:any = 0;
 	loopCast():void {
 		setInterval(() => {
-			this.bg1position +=2;
+			this.bg1position += 2;
 			this.bg1style = this.bg1position+"px bottom";
-			this.bg2position +=1;
+			this.bg2position += 1;
 			this.bg2style = this.bg2position+"px bottom";
-			this.bg3position +=0.7;
+			this.bg3position += 0.7;
 			this.bg3style = this.bg3position+"px bottom";
 
 			if(this.bg1position > 795) {
