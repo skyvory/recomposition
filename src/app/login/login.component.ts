@@ -63,6 +63,8 @@ export class LoginComponent implements OnInit {
 	bg3position:number = 0;
 
 	loopCast():void {
+		if(true === true)
+			return;
 		setInterval(() => {
 			this.bg1position += 2;
 			this.bg1style = this.bg1position+"px bottom";
