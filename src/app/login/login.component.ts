@@ -58,9 +58,10 @@ export class LoginComponent implements OnInit {
 	bg1style:any = '';
 	bg2style:any = '';
 	bg3style:any = '';
-	bg1position:any = 0;
-	bg2position:any = 0;
-	bg3position:any = 0;
+	bg1position:number = 0;
+	bg2position:number = 0;
+	bg3position:number = 0;
+
 	loopCast():void {
 		setInterval(() => {
 			this.bg1position += 2;
