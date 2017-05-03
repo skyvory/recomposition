@@ -45,11 +45,11 @@ export class LoginComponent implements OnInit {
 			if(this.bg1position > 795) {
 				this.bg1position = 0;
 			}
-			if(this.bg1position > 778) {
-				this.bg1position = 0;
+			if(this.bg2position > 778) {
+				this.bg2position = 0;
 			}
-			if(this.bg1position > 962) {
-				this.bg1position = 0;
+			if(this.bg3position > 962) {
+				this.bg3position = 0;
 			}
 		},70);
 	}
