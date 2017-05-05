@@ -1,7 +1,8 @@
 <div style="" class="eye-field">
 
     <div class="login-area">
-        <div class="login-form-container">
+        <button md-button on-click="toggleFormState()" class="login-activation-button" [style.visibility]="loginAccessVisibility">Login</button>
+        <div class="login-form-container" [@activationState]="stateOfForm">
             <form role="form" (submit)="login($event, username.value, password.value)" class="login-form">
                 <md-input-container class="full-width">
                     <input mdInput type="text" #username placeholder="Username">
@@ -12,7 +13,7 @@
                 <br />
                 <button md-button type="submit" class="submit-button">Submit</button>
             </form>
-        </div>
+    </div>
         </div>
 
     <div id="bg1" class="bgs bgs-one" [style.background-position]="bg1style" [@shardState]="stateOfShard1" style="background-position: 444px bottom;"></div>

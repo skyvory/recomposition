@@ -48,21 +48,41 @@ export class LoginComponent implements OnInit {
 		//this.authenticationService.logout();
 		this.preAuth();
 		this.loopCast();
-
-		setTimeout(() => {
-			this.stateOfShard1 = 'active';
-		}, 3000);
-		setTimeout(() => {
-			this.stateOfShard2 = 'active';
-		}, 5000);
-		setTimeout(() => {
-			this.stateOfShard3 = 'active';
-		}, 8000);
+		// this.shardSequenceActivation();
 	}
+
+	loginAccessVisibility:string = "visible";
 	
 	stateOfShard1:string = "inactive";
 	stateOfShard2:string = "inactive";
 	stateOfShard3:string = "inactive";
+
+	shardSequenceActivation():void {
+		if(this.stateOfShard1 == 'active' || this.stateOfShard2 == 'active' || this.stateOfShard3 == 'active') {
+			this.stateOfShard1 = 'inactive';
+			this.stateOfShard2 = 'inactive';
+			this.stateOfShard3 = 'inactive';
+		}
+		else {
+			setTimeout(() => {
+				this.stateOfShard1 = 'active';
+			}, 3000);
+			setTimeout(() => {
+				this.stateOfShard2 = 'active';
+			}, 5000);
+			setTimeout(() => {
+				this.stateOfShard3 = 'active';
+			}, 8000);
+		}
+	}
+
+	stateOfForm:string = 'leave';
+
+	toggleFormState():void {
+		this.stateOfForm = this.stateOfForm == 'enter' ? 'leave' : 'enter';
+		this.shardSequenceActivation();
+		this.loginAccessVisibility = 'hidden';
+	}
 
 	bg1style:any = '';
 	bg2style:any = '';
