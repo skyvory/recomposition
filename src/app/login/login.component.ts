@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { ToastService } from '../toaster/toast.service';
 import { trigger, state, animate, transition, style } from '@angular/animations';
+import * as THREE from 'three';
+import { Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 // import { Http, Headers } from '@angular/http';
 // import { contentHeaders } from './common/headers';
@@ -41,7 +44,8 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private router: Router,
 		private authenticationService: AuthenticationService,
-		private toast: ToastService
+		private toast: ToastService,
+		@Inject(DOCUMENT) private document:any
 	) {}
 
 	ngOnInit() {
@@ -49,6 +53,9 @@ export class LoginComponent implements OnInit {
 		this.preAuth();
 		this.loopCast();
 		// this.shardSequenceActivation();
+		this.init();
+		this.anima();
+		this.cre();
 	}
 
 	loginAccessVisibility:string = "visible";
@@ -161,4 +168,73 @@ export class LoginComponent implements OnInit {
 	// }
 	
 	title = "Login pose";
+
+
+
+	camera:any;
+	scene:any;
+	renderer:any;
+	geometry:any;
+	material:any;
+	mesh:any;
+
+	init():void {
+		this.camera = new THREE.PerspectiveCamera(75, 800/600, 1, 10000);
+		this.camera.position.z = 1000;
+		this.scene = new THREE.Scene();
+		this.geometry = new THREE.BoxGeometry(200, 200, 200);
+		this.material = new THREE.MeshBasicMaterial({
+			color: 0xff0000,
+			wireframe: true
+		});
+		this.mesh = new THREE.Mesh(this.geometry, this.material);
+		this.scene.add(this.mesh);
+		this.renderer = new THREE.WebGLRenderer();
+		this.renderer.setSize(800,600);
+		this.document.body.appendChild(this.renderer.domElement);
+
+	}
+
+anima = () => {
+	window.requestAnimationFrame(this.anima);
+		// requestAnimationFrame(animate);
+		this.mesh.rotation.x += 0.01;
+		this.mesh.rotation.y += 0.02;
+		this.renderer.render(this.scene, this.camera);
+}
+
+	// anima():void {
+	// 	window.requestAnimationFrame(this.anima);
+	// 	// requestAnimationFrame(animate);
+	// 	this.mesh.rotation.x += 0.01;
+	// 	this.mesh.rotation.y += 0.02;
+	// 	this.renderer.render(this.scene, this.camera);
+	// }
+
+
+		particleCount:number = 1800;
+	particles:any = new THREE.Geometry();
+	pMaterial:any = new THREE.PointsMaterial({
+		color: 0xFFFFFF,
+		size: 20
+	});
+
+	cre():void {
+		for(let p = 0; p < this.particleCount; p++) {
+			let pX = Math.random() * 500 - 250;
+			let pY = Math.random() * 500 - 250;
+			let pZ = Math.random() * 500 - 250;
+			let particle = new THREE.Vertex(
+				new THREE.Vector3(pX, pY, pZ)
+			);
+
+			this.particles.vertices.push(particle);
+		}
+
+		let particleSystem = new THREE.ParticleSystem(this.particles, this.pMaterial);
+
+		this.scene.addChild(particleSystem);
+	}
+
+
 }
