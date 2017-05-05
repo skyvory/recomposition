@@ -13,12 +13,15 @@
                 <br />
                 <button md-button type="submit" class="submit-button">Submit</button>
             </form>
-    </div>
         </div>
+    </div>
 
     <div id="bg1" class="bgs bgs-one" [style.background-position]="bg1style" [@shardState]="stateOfShard1" style="background-position: 444px bottom;"></div>
     <div id="bg2" class="bgs bgs-two" [style.background-position]="bg2style" [@shardState]="stateOfShard2" style="background-position: 705px bottom;"></div>
     <div id="bg3" class="bgs bgs-three" [style.background-position]="bg3style" [@shardState]="stateOfShard3" style="background-position: 332.5px bottom;"></div>
+
+    <span class="particle" [style.left]="par" style="top: 80%;left: 50%;width:30px;height:30px;animation-delay:200ms;"></span>
+    <span class="particle" [style.left]="" style="top: 80%;left: 20%;width:30px;height:30px;animation-delay:200ms;"></span>
 
 </div>
 <!--<a [routerLink]="['/signup']">Sign Up</a>-->

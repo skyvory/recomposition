@@ -57,6 +57,8 @@ export class LoginComponent implements OnInit {
 	stateOfShard2:string = "inactive";
 	stateOfShard3:string = "inactive";
 
+	par:any = '50%';
+
 	shardSequenceActivation():void {
 		if(this.stateOfShard1 == 'active' || this.stateOfShard2 == 'active' || this.stateOfShard3 == 'active') {
 			this.stateOfShard1 = 'inactive';
