@@ -23,7 +23,7 @@
 				"styles.css"
 			],
 			"scripts": [
-				"./node_modules/three/build/three.min.js"
+
 			],
 			"environmentSource": "environments/environment.ts",
 			"environments": {

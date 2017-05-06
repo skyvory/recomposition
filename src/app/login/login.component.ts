@@ -45,8 +45,8 @@ export class LoginComponent implements OnInit {
 		private router: Router,
 		private authenticationService: AuthenticationService,
 		private toast: ToastService,
-		@Inject(DOCUMENT) private document:any
-	) {}
+		@Inject(DOCUMENT) private document: any
+	) { }
 
 	ngOnInit() {
 		//this.authenticationService.logout();
@@ -54,20 +54,19 @@ export class LoginComponent implements OnInit {
 		this.loopCast();
 		// this.shardSequenceActivation();
 		this.init();
-		this.anima();
-		this.cre();
+		// this.anima();
 	}
 
-	loginAccessVisibility:string = "visible";
-	
-	stateOfShard1:string = "inactive";
-	stateOfShard2:string = "inactive";
-	stateOfShard3:string = "inactive";
+	loginAccessVisibility: string = "visible";
 
-	par:any = '50%';
+	stateOfShard1: string = "inactive";
+	stateOfShard2: string = "inactive";
+	stateOfShard3: string = "inactive";
 
-	shardSequenceActivation():void {
-		if(this.stateOfShard1 == 'active' || this.stateOfShard2 == 'active' || this.stateOfShard3 == 'active') {
+	par: any = '50%';
+
+	shardSequenceActivation(): void {
+		if (this.stateOfShard1 == 'active' || this.stateOfShard2 == 'active' || this.stateOfShard3 == 'active') {
 			this.stateOfShard1 = 'inactive';
 			this.stateOfShard2 = 'inactive';
 			this.stateOfShard3 = 'inactive';
@@ -85,49 +84,49 @@ export class LoginComponent implements OnInit {
 		}
 	}
 
-	stateOfForm:string = 'leave';
+	stateOfForm: string = 'leave';
 
-	toggleFormState():void {
+	toggleFormState(): void {
 		this.stateOfForm = this.stateOfForm == 'enter' ? 'leave' : 'enter';
 		this.shardSequenceActivation();
 		this.loginAccessVisibility = 'hidden';
 	}
 
-	bg1style:any = '';
-	bg2style:any = '';
-	bg3style:any = '';
-	bg1position:number = 0;
-	bg2position:number = 0;
-	bg3position:number = 0;
+	bg1style: any = '';
+	bg2style: any = '';
+	bg3style: any = '';
+	bg1position: number = 0;
+	bg2position: number = 0;
+	bg3position: number = 0;
 
-	loopCast():void {
-		if(true === true)
+	loopCast(): void {
+		if (true === true)
 			return;
 		setInterval(() => {
 			this.bg1position += 2;
-			this.bg1style = this.bg1position+"px bottom";
+			this.bg1style = this.bg1position + "px bottom";
 			this.bg2position += 1;
-			this.bg2style = this.bg2position+"px bottom";
+			this.bg2style = this.bg2position + "px bottom";
 			this.bg3position += 0.7;
-			this.bg3style = this.bg3position+"px bottom";
+			this.bg3style = this.bg3position + "px bottom";
 
-			if(this.bg1position > 795) {
+			if (this.bg1position > 795) {
 				this.bg1position = 0;
 			}
-			if(this.bg2position > 778) {
+			if (this.bg2position > 778) {
 				this.bg2position = 0;
 			}
-			if(this.bg3position > 962) {
+			if (this.bg3position > 962) {
 				this.bg3position = 0;
 			}
-		},70);
+		}, 70);
 	}
 
-	login(event:any, username:any, password:any) {
+	login(event: any, username: any, password: any) {
 		event.preventDefault();
 		this.authenticationService.login(username, password)
 			.subscribe(result => {
-				if(result === true) {
+				if (result === true) {
 					this.router.navigate(['/home']);
 				}
 				else {
@@ -136,72 +135,138 @@ export class LoginComponent implements OnInit {
 			});
 	}
 
-	preAuth():void {
-		if(this.authenticationService.isTokenReady()) {
+	preAuth(): void {
+		if (this.authenticationService.isTokenReady()) {
 			this.toast.pop("Logging you in automatically...");
 			this.authenticationService.isJwtTokenValid().subscribe(response => {
-				if(response === true) {
+				if (response === true) {
 					this.router.navigate(['/home']);
 				}
 			},
-			error => {
-				console.log("Token error", error);
-			});
+				error => {
+					console.log("Token error", error);
+				});
 		}
 	}
-	
-	// login(event:any, username:any, password:any) {
-	// 	event.preventDefault();
-	// 	let body = JSON.stringify({ username, password });
-	// 	this.http.post('http://localhost/record/public/api/authenticate', body, { headers: contentHeaders })
-	// 		.subscribe(response => {
-	// 			localStorage.setItem('id_token', response.json().token);
-	// 			this.router.navigate(['/home']);
-	// 		}, error => {
-	// 			console.log("ERROR", error.text());
-	// 		});
-	// }
 
-	// signup(event:any) {
-	// 	// event.preventDefault();
-	// 	// this.router.navigate(['/signup']);
-	// }
-	
-	title = "Login pose";
+	camera: any;
+	scene: any;
+	renderer: any;
+	geometry: any;
+	material: any;
+	mesh: any;
 
+	view_angle: any = 60;
+	aspect: any = 800 / 600;
+	near: any = 0.1;
+	far: any = 10000;
 
+	particleCount: number = 180;
+	particles: any = new THREE.Geometry();
+	loader:any = new THREE.TextureLoader();
+	pMaterial: any = new THREE.PointsMaterial({
+		color: 0xFFFFFF,
+		size: 20,
+		map: this.loader.load(
+			"assets/images/particle.png"
+		),
+		blending: THREE.AdditiveBlending,
+		transparent: true
+	});
+	// pMaterial: any = new THREE.ParticleBasicMaterial({
+	// 	color: 0xFFFFFF,
+	// 	size: 20,
+	// 	map: THREE.ImageUtils.loadTexture(
+	// 		"assets/images/particle.png"
+	// 	),
+	// 	blending: THREE.AdditiveBlending,
+	// 	transparent: true
+	// });
 
-	camera:any;
-	scene:any;
-	renderer:any;
-	geometry:any;
-	material:any;
-	mesh:any;
+	// shit:any = new THREE.TextureLoader(
+	// 	"../assets/images/particle.png"
+	// );
+	// crap:any = new THREE.ImageUtils.loadTexture("../assets/images/particles.png");
 
-	init():void {
-		this.camera = new THREE.PerspectiveCamera(75, 800/600, 1, 10000);
-		this.camera.position.z = 1000;
-		this.scene = new THREE.Scene();
-		this.geometry = new THREE.BoxGeometry(200, 200, 200);
-		this.material = new THREE.MeshBasicMaterial({
-			color: 0xff0000,
-			wireframe: true
-		});
-		this.mesh = new THREE.Mesh(this.geometry, this.material);
-		this.scene.add(this.mesh);
+	particleSystem: any;
+
+	init(): void {
+		// console.log("OH", this.shit, 'is', this.crap);
 		this.renderer = new THREE.WebGLRenderer();
-		this.renderer.setSize(800,600);
+		this.camera = new THREE.PerspectiveCamera(this.view_angle, this.aspect, this.near, this.far);
+		this.scene = new THREE.Scene();
+		this.camera.position.z = 300;
+		this.renderer.setClearColor(new THREE.Color(0.1));
+		this.renderer.setSize(800, 600);
+
 		this.document.body.appendChild(this.renderer.domElement);
 
+
+		for (let p = 0; p < this.particleCount; p++) {
+			let pX = Math.random() * 500 - 250;
+			let pY = Math.random() * 500 - 250;
+			let pZ = Math.random() * 500 - 250;
+			let particle = new THREE.Vector3(pX, pY, pZ);
+			// let particle = new THREE.Vertex(
+			// 	new THREE.Vector3(pX, pY, pZ)
+			// );
+
+			particle.velocity = new THREE.Vector3(
+				0,
+				-Math.random(),
+				0);
+
+			this.particles.vertices.push(particle);
+		}
+		this.particleSystem = new THREE.Points(this.particles, this.pMaterial);
+		this.particleSystem.sortParticles = true;
+		// console.log(this.scene);
+
+		// this.scene.addChild(this.particleSystem);
+		this.scene.add(this.particleSystem);
+
+		// let geometry = new THREE.BoxGeometry( 200, 200, 200 );
+	// let material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+// this.mesh = new THREE.Mesh( geometry, material );
+	// this.scene.add( this.mesh );
+
+		this.anima();
 	}
 
-anima = () => {
-	window.requestAnimationFrame(this.anima);
-		// requestAnimationFrame(animate);
-		this.mesh.rotation.x += 0.01;
-		this.mesh.rotation.y += 0.02;
+
+	anima = () => {
+	// 	this.mesh.rotation.x += 0.01;
+	// this.mesh.rotation.y += 0.02;
+		
+		this.particleSystem.rotation.y += 0.01;
+
+		let pCount = this.particleCount;
+		let particle:any;
+			// particle = this.particles.vertices;
+			// console.log(particle);
+// console.log(this.particles.vertices[0]);
+		while (pCount--) {
+			// particle = this.particles.vertices[pCount];
+
+			// if (particle.y < -200) {
+			// 	particle.y = 200;
+			// 	particle.velocity.y = 0;
+			// }
+
+			// particle.velocity.y -= Math.random() * .1;
+
+			// particle.addSelf(particle.velocity);
+			if(this.particles.vertices[pCount].y < -200) {
+				this.particles.vertices[pCount].y = 200;
+				this.particles.vertices[pCount].velocity.y = 0;
+			}
+			this.particles.vertices[pCount].velocity.y -= Math.random()*.1;
+		}
+		this.particleSystem.geometry.__dirtyVertices = true;
 		this.renderer.render(this.scene, this.camera);
-}
+
+		window.requestAnimationFrame(this.anima);
+	}
 
 	// anima():void {
 	// 	window.requestAnimationFrame(this.anima);
@@ -212,29 +277,20 @@ anima = () => {
 	// }
 
 
-		particleCount:number = 1800;
-	particles:any = new THREE.Geometry();
-	pMaterial:any = new THREE.PointsMaterial({
-		color: 0xFFFFFF,
-		size: 20
-	});
-
-	cre():void {
-		for(let p = 0; p < this.particleCount; p++) {
-			let pX = Math.random() * 500 - 250;
-			let pY = Math.random() * 500 - 250;
-			let pZ = Math.random() * 500 - 250;
-			let particle = new THREE.Vertex(
-				new THREE.Vector3(pX, pY, pZ)
-			);
-
-			this.particles.vertices.push(particle);
-		}
-
-		let particleSystem = new THREE.ParticleSystem(this.particles, this.pMaterial);
-
-		this.scene.addChild(particleSystem);
+	animat(): void {
+		// window.requestAnimationFrame = () => {
+		// fucking request animation frame or rather fuck angular
+		// }
 	}
+
+
+
+
+
+	cre(): void {
+
+	}
+
 
 
 }
