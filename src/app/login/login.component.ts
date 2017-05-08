@@ -159,6 +159,7 @@ export class LoginComponent implements OnInit {
 	view_angle: any = 60;
 	aspect: any = 800 / 600;
 	near: any = 0.1;
+	// near: any = 90.1;
 	far: any = 10000;
 
 	particleCount: number = 180;
@@ -195,7 +196,8 @@ export class LoginComponent implements OnInit {
 		this.renderer = new THREE.WebGLRenderer();
 		this.camera = new THREE.PerspectiveCamera(this.view_angle, this.aspect, this.near, this.far);
 		this.scene = new THREE.Scene();
-		this.camera.position.z = 300;
+		this.camera.position.z = 40;
+		// this.camera.position.z = 140;
 		this.renderer.setClearColor(new THREE.Color(0.1));
 		this.renderer.setSize(800, 600);
 
@@ -220,7 +222,7 @@ export class LoginComponent implements OnInit {
 		}
 		this.particleSystem = new THREE.Points(this.particles, this.pMaterial);
 		this.particleSystem.sortParticles = true;
-		// console.log(this.scene);
+		console.log(this.particleSystem);
 
 		// this.scene.addChild(this.particleSystem);
 		this.scene.add(this.particleSystem);
@@ -234,19 +236,23 @@ export class LoginComponent implements OnInit {
 	}
 
 
+aaa:boolean = true;
 	anima = () => {
-	// 	this.mesh.rotation.x += 0.01;
+		// this.mesh.rotation.x += 0.01;
 	// this.mesh.rotation.y += 0.02;
 		
-		this.particleSystem.rotation.y += 0.01;
+		this.particleSystem.rotation.x += 0.01;
+		// this.particleSystem.rotation.y += 0.01;
+		// this.particleSystem.rotateX(0.002);
+		// this.particleSystem.rotateY(3);
 
-		let pCount = this.particleCount;
-		let particle:any;
+		var pCount = this.particleCount;
+		// let particle:any;
 			// particle = this.particles.vertices;
 			// console.log(particle);
 // console.log(this.particles.vertices[0]);
 		while (pCount--) {
-			// particle = this.particles.vertices[pCount];
+			// var particle = this.particles.vertices[pCount];
 
 			// if (particle.y < -200) {
 			// 	particle.y = 200;
@@ -255,12 +261,22 @@ export class LoginComponent implements OnInit {
 
 			// particle.velocity.y -= Math.random() * .1;
 
+			// particle.add(particle.velocity);
+			
+			// if(this.aaa) {
+			// 	console.log(particle);
+			// 	this.aaa = false;
+			// }
+
 			// particle.addSelf(particle.velocity);
-			if(this.particles.vertices[pCount].y < -200) {
+
+			if(this.particles.vertices[pCount].x > 600) {
 				this.particles.vertices[pCount].y = 200;
 				this.particles.vertices[pCount].velocity.y = 0;
 			}
 			this.particles.vertices[pCount].velocity.y -= Math.random()*.1;
+
+			this.particles.vertices[pCount].add(this.particles.vertices[pCount].velocity);
 		}
 		this.particleSystem.geometry.__dirtyVertices = true;
 		this.renderer.render(this.scene, this.camera);
