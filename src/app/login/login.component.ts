@@ -246,10 +246,11 @@ export class LoginComponent implements OnInit {
 	}
 
 	onWindowResize(event) {
-		console.log("OK");
-		this.renderer.setSize(window.innerWidth, window.innerHeight);
-		let canv = document.getElementById('three');
-		canv.style.width = window.innerWidth + 'px';
+		if(this.renderer) {
+			this.renderer.setSize(window.innerWidth, window.innerHeight);
+			let canv = document.getElementById('three');
+			canv.style.width = window.innerWidth + 'px';
+		}
 	}
 
 	animate = () => {
