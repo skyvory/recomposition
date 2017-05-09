@@ -178,6 +178,8 @@ export class LoginComponent implements OnInit {
 	rotay:any = 3;
 	rotaz:any = 0;
 
+	particleCount:any = 10000;
+
 	init(): void {
 		// let container = document.createElement('div');
 		let container = document.getElementById('eye-field');
@@ -193,7 +195,7 @@ export class LoginComponent implements OnInit {
 		let sprite1 = textureLoader.load('assets/images/snowflake.png')
 		let sprite2 = textureLoader.load('assets/images/snowflakes_PNG7585.png')
 
-		for(let i = 0; i < 10000; i++) {
+		for(let i = 0; i < this.particleCount; i++) {
 			var vertex = new THREE.Vector3();
 			vertex.x = Math.random() * 2000 - 1000;
 			vertex.y = Math.random() * 2000 - 1000;
