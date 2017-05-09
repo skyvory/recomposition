@@ -231,11 +231,19 @@ export class LoginComponent implements OnInit {
 	container.appendChild(this.renderer.domElement);
 
 	// document.addEventListener('mousemove', this.onDocumentMouseMove, false);
+	// document.addEventListener('resize', this.onWindowResize, false);
 }
 
 onDocumentMouseMove(event) {
 	this.mouseX = event.clientX - this.windowHalfX;
 	this.mouseY = event.clientY - this.windowHalfY;
+}
+
+onWindowResize(event) {
+	console.log("OK");
+	this.renderer.setSize(window.innerWidth, window.innerHeight);
+	let canv = document.getElementById('three');
+	canv.style.width = window.innerWidth + 'px';
 }
 
 animate = () => {
