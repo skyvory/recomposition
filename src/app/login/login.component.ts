@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
 		this.loopCast();
 		// this.shardSequenceActivation();
 		this.init();
-		// this.anima();
+		this.animate();
 	}
 
 	loginAccessVisibility: string = "visible";
@@ -149,163 +149,128 @@ export class LoginComponent implements OnInit {
 		}
 	}
 
+
+
+
 	camera: any;
 	scene: any;
 	renderer: any;
+	particles: any;
 	geometry: any;
-	material: any;
-	mesh: any;
+	materials: any = [];
+	parameters:any;
+	i:any;
+	h:any;
+	color:any;
+	sprite:any;
+	size:any;
+	mouseX:any = 0;
+	mouseY:any = 0;
 
-	view_angle: any = 60;
-	aspect: any = 800 / 600;
-	near: any = 0.1;
-	// near: any = 90.1;
-	far: any = 10000;
+	windowHalfX:any = window.innerWidth / 2;
+	windowHalfY:any = window.innerHeight / 2;
 
-	particleCount: number = 180;
-	particles: any = new THREE.Geometry();
-	loader:any = new THREE.TextureLoader();
-	pMaterial: any = new THREE.PointsMaterial({
-		color: 0xFFFFFF,
-		size: 20,
-		map: this.loader.load(
-			"assets/images/particle.png"
-		),
-		blending: THREE.AdditiveBlending,
-		transparent: true
-	});
-	// pMaterial: any = new THREE.ParticleBasicMaterial({
-	// 	color: 0xFFFFFF,
-	// 	size: 20,
-	// 	map: THREE.ImageUtils.loadTexture(
-	// 		"assets/images/particle.png"
-	// 	),
-	// 	blending: THREE.AdditiveBlending,
-	// 	transparent: true
-	// });
 
-	// shit:any = new THREE.TextureLoader(
-	// 	"../assets/images/particle.png"
-	// );
-	// crap:any = new THREE.ImageUtils.loadTexture("../assets/images/particles.png");
-
-	particleSystem: any;
+	posix:any = 20;
+	posiy:any = -230;
+	poziz:any = 0;
+	rotax:any = 7.7;
+	rotay:any = 3;
+	rotaz:any = 0;
 
 	init(): void {
-		// console.log("OH", this.shit, 'is', this.crap);
-		this.renderer = new THREE.WebGLRenderer();
-		this.camera = new THREE.PerspectiveCamera(this.view_angle, this.aspect, this.near, this.far);
+		// let container = document.createElement('div');
+		let container = document.getElementById('eye-field');
+		document.body.appendChild(container);
+
+		this.camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 10000);
+		// this.camera.position.z = 900;
 		this.scene = new THREE.Scene();
-		this.camera.position.z = 40;
-		// this.camera.position.z = 140;
-		this.renderer.setClearColor(new THREE.Color(0.1));
-		this.renderer.setSize(800, 600);
+		// this.scene.fog = new THREE.FogExp2( 0x000000, 0.0008 );
+		this.geometry = new THREE.Geometry();
+		var textureLoader = new THREE.TextureLoader();
 
-		this.document.body.appendChild(this.renderer.domElement);
+		let sprite1 = textureLoader.load('assets/images/snowflake.png')
+		let sprite2 = textureLoader.load('assets/images/snowflakes_PNG7585.png')
 
+		for(let i = 0; i < 10000; i++) {
+			var vertex = new THREE.Vector3();
+			vertex.x = Math.random() * 2000 - 1000;
+			vertex.y = Math.random() * 2000 - 1000;
+			vertex.z = Math.random() * 2000 - 1000;
 
-		for (let p = 0; p < this.particleCount; p++) {
-			let pX = Math.random() * 500 - 250;
-			let pY = Math.random() * 500 - 250;
-			let pZ = Math.random() * 500 - 250;
-			let particle = new THREE.Vector3(pX, pY, pZ);
-			// let particle = new THREE.Vertex(
-			// 	new THREE.Vector3(pX, pY, pZ)
-			// );
-
-			particle.velocity = new THREE.Vector3(
-				0,
-				-Math.random(),
-				0);
-
-			this.particles.vertices.push(particle);
+			this.geometry.vertices.push(vertex);
 		}
-		this.particleSystem = new THREE.Points(this.particles, this.pMaterial);
-		this.particleSystem.sortParticles = true;
-		console.log(this.particleSystem);
 
-		// this.scene.addChild(this.particleSystem);
-		this.scene.add(this.particleSystem);
+		this.parameters = [
+					[ [0.90, 0.05, 0.5], sprite1, 10 ],
+					[ [1.0, 0.2, 0.5], sprite2, 20 ]
+		];
 
-		// let geometry = new THREE.BoxGeometry( 200, 200, 200 );
-	// let material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
-// this.mesh = new THREE.Mesh( geometry, material );
-	// this.scene.add( this.mesh );
+		for(let i = 0; i < this.parameters.length; i++) {
+			let color = this.parameters[i][0];
+			let sprite = this.parameters[i][1];
+			let size = this.parameters[i][2];
 
-		this.anima();
-	}
+			this.materials[i] = new THREE.PointsMaterial( { size: size, map: sprite, blending: THREE.AdditiveBlending, depthTest:false, transparent: true } );
+			this.materials[i].color.setHSL(color[0], color[1], color[2]);
 
+			this.particles = new THREE.Points(this.geometry, this.materials[i]);
+			this.particles.rotation.x = Math.random() * 6;
+			this.particles.rotation.y = Math.random() * 6;
+			this.particles.rotation.z = Math.random() * 6;
 
-aaa:boolean = true;
-	anima = () => {
-		// this.mesh.rotation.x += 0.01;
-	// this.mesh.rotation.y += 0.02;
-		
-		this.particleSystem.rotation.x += 0.01;
-		// this.particleSystem.rotation.y += 0.01;
-		// this.particleSystem.rotateX(0.002);
-		// this.particleSystem.rotateY(3);
-
-		var pCount = this.particleCount;
-		// let particle:any;
-			// particle = this.particles.vertices;
-			// console.log(particle);
-// console.log(this.particles.vertices[0]);
-		while (pCount--) {
-			// var particle = this.particles.vertices[pCount];
-
-			// if (particle.y < -200) {
-			// 	particle.y = 200;
-			// 	particle.velocity.y = 0;
-			// }
-
-			// particle.velocity.y -= Math.random() * .1;
-
-			// particle.add(particle.velocity);
-			
-			// if(this.aaa) {
-			// 	console.log(particle);
-			// 	this.aaa = false;
-			// }
-
-			// particle.addSelf(particle.velocity);
-
-			if(this.particles.vertices[pCount].x > 600) {
-				this.particles.vertices[pCount].y = 200;
-				this.particles.vertices[pCount].velocity.y = 0;
-			}
-			this.particles.vertices[pCount].velocity.y -= Math.random()*.1;
-
-			this.particles.vertices[pCount].add(this.particles.vertices[pCount].velocity);
+			this.scene.add(this.particles);
 		}
-		this.particleSystem.geometry.__dirtyVertices = true;
-		this.renderer.render(this.scene, this.camera);
 
-		window.requestAnimationFrame(this.anima);
+		let canvas = document.getElementById('three');
+		this.renderer = new THREE.WebGLRenderer({canvas: canvas, alpha:true, antialias: true});
+	this.renderer.setPixelRatio(window.devicePixelRatio);
+	this.renderer.setSize(window.innerWidth, window.innerHeight);
+	this.renderer.setClearColor(0x000000, 0);
+	container.appendChild(this.renderer.domElement);
+
+	// document.addEventListener('mousemove', this.onDocumentMouseMove, false);
+}
+
+onDocumentMouseMove(event) {
+	this.mouseX = event.clientX - this.windowHalfX;
+	this.mouseY = event.clientY - this.windowHalfY;
+}
+
+animate = () => {
+	requestAnimationFrame(this.animate);
+	this.render();
+}
+
+render():void {
+	var time = Date.now() * 0.00005;
+
+	// this.camera.position.x += ( this.mouseX - this.camera.position.x ) * 0.05;
+	// this.camera.position.y +=  ( - this.mouseY - this.camera.position.y ) * 0.05;
+		this.camera.position.x = 20;
+		this.camera.position.y = -230;
+		this.camera.position.z = 0;
+		this.camera.rotation.x = 7.7;
+		this.camera.rotation.y = 3;
+		this.camera.rotation.z = 0;
+
+	// this.camera.lookAt(this.scene.position);
+	for(let i = 0; i<this.scene.children.length;i++) {
+		var object = this.scene.children[i];
+		if(object instanceof THREE.Points) {
+			object.rotation.x = - time * (i<4 ? i+1 : -(i+1) );
+		}
 	}
 
-	// anima():void {
-	// 	window.requestAnimationFrame(this.anima);
-	// 	// requestAnimationFrame(animate);
-	// 	this.mesh.rotation.x += 0.01;
-	// 	this.mesh.rotation.y += 0.02;
-	// 	this.renderer.render(this.scene, this.camera);
-	// }
-
-
-	animat(): void {
-		// window.requestAnimationFrame = () => {
-		// fucking request animation frame or rather fuck angular
-		// }
+	for(let i=0;i<this.materials.length;i++) {
+		this.color = this.parameters[i][0];
+		this.h = (360*(this.color[0] + time) % 360 ) / 360;
+		this.materials[i].color.setHSL(this.h, this.color[1], this.color[2]);
 	}
 
-
-
-
-
-	cre(): void {
-
-	}
+	this.renderer.render(this.scene, this.camera);
+}
 
 
 
