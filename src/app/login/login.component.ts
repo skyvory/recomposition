@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { ToastService } from '../toaster/toast.service';
@@ -40,7 +40,7 @@ import { DOCUMENT } from '@angular/platform-browser';
 	]
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 	constructor(
 		private router: Router,
 		private authenticationService: AuthenticationService,
@@ -48,15 +48,23 @@ export class LoginComponent implements OnInit {
 		@Inject(DOCUMENT) private document: any
 	) { }
 
+	timeout:any;
+
 	ngOnInit() {
 		//this.authenticationService.logout();
 		this.preAuth();
 		this.loopCast();
 		// this.shardSequenceActivation();
-		setTimeout(() => {
+		this.timeout = setTimeout(() => {
 			this.init();
 			this.animate();
 		}, 180 * 1000);
+	}
+
+	ngOnDestroy() {
+		if(this.timeout) {
+			clearTimeout(this.timeout);
+		}
 	}
 
 	loginAccessVisibility: string = "visible";
