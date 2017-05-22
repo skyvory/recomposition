@@ -33,6 +33,7 @@ import { ActiveService } from './active.service';
 import { FileUploadService } from './file-upload.service';
 import { ToastService } from './toaster/toast.service';
 import { SettingService } from './setting.service';
+import { TwitterService } from './twitter.service';
 
 import { SearchComponent } from './+search/search.component';
 
@@ -71,7 +72,8 @@ import { SearchComponent } from './+search/search.component';
 		ActiveService,
 		FileUploadService,
 		SettingService,
-		ToastService
+		ToastService,
+		TwitterService
 	],
 	bootstrap: [ AppComponent ]
 })
