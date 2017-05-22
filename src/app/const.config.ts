@@ -6,7 +6,7 @@ export class Constant {
 			return 'http://localhost/record/public/api/';
 		}
 		else if(env === 'server') {
-			return 'https://skyvory.net/record/public/api/';
+			return 'https://record.skyvory.net/public/api/';
 		}
 	}
 }
