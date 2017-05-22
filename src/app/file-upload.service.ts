@@ -34,8 +34,8 @@ export class FileUploadService {
     // console.log("LAUNCH", file);
     let formData: FormData = new FormData();
     formData.append('screenshot', file);
-    formData.append('vn_id', vn_id);
-    formData.append('screen_category', screen_category);
+    formData.append('vn_id', vn_id.toString());
+    formData.append('screen_category', screen_category.toString());
     // formData.append('file[]', file, file.name);
     // let headers = new Headers();
     // headers.append('Content-Type', 'multipart/form-data');

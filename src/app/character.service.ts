@@ -130,7 +130,7 @@ export class CharacterService {
 	public uploadImage(character_id:number, file:any):Observable<any> {
 		let formData:FormData = new FormData();
 		formData.append('image', file);
-		formData.append('character_id', character_id);
+		formData.append('character_id', character_id.toString());
 
 		return Observable.fromPromise(new Promise((resolve, reject) => {
 			let xhr = new XMLHttpRequest();
