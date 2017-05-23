@@ -16,6 +16,8 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { ClipboardModule } from 'ngx-clipboard';
 import { AssessmentResolve } from './assessment.resolve';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AssessmentPlayWrapperComponent } from './assessment-play-wrapper/assessment-play-wrapper.component';
+import { AssessmentPlayComponent } from './assessment-play/assessment-play.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,7 @@ Ng2PaginationModule,
     ClipboardModule,
     BrowserAnimationsModule
   ],
-  declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent],
+  declarations: [AssessmentComponent, AssessmentFillComponent, AssessmentCharacterComponent, AssessmentWrapperComponent, AssessmentFillWrapperComponent, AssessmentCharacterWrapperComponent, AssessmentPlayWrapperComponent, AssessmentPlayComponent],
   providers: [
     AssessmentResolve
   ]
