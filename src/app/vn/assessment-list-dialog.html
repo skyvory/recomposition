@@ -57,6 +57,9 @@
 						<p md-line>Created: <strong>{{assessment.created_at}}</strong></p>
 					</md-list-item>
 					<div fxFlex="15">
+						<a md-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'play']" color="primary" class="compose-button">
+							<md-icon>assessment</md-icon> Play Now
+						</a>
 						<a md-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']" color="primary" class="compose-button">
 							<md-icon>assessment</md-icon> Compose
 						</a>

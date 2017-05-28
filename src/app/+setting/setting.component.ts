@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from '../toaster/toast.service';
 import { SettingService } from '../setting.service';
+import { TwitterService } from '../twitter.service';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
 	selector: 'app-setting',
@@ -11,7 +13,9 @@ export class SettingComponent implements OnInit {
 
 	constructor(
 		private toast:ToastService,
-		private settingService:SettingService
+		private settingService:SettingService,
+		private twitterService:TwitterService,
+		private authenticationService:AuthenticationService
 	) { }
 
 	ngOnInit() {
@@ -63,6 +67,12 @@ export class SettingComponent implements OnInit {
 
 	vndbToggleStatus = ():any => {
 		return localStorage.getItem('vndb_toggle') == "1" ? 'on' : 'off';
+	}
+
+	connectTwitter():void {
+		// let token = localStorage.getItem('recomposition_token');
+		let token = this.authenticationService.token;
+		window.open("http://127.0.0.1/record/public/twitterauth/login?token=" + token, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 	}
 
 }
