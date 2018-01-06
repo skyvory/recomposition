@@ -61,12 +61,12 @@
 					<div fxFlex="30">
 						<ng-template [ngIf]="user.role == 'administrator'">
 							<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == chara.id}" (fileOver)="fileOverBase($event,chara.id)" [uploader]="uploader" class="chara-image-container drop-zone" (drop)="dropTrigger($event, chara)">
-								<img [src]="chara.local_url" class="chara-image">
+								<img [src]="chara.local_image_url" class="chara-image">
 							</div>
 						</ng-template>
 						<ng-template [ngIf]="user.role == 'common'">
 							<div class="chara-image-container">
-								<img [src]="chara.local_url" class="chara-image">
+								<img [src]="chara.local_image_url" class="chara-image">
 							</div>
 						</ng-template>
 						<ng-template [ngIf]="user.role == 'administrator'">

@@ -333,7 +333,7 @@ export class AssessmentCharacterComponent implements OnInit {
       if(firstServe) {
         this.characterService.uploadImage(firstServe.character_id, firstServe.file).subscribe(response => {
 					let chara_index = this.characters.indexOf(firstServe.chara);
-					this.characters[chara_index].local_url = response.data.local_url;
+					this.characters[chara_index].local_image_url = response.data.local_image_url;
 					this.characters[chara_index].local_image = response.data.local_image;
           let index = this.uploadQueue.indexOf(firstServe);
 
