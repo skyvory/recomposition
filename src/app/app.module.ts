@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LoginModule } from './login/login.module';
 import { HomeModule } from './home/home.module';
+import { MyMaterialModule } from './mymaterial.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AuthenticationService } from './authentication.service';
 
@@ -27,7 +29,9 @@ import { AuthenticationService } from './authentication.service';
     routing,
     BrowserAnimationsModule,
     LoginModule,
-    HomeModule
+    HomeModule,
+    MyMaterialModule,
+    FlexLayoutModule
   ],
   providers: [
     AuthenticationService
