@@ -6,7 +6,6 @@ import { routing } from '../app.routing';
 import { FormsModule } from '@angular/forms';
 
 import { HomeRoutingModule } from './home-routing.module';
-import { HomeWrapperComponent } from './home-wrapper/home-wrapper.component';
 // import { SidebarsharedModule } from '../sidebar/sidebar-shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyMaterialModule } from '../mymaterial.module';
@@ -25,8 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 		FlexLayoutModule
 	],
 	declarations: [
-		HomeComponent,
-		HomeWrapperComponent
+		HomeComponent
 	],
 	providers: [],
 })
