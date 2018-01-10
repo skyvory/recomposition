@@ -1,8 +1,8 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthGuard } from './guards/auth.guard';
-import { SearchComponent } from './+search/search.component';
+// import { AuthGuard } from './guards/auth.guard';
+// import { SearchComponent } from './+search/search.component';
 
 const appRoutes: Routes = [
 	{
@@ -12,30 +12,30 @@ const appRoutes: Routes = [
 	},
 	{
 		path: 'home',
-		loadChildren: 'app/+home/home.module#HomeModule',
+		loadChildren: 'app/home/home.module#HomeModule',
 	},
-	{
-		path: 'assessment',
-		loadChildren: 'app/+assessment/assessment.module#AssessmentModule',
-	},
-	{
-		path: 'vn',
-		loadChildren: 'app/vn/vn.module'
-	},
-	{
-		path: 'search/:query',
-		component: SearchComponent,
-		canActivate: [AuthGuard]
-	},
-	{
-		path: 'search/:query/:page',
-		component: SearchComponent,
-		canActivate: [AuthGuard]
-	},
-	{
-		path: 'setting',
-		loadChildren: 'app/+setting/setting.module#SettingModule'
-	},
+	// {
+	// 	path: 'assessment',
+	// 	loadChildren: 'app/+assessment/assessment.module#AssessmentModule',
+	// },
+	// {
+	// 	path: 'vn',
+	// 	loadChildren: 'app/vn/vn.module'
+	// },
+	// {
+	// 	path: 'search/:query',
+	// 	component: SearchComponent,
+	// 	canActivate: [AuthGuard]
+	// },
+	// {
+	// 	path: 'search/:query/:page',
+	// 	component: SearchComponent,
+	// 	canActivate: [AuthGuard]
+	// },
+	// {
+	// 	path: 'setting',
+	// 	loadChildren: 'app/+setting/setting.module#SettingModule'
+	// },
 	{
 		path: '**',
 		redirectTo: '/home',

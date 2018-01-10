@@ -1,5 +1,3 @@
-import { Headers } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
 
-export const contentHeaders = new Headers();
-contentHeaders.append('Accept', 'application/json, text/plain, */*');
-contentHeaders.append('Content-Type', 'application/json;charset=utf-8');
+export const contentHeaders = new HttpHeaders({'Accept': 'application/json, text/plain, */*', 'Content-Type': 'application/json;charset=utf-8'});

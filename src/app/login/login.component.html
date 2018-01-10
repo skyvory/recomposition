@@ -1,39 +1,13 @@
-<div style="" id="eye-field">
+<form role="form" (submit)="login($event, username.value, password.value)" class="login-form">
+<input type="text" #username placeholder="Username">
+<input type="password" #password placeholder="Password">
+<br />
+<button type="submit" class="submit-button">Submit</button>
+</form>
 
-    <!--<form role="form">
-        <input type="number" [(ngModel)]="xxx" name="x" step="10">
-        <input type="number" [(ngModel)]="yyy" name="y" step="10">
-        <input type="number" [(ngModel)]="zzz" name="z" step="10">
-        <input type="number" [(ngModel)]="xxxx" name="x" step="0.1">
-        <input type="number" [(ngModel)]="yyyy" name="y" step="0.1">
-        <input type="number" [(ngModel)]="zzzz" name="z" step="0.1">
-    </form>-->
-
-
-    <div class="login-area">
-        <button md-raised-button color="primary" on-click="toggleFormState()" class="login-activation-button" [style.visibility]="loginAccessVisibility">Login</button>
-        <div class="login-form-container" [@activationState]="stateOfForm">
-            <form role="form" (submit)="login($event, username.value, password.value)" class="login-form">
-                <md-input-container class="full-width">
-                    <input mdInput type="text" #username placeholder="Username">
-                </md-input-container>
-                <md-input-container class="full-width">
-                    <input mdInput type="password" #password placeholder="Password">
-                </md-input-container>
-                <br />
-                <button md-button type="submit" class="submit-button">Submit</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="bg1" class="bgs bgs-one" [style.background-position]="bg1style" [@shardState]="stateOfShard1" style="background-position: 444px bottom;"></div>
-    <div id="bg2" class="bgs bgs-two" [style.background-position]="bg2style" [@shardState]="stateOfShard2" style="background-position: 705px bottom;"></div>
-    <div id="bg3" class="bgs bgs-three" [style.background-position]="bg3style" [@shardState]="stateOfShard3" style="background-position: 332.5px bottom;"></div>
-
-    <!--<span class="particle" [style.left]="par" style="top: 80%;left: 50%;width:30px;height:30px;animation-delay:200ms;"></span>-->
-    <!--<span class="particle" [style.left]="" style="top: 80%;left: 20%;width:30px;height:30px;animation-delay:200ms;"></span>-->
-    <div id="three-container"></div>
-    <canvas id="three" (window:resize)="onWindowResize($event)" [style.visibility]="particlesVisibility"></canvas>
-
-</div>
-<!--<a [routerLink]="['/signup']">Sign Up</a>-->
+<!-- <form #heroForm="ngForm" (ngSubmit)="login()" class="login-form">
+<input type="text" class="form-control" [(ngModel)]="username" placeholder="Username" name="username">
+<input type="password" class="form-control" [(ngModel)]="password" placeholder="Password" name="password">
+<br />
+<button type="submit" class="submit-button">Submit</button>
+</form> -->
