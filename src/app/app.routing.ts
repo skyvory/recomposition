@@ -18,10 +18,10 @@ const appRoutes: Routes = [
 	// 	path: 'assessment',
 	// 	loadChildren: 'app/+assessment/assessment.module#AssessmentModule',
 	// },
-	// {
-	// 	path: 'vn',
-	// 	loadChildren: 'app/vn/vn.module'
-	// },
+	{
+		path: 'vn',
+		loadChildren: 'app/vn/vn.module'
+	},
 	// {
 	// 	path: 'search/:query',
 	// 	component: SearchComponent,

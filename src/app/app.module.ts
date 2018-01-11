@@ -14,8 +14,10 @@ import { LoginModule } from './login/login.module';
 import { HomeModule } from './home/home.module';
 import { MyMaterialModule } from './mymaterial.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { VnModule } from './vn/vn.module';
 
 import { AuthenticationService } from './authentication.service';
+import { VnService } from './vn.service';
 
 
 @NgModule({
@@ -31,10 +33,12 @@ import { AuthenticationService } from './authentication.service';
     LoginModule,
     HomeModule,
     MyMaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    VnModule
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    VnService
   ],
   bootstrap: [AppComponent]
 })
