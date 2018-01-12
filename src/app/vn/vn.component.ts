@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef } from '@angular/core';
+import { PageEvent } from '@angular/material';
 
 @Component({
 	selector: 'vn-selector',
@@ -16,6 +17,8 @@ export class VnComponent implements OnInit {
 
 	mobileQuery: MediaQueryList;
 	private _mobileQueryListener: () => void;
+
+	pageEvent: PageEvent;
 
 	constructor(
 		changeDetectorRef: ChangeDetectorRef,
@@ -36,11 +39,13 @@ export class VnComponent implements OnInit {
 
 	vns: any = [];
 	user:any={};
+
 	ngOnInit() {
 		let resolvedVns = this.route.snapshot.data['vns'];
 		console.log("RESOLVED", resolvedVns);
 		this.vns = resolvedVns.data;
 		this.query.total = resolvedVns.total;
+		this.query.limit = resolvedVns.per_page;
 		this.user = this.authenticationService.activeUser();
 	}
 
@@ -56,6 +61,11 @@ export class VnComponent implements OnInit {
 			this.vns = response.data;
 			this.query.total = response.total;
 		});
+	}
+
+	changePage(event?:PageEvent) {
+		this.query.page = Number(event.pageIndex) + 1;
+		this.loadVns();
 	}
 
 	// dialogConfig:MdDialogConfig = {
