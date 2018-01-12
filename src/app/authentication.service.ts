@@ -45,7 +45,7 @@ export class AuthenticationService {
 		headers = headers.append('Content-Type', 'application/json;charset=utf-8');
 		let options = {
 			headers: headers,
-			search: params
+			params: params
 		};
 		return options;
 	}
