@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -24,25 +24,23 @@ export class VnService {
 	// >>>to update local _vn value when any update occurs
 
 	// >>>todo: change static optional parameter into optional array. That way, the component doesn't have to throw undefined value as arguments
-	getVns(limit: number = 10, page: number = 1, filter?: string): Observable<any> {
+	getVns(limit: number = 12, page: number = 1, filter?: string): Observable<any> {
 		if (typeof (limit) === 'undefined')
-			limit = 10;
+			limit = 12;
 		if (typeof (page) === 'undefined')
 			page = 1;
 		if (typeof (filter) === 'undefined')
 			filter = '';
 
-		let params: URLSearchParams = new URLSearchParams();
-		params.set('limit', limit.toString());
-		params.set('page', page.toString());
-		params.set('filter', filter.toString());
+		let params: HttpParams = new HttpParams()
+			.append('limit', limit.toString())
+			.append('page', page.toString())
+			.append('filter', filter.toString());
 
 		return this.http.get(Constant.API_PATH + `vn`, this.authenticationService.optionParam(params))
 			.map(
 			(response: any) => response
-			)
-			;
-
+			);
 	}
 
 	instantVn(vnId: number): Observable<any> {
