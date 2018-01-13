@@ -1,0 +1,113 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+	<mat-toolbar color="primary" class="toolbar">
+		<button mat-icon-button (click)="snav.toggle()">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<h1>VN Fill - {{vn.title_original}}</h1>
+	</mat-toolbar>
+
+	<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+			<mat-nav-list>
+				<a mat-list-item routerLink="/login">Login</a>
+				<a mat-list-item routerLink="/home">Home</a>
+				<a mat-list-item routerLink="/vn">VN</a>
+			</mat-nav-list>
+		</mat-sidenav>
+
+		<mat-sidenav-content>
+			<ng-template [ngIf]="searchDestination.vndb || searchDestination.egs || searchDestination.vndbRelease">
+				<button mat-button on-click="applyDestination()" [disabled]="toggle.portalDestinationApplyButtonDisable">Apply</button>
+			</ng-template>
+
+			<ng-template [ngIf]="portalSearch.vndb?.length || portalSearch.egs?.length">
+				fff
+			</ng-template>
+
+			<div class="vn-fill-area flex-container" fxLayout="row" fxLayout="wrap" fxLayoutAlign="space-around stretch">
+				<div fxFlex="40">
+					<form>
+						<mat-form-field class="full-width">
+							<input matInput placeholder="original title" [(ngModel)]="vn.title_original" name="title_original">
+						</mat-form-field>
+						<mat-form-field class="full-width">
+							<input matInput placeholder="romaji title" [(ngModel)]="vn.title_romaji" name="title_romaji">
+						</mat-form-field>
+						<div fxLayout="row" fxLayoutAlign="space-between start">
+							<mat-form-field class="width-60">
+								<input matInput placeholder="alias" [(ngModel)]="vn.alias" name="alias">
+							</mat-form-field>
+							<mat-form-field class="width-30">
+								<input matInput placeholder="hashtag" [(ngModel)]="vn.hashtag" name="hashtag">
+							</mat-form-field>
+						</div>
+						<br />
+						
+						<div fxLayout="row">
+							<mat-form-field fxFlex="30">
+								<input matInput disabled [(ngModel)]="vn.developer_id" name="developer_id">
+							</mat-form-field>
+							<mat-select placeholder="Developer" [(ngModel)]="vn.developer_id" name="developer" fxFlex="70">
+								<ng-template ngFor let-developer [ngForOf]="developers">
+									<mat-option [value]="developer.id">
+										{{developer.original || "-"}} | {{developer.romaji || "-"}}
+									</mat-option>
+								</ng-template>
+							</mat-select>
+						</div>
+						<br />
+
+						<mat-form-field>
+							<input matInput placeholder="date release" type="date" [(ngModel)]="vn.date_release" name="date_release">
+						</mat-form-field>
+						<mat-form-field class="full-width">
+							<input matInput placeholder="image url" [(ngModel)]="vn.image" name="image">
+						</mat-form-field>
+						<br />
+
+						<mat-slide-toggle [(ngModel)]="toggle.advanceOptions" color="primary" class="advance-toggle" name="advance_options">Advance options</mat-slide-toggle>
+						<br />
+
+						<div *ngIf="toggle.advanceOptions">
+							<mat-form-field>
+								<input matInput placeholder="Homepage" [(ngModel)]="vn.homepage" name="homepage">
+							</mat-form-field>
+							<mat-form-field>
+								<input matInput placeholder="Twitter" [(ngModel)]="vn.twitter" name="twitter">
+							</mat-form-field>
+							<br />
+						
+							<mat-form-field>
+								<input matInput placeholder="Game Engine" [(ngModel)]="vn.game_engine" name="game_engine">
+							</mat-form-field>
+							<br />
+						
+							<mat-form-field>
+								<input matInput placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id" name="vndb_vn_id">
+							</mat-form-field>
+							<button mat-raised-button (click)="retrieveVndbVn()" [disabled]="toggle.vndbIdLoadButtonDisable">Load</button>
+							<mat-form-field>
+								<input matInput placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id" name="vndb_release_id">
+							</mat-form-field>
+							<mat-form-field>
+								<input matInput placeholder="EGS Game ID" [(ngModel)]="vn.erogamescape_game_id" name="erogamescape_game_id">
+							</mat-form-field>
+							<br />
+						
+							<mat-form-field>
+								<input matInput placeholder="Related VN ID" [(ngModel)]="vn.related_vn_id" name="related_vn_id">
+							</mat-form-field>
+						
+						</div>
+						
+						<button *ngIf="fillState == 'new'" mat-raised-button (click)="createVn()" [disabled]="toggle.saveButtonDisable" color="primary">Create</button>
+						<button *ngIf="fillState == 'edit'" mat-raised-button (click)="updateVn()" [disabled]="toggle.saveButtonDisable" color="primary">Update</button>
+						<ng-template [ngIf]="toggle.saveButtonDisable">
+							<mat-progress-spinner mode="indeterminate" class="saving-spinner"></mat-progress-spinner>
+						</ng-template>
+					</form>
+				</div>
+			</div>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>

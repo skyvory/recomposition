@@ -9,7 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { VnComponent } from './vn.component';
 // import { Ng2PaginationModule } from 'ng2-pagination';
-// import { VnFillComponent } from './vn-fill/vn-fill.component';
+import { VnFillComponent } from './vn-fill/vn-fill.component';
 // import { AssessmentListDialog } from './assessment-list-dialog';
 import { VnResolve } from '../vn.resolve';
 // import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
@@ -29,7 +29,8 @@ import { VnResolve } from '../vn.resolve';
     // FileUploadModule,
   ],
   declarations: [
-    VnComponent
+    VnComponent,
+    VnFillComponent
   ],
   entryComponents: [
     // AssessmentListDialog
