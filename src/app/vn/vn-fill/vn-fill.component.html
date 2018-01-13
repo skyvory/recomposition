@@ -107,6 +107,38 @@
 						</ng-template>
 					</form>
 				</div>
+				<div fxFlex="40">
+					<div class="cover-image-container">
+						<img src="{{vn.image}}" class="cover-image">
+					</div>
+					<br />
+					<ng-template [ngIf]="toggle.advanceOptions">
+						<button mat-raised-button on-click="refreshCover(vn.id)">Force refresh</button>
+					</ng-template>
+					<br />
+					<br />
+
+					<ng-template [ngIf]="toggle.advanceOptions">
+						<div>
+							Dev create add-on
+							<form>
+								<mat-form-field class="full-width">
+									<input matInput placeholder="Original" #devOriginal>
+								</mat-form-field>
+								<mat-form-field class="full-width">
+									<input matInput placeholder="Furi" #devFuri>
+								</mat-form-field>
+								<mat-form-field class="full-width">
+									<input matInput placeholder="Romaji" #devRomaji>
+								</mat-form-field>
+								<button mat-button on-click="createDeveloper(devOriginal.value, devFuri.value, devRomaji.value)" [disabled]="toggle.addDeveloperButtonDisable">Add Dev</button>
+							</form>
+
+							<mat-divider></mat-divider>
+						</div>
+					</ng-template>
+					
+				</div>
 			</div>
 		</mat-sidenav-content>
 	</mat-sidenav-container>
