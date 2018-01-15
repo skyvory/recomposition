@@ -19,6 +19,7 @@ import { VnModule } from './vn/vn.module';
 import { AuthenticationService } from './authentication.service';
 import { VnService } from './vn.service';
 import { DeveloperService } from './developer.service';
+import { VndbService } from './vndb.service';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { DeveloperService } from './developer.service';
   providers: [
     AuthenticationService,
     VnService,
-    DeveloperService
+    DeveloperService,
+    VndbService
   ],
   bootstrap: [AppComponent]
 })
