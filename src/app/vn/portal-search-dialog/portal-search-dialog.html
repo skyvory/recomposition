@@ -1,0 +1,103 @@
+<div class="flex-container" fxLayout="column">
+	<div class="portal-search-area flex-container" fxLayout="row" fxLyoutWrap="wrap" fxLayoutAlign="space-around stretch">
+		<div fxFlex="70">
+			<form name="portalSearchForm">
+				<mat-form-field class="full-width">
+					<input matInput placeholder="search" #portalsearch value="">
+				</mat-form-field>
+			</form>
+		</div>
+		<div fxFlex="20">
+			<button mat-raised-button type="submit" on-click="portalSearchVn(portalsearch.value)" [disabled]="toggle.portalSearchButtonDisable"
+			 class="portal-search-button">Search</button>
+		</div>
+	</div>
+
+	<ng-template [ngIf]="searchDestination.vndb || searchDestination.egs || searchDestination.vndbRelease">
+		<button mat-button on-click="applyDestination()" [disabled]="toggle.portalDestinationApplyButtonDisable">Apply</button>
+	</ng-template>
+	
+	<ng-template [ngIf]="portalSearch.vndb?.length || portalSearch.egs?.length">
+		<div class="portal-search-result-area flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+			<ng-template [ngIf]="portalSearch.vndb?.length">
+				<div class="portal-search-result-vndb" fxFlex="45">
+	
+					<h4>VNDB</h4>
+					<ng-template ngFor let-vndbNode [ngForOf]="portalSearch.vndb">
+						<mat-card class="portal-vndb-card">
+							<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap">
+								<div fxFlex="30" class="portal-vndb-image-container">
+									<img [src]="vndbNode.image" class="portal-vndb-image">
+								</div>
+								<div fxFlex class="portal-vndb-property">
+									<p>Title: {{vndbNode.original}}</p>
+									<p>Released: {{vndbNode.released}}</p>
+								</div>
+							</div>
+							<mat-card-actions align="end">
+								<button mat-raised-button on-click="retrieveVndbReleases(vndbNode.id, $event)" [disabled]="toggle.portalDestinationPullReleasesButtonDisable">Pull Releases</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<mat-checkbox [(ngModel)]="vndbNode.selected" (ngModelChange)="selectVndbDestination($event, vndbNode)"></mat-checkbox>
+							</mat-card-actions>
+						</mat-card>
+					</ng-template>
+	
+					<ng-template [ngIf]="portalSearch.vndbRelease?.length">
+						<div class="portal-search-result-vndb-release">
+							<h4>Releases</h4>
+							<ng-template ngFor let-vndbReleaseNode [ngForOf]="portalSearch.vndbRelease">
+								<mat-card class="portal-vndb-card">
+									<p>Original: {{vndbReleaseNode.original}}</p>
+									<p>Title: {{vndbReleaseNode.title}}</p>
+									<p>Released: {{vndbReleaseNode.released}}</p>
+									<mat-chip-list>
+										<ng-template [ngIf]="vndbReleaseNode.platforms.length">
+											<span>
+												<ng-template ngFor let-platform [ngForOf]="vndbReleaseNode.platforms">
+													<mat-chip color="primary" selected="true">{{platform}}</mat-chip>
+												</ng-template>
+											</span>
+										</ng-template>
+										<ng-template [ngIf]="vndbReleaseNode.patch">
+											<mat-chip color="accent" selected="true">patch</mat-chip>
+										</ng-template>
+										<ng-template [ngIf]="vndbReleaseNode.type == 'trial'">
+											<mat-chip color="warn" selected="true">trial</mat-chip>
+										</ng-template>
+										<mat-chip>R{{vndbReleaseNode.minage}}</mat-chip>
+									</mat-chip-list>
+									<mat-card-actions align="end">
+										<mat-checkbox [(ngModel)]="vndbReleaseNode.selected" (ngModelChange)="selectVndbReleaseDestination($event, vndbReleaseNode)"></mat-checkbox>
+									</mat-card-actions>
+								</mat-card>
+							</ng-template>
+						</div>
+					</ng-template>
+					<!-- Close VNDB Release -->
+	
+				</div>
+			</ng-template>
+			<!-- Close VNDB result -->
+	
+			<ng-template [ngIf]="portalSearch.egs?.length">
+				<div class="portal-search-result-egs" fxFlex="45">
+					<h4>EGS</h4>
+					<ng-template ngFor let-egsNode [ngForOf]="portalSearch.egs">
+						<mat-card>
+							<p>Title: {{egsNode.gamename}}</p>
+							<p>Released: {{egsNode.sellday}}</p>
+							<p>Brand: {{egsNode.brandname}}</p>
+							<p>Platform: {{egsNode.model}}</p>
+							<mat-card-actions align="end">
+								<mat-checkbox [(ngModel)]="egsNode.selected" (ngModelChange)="selectEgsDestination($event, egsNode)"></mat-checkbox>
+							</mat-card-actions>
+						</mat-card>
+					</ng-template>
+				</div>
+			</ng-template>
+			<!-- Close EGS result -->
+	
+		</div>
+	</ng-template>
+	<!-- Close portal search result -->
+</div>

@@ -15,6 +15,7 @@ import { VnResolve } from '../vn.resolve';
 // import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
 // import { Ng2FileDropModule } from 'ng2-file-drop';
 // import { FileUploadModule } from 'ng2-file-upload';
+import { PortalSearchDialog } from './portal-search-dialog/portal-search-dialog';
 
 @NgModule({
   imports: [
@@ -30,10 +31,12 @@ import { VnResolve } from '../vn.resolve';
   ],
   declarations: [
     VnComponent,
-    VnFillComponent
+    VnFillComponent,
+    PortalSearchDialog
   ],
   entryComponents: [
     // AssessmentListDialog
+    PortalSearchDialog
   ],
   providers: [
     VnResolve

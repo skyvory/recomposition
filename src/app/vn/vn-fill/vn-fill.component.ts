@@ -9,6 +9,8 @@ import { VndbService } from '../../vndb.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef } from '@angular/core';
 import 'rxjs/add/operator/finally';
+import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
+import { PortalSearchDialog } from '../portal-search-dialog/portal-search-dialog';
 
 @Component({
 	selector: 'vn-new-selector',
@@ -31,6 +33,7 @@ export class VnFillComponent implements OnInit {
 		private vndbService: VndbService,
 		private route: ActivatedRoute,
 		// private toast: ToastService
+		public dialog: MatDialog
 	) {
 		this.mobileQuery = media.matchMedia('(max-width: 600px)');
 		this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -45,9 +48,6 @@ export class VnFillComponent implements OnInit {
 	developers: any[] = [];
 	toggle: any = {
 		advanceOptions: false,
-		portalSearchButtonDisable: false,
-		portalDestinationApplyButtonDisable: false,
-		portalDestinationPullReleasesButtonDisable: false,
 		vndbIdLoadButtonDisable: false,
 		addDeveloperButtonDisable: false,
 		saveButtonDisable: false
@@ -491,5 +491,27 @@ export class VnFillComponent implements OnInit {
 		setTimeout(function () {
 			event.target.disabled = false;
 		}, 3000);
+	}
+
+	dialogConfig:MatDialogConfig = {
+		width: '90vw',
+		height: '90vh',
+		maxWidth: 'none',
+		// position: {
+		// 	top: '0',
+		// 	right: '0',
+		// 	bottom: '0',
+		// 	left: '0'
+		// }
+	}
+	
+	popPortalSearchDialog(): void {
+		let dialogRef = this.dialog.open(PortalSearchDialog, this.dialogConfig);
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log(result);
+			this.vn = result ? result : this.vn;
+			console.log("SSSSS", result);
+		});
 	}
 }
