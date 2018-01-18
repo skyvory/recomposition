@@ -30,7 +30,7 @@
 									<img [src]="vndbNode.image" class="portal-vndb-image">
 								</div>
 								<div fxFlex class="portal-vndb-property">
-									<p>Title: {{vndbNode.original}}</p>
+									<p>Title: {{vndbNode.original || vndbNode.title}}</p>
 									<p>Released: {{vndbNode.released}}</p>
 								</div>
 							</div>

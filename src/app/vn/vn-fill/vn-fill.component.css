@@ -23,27 +23,6 @@
 }
 
 /* Custom style */
-.portal-search-result-area {
-  margin-bottom: 90px;
-}
-.portal-vndb-image {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
-}
-.portal-vndb-card {
-  /*padding: 0px;*/
-}
-.portal-vndb-property {
-  padding: 2px 10px;
-}
-.portal-vndb-image-container {
-  margin: -20px 0 -20px -20px;
-}
-.portal-search-button {
-  line-height: 32px;
-  vertical-align: middle;
-}
 .cover-image-container {
   max-height: 200px;
   max-width: 300px;
