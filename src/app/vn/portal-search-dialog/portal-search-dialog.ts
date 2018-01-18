@@ -64,7 +64,6 @@ export class PortalSearchDialog {
 		let vndb_vn = this.searchDestination.vndb;
 		let egs_game = this.searchDestination.egs;
 		let vndb_release = this.searchDestination.vndbRelease;
-		console.log(vndb_vn, egs_game, vndb_release);
 
 		if (!vndb_vn && !egs_game && !vndb_release) {
 			// this.toast.pop("You need to select at least one search result to apply");
@@ -288,7 +287,6 @@ export class PortalSearchDialog {
 		this.toggle.portalSearchButtonDisable = true;
 
 		this.vnService.portalSearchVn(search_query).subscribe(response => {
-			console.log(response);
 			this.portalSearch.vndb = response.data.vndb.items;
 			this.portalSearch.egs = response.data.egs;
 			// this.toast.pop("Portal search completed");

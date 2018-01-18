@@ -509,9 +509,7 @@ export class VnFillComponent implements OnInit {
 		let dialogRef = this.dialog.open(PortalSearchDialog, this.dialogConfig);
 
 		dialogRef.afterClosed().subscribe(result => {
-			console.log(result);
 			this.vn = result ? result : this.vn;
-			console.log("SSSSS", result);
 		});
 	}
 }
