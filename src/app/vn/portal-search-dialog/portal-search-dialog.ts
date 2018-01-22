@@ -205,6 +205,7 @@ export class PortalSearchDialog {
 					check.then(dev => {
 						this.vn.developer_id = dev.id;
 						this.toggle.portalDestinationApplyButtonDisable = false;
+						this.dialogRef.close(this.vn);
 					},
 						reason => {
 							console.log("Fail reason", reason);
@@ -220,6 +221,7 @@ export class PortalSearchDialog {
 								fail => {
 									console.log("Fail in promise", fail);
 									this.toggle.portalDestinationApplyButtonDisable = false;
+									this.dialogRef.close(this.vn);
 								});
 						});
 				});
