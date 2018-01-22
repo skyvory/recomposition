@@ -1,4 +1,14 @@
 <div class="flex-container" fxLayout="column">
+	<div class="header-area" fxLayout="row" fxLayoutAlign="space-around stretch">
+		<div fxFlex="90">
+			<h2>Portal Search</h2>
+		</div>
+		<div fxFlex="10">
+			<button mat-raised-button color="warn" on-click="closeDialog()" class="close-button">
+				<mat-icon>close</mat-icon>
+			</button>
+		</div>
+	</div>
 	<div class="portal-search-area flex-container" fxLayout="row" fxLyoutWrap="wrap" fxLayoutAlign="space-around stretch">
 		<div fxFlex="70">
 			<form name="portalSearchForm">
@@ -9,19 +19,21 @@
 		</div>
 		<div fxFlex="20">
 			<button mat-raised-button type="submit" on-click="portalSearchVn(portalsearch.value)" [disabled]="toggle.portalSearchButtonDisable"
-			 class="portal-search-button">Search</button>
+			 class="portal-search-button" autofocus>Search</button>
 		</div>
 	</div>
+
+	<mat-divider></mat-divider>
 
 	<ng-template [ngIf]="searchDestination.vndb || searchDestination.egs || searchDestination.vndbRelease">
 		<button mat-button on-click="applyDestination()" [disabled]="toggle.portalDestinationApplyButtonDisable">Apply</button>
 	</ng-template>
-	
+
 	<ng-template [ngIf]="portalSearch.vndb?.length || portalSearch.egs?.length">
 		<div class="portal-search-result-area flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
 			<ng-template [ngIf]="portalSearch.vndb?.length">
 				<div class="portal-search-result-vndb" fxFlex="45">
-	
+
 					<h4>VNDB</h4>
 					<ng-template ngFor let-vndbNode [ngForOf]="portalSearch.vndb">
 						<mat-card class="portal-vndb-card">
@@ -41,7 +53,7 @@
 							</mat-card-actions>
 						</mat-card>
 					</ng-template>
-	
+
 					<ng-template [ngIf]="portalSearch.vndbRelease?.length">
 						<div class="portal-search-result-vndb-release">
 							<h4>Releases</h4>
@@ -74,11 +86,11 @@
 						</div>
 					</ng-template>
 					<!-- Close VNDB Release -->
-	
+
 				</div>
 			</ng-template>
 			<!-- Close VNDB result -->
-	
+
 			<ng-template [ngIf]="portalSearch.egs?.length">
 				<div class="portal-search-result-egs" fxFlex="45">
 					<h4>EGS</h4>
@@ -96,7 +108,7 @@
 				</div>
 			</ng-template>
 			<!-- Close EGS result -->
-	
+
 		</div>
 	</ng-template>
 	<!-- Close portal search result -->

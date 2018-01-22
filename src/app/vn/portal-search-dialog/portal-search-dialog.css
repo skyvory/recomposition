@@ -1,9 +1,10 @@
 /* Custom style */
 .close-button {
-  position: fixed;
-  right: 1%;
-  top: 5%;
+  /* position: fixed; */
+  /* right: 3%; */
+  /* top: 3%; */
 }
+
 
 .portal-search-result-area {
   margin-bottom: 90px;

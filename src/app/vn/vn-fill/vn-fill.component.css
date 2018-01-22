@@ -78,3 +78,6 @@ mat-form-field.width-60 {
 .sidebar-area {
   background-color:rgba(85, 90, 99,0.6);
 }
+.button-area {
+  margin: 20px 20px 30px;
+}
