@@ -28,6 +28,8 @@
   max-width: 300px;
   width: auto;
   height: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .cover-image {
   max-height: 200px;
@@ -79,5 +81,5 @@ mat-form-field.width-60 {
   background-color:rgba(85, 90, 99,0.6);
 }
 .button-area {
-  margin: 20px 20px 30px;
+  margin: 20px 30px;
 }

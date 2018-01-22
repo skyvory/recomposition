@@ -4,6 +4,8 @@
 			<mat-icon>menu</mat-icon>
 		</button>
 		<h1>VN Fill - {{vn.title_original}}</h1>
+		<span class="spanning-flex"></span>
+		<button mat-raised-button color="primary" on-click="popPortalSearchDialog()">Portal Search</button>
 	</mat-toolbar>
 
 	<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -20,11 +22,6 @@
 			
 			<div class="flex-container" fxLayout="column">
 				<div class="button-area"fxLayout="row">
-					<div fxFlex="70">
-					</div>
-					<div fxFlex="30">
-						<button mat-raised-button on-click="popPortalSearchDialog()">Portal Search</button>
-					</div>
 				</div>
 				<div class="vn-fill-area flex-container" fxLayout="row" fxLayout="wrap" fxLayoutAlign="space-around stretch">
 					<div fxFlex="40">
@@ -39,6 +36,7 @@
 								<mat-form-field class="width-60">
 									<input matInput placeholder="alias" [(ngModel)]="vn.alias" name="alias">
 								</mat-form-field>
+								<span>&nbsp;</span>
 								<mat-form-field class="width-30">
 									<input matInput placeholder="hashtag" [(ngModel)]="vn.hashtag" name="hashtag">
 								</mat-form-field>
@@ -71,12 +69,15 @@
 							<br />
 
 							<div *ngIf="toggle.advanceOptions">
-								<mat-form-field>
-									<input matInput placeholder="Homepage" [(ngModel)]="vn.homepage" name="homepage">
-								</mat-form-field>
-								<mat-form-field>
-									<input matInput placeholder="Twitter" [(ngModel)]="vn.twitter" name="twitter">
-								</mat-form-field>
+								<div fxLayout="row">
+									<mat-form-field fxFlex="60">
+										<input matInput placeholder="Homepage" [(ngModel)]="vn.homepage" name="homepage">
+									</mat-form-field>
+									&nbsp;
+									<mat-form-field fxFlex="40">
+										<input matInput placeholder="Twitter" [(ngModel)]="vn.twitter" name="twitter">
+									</mat-form-field>
+								</div>
 								<br />
 
 								<mat-form-field>
@@ -84,15 +85,19 @@
 								</mat-form-field>
 								<br />
 
-								<mat-form-field>
-									<input matInput placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id" name="vndb_vn_id">
-								</mat-form-field>
-								<mat-form-field>
-									<input matInput placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id" name="vndb_release_id">
-								</mat-form-field>
-								<mat-form-field>
-									<input matInput placeholder="EGS Game ID" [(ngModel)]="vn.erogamescape_game_id" name="erogamescape_game_id">
-								</mat-form-field>
+								<div fxLayout="row">
+									<mat-form-field fxFlex="33">
+										<input matInput placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id" name="vndb_vn_id">
+									</mat-form-field>
+									&nbsp;
+									<mat-form-field fxFlex="33">
+										<input matInput placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id" name="vndb_release_id">
+									</mat-form-field>
+									&nbsp;
+									<mat-form-field fxFlex="33">
+										<input matInput placeholder="EGS Game ID" [(ngModel)]="vn.erogamescape_game_id" name="erogamescape_game_id">
+									</mat-form-field>
+								</div>
 								<br />
 
 								<mat-form-field>
