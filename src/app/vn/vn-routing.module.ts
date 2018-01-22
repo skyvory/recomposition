@@ -23,11 +23,11 @@ import { VnResolve } from '../vn.resolve';
 			component: VnFillComponent,
 			// canActivate: [AuthGuard, StaffOnlyGuard],
 		},
-		// {
-		// 	path: 'vn/:id/edit',
-		// 	component: VnFillComponent,
-		// 	// canActivate: [AuthGuard, StaffOnlyGuard],
-		// },
+		{
+			path: 'vn/:id/edit',
+			component: VnFillComponent,
+			// canActivate: [AuthGuard, StaffOnlyGuard],
+		},
 		// {
 		// 	path: 'vn/:id/edit-screenshot',
 		// 	component: VnScreenshotComponent,
