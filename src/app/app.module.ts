@@ -20,6 +20,7 @@ import { AuthenticationService } from './authentication.service';
 import { VnService } from './vn.service';
 import { DeveloperService } from './developer.service';
 import { VndbService } from './vndb.service';
+import { FileUploadService } from './file-upload.service';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { VndbService } from './vndb.service';
     AuthenticationService,
     VnService,
     DeveloperService,
-    VndbService
+    VndbService,
+		FileUploadService
   ],
   bootstrap: [AppComponent]
 })

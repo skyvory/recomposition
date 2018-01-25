@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
 import { VnResolve } from '../vn.resolve';
-// import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
+import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
 // import { StaffOnlyGuard } from '../guards/staff-only.guard';
 
 @NgModule({
@@ -28,11 +28,11 @@ import { VnResolve } from '../vn.resolve';
 			component: VnFillComponent,
 			// canActivate: [AuthGuard, StaffOnlyGuard],
 		},
-		// {
-		// 	path: 'vn/:id/edit-screenshot',
-		// 	component: VnScreenshotComponent,
-		// 	// canActivate: [AuthGuard, StaffOnlyGuard]
-		// }
+		{
+			path: 'vn/:id/edit-screenshot',
+			component: VnScreenshotComponent,
+			// canActivate: [AuthGuard, StaffOnlyGuard]
+		}
 	])],
 	exports: [RouterModule]
 })

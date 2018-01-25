@@ -1,0 +1,170 @@
+<div class="container" [class.is-mobile]="mobileQuery.matches">
+	<mat-toolbar color="primary" class="toolbar">
+		<button mat-icon-button on-click="snav.toggle()">
+			<mat-icon>menu</mat-icon>
+		</button>
+		<h1>Screenshots of {{vn?.title_original}}</h1>
+		<span class="spanning-flex"></span>
+		<a mat-raised-button color="primary" [routerLink]="['/vn', vn.id, 'edit']">Fill</a>
+	</mat-toolbar>
+
+	<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+		<mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+			<mat-nav-list>
+				<a mat-list-item routerLink="/login">Login</a>
+				<a mat-list-item routerLink="/home">Home</a>
+				<a mat-list-item routerLink="/vn">VN</a>
+			</mat-nav-list>
+		</mat-sidenav>
+
+		<mat-sidenav-content>
+	
+			
+			<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+				<div fxFlex="20">
+					<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 1}" (fileOver)="fileOverBase($event,1)" [uploader]="uploader"
+					 class="drop-zone" (drop)="dropTrigger($event, 1)">
+						<span class="drop-zone-text">Title</span>
+					</div>
+				</div>
+				<div fxFlex="20">
+					<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 2}" (fileOver)="fileOverBase($event,2)" [uploader]="uploader"
+					 class="drop-zone" (drop)="dropTrigger($event, 2)">
+						<span class="drop-zone-text">Gameplay</span>
+					</div>
+				</div>
+				<div fxFlex="20">
+					<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 3}" (fileOver)="fileOverBase($event,3)" [uploader]="uploader"
+					 class="drop-zone" (drop)="dropTrigger($event, 3)">
+						<span class="drop-zone-text">Configuration</span>
+					</div>
+				</div>
+				<div fxFlex="20">
+					<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 4}" (fileOver)="fileOverBase($event,4)" [uploader]="uploader"
+					 class="drop-zone" (drop)="dropTrigger($event, 4)">
+						<span class="drop-zone-text">Save/Load</span>
+					</div>
+				</div>
+				<div fxFlex="20">
+					<div ng2FileDrop [ngClass]="{'drop-zone-over':hasBaseDropZoneOver == 5}" (fileOver)="fileOverBase($event,5)" [uploader]="uploader"
+					 class="drop-zone" (drop)="dropTrigger($event, 5)">
+						<span class="drop-zone-text">Extra</span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around stretch">
+				<div fxFlex="20">
+					<ng-template ngFor let-shot [ngForOf]="screenshots">
+						<ng-template [ngIf]="shot.screen_category == 1">
+							<div class="screenshot-item-container">
+								<div class="screenshot-image-container">
+									<img src="{{shot.local_url}}" class="screenshot-image">
+									<button mat-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+										<mat-icon>delete</mat-icon>
+									</button>
+									<button mat-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+										<mat-icon>save</mat-icon>
+									</button>
+								</div>
+								<mat-form-field>
+									<input matInput placeholder="description" [(ngModel)]="shot.description" name="description1">
+								</mat-form-field>
+			
+								<mat-divider></mat-divider>
+							</div>
+						</ng-template>
+					</ng-template>
+				</div>
+				<div fxFlex="20">
+					<ng-template ngFor let-shot [ngForOf]="screenshots">
+						<ng-template [ngIf]="shot.screen_category == 2">
+							<div class="screenshot-item-container">
+								<div class="screenshot-image-container">
+									<img src="{{shot.local_url}}" class="screenshot-image">
+									<button mat-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+										<mat-icon>delete</mat-icon>
+									</button>
+									<button mat-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+										<mat-icon>save</mat-icon>
+									</button>
+								</div>
+								<mat-form-field>
+									<input matInput placeholder="description" [(ngModel)]="shot.description" name="description2">
+								</mat-form-field>
+			
+								<mat-divider></mat-divider>
+							</div>
+						</ng-template>
+					</ng-template>
+				</div>
+				<div fxFlex="20">
+					<ng-template ngFor let-shot [ngForOf]="screenshots">
+						<ng-template [ngIf]="shot.screen_category == 3">
+							<div class="screenshot-item-container">
+								<div class="screenshot-image-container">
+									<img src="{{shot.local_url}}" class="screenshot-image">
+									<button mat-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+										<mat-icon>delete</mat-icon>
+									</button>
+									<button mat-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+										<mat-icon>save</mat-icon>
+									</button>
+								</div>
+								<mat-form-field>
+									<input matInput placeholder="description" [(ngModel)]="shot.description" name="description3">
+								</mat-form-field>
+			
+								<mat-divider></mat-divider>
+							</div>
+						</ng-template>
+					</ng-template>
+				</div>
+				<div fxFlex="20">
+					<ng-template ngFor let-shot [ngForOf]="screenshots">
+						<ng-template [ngIf]="shot.screen_category == 4">
+							<div class="screenshot-item-container">
+								<div class="screenshot-image-container">
+									<img src="{{shot.local_url}}" class="screenshot-image">
+									<button mat-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+										<mat-icon>delete</mat-icon>
+									</button>
+									<button mat-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+										<mat-icon>save</mat-icon>
+									</button>
+								</div>
+								<mat-form-field>
+									<input matInput placeholder="description" [(ngModel)]="shot.description" name="description4">
+								</mat-form-field>
+			
+								<mat-divider></mat-divider>
+							</div>
+						</ng-template>
+					</ng-template>
+				</div>
+				<div fxFlex="20">
+					<ng-template ngFor let-shot [ngForOf]="screenshots">
+						<ng-template [ngIf]="shot.screen_category == 5">
+							<div class="screenshot-item-container">
+								<div class="screenshot-image-container">
+									<img src="{{shot.local_url}}" class="screenshot-image">
+									<button mat-mini-fab on-click="deleteScreenshot(shot)" class="screenshot-delete-button">
+										<mat-icon>delete</mat-icon>
+									</button>
+									<button mat-mini-fab on-click="updateScreenshot(shot)" class="screenshot-save-button">
+										<mat-icon>save</mat-icon>
+									</button>
+								</div>
+								<mat-form-field>
+									<input matInput placeholder="description" [(ngModel)]="shot.description" name="description5">
+								</mat-form-field>
+			
+								<mat-divider></mat-divider>
+							</div>
+						</ng-template>
+					</ng-template>
+				</div>
+			</div>
+		</mat-sidenav-content>
+	</mat-sidenav-container>
+</div>

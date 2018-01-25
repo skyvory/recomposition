@@ -1,0 +1,69 @@
+/* Material sidenav style */
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.is-mobile .toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+}
+
+/* Custom style */
+.drop-zone {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: dotted 3px lightgray;
+  margin: 20px 30px;
+}
+.drop-zone-over {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  border: dotted 3px green;
+  margin: 20px 30px;
+}
+.drop-zone-text {
+  position: relative;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.screenshot-item-container {
+  background-color: #ceffff;
+}
+.screenshot-image-container {
+  position: relative;
+  padding: 6px;
+}
+.screenshot-image {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+.screenshot-delete-button {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+.screenshot-save-button {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}

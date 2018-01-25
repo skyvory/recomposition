@@ -12,9 +12,9 @@ import { VnComponent } from './vn.component';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
 // import { AssessmentListDialog } from './assessment-list-dialog';
 import { VnResolve } from '../vn.resolve';
-// import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
+import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
 // import { Ng2FileDropModule } from 'ng2-file-drop';
-// import { FileUploadModule } from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
 import { PortalSearchDialog } from './portal-search-dialog/portal-search-dialog';
 
 @NgModule({
@@ -27,12 +27,13 @@ import { PortalSearchDialog } from './portal-search-dialog/portal-search-dialog'
     VnRoutingModule,
     // Ng2PaginationModule,
     // Ng2FileDropModule,
-    // FileUploadModule,
+    FileUploadModule,
   ],
   declarations: [
     VnComponent,
     VnFillComponent,
-    PortalSearchDialog
+    PortalSearchDialog,
+    VnScreenshotComponent
   ],
   entryComponents: [
     // AssessmentListDialog

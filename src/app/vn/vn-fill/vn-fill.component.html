@@ -6,6 +6,7 @@
 		<h1>VN Fill - {{vn.title_original}}</h1>
 		<span class="spanning-flex"></span>
 		<button mat-raised-button color="primary" on-click="popPortalSearchDialog()">Portal Search</button>
+		<a mat-raised-button color="primary" [routerLink]="['/vn', vn.id, 'edit-screenshot']">Screenshots</a>
 	</mat-toolbar>
 
 	<mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
