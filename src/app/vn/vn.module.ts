@@ -10,7 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { VnComponent } from './vn.component';
 // import { Ng2PaginationModule } from 'ng2-pagination';
 import { VnFillComponent } from './vn-fill/vn-fill.component';
-// import { AssessmentListDialog } from './assessment-list-dialog';
+import { AssessmentListDialog } from '../assessment/assessment-list-dialog/assessment-list-dialog';
 import { VnResolve } from '../vn.resolve';
 import { VnScreenshotComponent } from './vn-screenshot/vn-screenshot.component';
 // import { Ng2FileDropModule } from 'ng2-file-drop';
@@ -33,10 +33,11 @@ import { PortalSearchDialog } from './portal-search-dialog/portal-search-dialog'
     VnComponent,
     VnFillComponent,
     PortalSearchDialog,
-    VnScreenshotComponent
+    VnScreenshotComponent,
+    AssessmentListDialog
   ],
   entryComponents: [
-    // AssessmentListDialog
+    AssessmentListDialog,
     PortalSearchDialog
   ],
   providers: [

@@ -1,0 +1,57 @@
+.score-table {
+  text-align: center;
+  vertical-align: top;
+  border-collapse: collapse;
+}
+table td, table th {
+  border-width: 1px;
+  border-style: solid;
+  border-color: darkcyan;
+}
+table th {
+  font-weight: normal;
+}
+.assessment-item {
+  background-color:#cce3e1;
+  margin: 5px 8px;
+}
+.compose-button {
+  margin: 5px 2px;
+}
+.close-button {
+  position: fixed;
+  right: 3%;
+  top: 3%;
+  animation: pop-in 1s ease-out;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.loader-container {
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.loader-image {
+  width: 100%;
+  height: 100%;
+}
+.new-assessment-button {
+  margin:20px;
+}
+.score-table.incomplete th, .score-table.incomplete td {
+  border-color: #ea395c;
+}
+.score-table.complete th, .score-table.complete td {
+  border-color: #6dda76;
+}

@@ -1,0 +1,72 @@
+<mat-list dense>
+	<h3 mat-subheader>Assessments</h3>
+	<button mat-raised-button on-click="newAssessment()" class="new-assessment-button" color="accent"><mat-icon>add_box</mat-icon> New Assessment</button>
+	<button mat-fab color="warn" on-click="closeDialog()" class="close-button"><mat-icon>close</mat-icon></button>
+	<mat-divider></mat-divider>
+
+	<ng-template [ngIf]="isRetrievingAssessments">
+		<div class="loader-container">
+			<img src="../../assets/images/loading.gif" class="loader-image">
+		</div>
+	</ng-template>
+
+	<ng-template [ngIf]="!isRetrievingAssessments">
+		<div class="assessments-container">
+			<h3 *ngIf="assessments.length < 1">
+				no assessment yet
+			</h3>
+
+			<ng-template ngFor let-assessment [ngForOf]="assessments">
+				<div fxLayout="row">
+					<mat-list-item fxFlex="85" class="assessment-item">
+						<mat-icon mat-list-avatar color="primary">{{iconStatus(assessment)}}</mat-icon>
+					
+						<h4 mat-line>
+							<span>Status: <strong>{{assessment.status || '-'}}</strong></span><br />
+							<span>Start: <strong>{{assessment.date_start || '-'}}</strong></span> / 
+							<span>End: <strong>{{assessment.date_end || '-'}}</strong></span>
+						</h4>
+						<div mat-line>
+							<table class="score-table" [class.incomplete]="!assessment.score_all || !assessment.store_story || !assessment.store_naki || !assessment.store_nuki || !assessment.store_comedy || !assessment.store_graphic" [class.complete]="assessment.score_all && assessment.store_story && assessment.store_naki && assessment.store_nuki && assessment.store_comedy && assessment.store_graphic">
+								<thead>
+									<tr>
+										<th>Node</th>
+										<th>Story</th>
+										<th>Naki</th>
+										<th>Nuki</th>
+										<th>Comedy</th>
+										<th>Graphic</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>{{assessment.node || '-'}}</td>
+										<td>{{assessment.score_story || '-'}}</td>
+										<td>{{assessment.score_naki || '-'}}</td>
+										<td>{{assessment.score_nuki || '-'}}</td>
+										<td>{{assessment.score_comedy || '-'}}</td>
+										<td>{{assessment.score_graphic || '-'}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<p mat-line>Overall: <strong>{{assessment.score_all || '-'}}</strong></p>
+						<p mat-line>Created: <strong>{{assessment.created_at}}</strong></p>
+					</mat-list-item>
+					<div fxFlex="15">
+						<a mat-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'play']" color="primary" class="compose-button">
+							<mat-icon>assessment</mat-icon> Play Now
+						</a>
+						<a mat-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'fill']" color="primary" class="compose-button">
+							<mat-icon>assessment</mat-icon> Compose
+						</a>
+						<a mat-raised-button on-click="dialogRef.close()" [routerLink]="['/assessment', assessment.id, 'character']" color="primary" class="compose-button">
+							<mat-icon>people_outline</mat-icon> Character
+						</a>
+					</div>
+					<mat-divider></mat-divider>
+				</div>
+			</ng-template>
+		</div>
+	</ng-template>
+</mat-list>

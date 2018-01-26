@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VnService } from '../vn.service';
-// import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
-// import { AssessmentListDialog } from './assessment-list-dialog';
+import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material';
+import { AssessmentListDialog } from '../assessment/assessment-list-dialog/assessment-list-dialog';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { MediaMatcher } from '@angular/cdk/layout';
@@ -24,7 +24,7 @@ export class VnComponent implements OnInit {
 		changeDetectorRef: ChangeDetectorRef,
 		media: MediaMatcher,
 		private vnService: VnService,
-		// public dialog: MdDialog,
+		public dialog: MatDialog,
 		private route: ActivatedRoute,
 		private authenticationService: AuthenticationService
 	) {
@@ -68,19 +68,16 @@ export class VnComponent implements OnInit {
 		this.loadVns();
 	}
 
-	// dialogConfig:MdDialogConfig = {
-	// 	width: '90%',
-	// 	height: '85%',
-	// 	position: {
-	// 		top: '30px',
-	// 		left: 'auto'
-	// 	}
-	// }
+	dialogConfig:MatDialogConfig = {
+		width: '90vw',
+		height: '90vh',
+		maxWidth: 'none'
+	}
 
-	// popAssessments(vn_id):void {
-	// 	console.log("id", vn_id);
-	// 	let dialogRef = this.dialog.open(AssessmentListDialog, this.dialogConfig);
-	// 	dialogRef.componentInstance.vn_id = vn_id;
-	// }
+	popAssessments(vn_id):void {
+		console.log("id", vn_id);
+		let dialogRef = this.dialog.open(AssessmentListDialog, this.dialogConfig);
+		dialogRef.componentInstance.vn_id = vn_id;
+	}
 
 }
