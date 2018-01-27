@@ -22,7 +22,8 @@ import { DeveloperService } from './developer.service';
 import { VndbService } from './vndb.service';
 import { FileUploadService } from './file-upload.service';
 import { AssessmentService } from './assessment.service';
-
+import { SettingService } from './service/setting.service';
+import { TwitterService } from './service/twitter.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { AssessmentService } from './assessment.service';
     DeveloperService,
     VndbService,
     FileUploadService,
-    AssessmentService
+    AssessmentService,
+    SettingService,
+    TwitterService
   ],
   bootstrap: [AppComponent]
 })

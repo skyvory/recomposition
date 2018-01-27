@@ -32,10 +32,10 @@ const appRoutes: Routes = [
 	// 	component: SearchComponent,
 	// 	canActivate: [AuthGuard]
 	// },
-	// {
-	// 	path: 'setting',
-	// 	loadChildren: 'app/+setting/setting.module#SettingModule'
-	// },
+	{
+		path: 'setting',
+		loadChildren: 'app/setting/setting.module#SettingModule'
+	},
 	{
 		path: '**',
 		redirectTo: '/home',
