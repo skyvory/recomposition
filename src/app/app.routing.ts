@@ -14,10 +14,10 @@ const appRoutes: Routes = [
 		path: 'home',
 		loadChildren: 'app/home/home.module#HomeModule',
 	},
-	// {
-	// 	path: 'assessment',
-	// 	loadChildren: 'app/+assessment/assessment.module#AssessmentModule',
-	// },
+	{
+		path: 'assessment',
+		loadChildren: 'app/assessment/assessment.module#AssessmentModule',
+	},
 	{
 		path: 'vn',
 		loadChildren: 'app/vn/vn.module'

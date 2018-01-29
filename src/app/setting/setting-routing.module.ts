@@ -15,6 +15,10 @@ import { SettingComponent } from './setting.component';
 				{
 					path: '',
 					component: SettingComponent
+				},
+				{
+					path: 'more',
+					component: SettingComponent
 				}
 			]
 		}
