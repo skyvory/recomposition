@@ -147,7 +147,9 @@ export class VnFillComponent implements OnInit{
 		}
 		
 		if(egs_game) {
-			this.vn.title_original = egs_game.gamename;
+			if(!this.vn.title_original) {
+				this.vn.title_original = egs_game.gamename;
+			}
 			this.vn.title_furigana = egs_game.gamefurigana;
 			this.vn.date_release = this.vn.date_release != egs_game.sellday ? egs_game.sellday : this.vn.date_release;
 			this.vn.erogamescape_game_id = egs_game.id;
