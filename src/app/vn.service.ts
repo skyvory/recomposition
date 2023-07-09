@@ -267,4 +267,19 @@ export class VnService {
 			.catch(this.handleError)
 		;
 	}
+
+	portalSearchVn2(search_query: string) {
+		let data = {
+			vndb_token: localStorage.getItem('vndb_token')
+		};
+
+		return this.http.post(Constant.API_PATH + `portal/search2/${search_query}`, data, this.authenticationService.option)
+			.map(
+				(response: Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+			;
+	}
 }

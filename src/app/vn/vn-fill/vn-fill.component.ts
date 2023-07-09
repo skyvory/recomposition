@@ -484,6 +484,23 @@ export class VnFillComponent implements OnInit{
 		});
 	}
 
+	portalSearchVn2(search_query: string): void {
+		if (!localStorage.getItem('vndb_token')) {
+			this.toast.pop("VNDB token hasn't set yet");
+			return;
+		}
+		this.toggle.portalSearchButtonDisable = true;
+
+		this.vnService.portalSearchVn2(search_query).subscribe(response => {
+			console.log(response);
+			console.log("LEN", response.data.vndb.length);
+			this.portalSearch.vndb = response.data.vndb;
+			this.portalSearch.egs = response.data.egs;
+			this.toast.pop("Portal search completed");
+			this.toggle.portalSearchButtonDisable = false;
+		});
+	}
+
 	portalSearch:any = {
 		vndb: [],
 		egs: [],
