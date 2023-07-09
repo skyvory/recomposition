@@ -131,12 +131,12 @@ export class VnFillComponent implements OnInit{
 		let vndb_pass_hash = localStorage.getItem('vndb_pass_hash');
 
 		if(vndb_vn) {
-			this.vn.title_original = vndb_vn.original ? vndb_vn.original : vndb_vn.title;
-			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : vndb_vn.original;
-			this.vn.alias = vndb_vn.aliases;
+			this.vn.title_original = vndb_vn.alttitle ? vndb_vn.alttitle : vndb_vn.title;
+			this.vn.title_romaji = vndb_vn.title ? vndb_vn.title : "";
+			this.vn.alias = vndb_vn.aliases.toString();
 			this.vn.date_release = vndb_vn.released;
-			this.vn.image = vndb_vn.image;
-			this.vn.vndb_vn_id = vndb_vn.id;
+			this.vn.image = vndb_vn.image.url;
+			this.vn.vndb_vn_id = vndb_vn.id.substr(1);
 		}
 
 		if(vndb_release) {
@@ -165,35 +165,74 @@ export class VnFillComponent implements OnInit{
 		let developerHandleOnVndb = ():Promise<any> => {
 			return new Promise<any>((resolve, reject) => {
 				if(vndb_vn) {
-					this.vndbService.getVndbRelease(vndb_vn.id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
-						this.toast.pop("VNDB Release retrieved");
-						let vndb_release = response.data.items['0'];
-						if(response.data.items) {
-							let toBreak = false;
-							for(let i in response.data.items) {
-								if(response.data.items[i].producers) {
-									for(let j in response.data.items[i].producers) {
-										if(response.data.items[i].producers[j].developer == true) {
-											devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
-											devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : response.data.items[i].producers[j].name;
-											
-											toBreak = true;
-										}
 
-										if(toBreak == true) {
-											break;
+					let useLegacyAPI = false;
+					if (useLegacyAPI) {
+						this.vndbService.getVndbRelease(vndb_vn.id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
+							this.toast.pop("VNDB Release retrieved");
+							let vndb_release = response.data.items['0'];
+							if(response.data.items) {
+								let toBreak = false;
+								for(let i in response.data.items) {
+									if(response.data.items[i].producers) {
+										for(let j in response.data.items[i].producers) {
+											if(response.data.items[i].producers[j].developer == true) {
+												devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+												devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : response.data.items[i].producers[j].name;
+												
+												toBreak = true;
+											}
+	
+											if(toBreak == true) {
+												break;
+											}
 										}
 									}
-								}
-								if(toBreak == true) {
-									break;
+									if(toBreak == true) {
+										break;
+									}
 								}
 							}
-						}
+	
+							resolve(true);
+						}),
+						(err) => reject(false);
+					}
+					else {
 
-						resolve(true);
-					}),
-					(err) => reject(false);
+						this.vndbService.getVndbRelease2(vndb_vn.id).subscribe(response => {
+							this.toast.pop("VNDB Release retrieved");
+							
+							if (response.data.count) {
+								let toBreak = false;
+								console.log("RESP", response);
+								for (let i in response.data.results) {
+									if (response.data.results[i].producers) {
+										for (let j in response.data.items[i].producers) {
+											if (response.data.items[i].producers[j].developer == true) {
+												devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
+												devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : "";
+
+												toBreak = true;
+											}
+
+											if (toBreak == true) {
+												break;
+											}
+										}
+									}
+									if (toBreak == true) {
+										break;
+									}
+								}
+							}
+
+							resolve(true);
+						}),
+						(err) => reject(false);
+
+					}
+
 				}
 				else {
 					resolve(false);
@@ -210,7 +249,7 @@ export class VnFillComponent implements OnInit{
 						for(let i in vndb_release.producers) {
 							if(vndb_release.producers[i].developer == true) {
 								devOrig = vndb_release.producers[i].original ? vndb_release.producers[i].original : vndb_release.producers[i].name;
-								devRoman = vndb_release.producers[i].original != null ? vndb_release.producers[i].name : vndb_release.producers[i].original;
+								devRoman = vndb_release.producers[i].original != null ? vndb_release.producers[i].name : "";
 								
 								toBreak = true;
 							}
@@ -437,7 +476,8 @@ export class VnFillComponent implements OnInit{
 		
 		this.vnService.portalSearchVn(search_query).subscribe(response => {
 			console.log(response);
-			this.portalSearch.vndb = response.data.vndb.items;
+			console.log("LEN", response.data.vndb.length);
+			this.portalSearch.vndb = response.data.vndb;
 			this.portalSearch.egs = response.data.egs;
 			this.toast.pop("Portal search completed");
 			this.toggle.portalSearchButtonDisable = false;
@@ -460,6 +500,17 @@ export class VnFillComponent implements OnInit{
 		this.vndbService.getVndbRelease(vndb_id, vndb_user_hash, vndb_pass_hash).subscribe(response => {
 			this.toast.pop("VNDB Release retrieved");
 			this.portalSearch.vndbRelease = response.data.items;
+			event.target.disabled = false;
+		});
+	}
+
+	retrieveVndbReleases2(vndb_id:number, event:any):void {
+		// Disable the pressed button
+		event.target.disabled = true;
+
+		this.vndbService.getVndbRelease2(vndb_id).subscribe(response => {
+			this.toast.pop("VNDB Release retrieved");
+			this.portalSearch.vndbRelease = response.data.results;
 			event.target.disabled = false;
 		});
 	}

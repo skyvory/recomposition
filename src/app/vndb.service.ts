@@ -81,6 +81,25 @@ export class VndbService {
 		}
 	}
 
+	getVndbRelease2(vndb_vn_id: number): Observable<any> {
+		let vndb_token = localStorage.getItem('vndb_token');
+		
+		let data = JSON.stringify({
+			vndb_id: vndb_vn_id,
+			vndb_token: vndb_token
+		});
+
+		return this.http.post(Constant.API_PATH + `vndb/release2`, data, this.authenticationService.option)
+			.map(
+				(response: Response) => {
+					return response.json();
+				},
+				err => console.warn("map err", err)
+			)
+			.catch(this.handleError)
+			;
+	}
+
 	setVote(vndb_vn_id:number, score_all:number):Observable<any> {
 		let data = JSON.stringify({
 			vndb_id: vndb_vn_id,

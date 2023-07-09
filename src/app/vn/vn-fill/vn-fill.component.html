@@ -37,15 +37,15 @@
 						<md-card class="portal-vndb-card">
 							<div class="flex-container" fxLayout="row" fxLayoutWrap="wrap">
 								<div fxFlex="30" class="portal-vndb-image-container">
-									<img [src]="vndbNode.image" class="portal-vndb-image">
+									<img [src]="vndbNode.image.url" class="portal-vndb-image">
 								</div>
 								<div fxFlex class="portal-vndb-property">
-									<p>Title: {{vndbNode.original}}</p>
+									<p>Title: {{vndbNode.alttitle ? vndbNode.alttitle : vndbNode.title}}</p>
 									<p>Released: {{vndbNode.released}}</p>
 								</div>
 							</div>
 							<md-card-actions align="end">
-								<button md-raised-button on-click="retrieveVndbReleases(vndbNode.id, $event)" [disabled]="toggle.portalDestinationPullReleasesButtonDisable">Pull Releases</button>
+								<button md-raised-button on-click="retrieveVndbReleases2(vndbNode.id, $event)" [disabled]="toggle.portalDestinationPullReleasesButtonDisable">Pull Releases</button>
 								&nbsp;&nbsp;&nbsp;&nbsp;
 								<md-checkbox [(ngModel)]="vndbNode.selected" (ngModelChange)="selectVndbDestination($event, vndbNode)"></md-checkbox>
 							</md-card-actions>
@@ -170,7 +170,7 @@
 				<md-input-container>
 					<input mdInput placeholder="vndb vn id" [(ngModel)]="vn.vndb_vn_id">
 				</md-input-container>
-				<button md-raised-button (click)="retrieveVndbVn()" [disabled]="toggle.vndbIdLoadButtonDisable">Load</button>
+				<!-- <button md-raised-button (click)="retrieveVndbVn()" [disabled]="toggle.vndbIdLoadButtonDisable">Load</button> -->
 				<md-input-container>
 					<input mdInput placeholder="VNDB Release ID" [(ngModel)]="vn.vndb_release_id">
 				</md-input-container>
