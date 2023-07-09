@@ -8,7 +8,19 @@
 	<md-input-container>
 		<input mdInput type="password" placeholder="password" name="password" [(ngModel)]="vndb.password">
 	</md-input-container>
+	
 	<button md-button type="submit" on-click="setVndbCredentials()">Set</button>
+</form>
+
+<br />
+
+<p>Token status: {{vndbToken.token ? "Token is set" : "No token set yet"}}</p>
+
+<form #form2="ngForm" name="vndb_token_form">
+	<md-input-container>
+		<input mdInput type="text" placeholder="token" name="token" [(ngModel)]="vndbToken.token">
+	</md-input-container>
+	<button md-button type="submit" on-click="saveVndbToken()">Save</button>
 </form>
 
 <br />

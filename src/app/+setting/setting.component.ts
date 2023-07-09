@@ -21,6 +21,7 @@ export class SettingComponent implements OnInit {
 	ngOnInit() {
 		this.loadVndbCredentials();
 		this.checkVndbCredentials();
+		this.loadVndbToken();
 	}
 
 	vndb:any = {
@@ -28,6 +29,11 @@ export class SettingComponent implements OnInit {
 		password: '',
 		status: '',
 		toggle: ''
+	};
+
+	vndbToken:any = {
+		token: '',
+		status: ''
 	};
 
 	loadVndbCredentials():void {
@@ -75,4 +81,12 @@ export class SettingComponent implements OnInit {
 		window.open("http://127.0.0.1/record/public/twitterauth/login?token=" + token, '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
 	}
 
+	public loadVndbToken():void {
+		this.vndbToken.token = localStorage.getItem('vndb_token');
+	}
+
+	public saveVndbToken():void {
+		localStorage.setItem('vndb_token', this.vndbToken.token);
+		this.toast.pop('VNDB token saved');
+	}
 }
