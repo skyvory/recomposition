@@ -85,7 +85,7 @@ export class VndbService {
 		let vndb_token = localStorage.getItem('vndb_token');
 		
 		let data = JSON.stringify({
-			vndb_id: vndb_vn_id,
+			vndb_vn_id: vndb_vn_id,
 			vndb_token: vndb_token
 		});
 
