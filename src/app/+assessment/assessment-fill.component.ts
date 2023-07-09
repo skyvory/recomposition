@@ -142,7 +142,7 @@ export class AssessmentFillComponent implements OnInit, DoCheck {
 					status = 'finished';
 				else if(this.assessment.status == 'halted')
 					status = 'stalled';
-				else if(this.assessment.status == 'decomposed')
+				else if(this.assessment.status == 'dropped')
 					status = 'dropped';
 
 				if(status) {
