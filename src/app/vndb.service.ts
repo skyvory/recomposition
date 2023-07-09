@@ -130,6 +130,23 @@ export class VndbService {
 		}
 	}
 
+	setVote2(vndb_vn_id: number, score_all: number): Observable<any> {
+		let data = JSON.stringify({
+			vndb_id: vndb_vn_id,
+			vote: score_all,
+			vndb_token: localStorage.getItem('vndb_token')
+		});
+
+		return this.http.post(Constant.API_PATH + `vndb/setVote2`, data, this.authenticationService.option)
+			.map(
+				(response: Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+			;
+	}
+
 	setStatus(vndb_vn_id:number, status:string):Observable<any> {
 		let data = JSON.stringify({
 			vndb_id: vndb_vn_id,
@@ -158,6 +175,23 @@ export class VndbService {
 				.catch(this.handleError)
 			;
 		}
+	}
+
+	setStatus2(vndb_vn_id: number, status: string): Observable<any> {
+		let data = JSON.stringify({
+			vndb_id: vndb_vn_id,
+			status: status,
+			vndb_token: localStorage.getItem('vndb_token')
+		});
+	
+		return this.http.post(Constant.API_PATH + `vndb/setStatus2`, data, this.authenticationService.option)
+			.map(
+				(response: Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+			;
 	}
 
 	getCharacters(vndb_vn_id:number, page:number):Observable<any> {
