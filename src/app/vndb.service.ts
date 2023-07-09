@@ -224,6 +224,23 @@ export class VndbService {
 		}
 	}
 
+	getCharacters2(vndb_vn_id: number, page: number): Observable<any> {
+		let data = JSON.stringify({
+			vndb_vn_id: "v" + vndb_vn_id,
+			page: page,
+			vndb_token: localStorage.getItem('vndb_token')
+		});
+
+		return this.http.post(Constant.API_PATH + `vndb/character2`, data, this.authenticationService.option)
+			.map(
+				(response: Response) => {
+					return response.json();
+				}
+			)
+			.catch(this.handleError)
+			;
+	}
+
 
 	private handleError(error: any) {
 		console.error("Error occurred", error);

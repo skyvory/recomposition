@@ -122,6 +122,47 @@ export class AssessmentCharacterComponent implements OnInit {
 		fetch(page);
 	}
 
+	retrieveVndbCharacter2(): void {
+		if (!localStorage.getItem('vndb_token')) {
+			this.toast.pop('VNDB credential is not set yet');
+			return;
+		}
+
+		let fetch = (page: number) => {
+			this.toast.pop("Retrieving page " + page + " of VNDB characters...");
+			this.vndbService.getCharacters2(this.vndb.vn_id, page).subscribe(response => {
+				console.log("RESP", response);
+				let characters = response.data.results;
+				// chara processing
+				if (characters) {
+					for (let i in characters) {
+						let char = characters[i].sex;
+						if(char != null) {
+							// Chara sex property: Possibly null, otherwise an array of two strings: the character’s apparent (non-spoiler) sex and the character’s real (spoiler) sex. Possible values are null, "m", "f" or "b" (meaning “both”).
+							if (char[0] == "f" || char[1] == "f" || char[0] == "b" || char[1] == "b") {
+								this.vndb.characters.push(characters[i]);
+							}
+						}
+						else {
+							this.vndb.characters.push(characters[i]);
+						}
+					}
+				}
+				this.toast.pop("VNDB characters get!");
+				// fetch next batch of character if there's more than 100
+				if (response.data.more == true) {
+					page++;
+					fetch(page);
+				}
+			},
+				err => console.log("ERROR IN COMPONENT", err)
+			);
+		}
+
+		let page = 1;
+		fetch(page);
+	}
+
 	removeVndbCharacter(item):void {
 		let index = this.vndb.characters.indexOf(item);
 		this.vndb.characters.splice(index, 1);
@@ -133,19 +174,21 @@ export class AssessmentCharacterComponent implements OnInit {
 		if(!chara.original.match(/[a-zA-Z]/i)) {
 			chara.original = chara.original.replace(/ /g, '　');
 		}
-		character.name_original = chara.original;
-		character.name_betsumyou = chara.aliases;
-		character.name_furigana = chara.name;
-		character.birthmonth = chara.birthday[1];
-		character.birthday = chara.birthday[0];
+		character.name_original = chara.original ? chara.original : chara.name;
+		character.name_betsumyou = chara.aliases ? chara.aliases.toString() : "";
+		character.name_furigana = chara.name ? chara.name : "";
+		character.birthmonth = chara.birthday ? chara.birthday[0] : null;
+		character.birthday = chara.birthday ? chara.birthday[1] : null;
 		character.height = chara.height;
 		character.weight = chara.weight;
-		character.blood_type = chara.bloodt;
+		character.blood_type = chara.blood_type;
 		character.bust = chara.bust;
 		character.waist = chara.waist;
-		character.hip = chara.hip;
-		character.image = chara.image;
-		character.vndb_character_id = chara.id;
+		character.hip = chara.hips;
+		character.image = chara.image.url;
+		character.vndb_character_id = chara.id.substr(1);
+		character.age = chara.age;
+		character.description = chara.cup ? chara.cup + " cup." : "";
 
 		this.characterService.saveCharacter(character).subscribe(response => {
 			this.toast.pop(chara.original + " saved successfully!");
@@ -221,10 +264,10 @@ export class AssessmentCharacterComponent implements OnInit {
 
 		switch(property) {
 			case 'id':
-				this.characters[target_index].vndb_character_id = chara.id;
+				this.characters[target_index].vndb_character_id = chara.id.substr(1);
 				break;
 			case 'name_original':
-				this.characters[target_index].name_original = chara.original;
+				this.characters[target_index].name_original = chara.original ? chara.original : chara.name;
 				break;
 			case 'name_betsumyou':
 				this.characters[target_index].name_betsumyou = chara.alias;
@@ -233,21 +276,22 @@ export class AssessmentCharacterComponent implements OnInit {
 				this.characters[target_index].name_furigana = chara.name;
 				break;
 			case 'birthdate':
-				this.characters[target_index].birthmonth = chara.birthday[1];
-				this.characters[target_index].birthday = chara.birthday[0];
+				this.characters[target_index].birthmonth = chara.birthday[0];
+				this.characters[target_index].birthday = chara.birthday[1];
+				this.characters[target_index].age = chara.age;
 				break;
 			case 'height':
 				this.characters[target_index].height = chara.height;
 				this.characters[target_index].weight = chara.weight;
-				this.characters[target_index].blood_type = chara.bloodt;
+				this.characters[target_index].blood_type = chara.blood_type;
 				break;
 			case 'bwh':
 				this.characters[target_index].bust = chara.bust;
 				this.characters[target_index].waist = chara.waist;
-				this.characters[target_index].hip = chara.hip;
+				this.characters[target_index].hip = chara.hips;
 				break;
 			case 'image':
-				this.characters[target_index].image = chara.image;
+				this.characters[target_index].image = chara.image.url;
 				break;
 			default:
 				console.log("property is not registered yet");

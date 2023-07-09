@@ -4,7 +4,7 @@
 		<md-input-container>
 			<input mdInput placeholder="VNDB VN ID" [(ngModel)]="vndb.vn_id" name="vndbvnid">
 		</md-input-container>
-		<button md-button on-click="retrieveVndbCharacter()">Load</button>
+		<button md-button on-click="retrieveVndbCharacter2()">Load</button>
 
 		<span class="spanning-flex"></span>
 
@@ -20,20 +20,20 @@
 		<div class="vndb-chara-container">
 			<ng-template ngFor let-chara [ngForOf]="vndb.characters">
 				<md-card class="flex-30">
-					<md-card-title>{{chara.name}}</md-card-title>
+					<md-card-title>{{chara.name || chara.original}}</md-card-title>
 					<md-card-subtitle>{{chara.description}}</md-card-subtitle>
 					<div class="flex-row">
 						<div class="flex-30">
-							<img src="{{chara.image}}" class="vndb-chara-image" on-click="purgeCharacterProperty(chara, 'image')">
+							<img src="{{chara.image.url}}" class="vndb-chara-image" on-click="purgeCharacterProperty(chara, 'image')">
 							<button md-button *ngIf="chara.id" on-click="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
 						</div>
 						<div class="flex-70">
 							<button md-button *ngIf="chara.original" on-click="purgeCharacterProperty(chara, 'name_original')">original: {{chara.original}}</button><br>
 							<button md-button *ngIf="chara.name" on-click="purgeCharacterProperty(chara, 'name_furigana')">name: {{chara.name}}</button><br>
 							<button md-button *ngIf="chara.aliases" on-click="purgeCharacterProperty(chara, 'name_betsumyou')">alias: {{chara.aliases}}</button><br>
-							<button md-button *ngIf="chara.birthday" on-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}}</button><br>
-							<button md-button *ngIf="(chara.height || chara.weight || chara.bloodt)" on-click="purgeCharacterProperty(chara, 'height')">height-weight-blood: {{chara.height}}-{{chara.weight}}-{{chara.bloodt}}</button><br>
-							<button md-button *ngIf="chara.bust" on-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hip}}</button><br>
+							<button md-button *ngIf="chara.birthday" on-click="purgeCharacterProperty(chara, 'birthdate')">birthday: {{chara.birthday[1]}}.{{chara.birthday[0]}} {{chara.age ? " - " + chara.age : ""}}</button><br>
+							<button md-button *ngIf="(chara.height || chara.weight || chara.blood_type)" on-click="purgeCharacterProperty(chara, 'height')">height-weight-blood: {{chara.height}}-{{chara.weight}}-{{chara.blood_type}}</button><br>
+							<button md-button *ngIf="chara.bust" on-click="purgeCharacterProperty(chara, 'bwh')">b-w-h: {{chara.bust}}-{{chara.waist}}-{{chara.hips}}</button><br>
 						</div>
 					</div>
 					<div>
