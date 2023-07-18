@@ -205,13 +205,12 @@ export class VnFillComponent implements OnInit{
 							
 							if (response.data.count) {
 								let toBreak = false;
-								console.log("RESP", response);
 								for (let i in response.data.results) {
 									if (response.data.results[i].producers) {
-										for (let j in response.data.items[i].producers) {
-											if (response.data.items[i].producers[j].developer == true) {
-												devOrig = response.data.items[i].producers[j].original ? response.data.items[i].producers[j].original : response.data.items[i].producers[j].name;
-												devRoman = response.data.items[i].producers[j].original != null ? response.data.items[i].producers[j].name : "";
+										for (let j in response.data.results[i].producers) {
+											if (response.data.results[i].producers[j].developer == true) {
+												devOrig = response.data.results[i].producers[j].original ? response.data.results[i].producers[j].original : response.data.results[i].producers[j].name;
+												devRoman = response.data.results[i].producers[j].original != null ? response.data.results[i].producers[j].name : "";
 
 												toBreak = true;
 											}
