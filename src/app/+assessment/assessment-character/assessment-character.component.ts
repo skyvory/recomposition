@@ -185,7 +185,7 @@ export class AssessmentCharacterComponent implements OnInit {
 		character.bust = chara.bust;
 		character.waist = chara.waist;
 		character.hip = chara.hips;
-		character.image = chara.image.url;
+		character.image = chara.image ? chara.image.url : null;
 		character.vndb_character_id = chara.id.substr(1);
 		character.age = chara.age;
 		character.description = chara.cup ? chara.cup + " cup." : "";
@@ -291,7 +291,7 @@ export class AssessmentCharacterComponent implements OnInit {
 				this.characters[target_index].hip = chara.hips;
 				break;
 			case 'image':
-				this.characters[target_index].image = chara.image.url;
+				this.characters[target_index].image = chara.image ? chara.image.url : null;
 				break;
 			default:
 				console.log("property is not registered yet");

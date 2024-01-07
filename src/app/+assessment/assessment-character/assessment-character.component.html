@@ -24,7 +24,7 @@
 					<md-card-subtitle>{{chara.description}}</md-card-subtitle>
 					<div class="flex-row">
 						<div class="flex-30">
-							<img src="{{chara.image.url}}" class="vndb-chara-image" on-click="purgeCharacterProperty(chara, 'image')">
+							<img src="{{chara.image ? chara.image.url : ''}}" class="vndb-chara-image" on-click="purgeCharacterProperty(chara, 'image')">
 							<button md-button *ngIf="chara.id" on-click="purgeCharacterProperty(chara, 'id')">ID: {{chara.id}}</button>
 						</div>
 						<div class="flex-70">
